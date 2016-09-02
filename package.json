@@ -1,0 +1,44 @@
+{
+  "name": "smarthome",
+  "version": "1.0.0",
+  "description": "Home automation for the less programmatically inclined.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devmountainautomation/smarthome.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/devmountainautomation/smarthome/issues"
+  },
+  "homepage": "https://github.com/devmountainautomation/smarthome#readme",
+  "dependencies": {
+    "babel-preset-es2015": "^6.14.0",
+    "babel-register": "^6.14.0",
+    "bcrypt": "^0.8.7",
+    "body-parser": "^1.15.2",
+    "connect-flash": "^0.1.1",
+    "cookie": "^0.3.1",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.0",
+    "express": "^4.14.0",
+    "express-session": "^1.14.1",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-concat": "^2.6.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-sass": "^2.3.2",
+    "massive": "^2.5.0",
+    "parser": "^0.1.4",
+    "passport": "^0.3.2",
+    "passport-facebook": "^2.1.1",
+    "passport-google-oauth20": "^1.0.0",
+    "passport-local": "^1.0.0",
+    "path": "^0.12.7",
+    "pubnub": "^4.0.8"
+  }
+}
