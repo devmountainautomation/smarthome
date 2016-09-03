@@ -3,4 +3,9 @@ angular.module('smarthome')
 
         $urlRouterProvider.otherwise('/');
 
+        $stateProvider
+          .state('login', {
+            url: '/login',
+            templateUrl: './views/login.html'
+          })
     });

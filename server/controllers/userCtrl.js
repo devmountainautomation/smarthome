@@ -1,6 +1,7 @@
 const app = require('../index.js');
 const db = app.get('db');
 const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 module.exports = {
     checkAuth: (req, res, next) => {
@@ -17,6 +18,14 @@ module.exports = {
             return res.redirect('/');
         }
     },
+
+    createLocalUser: (req, res, next) => {
+      bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
+        db.users.insert({name: req.body.name, email: req.body.email,
+          password: hash, phone: req.body.phone})
+      });
+    },
+
     logout: (req, res, next) => {
         if (req.user) {
             req.logout();
