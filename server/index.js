@@ -65,7 +65,7 @@ app.get('/auth/google/callback', passport.authenticate('google', {
 }));
 
 app.get('/auth/facebook', passport.authenticate('facebook', {
-   scope: ['id', 'email', 'displayName', 'photos']
+   scope: ['public_profile', 'email']
 }));
 
 app.get('/auth/facebook/callback', passport.authenticate('facebook', {
