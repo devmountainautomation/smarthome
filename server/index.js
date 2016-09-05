@@ -77,11 +77,11 @@ app.post('/auth/local', passport.authenticate('local'), (req, res) => {
     res.status(200).redirect('/home');
 });
 
-app.get('/home', userCtrl.requireAuth, (req, res) => {
-    res.redirect('/#/home');
-});
+// app.get('/home', userCtrl.requireAuth, (req, res) => {
+//     res.redirect('/#/home');
+// });
 
-app.get('/logout', userCtrl.logout);
+// app.get('/logout', userCtrl.logout);
 
 app.get('/me', (req, res, next) => {
     if (req.user) {

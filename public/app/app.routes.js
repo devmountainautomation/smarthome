@@ -8,4 +8,10 @@ angular.module('smarthome')
             url: '/login',
             templateUrl: './views/login.html'
           })
+            .state('landing page', {
+                url: '/',
+                templateUrl: './app/component/landingPage/landingPage.html',
+                controller: 'landingCtrl'
+            })
+
     });
