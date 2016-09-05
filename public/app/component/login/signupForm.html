@@ -1,0 +1,12 @@
+<h4 id="signup-trigger">Signup</h4>
+
+<div class="signup-expander hidden">
+  <form ng-submit="createLocalUser()">
+    <input type="text" ng-model="signup_name" placeholder="Name" required>
+    <input type="text" ng-model="signup_email" placeholder="Email" required>
+    <input type="text" ng-model="signup_password" placeholder="New Password" required>
+    <input type="text" compare-to="password" ng-model="signup_password_confirm" placeholder="Confirm Password" required>
+    <input type="text" ng-model="signup_phone" placeholder="Phone">
+  </form>
+
+</div>

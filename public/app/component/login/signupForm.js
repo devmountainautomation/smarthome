@@ -1,18 +1,18 @@
 angular.module('smarthome')
-  .directive('signupForm', function ($scope) {
+  .directive('signupForm', function () {
     return {
       restrict: 'E',
-      templateUrl: "/components/login/signupForm.html",
+      templateUrl: "app/component/login/signupForm.html",
       controller: function ($scope, loginService) {
         $scope.createLocalUser = function () {
-          loginService.createLocalUser($scope.signup-name,
-            $scope.signup-email, $scope.signup-password,
-            $scope.signup-phone)
+          loginService.createLocalUser($scope.signup_name,
+            $scope.signup_email, $scope.signup_password,
+            $scope.signup_phone)
           }
         },
         link: function (scope, element, attrs) {
           $('#signup-trigger').on('click', function () {
-            $('.signup-expander').removeClass('hidden');
+            $('.signup-expander').toggleClass('hidden');
           })
         }
     }

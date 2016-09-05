@@ -1,0 +1,30 @@
+.hidden {
+  display: none;
+}
+.login {
+  padding: 3rem;
+  background: #eee;
+}
+.login-box {
+  padding: 2rem;
+  background: #fff;
+  display: flex;
+  display: flex;
+  flex-direction: column;
+  form {
+    display: flex;
+    flex-direction: column;
+    padding: 3rem;
+    input {
+      width: 100%;
+      padding: 1rem;
+    }
+  }
+  img {
+    width: 100%;
+  }
+}
+
+.signup-box {
+  
+}

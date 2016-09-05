@@ -1,14 +1,17 @@
+<head-dir></head-dir>
+
 <section class="login">
   <div class="login-box">
+    <h2>Welcome</h2>
     <form class="local-login" ng-submit="localLogin()">
       <input type="text" ng-model="email" placeholder="Email">
       <input type="text" ng-model="password" placeholder="Password">
     </form>
     <a class="thirdp-auth-button" href="/auth/google">
-      <img src="assetts\img\google-login.png" alt="facebook login" />
+      <img src="..\..\..\assets\img\google-login.png" alt="google login" />
     </a>
     <a class="thirdp-auth-button" href="/auth/facebook">
-      <img src="assetts\img\facebook-login.png" alt="facebook login" />
+      <img src="..\..\..\assets\img\facebook-login.png" alt="facebook login" />
     </a>
   </div>
 </section>
@@ -17,6 +20,6 @@
 </div>
 <section class="signup-box">
 
-
+<signup-form></signup-form>
 
 </section>
