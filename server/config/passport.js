@@ -28,7 +28,7 @@ passport.use(new FacebookStrategy({
         }, (err, newUser) => {
             console.log("new user", user);
         });
-        done(null, case_manager);
+        done(null, user);
     }
 });
 
@@ -56,7 +56,7 @@ passport.use(new GoogleStrategy({
             }, (err, newUser) => {
                 console.log("new user", user);
             });
-            done(null, case_manager);
+            done(null, user);
         }
     });
 

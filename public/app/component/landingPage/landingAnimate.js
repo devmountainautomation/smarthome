@@ -5,10 +5,12 @@ angular.module('smarthome')
       link: (scope, elem, attrs) => {
         $(document).ready(() => {
           $(window).scroll(() => {
-            let winScroll = $(this).scrollTop();
+            let winScroll = $(window).scrollTop();
 
-            $('.skew-right').css("transform", "skewY(" + (winScroll / 2) + "deg)");
-            $('.skew-left').css("transform", "skewY(" + (winScroll / 2) + "deg)");
+            if (winScroll < $('.landing-CTA').offset().top - ($(window).height() / 2)) {
+            $('.skew-right').css("transform", "skewY(" + (winScroll/2) + "deg)");
+            $('.skew-left').css("transform", "skewY(" + (-winScroll/2) + "deg)");
+          }
           });
         });
       }

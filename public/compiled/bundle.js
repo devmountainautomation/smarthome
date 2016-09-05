@@ -53,10 +53,12 @@ angular.module('smarthome').directive('landingDir', function () {
     link: function link(scope, elem, attrs) {
       $(document).ready(function () {
         $(window).scroll(function () {
-          var winScroll = $(undefined).scrollTop();
+          var winScroll = $(window).scrollTop();
 
-          $('.skew-right').css("transform", "skewY(" + winScroll / 2 + "deg)");
-          $('.skew-left').css("transform", "skewY(" + winScroll / 2 + "deg)");
+          if (winScroll < $('.landing-CTA').offset().top - $(window).height() / 2) {
+            $('.skew-right').css("transform", "skewY(" + winScroll / 2 + "deg)");
+            $('.skew-left').css("transform", "skewY(" + -winScroll / 2 + "deg)");
+          }
         });
       });
     }
