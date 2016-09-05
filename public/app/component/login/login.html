@@ -1,25 +1,29 @@
 <head-dir></head-dir>
+<div class="filler">
+
+</div>
 
 <section class="login">
   <div class="login-box">
-    <h2>Welcome</h2>
+    <h1>Welcome</h1>
     <form class="local-login" ng-submit="localLogin()">
       <input type="text" ng-model="email" placeholder="Email">
       <input type="text" ng-model="password" placeholder="Password">
     </form>
     <a class="thirdp-auth-button" href="/auth/google">
-      <img src="..\..\..\assets\img\google-login.png" alt="google login" />
+      <i class="fa fa-google"></i> Login with Google
     </a>
     <a class="thirdp-auth-button" href="/auth/facebook">
-      <img src="..\..\..\assets\img\facebook-login.png" alt="facebook login" />
+      <i class="fa fa-facebook"></i> Login with Facebook
     </a>
+    <hr>
+    <section class="signup-box">
+      <div>
+        <h3>- or -</h3>
+      </div>
+
+      <signup-form></signup-form>
+
+    </section>
   </div>
-</section>
-<div>
-  <h3>- or -</h3>
-</div>
-<section class="signup-box">
-
-<signup-form></signup-form>
-
 </section>

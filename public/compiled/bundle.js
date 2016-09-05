@@ -50,31 +50,6 @@ angular.module('smarthome').directive('headDir', function () {
 });
 'use strict';
 
-angular.module('smarthome').directive('landingDir', function () {
-  return {
-    restrict: 'EA',
-    link: function link(scope, elem, attrs) {
-      $(document).ready(function () {
-        $(window).scroll(function () {
-          var winScroll = $(window).scrollTop();
-
-          if (winScroll < $('.landing-CTA').offset().top - $(window).height() / 2) {
-            $('.skew-right').css("transform", "skewY(" + winScroll / 2 + "deg)");
-            $('.skew-left').css("transform", "skewY(" + -winScroll / 2 + "deg)");
-          }
-        });
-      });
-    }
-  };
-});
-'use strict';
-
-angular.module('smarthome').controller('landingCtrl', function ($scope, landingSrvc) {});
-'use strict';
-
-angular.module('smarthome').service('landingSrvc', function ($http) {});
-'use strict';
-
 angular.module('smarthome').directive('compareTo', function () {
   return {
     restrict: 'A',
@@ -151,6 +126,31 @@ angular.module('smarthome').directive('signupForm', function () {
     }
   };
 });
+'use strict';
+
+angular.module('smarthome').directive('landingDir', function () {
+  return {
+    restrict: 'EA',
+    link: function link(scope, elem, attrs) {
+      $(document).ready(function () {
+        $(window).scroll(function () {
+          var winScroll = $(window).scrollTop();
+
+          if (winScroll < $('.landing-CTA').offset().top - $(window).height() / 2) {
+            $('.skew-right').css("transform", "skewY(" + winScroll / 2 + "deg)");
+            $('.skew-left').css("transform", "skewY(" + -winScroll / 2 + "deg)");
+          }
+        });
+      });
+    }
+  };
+});
+'use strict';
+
+angular.module('smarthome').controller('landingCtrl', function ($scope, landingSrvc) {});
+'use strict';
+
+angular.module('smarthome').service('landingSrvc', function ($http) {});
 'use strict';
 
 angular.module('smarthome').directive('sideDir', function () {
