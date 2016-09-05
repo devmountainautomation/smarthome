@@ -408,6 +408,12 @@ textarea {
 [type="search"]::-webkit-search-decoration {
   -webkit-appearance: none; }
 
+h1, h2, h3, h4, h5, h6, button, a {
+  font-family: 'Lato', sans-serif; }
+
+p {
+  font-family: 'Source Sans Pro', sans-serif; }
+
 body,
 html {
   height: 100%;
@@ -419,10 +425,7 @@ html {
   height: 7vh;
   position: fixed;
   z-index: 5;
-  background: #fff;
-  -webkit-box-shadow: 0 4px 5px 0 #999999;
-  -moz-box-shadow: 0 4px 5px 0 #999999;
-  box-shadow: 0 4px 5px 0 #999999; }
+  background: transparent; }
   .header .header-content {
     display: flex;
     width: 100%;

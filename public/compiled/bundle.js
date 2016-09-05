@@ -47,6 +47,17 @@ angular.module('smarthome').directive('headDir', function () {
 });
 'use strict';
 
+angular.module('smarthome').directive('sideDir', function () {
+    return {
+        restrict: 'EA',
+        templateUrl: './app/component/sidebar/sidebar.html',
+        link: function link(scope, elems, attrs) {
+            $(document).ready(function () {});
+        }
+    };
+});
+'use strict';
+
 angular.module('smarthome').directive('landingDir', function () {
   return {
     restrict: 'EA',
@@ -70,14 +81,3 @@ angular.module('smarthome').controller('landingCtrl', function ($scope, landingS
 'use strict';
 
 angular.module('smarthome').service('landingSrvc', function ($http) {});
-'use strict';
-
-angular.module('smarthome').directive('sideDir', function () {
-    return {
-        restrict: 'EA',
-        templateUrl: './app/component/sidebar/sidebar.html',
-        link: function link(scope, elems, attrs) {
-            $(document).ready(function () {});
-        }
-    };
-});

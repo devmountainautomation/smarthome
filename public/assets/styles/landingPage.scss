@@ -9,11 +9,10 @@ html {
     height: 7vh;
     position: fixed;
     z-index: 5;
-    background: #fff;
-    -webkit-box-shadow: 0 4px 5px 0 rgba(153,153,153,1);
-    -moz-box-shadow: 0 4px 5px 0 rgba(153,153,153,1);
-    box-shadow: 0 4px 5px 0 rgba(153,153,153,1);
-
+    background: transparent;
+    // -webkit-box-shadow: 0 4px 5px 0 rgba(153,153,153,1);
+    // -moz-box-shadow: 0 4px 5px 0 rgba(153,153,153,1);
+    // box-shadow: 0 4px 5px 0 rgba(153,153,153,1);
     .header-content {
         display: flex;
         width: 100%;
@@ -44,6 +43,7 @@ html {
         }
     }
 }
+
 .menu {
     height: 93vh;
     width: 100vw;
@@ -53,13 +53,16 @@ html {
     position: absolute;
     overflow: hidden;
     z-index: 4;
+
     .menu-container {
         padding: 2%;
+
         .nav-links {
             width: 100%;
             height: 50%;
             text-align: center;
             margin-top: 50%;
+
             .nav-item {
                 color: #fff;
                 font-size: 200%;
@@ -82,6 +85,11 @@ html {
     z-index: -2;
     background: url('https://static.pexels.com/photos/106399/pexels-photo-106399.jpeg')center no-repeat;
     background-size: cover;
+    // -webkit-filter: blur(5px);
+    // -moz-filter: blur(5px);
+    // -o-filter: blur(5px);
+    // -ms-filter: blur(5px);
+    // filter: blur(5px);
 
     .landing-container {
         height: 100%;
