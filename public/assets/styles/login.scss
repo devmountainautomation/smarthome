@@ -1,12 +1,19 @@
 .hidden {
   display: none;
 }
+.filler {
+  width: 100%;
+  height: 7vh;
+  background: #36454f;
+}
 .login {
-  padding: 3rem;
+  padding: 8vw;
   background: #eee;
+  min-height: 93vh;
+  box-shadow: 1px 1px 3px #555;
 }
 .login-box {
-  padding: 2rem;
+  padding: 8vw;
   background: #fff;
   display: flex;
   display: flex;
@@ -14,17 +21,47 @@
   form {
     display: flex;
     flex-direction: column;
-    padding: 3rem;
+    margin-bottom: 1rem;
     input {
       width: 100%;
       padding: 1rem;
+      box-sizing: border-box;
+      margin-bottom: .5rem;
+      border: .5px solid #ccc;
+    }
+    button {
+      background: #2B7FA4;
+      color: #fff;
+      padding-top: .75rem;
+      padding-bottom: .75rem;
+      border: none;
+      outline: none;
+      border-radius: 3px;
     }
   }
-  img {
+  a {
     width: 100%;
+    font-family: 'Lato';
+    text-decoration: none;
+    padding: .75rem;
+    background: #eee;
+    border: .5 solid #ccc;
+    border-radius: 5px;
+    margin-bottom: .5rem;
+    color: #333;
+    i {
+      margin: 0 .5rem 0 1rem;
+    }
+    &:visited {
+      color: #333;
+    }
   }
 }
 
 .signup-box {
-  
+  text-align: center;
+  div {
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+  }
 }
