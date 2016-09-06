@@ -1,1 +1,0 @@
-SELECT nickname FROM sensors;
