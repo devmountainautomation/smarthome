@@ -7,7 +7,7 @@ const passport = require('passport');
 const cookie = require('cookie-parser');
 const flash = require('connect-flash');
 const bcrypt = require('bcrypt');
-const PubNub = require('pubnub');
+const Pubnub = require('pubnub');
 
 const FacebookStrategy = require('passport-facebook').Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
@@ -18,6 +18,9 @@ const connString = config.connString;
 const path = require('path');
 
 const app = module.exports = express();
+
+// Controllers
+const userCtrl = require('./controllers/userCtrl');
 
 app.use(cookie(corsOptions));
 app.use(bodyParser.json());
@@ -49,7 +52,7 @@ app.set('view engine', 'html');
 
 // Pubnub setup
 
-var pubnub = new PubNub({
+var pubnub = new Pubnub({
   subscribeKey: config.SubscribeKey,
   publishKey: config.PublishKey,
   secretKey: config.SecretKey,
@@ -61,12 +64,12 @@ pubnub.addListener({
     console.log("This is the message:", message);
   },
   presence: function(presence) {
-    console.log("This is the presence:", presence)
+    console.log("This is the presence:", presence);
   },
   status: function(status) {
     console.log("This is the status:", status);
   }
-})
+});
 
 pubnub.subscribe({
   channels: ['my_channel'],
@@ -109,7 +112,6 @@ app.get('/auth/google/callback', passport.authenticate('google', {
 }));
 
 app.get('/auth/facebook', passport.authenticate('facebook', {
-
    scope: ['public_profile', 'email']
 }));
 

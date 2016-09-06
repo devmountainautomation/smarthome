@@ -1,7 +1,7 @@
 angular.module('smarthome')
-    .config(function($stateProvider, $urlRouterProvider) {
+  .config(function($stateProvider, $urlRouterProvider) {
 
-        $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/');
 
         $stateProvider
           .state('login', {
@@ -9,9 +9,21 @@ angular.module('smarthome')
             templateUrl: '/app/component/login/login.html',
             controller: 'loginCtrl'
           })
-          .state('manage', {
-            url: '/manage',
-            templateUrl: '/app/component/manage/manage.html',
-            controller: 'manageCtrl'
-          })
+
     });
+    $stateProvider
+      .state('landing page', {
+        url: '/',
+        templateUrl: './app/component/landingPage/landingPage.html',
+      })
+
+    .state('login', {
+      url: '/login',
+      templateUrl: '/app/component/login/login.html'
+    })
+    .state('manage', {
+      url: '/manage',
+      templateUrl: '/app/component/manage/manage.html',
+      controller: 'manageCtrl'
+    })
+  });
