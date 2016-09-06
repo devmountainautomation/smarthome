@@ -540,15 +540,15 @@ html {
 .login {
   padding: 8vw;
   background: #eee;
-  min-height: 93vh;
-  box-shadow: 1px 1px 3px #555; }
+  min-height: 93vh; }
 
 .login-box {
   padding: 8vw;
   background: #fff;
   display: flex;
   display: flex;
-  flex-direction: column; }
+  flex-direction: column;
+  box-shadow: 1px 1px 3px #ccc; }
   .login-box form {
     display: flex;
     flex-direction: column;
@@ -578,7 +578,8 @@ html {
     margin-bottom: .5rem;
     color: #333; }
     .login-box a i {
-      margin: 0 .5rem 0 1rem; }
+      margin: 0 .5rem 0 1rem;
+      color: #2B7FA4; }
     .login-box a:visited {
       color: #333; }
 
@@ -587,3 +588,6 @@ html {
   .signup-box div {
     margin-top: 1rem;
     margin-bottom: 1.5rem; }
+
+.signup-trigger {
+  font-weight: bold; }
