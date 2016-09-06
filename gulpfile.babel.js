@@ -13,7 +13,7 @@ const paths = {
 };
 
 gulp.task('styles', () => {
-  return gulp.src(["./public/assets/styles/reset.css", "./public/assets/styles/normalize.css", "./public/assets/styles/fonts.css", paths.scssSource])
+  return gulp.src(["./public/assets/styles/reset.css", "./public/assets/styles/normalize.css", paths.scssSource])
   .pipe(sass().on('error', sass.logError))
   .pipe(concat('styles.css'))
   .pipe(gulp.dest(paths.scssDest));

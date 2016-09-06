@@ -6,12 +6,6 @@ angular.module('smarthome')
         $stateProvider
           .state('login', {
             url: '/login',
-            templateUrl: './app/component/login/login.html'
+            templateUrl: '/app/component/login/login.html'
           })
-          .state('landing page', {
-              url: '/',
-              templateUrl: './app/component/landingPage/landingPage.html',
-              controller: 'landingCtrl'
-          })
-
     });
