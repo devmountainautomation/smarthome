@@ -17,6 +17,25 @@ angular.module('smarthome').config(function ($stateProvider, $urlRouterProvider)
 });
 'use strict';
 
+angular.module('smarthome').directive('landingDir', function () {
+    return {
+        restrict: 'EA',
+        link: function link(scope, elem, attrs) {
+            $(document).ready(function () {
+                $(window).scroll(function () {
+                    var winScroll = $(window).scrollTop() - 35;
+                    if (winScroll < $('.landing-banner').offset().top - $(window).height() / 3) {
+                        console.log(winScroll);
+                        $('.skew-right').css("transform", "skewY(" + winScroll / 2 + "deg)");
+                        $('.skew-left').css("transform", "skewY(" + -winScroll / 2 + "deg)");
+                    }
+                });
+            });
+        }
+    };
+});
+'use strict';
+
 angular.module('smarthome').directive('headDir', function () {
     return {
         restrict: 'EA',
@@ -37,25 +56,6 @@ angular.module('smarthome').directive('headDir', function () {
                     } else {
                         $('.header').removeClass('active');
                         $('.ham-slide').removeClass('span-invert');
-                    }
-                });
-            });
-        }
-    };
-});
-'use strict';
-
-angular.module('smarthome').directive('landingDir', function () {
-    return {
-        restrict: 'EA',
-        link: function link(scope, elem, attrs) {
-            $(document).ready(function () {
-                $(window).scroll(function () {
-                    var winScroll = $(window).scrollTop() - 35;
-                    if (winScroll < $('.landing-banner').offset().top - $(window).height() / 3) {
-                        console.log(winScroll);
-                        $('.skew-right').css("transform", "skewY(" + winScroll / 2 + "deg)");
-                        $('.skew-left').css("transform", "skewY(" + -winScroll / 2 + "deg)");
                     }
                 });
             });
