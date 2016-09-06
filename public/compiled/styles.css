@@ -408,123 +408,85 @@ textarea {
 [type="search"]::-webkit-search-decoration {
   -webkit-appearance: none; }
 
-h1, h2, h3, h4, h5, h6, button, a {
-  font-family: 'Lato', sans-serif; }
+.hidden {
+  display: none; }
 
-p {
-  font-family: 'Source Sans Pro', sans-serif; }
-
-body,
-html {
-  height: 100%;
-  width: 100%; }
-
-/*Header*/
-.header {
-  width: 100vw;
+.filler {
+  width: 100%;
   height: 7vh;
-  position: fixed;
-  z-index: 5;
-  background: transparent; }
-  .header .header-content {
+  background: #36454f;
+  position: fixed; }
+
+.ng-not-empty.ng-invalid {
+  border-color: #f57e77;
+  box-shadow: 0 0 10px #f57e77; }
+  .ng-not-empty.ng-invalid + p {
+    display: static; }
+
+.login {
+  padding: 8vw;
+  padding-top: 10vh;
+  background: #eee;
+  min-height: 100vh; }
+
+.login-box {
+  padding: 8vw;
+  background: #fff;
+  display: flex;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 1px 1px 3px #ccc; }
+  .login-box form {
     display: flex;
-    width: 100%;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-    padding: 1vw; }
-    .header .header-content .hamburger {
-      width: 35px;
-      height: 35px;
-      position: absolute;
-      cursor: pointer;
-      left: 2%; }
-    .header .header-content .logo-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem; }
-      .header .header-content .logo-container .logo {
-        width: 40px;
-        height: 35px;
-        margin: 0 1%; }
-
-.menu {
-  height: 93vh;
-  width: 100vw;
-  margin-top: 7vh;
-  background: black;
-  display: none;
-  position: absolute;
-  overflow: hidden;
-  z-index: 4; }
-  .menu .menu-container {
-    padding: 2%; }
-    .menu .menu-container .nav-links {
+    flex-direction: column;
+    margin-bottom: 1rem; }
+    .login-box form input {
       width: 100%;
-      height: 50%;
-      text-align: center;
-      margin-top: 50%; }
-      .menu .menu-container .nav-links .nav-item {
-        color: #fff;
-        font-size: 200%;
-        margin: 5%; }
-
-.close {
-  float: right;
-  color: #fff;
-  margin-top: 2%; }
-
-.landing-page {
-  height: 100vh;
-  width: 100vw;
-  position: absolute;
-  z-index: -2;
-  background: url("https://static.pexels.com/photos/106399/pexels-photo-106399.jpeg") center no-repeat;
-  background-size: cover; }
-  .landing-page .landing-container {
-    height: 100%;
+      padding: 1rem;
+      box-sizing: border-box;
+      margin-bottom: .5rem;
+      border: .5px solid #ccc; }
+    .login-box form button {
+      background: #2B7FA4;
+      color: #fff;
+      padding-top: .75rem;
+      padding-bottom: .75rem;
+      border: none;
+      outline: none;
+      border-radius: 3px; }
+  .login-box a {
     width: 100%;
-    display: flex;
-    align-items: center;
-    text-align: center; }
-    .landing-page .landing-container .landing-banner {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      font-size: 2rem;
-      color: #fff; }
-      .landing-page .landing-container .landing-banner .landing-CTA {
-        height: 7vh;
-        border-radius: 5px;
-        border: none;
-        color: #fff;
-        outline: none; }
+    font-family: 'Lato';
+    text-decoration: none;
+    padding: .75rem;
+    background: #eee;
+    border: .5 solid #ccc;
+    border-radius: 5px;
+    margin-bottom: .5rem;
+    color: #333; }
+    .login-box a i {
+      margin: 0 .5rem 0 1rem;
+      color: #2B7FA4; }
+    .login-box a:visited {
+      color: #333; }
 
-.skew-left {
-  width: 50vw;
-  height: 30vh;
-  background: black;
-  transform: skewY(10deg);
-  position: absolute;
-  left: 0;
-  bottom: -150px;
-  z-index: -1; }
+.signup-box {
+  text-align: center; }
+  .signup-box div {
+    margin-top: 1rem;
+    margin-bottom: 1.5rem; }
+  .signup-box p {
+    color: #c63535;
+    margin: 0 0 .5rem 0; }
 
-.skew-right {
-  width: 50vw;
-  height: 30vh;
-  background: black;
-  transform: skewY(-10deg);
-  position: absolute;
-  right: 0;
-  bottom: -150px;
-  z-index: -1; }
+#signup-trigger {
+  font-weight: bold;
+  cursor: pointer; }
 
-.lp-about {
-  height: 100vh;
-  width: 100vw;
-  background: black; }
+@media screen and (min-width: 480px) {
+  .login-box, .signup-box {
+    margin: 0 auto 0 auto; }
+  .login-box {
+    width: 50%; }
+  .signup-box {
+    width: 100%; } }
