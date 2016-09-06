@@ -7,7 +7,7 @@ const passport = require('passport');
 const cookie = require('cookie-parser');
 const flash = require('connect-flash');
 const bcrypt = require('bcrypt');
-const pubnub = require('pubnub');
+const Pubnub = require('pubnub');
 
 const FacebookStrategy = require('passport-facebook').Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
@@ -22,15 +22,15 @@ const app = module.exports = express();
 app.use(cookie(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-    extended: true
+  extended: true
 }));
 var corsOptions = {
-    origin: 'http://localhost:3000'
+  origin: 'http://localhost:3000'
 };
 app.use(cors());
 app.use(express.static(__dirname + './../public'));
 const databaseObject = massive.connectSync({
-    connectionString: connString
+  connectionString: connString
 });
 app.set('db', databaseObject);
 const db = app.get('db');
@@ -38,30 +38,74 @@ const db = app.get('db');
 // Session and Passport
 
 app.use(session({
-    secret: config.secret,
-    resave: true,
-    saveUninitialized: true
+  secret: config.secret,
+  resave: true,
+  saveUninitialized: true
 }));
 app.use(passport.initialize());
 app.use(passport.session());
 
 app.set('view engine', 'html');
 
+// Pubnub setup
+
+var pubnub = new Pubnub({
+  subscribeKey: config.SubscribeKey,
+  publishKey: config.PublishKey,
+  secretKey: config.SecretKey,
+  ssl: true,
+});
+
+pubnub.addListener({
+  message: function(message) {
+    console.log("This is the message:", message);
+  },
+  presence: function(presence) {
+    console.log("This is the presence:", presence);
+  },
+  status: function(status) {
+    console.log("This is the status:", status);
+  }
+});
+
+pubnub.subscribe({
+  channels: ['my_channel'],
+  withPresence: true
+});
+
 // Controllers
 const userCtrl = './controllers/userCtrl';
 
 //endpoints
+
+//*********** Get Requests ********************//
+app.get('/users/:name', userCtrl.getUser);
+app.get('/users/sensors/:name', userCtrl.getUserSensors);
+app.get('/sensors', userCtrl.getSensors);
+
+//*********** Put Requests *******************//
+app.put('/settings/:name', userCtrl.updateSettings);
+app.put('/users/:name', userCtrl.updateUser);
+
+//*********** Post Requests *****************//
+app.post('/settings/:name', userCtrl.createSettings);
+app.post('/users', userCtrl.createUser);
+app.post('/sensors/:name', userCtrl.createSensor);
+
+//*********** Delete Requests ***************//
+app.delete('/users/:name', userCtrl.destroyUser);
+app.delete('/sensors/:name', userCtrl.destroySensor);
 
 //auth
 const passportJS = require('./config/passport');
 
 //auth endpoints
 app.get('/auth/google', passport.authenticate('google', {
-    scope: ['profile', 'email']
+  scope: ['profile', 'email']
 }));
 app.get('/auth/google/callback', passport.authenticate('google', {
-    successRedirect: '/home',
-    failureRedirect: '/'
+  successRedirect: '/home',
+  failureRedirect: '/'
 }));
 
 app.get('/auth/facebook', passport.authenticate('facebook', {
@@ -69,12 +113,12 @@ app.get('/auth/facebook', passport.authenticate('facebook', {
 }));
 
 app.get('/auth/facebook/callback', passport.authenticate('facebook', {
-   successRedirect: '/home',
-   failureRedirect: '/login'
+  successRedirect: '/home',
+  failureRedirect: '/login'
 }));
 
 app.post('/auth/local', passport.authenticate('local'), (req, res) => {
-    res.status(200).redirect('/home');
+  res.status(200).redirect('/home');
 });
 
 // app.get('/home', userCtrl.requireAuth, (req, res) => {
@@ -84,14 +128,14 @@ app.post('/auth/local', passport.authenticate('local'), (req, res) => {
 // app.get('/logout', userCtrl.logout);
 
 app.get('/me', (req, res, next) => {
-    if (req.user) {
-        res.send(req.user);
-    } else {
-        res.status(400).json('Not Logged In!');
-    }
+  if (req.user) {
+    res.send(req.user);
+  } else {
+    res.status(400).json('Not Logged In!');
+  }
 });
 
 // Port Ready
 app.listen(config.port, () => {
-    console.log('Listening on Port: ', config.port);
+  console.log('Listening on Port: ', config.port);
 });
