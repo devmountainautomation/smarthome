@@ -8,6 +8,6 @@ angular.module('smarthome')
                 url: '/',
                 templateUrl: './app/component/landingPage/landingPage.html',
                 controller: 'landingCtrl'
-            })
+            });
 
     });

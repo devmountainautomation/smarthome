@@ -19,6 +19,9 @@ const path = require('path');
 
 const app = module.exports = express();
 
+// Controllers
+const userCtrl = require('./controllers/userCtrl');
+
 app.use(cookie(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -73,9 +76,6 @@ pubnub.subscribe({
   withPresence: true
 });
 
-// Controllers
-const userCtrl = './controllers/userCtrl';
-
 //endpoints
 
 //*********** Get Requests ********************//
@@ -121,11 +121,11 @@ app.post('/auth/local', passport.authenticate('local'), (req, res) => {
   res.status(200).redirect('/home');
 });
 
-// app.get('/home', userCtrl.requireAuth, (req, res) => {
-//     res.redirect('/#/home');
-// });
+app.get('/home', userCtrl.requireAuth, (req, res) => {
+    res.redirect('/#/home');
+});
 
-// app.get('/logout', userCtrl.logout);
+app.get('/logout', userCtrl.logout);
 
 app.get('/me', (req, res, next) => {
   if (req.user) {

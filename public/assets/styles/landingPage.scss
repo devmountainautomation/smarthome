@@ -7,7 +7,7 @@
     z-index: 5;
     background: transparent;
     color: #fff;
-    transition: all .2s ease-in;
+    transition: all 0.2s ease-in;
 
     .header-content {
         display: flex;
@@ -168,7 +168,7 @@
 .skew-left {
     width: 50%;
     height: 30vh;
-    background: #fff;
+    background: linear-gradient(#065A82, #3c454e);
     transform: skewY(10deg);
     position: absolute;
     left: 0;
@@ -179,7 +179,7 @@
 .skew-right {
     width: 51%;
     height: 30vh;
-    background: #fff;
+    background: linear-gradient(#065A82, #3c454e);
     transform: skewY(-10deg);
     position: absolute;
     right: 0;
@@ -191,17 +191,29 @@
     height: 100vh;
     width: 100vw;
 
+    .dummy-content {
+        text-align: center;
+        margin-top: -10%;
+        color: #fff;
+    }
+
     .what-we-do {
-        height: 60vh;
+        height: 65vh;
         width: 100vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
         background: url('http://images.vivintcdn.com/global/vivint.com/home/2016/home-protect-bg-r2.jpg')center center no-repeat;
-        background-size:auto;
+        background-size: auto;
+        padding: 5%;
 
         h1 {
             text-align: center;
             color: #fff;
             padding: 5%;
         }
+
         .lp-img-container {
             height: 40%;
             width: 100%;
@@ -213,12 +225,13 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                justify-content: space-between;
                 width: 33%;
                 text-align: center;
 
                 img {
-                    width: 35%;
+                    width: 35px;
+                    height: 35px;
+                    margin-bottom: 10px;
                 }
 
                 p {
@@ -229,8 +242,16 @@
             }
         }
     }
+
     .why-we-do {
-        height: 40vh;
+        height: 35vh;
         width: 100vw;
+        background: #EFC7C2;
+        margin: 0;
+        text-align: center;
+
+            h2 {
+                font-size: 1.5em;
+            }
     }
 }

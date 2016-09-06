@@ -427,8 +427,8 @@ p {
   z-index: 5;
   background: transparent;
   color: #fff;
-  -webkit-transition: all .2s ease-in;
-  transition: all .2s ease-in; }
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in; }
   .header .header-content {
     display: -webkit-box;
     display: -webkit-flex;
@@ -600,7 +600,9 @@ p {
 .skew-left {
   width: 50%;
   height: 30vh;
-  background: #fff;
+  background: -webkit-gradient(linear, left top, left bottom, from(#065A82), to(#3c454e));
+  background: -webkit-linear-gradient(#065A82, #3c454e);
+  background: linear-gradient(#065A82, #3c454e);
   -webkit-transform: skewY(10deg);
   -ms-transform: skewY(10deg);
   transform: skewY(10deg);
@@ -612,7 +614,9 @@ p {
 .skew-right {
   width: 51%;
   height: 30vh;
-  background: #fff;
+  background: -webkit-gradient(linear, left top, left bottom, from(#065A82), to(#3c454e));
+  background: -webkit-linear-gradient(#065A82, #3c454e);
+  background: linear-gradient(#065A82, #3c454e);
   -webkit-transform: skewY(-10deg);
   -ms-transform: skewY(-10deg);
   transform: skewY(-10deg);
@@ -624,11 +628,33 @@ p {
 .lp-about {
   height: 100vh;
   width: 100vw; }
+  .lp-about .dummy-content {
+    text-align: center;
+    margin-top: -10%;
+    color: #fff; }
   .lp-about .what-we-do {
-    height: 60vh;
+    height: 65vh;
     width: 100vw;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
     background: url("http://images.vivintcdn.com/global/vivint.com/home/2016/home-protect-bg-r2.jpg") center center no-repeat;
-    background-size: auto; }
+    background-size: auto;
+    padding: 5%; }
     .lp-about .what-we-do h1 {
       text-align: center;
       color: #fff;
@@ -659,18 +685,21 @@ p {
         -webkit-align-items: center;
         -ms-flex-align: center;
         align-items: center;
-        -webkit-box-pack: justify;
-        -webkit-justify-content: space-between;
-        -ms-flex-pack: justify;
-        justify-content: space-between;
         width: 33%;
         text-align: center; }
         .lp-about .what-we-do .lp-img-container .lp-img-wrapper img {
-          width: 35%; }
+          width: 35px;
+          height: 35px;
+          margin-bottom: 10px; }
         .lp-about .what-we-do .lp-img-container .lp-img-wrapper p {
           color: #fff;
           font-family: 'Lato';
           font-weight: 100; }
   .lp-about .why-we-do {
-    height: 40vh;
-    width: 100vw; }
+    height: 35vh;
+    width: 100vw;
+    background: #EFC7C2;
+    margin: 0;
+    text-align: center; }
+    .lp-about .why-we-do h2 {
+      font-size: 1.5em; }
