@@ -3,14 +3,6 @@ angular.module('smarthome')
 
     $urlRouterProvider.otherwise('/');
 
-        $stateProvider
-          .state('login', {
-            url: '/login',
-            templateUrl: '/app/component/login/login.html',
-            controller: 'loginCtrl'
-          })
-
-    });
     $stateProvider
       .state('landing page', {
         url: '/',
