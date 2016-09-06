@@ -412,12 +412,6 @@ textarea {
 [type="search"]::-webkit-search-decoration {
   -webkit-appearance: none; }
 
-h1, h2, h3, h4, h5, h6, button, a {
-  font-family: 'Lato', sans-serif; }
-
-p {
-  font-family: 'Source Sans Pro', sans-serif; }
-
 /*Header*/
 .header {
   width: 100vw;
@@ -703,3 +697,104 @@ p {
     text-align: center; }
     .lp-about .why-we-do h2 {
       font-size: 1.5em; }
+
+.hidden {
+  display: none; }
+
+.filler {
+  width: 100%;
+  height: 7vh;
+  padding: 5vh;
+  background: #36454f;
+  position: fixed; }
+
+.ng-not-empty.ng-invalid {
+  border-color: #f57e77;
+  -webkit-box-shadow: 0 0 10px #f57e77;
+  box-shadow: 0 0 10px #f57e77; }
+  .ng-not-empty.ng-invalid + p {
+    display: static; }
+
+.login {
+  padding: 8vw;
+  padding-top: 15vh;
+  background: #eee;
+  min-height: 100vh; }
+
+.login-box {
+  padding: 8vw;
+  background: #fff;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-shadow: 1px 1px 3px #ccc;
+  box-shadow: 1px 1px 3px #ccc; }
+  .login-box form {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    margin-bottom: 1rem; }
+    .login-box form input {
+      width: 100%;
+      padding: 1rem;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      margin-bottom: .5rem;
+      border: .5px solid #ccc; }
+    .login-box form button {
+      background: #2B7FA4;
+      color: #fff;
+      padding-top: .75rem;
+      padding-bottom: .75rem;
+      border: none;
+      outline: none;
+      border-radius: 3px; }
+  .login-box a {
+    width: 100%;
+    font-family: 'Lato';
+    text-decoration: none;
+    padding: .75rem;
+    background: #eee;
+    border: .5 solid #ccc;
+    border-radius: 5px;
+    margin-bottom: .5rem;
+    color: #333; }
+    .login-box a i {
+      margin: 0 .5rem 0 1rem;
+      color: #2B7FA4; }
+    .login-box a:visited {
+      color: #333; }
+
+.signup-box {
+  text-align: center; }
+  .signup-box div {
+    margin-top: 1rem;
+    margin-bottom: 1.5rem; }
+  .signup-box p {
+    color: #c63535;
+    margin: 0 0 .5rem 0; }
+
+#signup-trigger {
+  font-weight: bold;
+  cursor: pointer; }
+
+@media screen and (min-width: 480px) {
+  .login-box, .signup-box {
+    margin: 0 auto 0 auto; }
+  .login-box {
+    width: 50%; }
+  .signup-box {
+    width: 100%; } }

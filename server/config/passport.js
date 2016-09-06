@@ -11,7 +11,10 @@ passport.use(new FacebookStrategy({
     clientID: auth.facebookAuth.clientID,
     clientSecret: auth.facebookAuth.clientSecret,
     callbackURL: auth.facebookAuth.callbackURL
-}, (token, refreshToken, profile, done) => {db.users.findOne({
+}, (token, refreshToken, profile, done) => {
+  console.log(token);
+  console.log(profile);
+  db.users.findOne({
     facebook_id: profile.id
 }, (err, user) => {
     if (err) {

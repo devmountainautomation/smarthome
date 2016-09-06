@@ -1,0 +1,102 @@
+.hidden {
+  display: none;
+}
+
+.filler {
+  width: 100%;
+  height: 7vh;
+  padding: 5vh;
+  background: #36454f;
+  position: fixed;
+}
+.ng-not-empty.ng-invalid {
+  border-color: rgb(245, 126, 119);
+  box-shadow: 0 0 10px rgb(245, 126, 119);
+  &+p {
+    display: static;
+  }
+}
+
+.login {
+  padding: 8vw;
+  padding-top: 15vh;
+  background: #eee;
+  min-height: 100vh;
+}
+.login-box {
+  padding: 8vw;
+  background: #fff;
+  display: flex;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 1px 1px 3px #ccc;
+  form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    input {
+      width: 100%;
+      padding: 1rem;
+      box-sizing: border-box;
+      margin-bottom: .5rem;
+      border: .5px solid #ccc;
+    }
+    button {
+      background: #2B7FA4;
+      color: #fff;
+      padding-top: .75rem;
+      padding-bottom: .75rem;
+      border: none;
+      outline: none;
+      border-radius: 3px;
+    }
+  }
+  a {
+    width: 100%;
+    font-family: 'Lato';
+    text-decoration: none;
+    padding: .75rem;
+    background: #eee;
+    border: .5 solid #ccc;
+    border-radius: 5px;
+    margin-bottom: .5rem;
+    color: #333;
+    i {
+      margin: 0 .5rem 0 1rem;
+      color: #2B7FA4;
+    }
+    &:visited {
+      color: #333;
+    }
+  }
+}
+
+.signup-box {
+  text-align: center;
+  div {
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  p {
+    color: rgb(198, 53, 53);
+    margin: 0 0 .5rem 0;
+  }
+}
+
+#signup-trigger {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 480px) {
+  .login-box, .signup-box {
+    margin: 0 auto 0 auto;
+  }
+  .login-box {
+    width: 50%;
+  }
+  .signup-box {
+    width: 100%;
+
+  }
+}

@@ -1,6 +1,7 @@
 const app = require('../index.js');
 const db = app.get('db');
 const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 module.exports = {
   checkAuth: (req, res, next) => {
@@ -16,15 +17,6 @@ module.exports = {
     } else {
       return res.redirect('/');
     }
-  },
-  logout: (req, res, next) => {
-    if (req.user) {
-      req.logout();
-      res.redirect('/#/');
-    } else {
-      res.redirect('/');
-    }
-
   },
   getUser: (req, res, next) => {
     var userName = req.params.name.split(',').join(' ');
@@ -107,6 +99,18 @@ module.exports = {
           res.send(200);
         }
       });
+    }
+  },
+    createLocalUser: (req, res, next) => {
+      bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
+        db.users.insert({name: req.body.name, email: req.body.email,
+          password: hash, phone: req.body.phone});
+      });
+    },
+    logout: (req, res, next) => {
+        if (req.user) {
+            req.logout();
+            res.redirect('/#/');
     }
     res.status(500).send("No User data Provided");
   },
