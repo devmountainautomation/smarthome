@@ -4,6 +4,7 @@ CREATE TABLE users
   name VARCHAR(40),
   email VARCHAR(40),
   phone VARCHAR(60),
+  password VARCHAR(80),
   pubsub VARCHAR(80),
   pubpub VARCHAR(80),
   pubchan VARCHAR(20),
