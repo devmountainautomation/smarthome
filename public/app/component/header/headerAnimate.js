@@ -6,25 +6,21 @@ angular.module('smarthome')
             link: (scope, elems, attrs) => {
                 $(document).ready(() => {
                     $('.logged-in').hide();
-                    $('.close').hide();
-                    $('.hamburger').click(() => {
-                        let elem = document.getElementById("menu");
-                        let cssProp = window.getComputedStyle(elem, null).getPropertyValue("display");
-                        if (cssProp === "none") {
-                            $('.menu').toggle('slide', 'left', 500);
-                            setTimeout(() => {
-                                $('.close').fadeIn(200);
-                            }, 500);
-                        }
-                        else {
-                            $('.menu').toggle('slide', 'left', 500);
-                            $('.close').fadeOut(500);
-                        }
+                    $('#hamburger').click(() => {
+                        $('#hamburger').toggleClass('open');
+                            $('#menu').toggle('slide', 'left', 500);
+                            $('.landing-page').toggleClass('menu-open');
                     });
 
-                    $('.close').click(() => {
-                            $('.menu').toggle('slide', 'left', 500);
-                            $('.close').fadeOut(500);
+                    $(window).on('scroll', () => {
+                      if ($(window).scrollTop() > 50) {
+                        $('.header').addClass('active');
+                        $('.ham-slide').addClass('span-invert');
+                      }
+                      else {
+                        $('.header').removeClass('active');
+                        $('.ham-slide').removeClass('span-invert');
+                      }
                     });
                 });
             }

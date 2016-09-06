@@ -1,35 +1,51 @@
-body,
-html {
-    height: 100%;
-    width: 100%;
-}
 /*Header*/
 .header {
     width: 100vw;
     height: 7vh;
+    padding: 5vh;
     position: fixed;
     z-index: 5;
     background: transparent;
-    // -webkit-box-shadow: 0 4px 5px 0 rgba(153,153,153,1);
-    // -moz-box-shadow: 0 4px 5px 0 rgba(153,153,153,1);
-    // box-shadow: 0 4px 5px 0 rgba(153,153,153,1);
+    color: #fff;
+    transition: all .2s ease-in;
+
     .header-content {
         display: flex;
         width: 100%;
         height: 100%;
         justify-content: center;
         align-items: center;
-        padding: 1vw;
 
-        .hamburger {
+        #hamburger {
             width: 35px;
             height: 35px;
             position: absolute;
             cursor: pointer;
-            left: 2%;
+            left: 5%;
+            top: 22px;
+            transform: rotate(0deg);
+            transition: 0.5s ease-in-out;
+
+            .span-invert {
+                background: #000;
+            }
+
+            span {
+                display: block;
+                position: absolute;
+                background: #fff;
+                height: 5%;
+                width: 100%;
+                border-radius: 9px;
+                opacity: 1;
+                left: 0;
+                transform: rotate(0deg);
+                transition: 0.25s ease-in-out;
+            }
         }
 
         .logo-container {
+            font-family: 'Source Sans Pro';
             display: flex;
             align-items: center;
             justify-content: center;
@@ -44,13 +60,49 @@ html {
     }
 }
 
+.menu-open {
+    overflow: hidden;
+}
+
+.active {
+    background: #fff;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+    color: #000;
+}
+
+#hamburger span:nth-child(1) {
+    top: 0;
+}
+
+#hamburger span:nth-child(2) {
+    top: 9px;
+}
+
+#hamburger span:nth-child(3) {
+    top: 18px;
+}
+
+#hamburger.open span:nth-child(1) {
+    top: 10px;
+    transform: rotate(135deg);
+}
+
+#hamburger.open span:nth-child(2) {
+    opacity: 0;
+    left: -60px;
+}
+
+#hamburger.open span:nth-child(3) {
+    top: 10px;
+    transform: rotate(-135deg);
+}
+
 .menu {
-    height: 93vh;
+    height: 100vh;
     width: 100vw;
-    margin-top: 7vh;
     background: black;
     display: none;
-    position: absolute;
+    position: fixed;
     overflow: hidden;
     z-index: 4;
 
@@ -72,25 +124,14 @@ html {
     }
 }
 
-.close {
-    float: right;
-    color: #fff;
-    margin-top: 2%;
-}
-
 .landing-page {
     height: 100vh;
     width: 100vw;
     position: absolute;
     z-index: -2;
-    background: url('https://static.pexels.com/photos/106399/pexels-photo-106399.jpeg')center no-repeat;
+    background: url('../assets/img/landing-page-smaller.jpg')center no-repeat;
     background-size: cover;
-    // -webkit-filter: blur(5px);
-    // -moz-filter: blur(5px);
-    // -o-filter: blur(5px);
-    // -ms-filter: blur(5px);
     // filter: blur(5px);
-
     .landing-container {
         height: 100%;
         width: 100%;
@@ -105,24 +146,29 @@ html {
             justify-content: center;
             align-items: center;
             text-align: center;
-            font-size: 2rem;
+            font-size: 1.5rem;
             color: #fff;
 
             .landing-CTA {
-                height: 7vh;
-                border-radius: 5px;
+                background: none;
                 border: none;
                 color: #fff;
+                padding: 1rem;
+                border: 3px solid #19A2C6;
                 outline: none;
+
+                &:active {
+                    background-color: #19A2C6;
+                }
             }
         }
     }
 }
 
 .skew-left {
-    width: 50vw;
+    width: 50%;
     height: 30vh;
-    background: black;
+    background: #fff;
     transform: skewY(10deg);
     position: absolute;
     left: 0;
@@ -131,9 +177,9 @@ html {
 }
 
 .skew-right {
-    width: 50vw;
+    width: 51%;
     height: 30vh;
-    background: black;
+    background: #fff;
     transform: skewY(-10deg);
     position: absolute;
     right: 0;
@@ -144,5 +190,47 @@ html {
 .lp-about {
     height: 100vh;
     width: 100vw;
-    background: black;
+
+    .what-we-do {
+        height: 60vh;
+        width: 100vw;
+        background: url('http://images.vivintcdn.com/global/vivint.com/home/2016/home-protect-bg-r2.jpg')center center no-repeat;
+        background-size:auto;
+
+        h1 {
+            text-align: center;
+            color: #fff;
+            padding: 5%;
+        }
+        .lp-img-container {
+            height: 40%;
+            width: 100%;
+            padding: 7%;
+            display: flex;
+            justify-content: space-between;
+
+            .lp-img-wrapper {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-between;
+                width: 33%;
+                text-align: center;
+
+                img {
+                    width: 35%;
+                }
+
+                p {
+                    color: #fff;
+                    font-family: 'Lato';
+                    font-weight: 100;
+                }
+            }
+        }
+    }
+    .why-we-do {
+        height: 40vh;
+        width: 100vw;
+    }
 }

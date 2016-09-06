@@ -3,6 +3,7 @@ import concat from 'gulp-concat';
 import sass from 'gulp-sass';
 import babel from 'gulp-babel';
 import plumber from 'gulp-plumber';
+import autoprefixer from 'gulp-autoprefixer';
 import path from 'path';
 
 const paths = {
@@ -14,6 +15,10 @@ const paths = {
 
 gulp.task('styles', () => {
   return gulp.src(["./public/assets/styles/reset.css", "./public/assets/styles/normalize.css", "./public/assets/styles/fonts.css", paths.scssSource])
+  .pipe(autoprefixer({
+            browsers: ['last 8 versions'],
+            cascade: false
+        }))
   .pipe(sass().on('error', sass.logError))
   .pipe(concat('styles.css'))
   .pipe(gulp.dest(paths.scssDest));
