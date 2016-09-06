@@ -89,6 +89,16 @@ angular.module('smarthome').directive('compareTo', function () {
       scope.$watch("otherValue", function () {
         ngModel.$validate();
       });
+      element.on('blur', function () {
+        if (element.hasClass('ng-invalid')) {
+          $('.password-confirmation-alert').removeClass('hidden');
+        }
+      });
+      element.on('keyup', function () {
+        if (element.hasClass('ng-valid')) {
+          $('.password-confirmation-alert').addClass('hidden');
+        }
+      });
     }
   };
 });
@@ -146,7 +156,17 @@ angular.module('smarthome').directive('signupForm', function () {
     },
     link: function link(scope, element, attrs) {
       $('#signup-trigger').on('click', function () {
-        $('.signup-expander').toggleClass('hidden');
+        $('.signup-expander').slideToggle();
+      });
+      $('#email').on('blur', function () {
+        if ($('#email').hasClass('ng-invalid')) {
+          $('.email-confirmation-alert').removeClass('hidden');
+        }
+      });
+      $('#email').on('keyup', function () {
+        if ($('#email').hasClass('ng-valid')) {
+          $('.email-confirmation-alert').addClass('hidden');
+        }
       });
     }
   };

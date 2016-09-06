@@ -12,7 +12,18 @@ angular.module('smarthome')
         };
         scope.$watch("otherValue", function () {
           ngModel.$validate();
+        });
+        element.on('blur', function () {
+          if (element.hasClass('ng-invalid')) {
+            $('.password-confirmation-alert').removeClass('hidden');
+          }
         })
+        element.on('keyup', function () {
+          if (element.hasClass('ng-valid')) {
+            $('.password-confirmation-alert').addClass('hidden');
+          }
+        })
+
       }
     }
   });

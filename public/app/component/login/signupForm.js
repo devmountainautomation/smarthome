@@ -12,8 +12,19 @@ angular.module('smarthome')
         },
         link: function (scope, element, attrs) {
           $('#signup-trigger').on('click', function () {
-            $('.signup-expander').toggleClass('hidden');
+            $('.signup-expander').slideToggle();
           })
+          $('#email').on('blur', function () {
+            if ($('#email').hasClass('ng-invalid')) {
+              $('.email-confirmation-alert').removeClass('hidden');
+            }
+          })
+          $('#email').on('keyup', function () {
+            if ($('#email').hasClass('ng-valid')) {
+              $('.email-confirmation-alert').addClass('hidden');
+            }
+          })
+
         }
     }
   });

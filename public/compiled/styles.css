@@ -535,7 +535,14 @@ html {
 .filler {
   width: 100%;
   height: 7vh;
-  background: #36454f; }
+  background: #36454f;
+  position: fixed; }
+
+.ng-not-empty.ng-invalid {
+  border-color: #f57e77;
+  box-shadow: 0 0 10px #f57e77; }
+  .ng-not-empty.ng-invalid + p {
+    display: static; }
 
 .login {
   padding: 8vw;
@@ -588,6 +595,18 @@ html {
   .signup-box div {
     margin-top: 1rem;
     margin-bottom: 1.5rem; }
+  .signup-box p {
+    color: #c63535;
+    margin: 0 0 .5rem 0; }
 
-.signup-trigger {
-  font-weight: bold; }
+#signup-trigger {
+  font-weight: bold;
+  cursor: pointer; }
+
+@media screen and (min-width: 480px) {
+  .login-box, .signup-box {
+    margin: 0 auto 0 auto; }
+  .login-box {
+    width: 50%; }
+  .signup-box {
+    width: 100%; } }

@@ -1,12 +1,16 @@
 <h3 id="signup-trigger">Signup</h3>
 
 <div class="signup-expander hidden">
+
   <form ng-submit="createLocalUser()">
     <input type="text" ng-model="signup_name" placeholder="Name" required>
-    <input type="text" ng-model="signup_email" placeholder="Email" required>
-    <input type="text" ng-model="signup_password" placeholder="New Password" required>
-    <input type="text" compare-to="password" ng-model="signup_password_confirm" placeholder="Confirm Password" required>
-    <input type="text" ng-model="signup_phone" placeholder="Phone">
+    <input type="email" id="email" ng-model="signup_email" placeholder="Email" required>
+    <p class="hidden email-confirmation-alert">Please enter a valid email</p>
+    <input type="password" ng-model="signup_password" placeholder="New Password" required>
+    <input type="password" compare-to="signup_password" ng-model="signup_password_confirm" placeholder="Confirm Password" required>
+    <p class="hidden password-confirmation-alert">Passwords do not match</p>
+    <input type="tel" ng-model="signup_phone" placeholder="Phone (optional)">
+    <button type="button" name="signup">Signup</button>
   </form>
 
 </div>

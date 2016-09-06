@@ -1,11 +1,21 @@
 .hidden {
   display: none;
 }
+
 .filler {
   width: 100%;
   height: 7vh;
   background: #36454f;
+  position: fixed;
 }
+.ng-not-empty.ng-invalid {
+  border-color: rgb(245, 126, 119);
+  box-shadow: 0 0 10px rgb(245, 126, 119);
+  &+p {
+    display: static;
+  }
+}
+
 .login {
   padding: 8vw;
   background: #eee;
@@ -65,7 +75,26 @@
     margin-top: 1rem;
     margin-bottom: 1.5rem;
   }
+  p {
+    color: rgb(198, 53, 53);
+    margin: 0 0 .5rem 0;
+  }
 }
-.signup-trigger {
+
+#signup-trigger {
   font-weight: bold;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 480px) {
+  .login-box, .signup-box {
+    margin: 0 auto 0 auto;
+  }
+  .login-box {
+    width: 50%;
+  }
+  .signup-box {
+    width: 100%;
+
+  }
 }
