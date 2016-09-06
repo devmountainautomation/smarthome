@@ -19,8 +19,9 @@ const path = require('path');
 
 const app = module.exports = express();
 
-// Controllers
-const userCtrl = require('./controllers/userCtrl');
+//auth
+const passportJS = require('./config/passport');
+
 
 app.use(cookie(corsOptions));
 app.use(bodyParser.json());
@@ -76,6 +77,9 @@ pubnub.subscribe({
   withPresence: true
 });
 
+// Controllers
+const userCtrl = require('./controllers/userCtrl');
+
 //endpoints
 
 //*********** Get Requests ********************//
@@ -95,9 +99,6 @@ app.post('/sensors/:name', userCtrl.createSensor);
 //*********** Delete Requests ***************//
 app.delete('/users/:name', userCtrl.destroyUser);
 app.delete('/sensors/:name', userCtrl.destroySensor);
-
-//auth
-const passportJS = require('./config/passport');
 
 //auth endpoints
 app.get('/auth/google', passport.authenticate('google', {
