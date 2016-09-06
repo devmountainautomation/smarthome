@@ -21,6 +21,7 @@ time, mark, audio, video {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box; }
 
 /* HTML5 display-role reset for older browsers */
@@ -245,6 +246,7 @@ figure {
  * 2. Show the overflow in Edge and IE.
  */
 hr {
+  -webkit-box-sizing: content-box;
   box-sizing: content-box;
   /* 1 */
   height: 0;
@@ -357,6 +359,7 @@ fieldset {
  *    `fieldset` elements in all browsers.
  */
 legend {
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   /* 1 */
   color: inherit;
@@ -382,6 +385,7 @@ textarea {
  */
 [type="checkbox"],
 [type="radio"] {
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   /* 1 */
   padding: 0;
@@ -408,41 +412,345 @@ textarea {
 [type="search"]::-webkit-search-decoration {
   -webkit-appearance: none; }
 
+/*Header*/
+.header {
+  width: 100vw;
+  height: 7vh;
+  padding: 5vh;
+  position: fixed;
+  z-index: 5;
+  background: transparent;
+  color: #fff;
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in; }
+  .header .header-content {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center; }
+    .header .header-content #hamburger {
+      width: 35px;
+      height: 35px;
+      position: absolute;
+      cursor: pointer;
+      left: 5%;
+      top: 22px;
+      -webkit-transform: rotate(0deg);
+      -ms-transform: rotate(0deg);
+      transform: rotate(0deg);
+      -webkit-transition: 0.5s ease-in-out;
+      transition: 0.5s ease-in-out; }
+      .header .header-content #hamburger .span-invert {
+        background: #000; }
+      .header .header-content #hamburger span {
+        display: block;
+        position: absolute;
+        background: #fff;
+        height: 5%;
+        width: 100%;
+        border-radius: 9px;
+        opacity: 1;
+        left: 0;
+        -webkit-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg);
+        -webkit-transition: 0.25s ease-in-out;
+        transition: 0.25s ease-in-out; }
+    .header .header-content .logo-container {
+      font-family: 'Source Sans Pro';
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      font-size: 2rem; }
+      .header .header-content .logo-container .logo {
+        width: 40px;
+        height: 35px;
+        margin: 0 1%; }
+
+.menu-open {
+  overflow: hidden; }
+
+.active {
+  background: #fff;
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+  color: #000; }
+
+#hamburger span:nth-child(1) {
+  top: 0; }
+
+#hamburger span:nth-child(2) {
+  top: 9px; }
+
+#hamburger span:nth-child(3) {
+  top: 18px; }
+
+#hamburger.open span:nth-child(1) {
+  top: 10px;
+  -webkit-transform: rotate(135deg);
+  -ms-transform: rotate(135deg);
+  transform: rotate(135deg); }
+
+#hamburger.open span:nth-child(2) {
+  opacity: 0;
+  left: -60px; }
+
+#hamburger.open span:nth-child(3) {
+  top: 10px;
+  -webkit-transform: rotate(-135deg);
+  -ms-transform: rotate(-135deg);
+  transform: rotate(-135deg); }
+
+.menu {
+  height: 100vh;
+  width: 100vw;
+  background: black;
+  display: none;
+  position: fixed;
+  overflow: hidden;
+  z-index: 4; }
+  .menu .menu-container {
+    padding: 2%; }
+    .menu .menu-container .nav-links {
+      width: 100%;
+      height: 50%;
+      text-align: center;
+      margin-top: 50%; }
+      .menu .menu-container .nav-links .nav-item {
+        color: #fff;
+        font-size: 200%;
+        margin: 5%; }
+
+.landing-page {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  z-index: -2;
+  background: url("../assets/img/landing-page-smaller.jpg") center no-repeat;
+  background-size: cover; }
+  .landing-page .landing-container {
+    height: 100%;
+    width: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    text-align: center; }
+    .landing-page .landing-container .landing-banner {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      width: 100%;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+      text-align: center;
+      font-size: 1.5rem;
+      color: #fff; }
+      .landing-page .landing-container .landing-banner .landing-CTA {
+        background: none;
+        border: none;
+        color: #fff;
+        padding: 1rem;
+        border: 3px solid #19A2C6;
+        outline: none; }
+        .landing-page .landing-container .landing-banner .landing-CTA:active {
+          background-color: #19A2C6; }
+
+.skew-left {
+  width: 50%;
+  height: 30vh;
+  background: -webkit-gradient(linear, left top, left bottom, from(#065A82), to(#3c454e));
+  background: -webkit-linear-gradient(#065A82, #3c454e);
+  background: linear-gradient(#065A82, #3c454e);
+  -webkit-transform: skewY(10deg);
+  -ms-transform: skewY(10deg);
+  transform: skewY(10deg);
+  position: absolute;
+  left: 0;
+  bottom: -150px;
+  z-index: -1; }
+
+.skew-right {
+  width: 51%;
+  height: 30vh;
+  background: -webkit-gradient(linear, left top, left bottom, from(#065A82), to(#3c454e));
+  background: -webkit-linear-gradient(#065A82, #3c454e);
+  background: linear-gradient(#065A82, #3c454e);
+  -webkit-transform: skewY(-10deg);
+  -ms-transform: skewY(-10deg);
+  transform: skewY(-10deg);
+  position: absolute;
+  right: 0;
+  bottom: -150px;
+  z-index: -1; }
+
+.lp-about {
+  height: 100vh;
+  width: 100vw; }
+  .lp-about .dummy-content {
+    text-align: center;
+    margin-top: -10%;
+    color: #fff; }
+  .lp-about .what-we-do {
+    height: 65vh;
+    width: 100vw;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background: url("http://images.vivintcdn.com/global/vivint.com/home/2016/home-protect-bg-r2.jpg") center center no-repeat;
+    background-size: auto;
+    padding: 5%; }
+    .lp-about .what-we-do h1 {
+      text-align: center;
+      color: #fff;
+      padding: 5%; }
+    .lp-about .what-we-do .lp-img-container {
+      height: 40%;
+      width: 100%;
+      padding: 7%;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+      justify-content: space-between; }
+      .lp-about .what-we-do .lp-img-container .lp-img-wrapper {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+        width: 33%;
+        text-align: center; }
+        .lp-about .what-we-do .lp-img-container .lp-img-wrapper img {
+          width: 35px;
+          height: 35px;
+          margin-bottom: 10px; }
+        .lp-about .what-we-do .lp-img-container .lp-img-wrapper p {
+          color: #fff;
+          font-family: 'Lato';
+          font-weight: 100; }
+  .lp-about .why-we-do {
+    height: 35vh;
+    width: 100vw;
+    background: #EFC7C2;
+    margin: 0;
+    text-align: center; }
+    .lp-about .why-we-do h2 {
+      font-size: 1.5em; }
+
 .hidden {
   display: none; }
 
 .filler {
   width: 100%;
   height: 7vh;
+  padding: 5vh;
   background: #36454f;
   position: fixed; }
 
 .ng-not-empty.ng-invalid {
   border-color: #f57e77;
+  -webkit-box-shadow: 0 0 10px #f57e77;
   box-shadow: 0 0 10px #f57e77; }
   .ng-not-empty.ng-invalid + p {
     display: static; }
 
 .login {
   padding: 8vw;
-  padding-top: 10vh;
+  padding-top: 15vh;
   background: #eee;
   min-height: 100vh; }
 
 .login-box {
   padding: 8vw;
   background: #fff;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-shadow: 1px 1px 3px #ccc;
   box-shadow: 1px 1px 3px #ccc; }
   .login-box form {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
     flex-direction: column;
     margin-bottom: 1rem; }
     .login-box form input {
       width: 100%;
       padding: 1rem;
+      -webkit-box-sizing: border-box;
       box-sizing: border-box;
       margin-bottom: .5rem;
       border: .5px solid #ccc; }
