@@ -30,7 +30,8 @@ CREATE TABLE sensors
 CREATE TABLE settings
 (
   id SERIAL PRIMARY KEY,
-  module_id INT REFERENCES users(id),
+  module_id INT REFERENCES modules(id),
+  user_id INT REFERENCES users(id),
   active BOOLEAN,
   email BOOLEAN,
   sms BOOLEAN,
