@@ -18,15 +18,7 @@ module.exports = {
       return res.redirect('/');
     }
   },
-  logout: (req, res, next) => {
-    if (req.user) {
-      req.logout();
-      res.redirect('/#/');
-    } else {
-      res.redirect('/');
-    }
 
-  },
   getUser: (req, res, next) => {
     var userName = req.params.name.split(',').join(' ');
     db.read_user([userName], (err, response) => {
@@ -98,6 +90,7 @@ module.exports = {
       })
     }
   },
+
   createUser: (req, res, next) => {
     if (req.body) {
       var data = req.body;
@@ -107,7 +100,9 @@ module.exports = {
         } else {
           res.send(200);
         }
-    },
+      })
+    }
+  },
 
     createLocalUser: (req, res, next) => {
       bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
@@ -120,10 +115,10 @@ module.exports = {
         if (req.user) {
             req.logout();
             res.redirect('/#/');
-      })
-    }
+      }
     res.status(500).send("No User data Provided");
   },
+
   createSensor: (req, res, next) => {
     var data = req.body;
     var name = req.params.name.split(',').join(' ');

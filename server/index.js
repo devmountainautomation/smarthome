@@ -7,7 +7,7 @@ const passport = require('passport');
 const cookie = require('cookie-parser');
 const flash = require('connect-flash');
 const bcrypt = require('bcrypt');
-const pubnub = require('pubnub');
+const PubNub = require('pubnub');
 
 const FacebookStrategy = require('passport-facebook').Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
@@ -74,7 +74,7 @@ pubnub.subscribe({
 });
 
 // Controllers
-const userCtrl = './controllers/userCtrl';
+const userCtrl = require('./controllers/userCtrl');
 
 //endpoints
 
@@ -122,11 +122,11 @@ app.post('/auth/local', passport.authenticate('local'), (req, res) => {
   res.status(200).redirect('/home');
 });
 
-// app.get('/home', userCtrl.requireAuth, (req, res) => {
-//     res.redirect('/#/home');
-// });
+app.get('/home', userCtrl.requireAuth, (req, res) => {
+    res.redirect('/#/home');
+});
 
-// app.get('/logout', userCtrl.logout);
+app.get('/logout', userCtrl.logout);
 
 app.get('/me', (req, res, next) => {
   if (req.user) {

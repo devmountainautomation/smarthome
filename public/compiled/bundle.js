@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('smarthome', ['ui.router']);
+angular.module('smarthome', [ui.router]);
 'use strict';
 
 angular.module('smarthome').config(function ($stateProvider, $urlRouterProvider) {
@@ -9,7 +9,12 @@ angular.module('smarthome').config(function ($stateProvider, $urlRouterProvider)
 
   $stateProvider.state('login', {
     url: '/login',
-    templateUrl: '/app/component/login/login.html'
+    templateUrl: '/app/component/login/login.html',
+    controller: 'loginCtrl'
+  }).state('manage', {
+    url: '/manage',
+    templateUrl: '/app/component/manage/manage.html',
+    controller: 'manageCtrl'
   });
 });
 'use strict';
