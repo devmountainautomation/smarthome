@@ -19,7 +19,6 @@ const path = require('path');
 
 const app = module.exports = express();
 
-
 app.use(cookie(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -82,7 +81,7 @@ const userCtrl = require('./controllers/userCtrl.js');
 //*********** Get Requests ********************//
 app.get('/users/', userCtrl.getUser);
 app.get('/users/sensors/', userCtrl.getUserSensors);
-app.get('/modules', userCtrl.getModules);
+app.get('/modulees', userCtrl.getModules);
 
 //*********** Put Requests *******************//
 app.put('/settings/:type', userCtrl.updateSettings);
@@ -110,7 +109,7 @@ app.get('/auth/google/callback', passport.authenticate('google', {
 }));
 
 app.get('/auth/facebook', passport.authenticate('facebook', {
-   scope: ['public_profile', 'email']
+  scope: ['public_profile', 'email']
 }));
 
 app.get('/auth/facebook/callback', passport.authenticate('facebook', {
@@ -123,7 +122,7 @@ app.post('/auth/local', passport.authenticate('local'), (req, res) => {
 });
 
 app.get('/home', userCtrl.requireAuth, (req, res) => {
-    res.redirect('/#/home');
+  res.redirect('/#/home');
 });
 
 app.get('/logout', userCtrl.logout);
