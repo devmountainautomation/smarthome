@@ -49,41 +49,18 @@ app.use(passport.session());
 
 app.set('view engine', 'html');
 
-// Pubnub setup
-
-var pubnub = new Pubnub({
-  subscribeKey: config.SubscribeKey,
-  publishKey: config.PublishKey,
-  secretKey: config.SecretKey,
-  ssl: true
-});
-
-pubnub.addListener({
-  message: function(message) {
-    console.log("This is the message:", message);
-  },
-  presence: function(presence) {
-    console.log("This is the presence:", presence);
-  },
-  status: function(status) {
-    console.log("This is the status:", status);
-  }
-});
-
-pubnub.subscribe({
-  channels: ['my_channel'],
-  withPresence: true
-});
+// Pubnub
+const pubnub = require('./controllers/pubnub.js');
 
 // Controllers
 const userCtrl = require('./controllers/userCtrl.js');
 
-//endpoints
+////////////// Endpoints /////////////////////////
 
 //*********** Get Requests ********************//
 app.get('/users/', userCtrl.getUser);
 app.get('/users/sensors/', userCtrl.getUserSensors);
-app.get('/modulees', userCtrl.getModules);
+app.get('/modules', userCtrl.getModules);
 
 //*********** Put Requests *******************//
 app.put('/settings/:type', userCtrl.updateSettings);
