@@ -529,7 +529,8 @@ textarea {
   display: none;
   position: fixed;
   overflow: hidden;
-  z-index: 4; }
+  z-index: 4;
+  font-family: 'Source Sans Pro'; }
   .menu .menu-box-container {
     margin-top: 10vh;
     height: 50vh;
