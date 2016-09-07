@@ -12,14 +12,17 @@ const Pubnub = require('pubnub');
 const FacebookStrategy = require('passport-facebook').Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const LocalStrategy = require('passport-local').Strategy;
-const config = require('./config/config');
-const auth = require('./config/auth');
+const config = require('./config/config.js');
+const auth = require('./config/auth.js');
 const connString = config.connString;
 const path = require('path');
 
 const app = module.exports = express();
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 798ee6710a729ec4af07ec49f7a1d22c11100bdf
 app.use(cookie(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -54,7 +57,7 @@ var pubnub = new Pubnub({
   subscribeKey: config.SubscribeKey,
   publishKey: config.PublishKey,
   secretKey: config.SecretKey,
-  ssl: true,
+  ssl: true
 });
 
 pubnub.addListener({
@@ -75,27 +78,28 @@ pubnub.subscribe({
 });
 
 // Controllers
-const userCtrl = require('./controllers/userCtrl');
+const userCtrl = require('./controllers/userCtrl.js');
+
 
 //endpoints
 
 //*********** Get Requests ********************//
-app.get('/users/:name', userCtrl.getUser);
-app.get('/users/sensors/:name', userCtrl.getUserSensors);
-app.get('/sensors', userCtrl.getSensors);
+app.get('/users/', userCtrl.getUser);
+app.get('/users/sensors/', userCtrl.getUserSensors);
+app.get('/modulees', userCtrl.getModules);
 
 //*********** Put Requests *******************//
-app.put('/settings/:name', userCtrl.updateSettings);
-app.put('/users/:name', userCtrl.updateUser);
+app.put('/settings/:type', userCtrl.updateSettings);
+app.put('/users/', userCtrl.updateUser);
 
 //*********** Post Requests *****************//
-app.post('/settings/:name', userCtrl.createSettings);
+app.post('/settings/:type', userCtrl.createSettings);
 app.post('/users', userCtrl.createUser);
-app.post('/sensors/:name', userCtrl.createSensor);
+app.post('/sensors/', userCtrl.createSensor);
 
 //*********** Delete Requests ***************//
-app.delete('/users/:name', userCtrl.destroyUser);
-app.delete('/sensors/:name', userCtrl.destroySensor);
+app.delete('/users/', userCtrl.destroyUser);
+app.delete('/sensors/:type', userCtrl.destroySensor);
 
 //auth
 const passportJS = require('./config/passport');
@@ -110,7 +114,7 @@ app.get('/auth/google/callback', passport.authenticate('google', {
 }));
 
 app.get('/auth/facebook', passport.authenticate('facebook', {
-   scope: ['public_profile', 'email']
+  scope: ['public_profile', 'email']
 }));
 
 app.get('/auth/facebook/callback', passport.authenticate('facebook', {
@@ -123,7 +127,7 @@ app.post('/auth/local', passport.authenticate('local'), (req, res) => {
 });
 
 app.get('/home', userCtrl.requireAuth, (req, res) => {
-    res.redirect('/#/home');
+  res.redirect('/#/home');
 });
 
 app.get('/logout', userCtrl.logout);
