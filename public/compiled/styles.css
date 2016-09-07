@@ -21,6 +21,7 @@ time, mark, audio, video {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box; }
 
 /* HTML5 display-role reset for older browsers */
@@ -245,6 +246,7 @@ figure {
  * 2. Show the overflow in Edge and IE.
  */
 hr {
+  -webkit-box-sizing: content-box;
   box-sizing: content-box;
   /* 1 */
   height: 0;
@@ -357,6 +359,7 @@ fieldset {
  *    `fieldset` elements in all browsers.
  */
 legend {
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   /* 1 */
   color: inherit;
@@ -382,6 +385,7 @@ textarea {
  */
 [type="checkbox"],
 [type="radio"] {
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   /* 1 */
   padding: 0;
@@ -408,6 +412,9 @@ textarea {
 [type="search"]::-webkit-search-decoration {
   -webkit-appearance: none; }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Lato', sans-serif; }
+
 /*Header*/
 .header {
   width: 100vw;
@@ -417,12 +424,22 @@ textarea {
   z-index: 5;
   background: transparent;
   color: #fff;
+  -webkit-transition: all 0.2s ease-in;
   transition: all 0.2s ease-in; }
   .header .header-content {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
     width: 100%;
     height: 100%;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
     align-items: center; }
     .header .header-content #hamburger {
       width: 35px;
@@ -431,7 +448,10 @@ textarea {
       cursor: pointer;
       left: 5%;
       top: 22px;
+      -webkit-transform: rotate(0deg);
+      -ms-transform: rotate(0deg);
       transform: rotate(0deg);
+      -webkit-transition: 0.5s ease-in-out;
       transition: 0.5s ease-in-out; }
       .header .header-content #hamburger .span-invert {
         background: #000; }
@@ -444,12 +464,24 @@ textarea {
         border-radius: 9px;
         opacity: 1;
         left: 0;
+        -webkit-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
         transform: rotate(0deg);
+        -webkit-transition: 0.25s ease-in-out;
         transition: 0.25s ease-in-out; }
     .header .header-content .logo-container {
       font-family: 'Source Sans Pro';
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
       display: flex;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
       align-items: center;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+      -ms-flex-pack: center;
       justify-content: center;
       font-size: 2rem; }
       .header .header-content .logo-container .logo {
@@ -462,6 +494,7 @@ textarea {
 
 .active {
   background: #fff;
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
   color: #000; }
 
@@ -476,6 +509,8 @@ textarea {
 
 #hamburger.open span:nth-child(1) {
   top: 10px;
+  -webkit-transform: rotate(135deg);
+  -ms-transform: rotate(135deg);
   transform: rotate(135deg); }
 
 #hamburger.open span:nth-child(2) {
@@ -484,6 +519,8 @@ textarea {
 
 #hamburger.open span:nth-child(3) {
   top: 10px;
+  -webkit-transform: rotate(-135deg);
+  -ms-transform: rotate(-135deg);
   transform: rotate(-135deg); }
 
 .menu {
@@ -516,14 +553,33 @@ textarea {
   .landing-page .landing-container {
     height: 100%;
     width: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
     align-items: center;
     text-align: center; }
     .landing-page .landing-container .landing-banner {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
       display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+      -ms-flex-direction: column;
       flex-direction: column;
       width: 100%;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+      -ms-flex-pack: center;
       justify-content: center;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
       align-items: center;
       text-align: center;
       font-size: 1.5rem;
@@ -541,7 +597,11 @@ textarea {
 .skew-left {
   width: 50%;
   height: 30vh;
+  background: -webkit-gradient(linear, left top, left bottom, from(#065A82), to(#3c454e));
+  background: -webkit-linear-gradient(#065A82, #3c454e);
   background: linear-gradient(#065A82, #3c454e);
+  -webkit-transform: skewY(10deg);
+  -ms-transform: skewY(10deg);
   transform: skewY(10deg);
   position: absolute;
   left: 0;
@@ -551,7 +611,11 @@ textarea {
 .skew-right {
   width: 51%;
   height: 30vh;
+  background: -webkit-gradient(linear, left top, left bottom, from(#065A82), to(#3c454e));
+  background: -webkit-linear-gradient(#065A82, #3c454e);
   background: linear-gradient(#065A82, #3c454e);
+  -webkit-transform: skewY(-10deg);
+  -ms-transform: skewY(-10deg);
   transform: skewY(-10deg);
   position: absolute;
   right: 0;
@@ -568,9 +632,22 @@ textarea {
   .lp-about .what-we-do {
     height: 65vh;
     width: 100vw;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
     justify-content: space-between;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
     align-items: center;
     background: url("http://images.vivintcdn.com/global/vivint.com/home/2016/home-protect-bg-r2.jpg") center center no-repeat;
     background-size: auto;
@@ -583,11 +660,27 @@ textarea {
       height: 40%;
       width: 100%;
       padding: 7%;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
       display: flex;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
       justify-content: space-between; }
       .lp-about .what-we-do .lp-img-container .lp-img-wrapper {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
         display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
         flex-direction: column;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
         align-items: center;
         width: 33%;
         text-align: center; }
@@ -620,6 +713,7 @@ textarea {
 
 .ng-not-empty.ng-invalid {
   border-color: #f57e77;
+  -webkit-box-shadow: 0 0 10px #f57e77;
   box-shadow: 0 0 10px #f57e77; }
   .ng-not-empty.ng-invalid + p {
     display: static; }
@@ -633,17 +727,33 @@ textarea {
 .login-box {
   padding: 8vw;
   background: #fff;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-shadow: 1px 1px 3px #ccc;
   box-shadow: 1px 1px 3px #ccc; }
   .login-box form {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
     flex-direction: column;
     margin-bottom: 1rem; }
     .login-box form input {
       width: 100%;
       padding: 1rem;
+      -webkit-box-sizing: border-box;
       box-sizing: border-box;
       margin-bottom: .5rem;
       border: .5px solid #ccc; }
@@ -691,3 +801,72 @@ textarea {
     width: 50%; }
   .signup-box {
     width: 100%; } }
+
+.devices {
+  padding: 5vw;
+  padding-top: 12vh;
+  background: #36454f;
+  min-height: 100vh; }
+  .devices h1 {
+    margin-left: 1rem;
+    font-weight: 100;
+    color: #F56A4C; }
+    .devices h1 u {
+      text-decoration: none;
+      border-bottom: .5px solid #F56A4C; }
+  .devices .device-box {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-justify-content: space-around;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    margin: 5vw; }
+    .devices .device-box .device-card {
+      color: #17a2c6;
+      text-align: center;
+      padding: 10vw; }
+      .devices .device-box .device-card i {
+        float: right;
+        font-size: 1.25em;
+        color: #aaa;
+        margin-bottom: -1rem; }
+      .devices .device-box .device-card div {
+        width: 100%;
+        height: 100%;
+        font-size: 1.25em; }
+      .devices .device-box .device-card img {
+        clear: both;
+        max-height: 20vh;
+        margin: 1rem auto; }
+      .devices .device-box .device-card hr {
+        border-color: #F56A4C; }
+      .devices .device-box .device-card:hover {
+        background: rgba(176, 172, 174, 0.18); }
+    .devices .device-box .add-device-card {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+      text-align: center;
+      padding: 12vw 10vw; }
+      .devices .device-box .add-device-card i {
+        font-size: 4rem;
+        color: #777; }

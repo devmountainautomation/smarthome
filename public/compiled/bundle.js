@@ -21,6 +21,25 @@ angular.module('smarthome').config(function ($stateProvider, $urlRouterProvider)
 });
 'use strict';
 
+angular.module('smarthome').directive('landingDir', function () {
+    return {
+        restrict: 'EA',
+        link: function link(scope, elem, attrs) {
+            $(document).ready(function () {
+                $(window).scroll(function () {
+                    var winScroll = $(window).scrollTop() - 35;
+                    if (winScroll < $('.landing-banner').offset().top - $(window).height() / 2) {
+                        console.log(winScroll);
+                        $('.skew-right').css("transform", "skewY(" + winScroll / 2 + "deg)");
+                        $('.skew-left').css("transform", "skewY(" + -winScroll / 2 + "deg)");
+                    }
+                });
+            });
+        }
+    };
+});
+'use strict';
+
 angular.module('smarthome').directive('headDir', function () {
     return {
         restrict: 'EA',
@@ -41,25 +60,6 @@ angular.module('smarthome').directive('headDir', function () {
                     } else {
                         $('.header').removeClass('active');
                         $('.ham-slide').removeClass('span-invert');
-                    }
-                });
-            });
-        }
-    };
-});
-'use strict';
-
-angular.module('smarthome').directive('landingDir', function () {
-    return {
-        restrict: 'EA',
-        link: function link(scope, elem, attrs) {
-            $(document).ready(function () {
-                $(window).scroll(function () {
-                    var winScroll = $(window).scrollTop() - 35;
-                    if (winScroll < $('.landing-banner').offset().top - $(window).height() / 2) {
-                        console.log(winScroll);
-                        $('.skew-right').css("transform", "skewY(" + winScroll / 2 + "deg)");
-                        $('.skew-left').css("transform", "skewY(" + -winScroll / 2 + "deg)");
                     }
                 });
             });
@@ -162,5 +162,37 @@ angular.module('smarthome').directive('signupForm', function () {
         }
       });
     }
+  };
+});
+'use strict';
+
+angular.module('smarthome').controller('manageCtrl', function ($scope, manageService) {
+  var getDevices = function getDevices() {
+    manageService.getDevices().then(function (response) {
+      var devices = [{
+        module_id: '12r443',
+        type: 'Door/Window Sensor',
+        nickname: 'Razzbury Piii'
+      }];
+      devices.forEach(function (e) {
+        if (e.type == 'Door/Window Sensor') {
+          e.icon_url = '/assets/img/window-door_icon.png';
+        }
+      });
+      $scope.devices = devices;
+    });
+  };
+  getDevices();
+});
+'use strict';
+
+angular.module('smarthome').service('manageService', function ($http) {
+  this.getDevices = function () {
+    return $http({
+      method: 'GET',
+      url: '/sensors'
+    }).then(function (response) {
+      return response.data;
+    });
   };
 });

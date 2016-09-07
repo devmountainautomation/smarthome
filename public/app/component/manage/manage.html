@@ -1,0 +1,16 @@
+<head-dir></head-dir>
+
+<section class="devices">
+  <h1><u>My Devices</u></h1>
+  <section class="device-box">
+
+  <div class="device-cards" ng-repeat="device in devices track by device.id">
+    <device-card type="{{device.type}}" id="{{device.id}}" nickname="{{device.nickname}}">
+    </device-card>
+  </div>
+    <div class="add-device-card">
+      <i class="fa fa-plus"></i>
+    </div>
+  </section>
+
+</section>

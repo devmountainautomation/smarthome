@@ -19,8 +19,6 @@ const path = require('path');
 
 const app = module.exports = express();
 
-// Controllers
-const userCtrl = require('./controllers/userCtrl');
 
 app.use(cookie(corsOptions));
 app.use(bodyParser.json());
