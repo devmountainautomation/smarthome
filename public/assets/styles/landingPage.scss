@@ -165,47 +165,38 @@
     }
 }
 
-.skew-left {
-    width: 50%;
-    height: 30vh;
+.dummy-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     background: linear-gradient(#065A82, #3c454e);
-    transform: skewY(10deg);
-    position: absolute;
-    left: 0;
-    bottom: -150px;
-    z-index: -1;
-}
+    color: #fff;
+    height: 20vh;
+    width: 100vw;
 
-.skew-right {
-    width: 51%;
-    height: 30vh;
-    background: linear-gradient(#065A82, #3c454e);
-    transform: skewY(-10deg);
-    position: absolute;
-    right: 0;
-    bottom: -150px;
-    z-index: -1;
+    .breaker {
+        height: 2px;
+        width: 20vw;
+        background: #fff;
+        border: none;
+        margin-top: -5px;
+    }
 }
 
 .lp-about {
-    height: 100vh;
+    height: 200vh;
     width: 100vw;
 
-    .dummy-content {
-        text-align: center;
-        margin-top: -10%;
-        color: #fff;
-    }
-
     .what-we-do {
-        height: 65vh;
+        height: 70vh;
         width: 100vw;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
         background: url('http://images.vivintcdn.com/global/vivint.com/home/2016/home-protect-bg-r2.jpg')center center no-repeat;
-        background-size: auto;
+        background-size: cover;
         padding: 5%;
 
         h1 {
@@ -217,7 +208,7 @@
         .lp-img-container {
             height: 40%;
             width: 100%;
-            padding: 7%;
+            padding: 7vw;
             display: flex;
             justify-content: space-between;
 
@@ -246,12 +237,96 @@
     .why-we-do {
         height: 35vh;
         width: 100vw;
-        background: #6D213C;
+        background: #EEEEEE;
         margin: 0;
         text-align: center;
+        padding: 5%;
 
-            h2 {
-                font-size: 1.5em;
-            }
+        h2 {
+            font-size: 1.5em;
+            margin-bottom: 5vw;
+        }
+
+        p {
+            padding: 5%;
+            font-weight: 100;
+        }
     }
+
+    .what-we-offer {
+        height: 100vh;
+        width: 100vw;
+        background: #FFFFFF;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        h1 {
+            margin-bottom: 0;
+        }
+
+        .img-flow-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+
+            .circle-wrapper {
+                width: auto;
+                margin: 4vw;
+
+                p {
+                    font-weight: 100;
+                    letter-spacing: 1.2;
+                    text-align: center;
+                    width: 111px;
+                }
+            }
+        }
+    }
+}
+
+.the-dream-team {
+    height: 30vh;
+    width: 100vw;
+    background: #EEEEEE;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .team-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        h1 {
+            margin-bottom: 0;
+        }
+
+        p {
+            margin: 2%;
+        }
+    }
+}
+
+.lp-footer {
+    height: 10vh;
+    width: 100vw;
+    background: #999;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .legal {
+        text-align: right;
+    }
+}
+
+.breaker-inverse {
+    height: 2px;
+    width: 20vw;
+    border: none;
+    background: #000;
 }

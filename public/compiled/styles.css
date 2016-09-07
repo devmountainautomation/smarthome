@@ -591,43 +591,42 @@ textarea {
         .landing-page .landing-container .landing-banner .landing-CTA:active {
           background-color: #19A2C6; }
 
-.skew-left {
-  width: 50%;
-  height: 30vh;
+.dummy-content {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   background: -webkit-gradient(linear, left top, left bottom, from(#065A82), to(#3c454e));
   background: -webkit-linear-gradient(#065A82, #3c454e);
   background: linear-gradient(#065A82, #3c454e);
-  -webkit-transform: skewY(10deg);
-  -ms-transform: skewY(10deg);
-  transform: skewY(10deg);
-  position: absolute;
-  left: 0;
-  bottom: -150px;
-  z-index: -1; }
-
-.skew-right {
-  width: 51%;
-  height: 30vh;
-  background: -webkit-gradient(linear, left top, left bottom, from(#065A82), to(#3c454e));
-  background: -webkit-linear-gradient(#065A82, #3c454e);
-  background: linear-gradient(#065A82, #3c454e);
-  -webkit-transform: skewY(-10deg);
-  -ms-transform: skewY(-10deg);
-  transform: skewY(-10deg);
-  position: absolute;
-  right: 0;
-  bottom: -150px;
-  z-index: -1; }
+  color: #fff;
+  height: 20vh;
+  width: 100vw; }
+  .dummy-content .breaker {
+    height: 2px;
+    width: 20vw;
+    background: #fff;
+    border: none;
+    margin-top: -5px; }
 
 .lp-about {
-  height: 100vh;
+  height: 200vh;
   width: 100vw; }
-  .lp-about .dummy-content {
-    text-align: center;
-    margin-top: -10%;
-    color: #fff; }
   .lp-about .what-we-do {
-    height: 65vh;
+    height: 70vh;
     width: 100vw;
     display: -webkit-box;
     display: -webkit-flex;
@@ -647,7 +646,7 @@ textarea {
     -ms-flex-align: center;
     align-items: center;
     background: url("http://images.vivintcdn.com/global/vivint.com/home/2016/home-protect-bg-r2.jpg") center center no-repeat;
-    background-size: auto;
+    background-size: cover;
     padding: 5%; }
     .lp-about .what-we-do h1 {
       text-align: center;
@@ -656,7 +655,7 @@ textarea {
     .lp-about .what-we-do .lp-img-container {
       height: 40%;
       width: 100%;
-      padding: 7%;
+      padding: 7vw;
       display: -webkit-box;
       display: -webkit-flex;
       display: -ms-flexbox;
@@ -692,11 +691,127 @@ textarea {
   .lp-about .why-we-do {
     height: 35vh;
     width: 100vw;
-    background: #6D213C;
+    background: #EEEEEE;
     margin: 0;
-    text-align: center; }
+    text-align: center;
+    padding: 5%; }
     .lp-about .why-we-do h2 {
-      font-size: 1.5em; }
+      font-size: 1.5em;
+      margin-bottom: 5vw; }
+    .lp-about .why-we-do p {
+      padding: 5%;
+      font-weight: 100; }
+  .lp-about .what-we-offer {
+    height: 100vh;
+    width: 100vw;
+    background: #FFFFFF;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center; }
+    .lp-about .what-we-offer h1 {
+      margin-bottom: 0; }
+    .lp-about .what-we-offer .img-flow-container {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap; }
+      .lp-about .what-we-offer .img-flow-container .circle-wrapper {
+        width: auto;
+        margin: 4vw; }
+        .lp-about .what-we-offer .img-flow-container .circle-wrapper p {
+          font-weight: 100;
+          letter-spacing: 1.2;
+          text-align: center;
+          width: 111px; }
+
+.the-dream-team {
+  height: 30vh;
+  width: 100vw;
+  background: #EEEEEE;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center; }
+  .the-dream-team .team-container {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column; }
+    .the-dream-team .team-container h1 {
+      margin-bottom: 0; }
+    .the-dream-team .team-container p {
+      margin: 2%; }
+
+.lp-footer {
+  height: 10vh;
+  width: 100vw;
+  background: #999;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between; }
+  .lp-footer .legal {
+    text-align: right; }
+
+.breaker-inverse {
+  height: 2px;
+  width: 20vw;
+  border: none;
+  background: #000; }
 
 .hidden {
   display: none; }
