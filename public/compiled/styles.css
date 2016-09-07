@@ -523,22 +523,141 @@ textarea {
 .menu {
   height: 100vh;
   width: 100vw;
-  background: black;
+  background: -webkit-gradient(linear, left top, left bottom, from(#383838), to(#232323));
+  background: -webkit-linear-gradient(#383838, #232323);
+  background: linear-gradient(#383838, #232323);
   display: none;
   position: fixed;
   overflow: hidden;
   z-index: 4; }
-  .menu .menu-container {
-    padding: 2%; }
-    .menu .menu-container .nav-links {
-      width: 100%;
-      height: 50%;
+  .menu .menu-box-container {
+    margin-top: 10vh;
+    height: 50vh;
+    width: 100vw;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap; }
+    .menu .menu-box-container .lp-boxes {
+      height: 25vh;
+      width: 50vw;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+      cursor: pointer;
+      outline: none; }
+      .menu .menu-box-container .lp-boxes:active, .menu .menu-box-container .lp-boxes:hover {
+        color: #FFD700; }
+      .menu .menu-box-container .lp-boxes .fa {
+        margin: 2vh; }
+      .menu .menu-box-container .lp-boxes p {
+        font-size: 1.5rem;
+        color: #F0F0F0; }
+    .menu .menu-box-container #box1 {
+      border-top: 1px solid #999999;
+      border-right: 1px solid #999999;
+      border-bottom: 1px solid #999999; }
+    .menu .menu-box-container #box2 {
+      border-top: 1px solid #999999;
+      border-bottom: 1px solid #999999; }
+    .menu .menu-box-container #box3 {
+      border-bottom: 1px solid #999999;
+      border-right: 1px solid #999999; }
+    .menu .menu-box-container #box4 {
+      border-bottom: 1px solid #999999; }
+  .menu .menu-list-container {
+    height: 40vh;
+    width: 100vw; }
+    .menu .menu-list-container .lp-menu-item {
+      height: 10vh;
+      width: 100vw;
+      border-bottom: 1px solid #999999;
       text-align: center;
-      margin-top: 50%; }
-      .menu .menu-container .nav-links .nav-item {
-        color: #fff;
-        font-size: 200%;
-        margin: 5%; }
+      cursor: pointer; }
+      .menu .menu-list-container .lp-menu-item p {
+        padding: 3vh;
+        font-size: 1.5rem;
+        color: #F0F0F0; }
+    .menu .menu-list-container #lp-login p:hover {
+      color: #FFD700; }
+    .menu .menu-list-container #lp-contact p:hover {
+      color: #FFD700; }
+  .menu .social-hex {
+    height: 20vh;
+    width: 100vw;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 10vw;
+    cursor: pointer; }
+    .menu .social-hex .fa-facebook:active, .menu .social-hex .fa-facebook:hover {
+      color: #FFD700; }
+    .menu .social-hex .fa-github:active, .menu .social-hex .fa-github:hover {
+      color: #FFD700; }
+    .menu .social-hex .fa-linkedin:active, .menu .social-hex .fa-linkedin:hover {
+      color: #FFD700; }
+
+.hexagon {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  width: 75px;
+  height: 43.30px;
+  background-color: #515151;
+  margin: 21.65px 0; }
+
+.hexagon:after,
+.hexagon:before {
+  content: "";
+  position: absolute;
+  width: 0;
+  border-left: 37.5px solid transparent;
+  border-right: 37.5px solid transparent; }
+
+.hexagon:before {
+  bottom: 100%;
+  border-bottom: 21.65px solid #515151; }
+
+.hexagon:after {
+  top: 100%;
+  width: 0;
+  border-top: 21.65px solid #515151; }
 
 .landing-page {
   height: 100vh;
@@ -791,6 +910,7 @@ textarea {
 .lp-footer {
   height: 10vh;
   width: 100vw;
+  padding: 2%;
   background: #999;
   display: -webkit-box;
   display: -webkit-flex;
@@ -805,7 +925,7 @@ textarea {
   -ms-flex-pack: justify;
   justify-content: space-between; }
   .lp-footer .legal {
-    text-align: right; }
+    text-align: center; }
 
 .breaker-inverse {
   height: 2px;

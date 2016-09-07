@@ -100,28 +100,161 @@
 .menu {
     height: 100vh;
     width: 100vw;
-    background: black;
+    background: linear-gradient(#383838, #232323);
     display: none;
     position: fixed;
     overflow: hidden;
     z-index: 4;
 
-    .menu-container {
-        padding: 2%;
+    .menu-box-container {
+        margin-top: 10vh;
+        height: 50vh;
+        width: 100vw;
+        display: flex;
+        flex-wrap: wrap;
 
-        .nav-links {
-            width: 100%;
-            height: 50%;
+        .lp-boxes {
+            height: 25vh;
+            width: 50vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            outline: none;
+
+            &:active,
+            &:hover {
+                color: #FFD700;
+            }
+
+            .fa {
+                margin: 2vh;
+            }
+
+            p {
+                font-size: 1.5rem;
+                color: #F0F0F0;
+            }
+        }
+
+        #box1 {
+            border-top: 1px solid #999999;
+            border-right: 1px solid #999999;
+            border-bottom: 1px solid #999999;
+        }
+
+        #box2 {
+            border-top: 1px solid #999999;
+            border-bottom: 1px solid #999999;
+        }
+
+        #box3 {
+            border-bottom: 1px solid #999999;
+            border-right: 1px solid #999999;
+        }
+
+        #box4 {
+            border-bottom: 1px solid #999999;
+        }
+    }
+
+    .menu-list-container {
+        height: 40vh;
+        width: 100vw;
+
+        .lp-menu-item {
+            height: 10vh;
+            width: 100vw;
+            border-bottom: 1px solid #999999;
             text-align: center;
-            margin-top: 50%;
+            cursor: pointer;
 
-            .nav-item {
-                color: #fff;
-                font-size: 200%;
-                margin: 5%;
+            p {
+                padding: 3vh;
+                font-size: 1.5rem;
+                color: #F0F0F0;
+            }
+        }
+
+        #lp-login {
+            p {
+                &:hover {
+                    color: #FFD700;
+                }
+            }
+        }
+
+        #lp-contact {
+            p {
+                &:hover {
+                    color: #FFD700;
+                }
             }
         }
     }
+
+    .social-hex {
+        height: 20vh;
+        width: 100vw;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10vw;
+        cursor: pointer;
+
+        .fa-facebook {
+            &:active,
+            &:hover {
+                color: #FFD700;
+            }
+        }
+
+        .fa-github {
+            &:active,
+            &:hover {
+                color: #FFD700;
+            }
+        }
+
+        .fa-linkedin {
+            &:active,
+            &:hover {
+                color: #FFD700;
+            }
+        }
+    }
+}
+
+.hexagon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 75px;
+    height: 43.30px;
+    background-color: #515151;
+    margin: 21.65px 0;
+}
+
+.hexagon:after,
+.hexagon:before {
+    content: "";
+    position: absolute;
+    width: 0;
+    border-left: 37.5px solid transparent;
+    border-right: 37.5px solid transparent;
+}
+
+.hexagon:before {
+    bottom: 100%;
+    border-bottom: 21.65px solid #515151;
+}
+
+.hexagon:after {
+    top: 100%;
+    width: 0;
+    border-top: 21.65px solid #515151;
 }
 
 .landing-page {
@@ -314,13 +447,14 @@
 .lp-footer {
     height: 10vh;
     width: 100vw;
+    padding: 2%;
     background: #999;
     display: flex;
     align-items: center;
     justify-content: space-between;
 
     .legal {
-        text-align: right;
+        text-align: center;
     }
 }
 
