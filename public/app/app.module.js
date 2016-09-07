@@ -1,1 +1,1 @@
-angular.module('smarthome', ['ui.router']);
+angular.module('smarthome', ['ui.router', 'ngAnimate']);

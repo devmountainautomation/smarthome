@@ -6,7 +6,7 @@ angular.module('smarthome')
           module_id: '12r443',
           type: 'Door/Window Sensor',
           nickname: 'Razzbury Piii'
-        }]
+        }];
         devices.forEach(function (e) {
           if (e.type == 'Door/Window Sensor') {
             e.icon_url = '/assets/img/window-door_icon.png';
@@ -15,6 +15,18 @@ angular.module('smarthome')
         $scope.devices = devices;
       })
     };
-    getDevices();
+    // getDevices();
 
-  })
+    var devices = [{
+      module_id: '12r443',
+      type: 'Door/Window Sensor',
+      nickname: 'Razzbury Piii'
+    }];
+    devices.forEach(function (e) {
+      if (e.type == 'Door/Window Sensor') {
+        e.icon_url = '/assets/img/window-door_icon.png';
+      }
+    })
+    $scope.devices = devices;
+    
+  });

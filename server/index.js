@@ -19,10 +19,7 @@ const path = require('path');
 
 const app = module.exports = express();
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 798ee6710a729ec4af07ec49f7a1d22c11100bdf
 app.use(cookie(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
