@@ -61,23 +61,23 @@ passport.use(new GoogleStrategy({
     if (err) {
       done(err, null);
     } else if (user) {
-        db.users.findOne({
-          google: profile.id
-        }, (err, user) => {
-          if (err) {
-            done(err, null);
-          } else if (user) {
-            console.log("found user", err, user);
-            done(null, user);
-          } else {
-            db.update_google_id([profile.emails[0].value, profile.id], (err, res) => {
-              db.read_user_by_email([profile.emails[0].value], (err, updatedUser) => {
-                  console.log(updatedUser);
-                done(null, updatedUser);
-              });
+      db.users.findOne({
+        google: profile.id
+      }, (err, user) => {
+        if (err) {
+          done(err, null);
+        } else if (user) {
+          console.log("found user", err, user);
+          done(null, user);
+        } else {
+          db.update_google_id([profile.emails[0].value, profile.id], (err, res) => {
+            db.read_user_by_email([profile.emails[0].value], (err, updatedUser) => {
+              console.log(updatedUser);
+              done(null, updatedUser);
             });
-          }
-        });
+          });
+        }
+      });
     } else {
       db.users.insert({
         name: profile.displayName,
