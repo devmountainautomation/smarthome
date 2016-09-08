@@ -2,7 +2,7 @@
 
 <div class="signup-expander hidden">
 
-  <form ng-submit="createLocalUser()">
+  <form ng-submit="createLocalUser(signup_name, signup-email, signup-password, signup-phone)">
     <input type="text" ng-model="signup_name" placeholder="Name" required>
     <input type="email" id="email" ng-model="signup_email" placeholder="Email" required>
     <p class="hidden email-confirmation-alert">Please enter a valid email</p>
@@ -10,7 +10,7 @@
     <input type="password" compare-to="signup_password" ng-model="signup_password_confirm" placeholder="Confirm Password" required>
     <p class="hidden password-confirmation-alert">Passwords do not match</p>
     <input type="tel" ng-model="signup_phone" placeholder="Phone (optional)">
-    <button type="button" name="signup">Signup</button>
+    <button type="button" name="signup" ng-click="createLocalUser(signup_name, signup-email, signup-password, signup-phone)">Signup</button>
   </form>
 
 </div>

@@ -1,10 +1,14 @@
 angular.module('smarthome')
-  .controller('loginCtrl', function ($scope, $state, loginService) {
-      $scope.localLogin = function () {
-        loginService.login($scope.email, $scope.password);
-      }
-      $scope.createLocalUser = function () {
-        loginService.createLocalUser($scope.signup-name, $scope.signup-email,
-          $scope.signup-password, $scope.signup-phone);
-      }
-  })
+  .controller('loginCtrl', ($scope, $state, loginService) => {
+
+    $scope.localLogin = (email, password) => {
+      loginService.login(email, password).then(response => {
+        $state.go('landing page');
+      });
+    };
+
+    $scope.createLocalUser = (name, email, password, phone) => {
+      loginService.createLocalUser(name, email, password, phone);
+    };
+
+  }); //End loginCtrl

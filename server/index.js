@@ -8,19 +8,18 @@ const cookie = require('cookie-parser');
 const flash = require('connect-flash');
 const bcrypt = require('bcrypt');
 const Pubnub = require('pubnub');
+const jstz = require('jstz');
+const timeZone = require('moment-timezone');
 
 const FacebookStrategy = require('passport-facebook').Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const LocalStrategy = require('passport-local').Strategy;
-const config = require('./config/config');
-const auth = require('./config/auth');
+const config = require('./config/config.js');
+const auth = require('./config/auth.js');
 const connString = config.connString;
 const path = require('path');
 
 const app = module.exports = express();
-
-// Controllers
-const userCtrl = require('./controllers/userCtrl');
 
 app.use(cookie(corsOptions));
 app.use(bodyParser.json());
@@ -50,54 +49,34 @@ app.use(passport.session());
 
 app.set('view engine', 'html');
 
-// Pubnub setup
+// Pubnub
+const pubnub = require('./controllers/pubnub.js');
 
-var pubnub = new Pubnub({
-  subscribeKey: config.SubscribeKey,
-  publishKey: config.PublishKey,
-  secretKey: config.SecretKey,
-  ssl: true,
-});
+// Controllers
+const userCtrl = require('./controllers/userCtrl.js');
 
-pubnub.addListener({
-  message: function(message) {
-    console.log("This is the message:", message);
-  },
-  presence: function(presence) {
-    console.log("This is the presence:", presence);
-  },
-  status: function(status) {
-    console.log("This is the status:", status);
-  }
-});
-
-pubnub.subscribe({
-  channels: ['my_channel'],
-  withPresence: true
-});
-
-//endpoints
+////////////// Endpoints /////////////////////////
 
 //*********** Get Requests ********************//
-app.get('/users/:name', userCtrl.getUser);
-app.get('/users/sensors/:name', userCtrl.getUserSensors);
-app.get('/sensors', userCtrl.getSensors);
+app.get('/users/', userCtrl.getUser);
+app.get('/users/sensors/', userCtrl.getUserSensors);
+app.get('/modules', userCtrl.getModules);
 
 //*********** Put Requests *******************//
-app.put('/settings/:name', userCtrl.updateSettings);
-app.put('/users/:name', userCtrl.updateUser);
+app.put('/settings/:type', userCtrl.updateSettings);
+app.put('/users/', userCtrl.updateUser);
 
 //*********** Post Requests *****************//
-app.post('/settings/:name', userCtrl.createSettings);
-app.post('/users', userCtrl.createUser);
-app.post('/sensors/:name', userCtrl.createSensor);
+app.post('/settings/:type', userCtrl.createSettings);
+app.post('/users', userCtrl.createLocalUser);
+app.post('/sensors/', userCtrl.createSensor);
 
 //*********** Delete Requests ***************//
-app.delete('/users/:name', userCtrl.destroyUser);
-app.delete('/sensors/:name', userCtrl.destroySensor);
+app.delete('/users/', userCtrl.destroyUser);
+app.delete('/sensors/:type', userCtrl.destroySensor);
 
 //auth
-const passportJS = require('./config/passport');
+const passportJS = require('./config/passport.js');
 
 //auth endpoints
 app.get('/auth/google', passport.authenticate('google', {
@@ -109,12 +88,12 @@ app.get('/auth/google/callback', passport.authenticate('google', {
 }));
 
 app.get('/auth/facebook', passport.authenticate('facebook', {
-   scope: ['public_profile', 'email']
+  scope: ['public_profile', 'email']
 }));
 
 app.get('/auth/facebook/callback', passport.authenticate('facebook', {
   successRedirect: '/home',
-  failureRedirect: '/login'
+  failureRedirect: '/#/login'
 }));
 
 app.post('/auth/local', passport.authenticate('local'), (req, res) => {
@@ -122,7 +101,7 @@ app.post('/auth/local', passport.authenticate('local'), (req, res) => {
 });
 
 app.get('/home', userCtrl.requireAuth, (req, res) => {
-    res.redirect('/#/home');
+  res.redirect('/');
 });
 
 app.get('/logout', userCtrl.logout);

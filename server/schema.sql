@@ -4,6 +4,8 @@ CREATE TABLE users
   name VARCHAR(40),
   email VARCHAR(40),
   phone VARCHAR(60),
+  password VARCHAR(80),
+  location VARCHAR(20),
   pubsub VARCHAR(80),
   pubpub VARCHAR(80),
   pubchan VARCHAR(20),
@@ -30,11 +32,12 @@ CREATE TABLE sensors
 CREATE TABLE settings
 (
   id SERIAL PRIMARY KEY,
-  module_id INT REFERENCES modules(id),
   user_id INT REFERENCES users(id),
+  module_id INT REFERENCES modules(id),
+  sensor_id INT REFERENCES sensors(id),
   active BOOLEAN,
   email BOOLEAN,
   sms BOOLEAN,
-  start_time timestamp,
-  end_time timestamp
+  start_time time,
+  end_time time
 );
