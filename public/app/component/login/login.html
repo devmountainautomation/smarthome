@@ -4,10 +4,10 @@
 <section class="login">
   <div class="login-box">
     <h1>Welcome</h1>
-    <form class="local-login" ng-submit="localLogin()">
+    <form class="local-login">
       <input type="email" ng-model="email" placeholder="Email">
       <input type="password" ng-model="password" placeholder="Password">
-      <button type="button" name="login">Login</button>
+      <button type="button" name="login" ng-click="localLogin(email, password)">Login</button>
     </form>
     <a class="thirdp-auth-button" href="/auth/google">
       <i class="fa fa-google"></i> Login with Google
