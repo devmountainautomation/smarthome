@@ -84,7 +84,7 @@ app.get('/auth/google', passport.authenticate('google', {
 }));
 app.get('/auth/google/callback', passport.authenticate('google', {
   successRedirect: '/home',
-  failureRedirect: '/'
+  failureRedirect: '/#/login'
 }));
 
 app.get('/auth/facebook', passport.authenticate('facebook', {

@@ -42,7 +42,7 @@ passport.use(new GoogleStrategy({
     callbackURL: auth.googleAuth.callbackURL,
 }, (token, refreshToken, profile, done) => {
     db.users.findOne({
-        google_id: profile.id
+        google: profile.id
     }, (err, user) => {
         if (err) {
             done(err, null);

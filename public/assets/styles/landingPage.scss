@@ -178,15 +178,9 @@
             }
         }
 
-        #lp-login {
-            p {
-                &:hover {
-                    color: #FFD700;
-                }
-            }
-        }
-
-        #lp-contact {
+        #lp-contact,
+        #lp-login,
+        #lp-logout {
             p {
                 &:hover {
                     color: #FFD700;
