@@ -68,7 +68,7 @@ app.put('/users/', userCtrl.updateUser);
 
 //*********** Post Requests *****************//
 app.post('/settings/:type', userCtrl.createSettings);
-app.post('/users', userCtrl.createUser);
+app.post('/users', userCtrl.createLocalUser);
 app.post('/sensors/', userCtrl.createSensor);
 
 //*********** Delete Requests ***************//
@@ -76,7 +76,7 @@ app.delete('/users/', userCtrl.destroyUser);
 app.delete('/sensors/:type', userCtrl.destroySensor);
 
 //auth
-const passportJS = require('./config/passport');
+const passportJS = require('./config/passport.js');
 
 //auth endpoints
 app.get('/auth/google', passport.authenticate('google', {
@@ -93,7 +93,7 @@ app.get('/auth/facebook', passport.authenticate('facebook', {
 
 app.get('/auth/facebook/callback', passport.authenticate('facebook', {
   successRedirect: '/home',
-  failureRedirect: '/login'
+  failureRedirect: '/#/login'
 }));
 
 app.post('/auth/local', passport.authenticate('local'), (req, res) => {
@@ -101,7 +101,7 @@ app.post('/auth/local', passport.authenticate('local'), (req, res) => {
 });
 
 app.get('/home', userCtrl.requireAuth, (req, res) => {
-  res.redirect('/#/home');
+  res.redirect('/');
 });
 
 app.get('/logout', userCtrl.logout);

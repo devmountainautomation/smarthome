@@ -11,13 +11,13 @@ var pubnub = new Pubnub({
 });
 
 pubnub.addListener({
-  message: function(message) {
+  message: message => {
     console.log("This is the message:", message);
   },
-  presence: function(presence) {
+  presence: presence => {
     console.log("This is the presence:", presence);
   },
-  status: function(status) {
+  status: status => {
     console.log("This is the status:", status);
   }
 });

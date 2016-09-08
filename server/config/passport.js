@@ -10,12 +10,11 @@ const FacebookStrategy = require('passport-facebook').Strategy;
 passport.use(new FacebookStrategy({
     clientID: auth.facebookAuth.clientID,
     clientSecret: auth.facebookAuth.clientSecret,
-    callbackURL: auth.facebookAuth.callbackURL
+    callbackURL: auth.facebookAuth.callbackURL,
+    profileFields: ['id', 'name', 'displayName', 'photos', 'email']
 }, (token, refreshToken, profile, done) => {
-  console.log(token);
-  console.log(profile);
   db.users.findOne({
-    facebook_id: profile.id
+    fb: profile.id
 }, (err, user) => {
     if (err) {
         done(err, null);
@@ -26,12 +25,12 @@ passport.use(new FacebookStrategy({
         db.users.insert({
             name: profile.displayName,
             email: profile.emails[0].value,
-            image: profile.photos[0].value,
-            facebook_id: profile.id
+            photo: profile.photos[0].value,
+            fb: profile.id
         }, (err, newUser) => {
-            console.log("new user", user);
+            console.log("new user", newUser);
+            done(null, newUser);
         });
-        done(null, user);
     }
 });
 
@@ -54,8 +53,8 @@ passport.use(new GoogleStrategy({
             db.users.insert({
                 name: profile.displayName,
                 email: profile.emails[0].value,
-                image: profile.photos[0].value,
-                google_id: profile.id
+                photo: profile.photos[0].value,
+                google: profile.id
             }, (err, newUser) => {
                 console.log("new user", user);
             });
@@ -66,8 +65,7 @@ passport.use(new GoogleStrategy({
 }));
 
 passport.use(new LocalStrategy((username, password, done) => {
-    db.get_user_by_username([username], (err, user) => {
-        console.log(user, err);
+    db.get_user_by_email([username], (err, user) => {
         user = user[0];
         if (err) {
             return done(err);
