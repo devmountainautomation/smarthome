@@ -9,6 +9,7 @@ CREATE TABLE users
   pubsub VARCHAR(80),
   pubpub VARCHAR(80),
   pubchan VARCHAR(20),
+  photo TEXT,
   google VARCHAR(60),
   fb VARCHAR(60)
 );
