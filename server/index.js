@@ -8,6 +8,8 @@ const cookie = require('cookie-parser');
 const flash = require('connect-flash');
 const bcrypt = require('bcrypt');
 const Pubnub = require('pubnub');
+const jstz = require('jstz');
+const timeZone = require('moment-timezone');
 
 const FacebookStrategy = require('passport-facebook').Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
@@ -48,37 +50,15 @@ app.use(passport.session());
 
 app.set('view engine', 'html');
 
-// Pubnub setup
-
-var pubnub = new Pubnub({
-  subscribeKey: config.SubscribeKey,
-  publishKey: config.PublishKey,
-  secretKey: config.SecretKey,
-  ssl: true
-});
-
-pubnub.addListener({
-  message: function(message) {
-    console.log("This is the message:", message);
-  },
-  presence: function(presence) {
-    console.log("This is the presence:", presence);
-  },
-  status: function(status) {
-    console.log("This is the status:", status);
-  }
-});
-
-pubnub.subscribe({
-  channels: ['my_channel'],
-  withPresence: true
-});
+// Pubnub
+const pubnub = require('./controllers/pubnub.js');
 
 // Controllers
 const userCtrl = require('./controllers/userCtrl.js');
 
 
-//endpoints
+////////////// Endpoints /////////////////////////
+
 
 //*********** Get Requests ********************//
 app.get('/users/', userCtrl.getUser);
@@ -91,7 +71,7 @@ app.put('/users/', userCtrl.updateUser);
 
 //*********** Post Requests *****************//
 app.post('/settings/:type', userCtrl.createSettings);
-app.post('/users', userCtrl.createUser);
+app.post('/users', userCtrl.createLocalUser);
 app.post('/sensors/', userCtrl.createSensor);
 
 //*********** Delete Requests ***************//
@@ -99,7 +79,7 @@ app.delete('/users/', userCtrl.destroyUser);
 app.delete('/sensors/:type', userCtrl.destroySensor);
 
 //auth
-const passportJS = require('./config/passport');
+const passportJS = require('./config/passport.js');
 
 //auth endpoints
 app.get('/auth/google', passport.authenticate('google', {
@@ -116,7 +96,7 @@ app.get('/auth/facebook', passport.authenticate('facebook', {
 
 app.get('/auth/facebook/callback', passport.authenticate('facebook', {
   successRedirect: '/home',
-  failureRedirect: '/login'
+  failureRedirect: '/#/login'
 }));
 
 app.post('/auth/local', passport.authenticate('local'), (req, res) => {
@@ -124,7 +104,7 @@ app.post('/auth/local', passport.authenticate('local'), (req, res) => {
 });
 
 app.get('/home', userCtrl.requireAuth, (req, res) => {
-  res.redirect('/#/home');
+  res.redirect('/');
 });
 
 app.get('/logout', userCtrl.logout);
