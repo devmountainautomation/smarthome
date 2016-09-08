@@ -21,6 +21,7 @@ const path = require('path');
 
 const app = module.exports = express();
 
+
 app.use(cookie(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -55,7 +56,9 @@ const pubnub = require('./controllers/pubnub.js');
 // Controllers
 const userCtrl = require('./controllers/userCtrl.js');
 
+
 ////////////// Endpoints /////////////////////////
+
 
 //*********** Get Requests ********************//
 app.get('/users/', userCtrl.getUser);

@@ -68,6 +68,7 @@ module.exports = {
       }
     });
   },
+
   createLocalUser: (req, res, next) => {
     var data = req.body;
     bcrypt.hash(data.password, saltRounds, function(err, hash) {
@@ -87,6 +88,7 @@ module.exports = {
     }
     res.status(500).send("No User data Provided");
   },
+
   createSensor: (req, res, next) => {
     var data = req.body;
     db.get_module_id([data.type], (err, response) => {
