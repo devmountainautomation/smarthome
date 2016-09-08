@@ -15,8 +15,9 @@ angular.module('smarthome')
             scope.icon_url = '/assets/img/window-door_icon.png';
             break;
         }
-        // manageService.getSettings(scope.id).then(function(response) {
+      manageService.getSettings(scope.id).then(function(response) {
         element.find('i').on('click', function() {
+          /// Door + Window Sensor ///
           if (scope.type == "Door/Window Sensor") {
             var id = scope.id;
             var startTime = "10:45 am";
@@ -60,7 +61,7 @@ angular.module('smarthome')
                          <h4>Enable/Disable Device</h4>
                       </div>`);
           }
-          // })
+          })
           $(element.find('section')).slideDown();
           $("#start" + id).timeDropper();
           $("#end" + id).timeDropper();
