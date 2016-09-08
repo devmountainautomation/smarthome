@@ -17,4 +17,9 @@ angular.module('smarthome')
         templateUrl: '/app/component/dashboard/dashboard.html',
         controller: 'dashboardCtrl'
       })
-  });
+      .state('manage', {
+        url: '/manage',
+        templateUrl: '/app/component/manage/manage.html',
+        controller: 'manageCtrl'
+      })
+  })
