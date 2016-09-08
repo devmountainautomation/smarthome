@@ -61,6 +61,7 @@ const userCtrl = require('./controllers/userCtrl.js');
 app.get('/users/', userCtrl.getUser);
 app.get('/users/sensors/', userCtrl.getUserSensors);
 app.get('/modules', userCtrl.getModules);
+//get settings
 
 //*********** Put Requests *******************//
 app.put('/settings/:type', userCtrl.updateSettings);
