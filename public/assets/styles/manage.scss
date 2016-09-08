@@ -16,12 +16,11 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
     margin: 5vw;
     .this-device-card {
       color: #17a2c6;
       text-align: center;
-      position: relative;
       i {
         float: right;
         font-size: 1.25em;
@@ -65,10 +64,19 @@
 .setting-menu {
   background: #343f46;
   padding: 5vw;
-  min-width: 100%;
-  min-height: 100%;
+  position: absolute;
+  top: 23vh;
+  left: 5vw;
+  width: 90%;
+  max-height: 83vh;
+  #appended {
+    position: relative;
+  }
   i {
-    float: right;
+    position: absolute;
+    top: -14vw;
+    right: -3vw;
+    text-align: right;
   }
   h2 {
     margin-bottom: 1rem;
@@ -76,7 +84,7 @@
   }
   h3 {
     text-transform: uppercase;
-    font-weight: 100;
+    font-weight: 400;
     font-size: .5em;
   }
   input {
@@ -104,24 +112,25 @@
       display: flex;
       align-items: center;
       h4 {
-        font-size: 1.25rem;
+        font-size: 1rem;
         text-transform: uppercase;
-        font-weight: 100;
+        font-weight: 400;
       }
     }
   }
 }
 .squaredOne {
   position: relative;
-  width: 2rem;
+  width: 1.15rem;
   float: left;
   margin-right: .75rem;
 }
 .squaredOne label {
+  margin-top: .35rem;
   float: left;
 	display: block;
-	width: 30px;
-	height: 30px;
+	width: 1.15rem;
+	height: 1.15rem;
 	border-radius: 100px;
 
 	transition: all .5s ease;

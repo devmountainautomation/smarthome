@@ -1062,14 +1062,14 @@ h1, h2, h3, h4, h5, h6 {
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    -webkit-justify-content: space-around;
-    -ms-flex-pack: distribute;
-    justify-content: space-around;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
     margin: 5vw; }
     .devices .device-box .this-device-card {
       color: #17a2c6;
-      text-align: center;
-      position: relative; }
+      text-align: center; }
       .devices .device-box .this-device-card i {
         float: right;
         font-size: 1.25em;
@@ -1110,16 +1110,24 @@ h1, h2, h3, h4, h5, h6 {
 .setting-menu {
   background: #343f46;
   padding: 5vw;
-  min-width: 100%;
-  min-height: 100%; }
+  position: absolute;
+  top: 23vh;
+  left: 5vw;
+  width: 90%;
+  max-height: 83vh; }
+  .setting-menu #appended {
+    position: relative; }
   .setting-menu i {
-    float: right; }
+    position: absolute;
+    top: -14vw;
+    right: -3vw;
+    text-align: right; }
   .setting-menu h2 {
     margin-bottom: 1rem;
     font-size: 1em; }
   .setting-menu h3 {
     text-transform: uppercase;
-    font-weight: 100;
+    font-weight: 400;
     font-size: .5em; }
   .setting-menu input {
     width: 100%;
@@ -1151,21 +1159,22 @@ h1, h2, h3, h4, h5, h6 {
       -ms-flex-align: center;
       align-items: center; }
       .setting-menu .checkbox-section .check-box h4 {
-        font-size: 1.25rem;
+        font-size: 1rem;
         text-transform: uppercase;
-        font-weight: 100; }
+        font-weight: 400; }
 
 .squaredOne {
   position: relative;
-  width: 2rem;
+  width: 1.15rem;
   float: left;
   margin-right: .75rem; }
 
 .squaredOne label {
+  margin-top: .35rem;
   float: left;
   display: block;
-  width: 30px;
-  height: 30px;
+  width: 1.15rem;
+  height: 1.15rem;
   border-radius: 100px;
   -webkit-transition: all .5s ease;
   transition: all .5s ease;

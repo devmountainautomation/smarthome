@@ -4,11 +4,11 @@
   <h1><u>My Devices</u></h1>
   <section class="device-box">
 
-  <div class="device-cards" ng-repeat="device in devices track by device.id">
+  <div class="device-cards" ng-repeat="device in devices track by device.module_id">
     <device-card type="{{device.type}}" id="{{device.id}}" nickname="{{device.nickname}}">
     </device-card>
   </div>
-    <div class="add-device-card">
+    <div class="add-device-card" ui-sref="addDevice">
       <i class="fa fa-plus"></i>
     </div>
   </section>

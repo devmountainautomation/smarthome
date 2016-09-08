@@ -1,6 +1,6 @@
 angular.module('smarthome')
   .service('manageService', function ($http) {
-    this.getDevices = function () {
+    this.getDevices = () => {
       return $http({
         method: 'GET',
         url: 'users/sensors'
@@ -8,7 +8,7 @@ angular.module('smarthome')
         return response.data;
       })
     }
-    this.getSettings = function (id) {
+    this.getSettings = (id) => {
       return $http({
         method: 'GET',
         url: `settings/${id}`

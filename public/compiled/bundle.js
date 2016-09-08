@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('smarthome', ['ui.router', 'ngAnimate']);
+angular.module('smarthome', ['ui.router']);
 'use strict';
 
 (function ($) {
@@ -556,15 +556,13 @@ angular.module('smarthome').directive('deviceCard', function (manageService) {
           element.find('section').append('\n                  <div id="appended">\n                    <i id="appended-close" class="fa fa-close"></i>\n                    <div>\n                      <h2>Notification Window</h2>\n                      <h3>Start Time</h3>\n                        <input type="text" id="start' + id + '" value="' + startTime + '"></input>\n                      <h3>End Time</h3>\n                        <input type="text" id="end' + id + '" value="' + endTime + '"></input>\n                    </div>\n\n                    <div class="checkbox-section">\n                      <h2>Notifications</h2>\n                        <div class="check-box">\n                          <div class="squaredOne">\n                            <input type="checkbox" value="None" id="settings-email-radio" name="check" checked />\n                            <label for="settings-email-radio"></label>\n                          </div>\n                          <h4> Send me an email </h4>\n                        </div>\n\n                        <div class="check-box">\n                          <div class="squaredOne">\n                            <input type="checkbox" value="None" id="settings-text-radio" name="check" checked />\n                            <label for="settings-text-radio"></label>\n                          </div>\n                          <h4> Send me a text </h4>\n                        </div>\n\n                      </div>\n                      <hr>\n                      <div class="enable-section">\n                          <div class="slide-checkbox">\n    \t\t                      <input type="checkbox" value="1" id="checkboxThreeInput" checked />\n\t  \t                        <label for="checkboxThreeInput"></label>\n\t                         </div>\n                         <h4>Enable/Disable Device</h4>\n                      </div>');
         }
         // })
-        $(element.find('article')).toggle();
-        $(element.find('section')).slideToggle();
+        $(element.find('section')).slideDown();
         $("#start" + id).timeDropper();
         $("#end" + id).timeDropper();
       });
-      $('.setting-menu').on('click', '#appended-close', function () {
-        $('#appended').slideToggle('slow', function () {
-          $(element.find('article')).slideToggle();
-          $('#appended').empty();
+      $(element.find('section')).on('click', '#appended-close', function () {
+        $(element.find('section')).slideUp('slow', function () {
+          $('#appended').remove();
         });
       });
     },
@@ -580,6 +578,10 @@ angular.module('smarthome').controller('manageCtrl', function ($scope, manageSer
         module_id: '12r443',
         type: 'Door/Window Sensor',
         nickname: 'Razzbury Piii'
+      }, {
+        module_id: '12303',
+        type: 'Door/Window Sensor',
+        nickname: 'Yo mama'
       }];
       devices.forEach(function (e) {
         if (e.type == 'Door/Window Sensor') {
@@ -595,6 +597,10 @@ angular.module('smarthome').controller('manageCtrl', function ($scope, manageSer
     module_id: '12r443',
     type: 'Door/Window Sensor',
     nickname: 'Razzbury Piii'
+  }, {
+    module_id: '12303',
+    type: 'Door/Window Sensor',
+    nickname: 'Yo mama'
   }];
   devices.forEach(function (e) {
     if (e.type == 'Door/Window Sensor') {

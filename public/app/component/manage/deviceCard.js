@@ -1,5 +1,5 @@
 angular.module('smarthome')
-  .directive('deviceCard', function(manageService) {
+  .directive('deviceCard', (manageService) => {
     return {
 
       restrict: 'EA',
@@ -61,15 +61,13 @@ angular.module('smarthome')
                       </div>`);
           }
           // })
-          $(element.find('article')).toggle();
-          $(element.find('section')).slideToggle();
+          $(element.find('section')).slideDown();
           $("#start" + id).timeDropper();
           $("#end" + id).timeDropper();
         })
-        $('.setting-menu').on('click', '#appended-close', function () {
-          $('#appended').slideToggle('slow', function () {
-            $(element.find('article')).slideToggle();
-            $('#appended').empty();
+        $(element.find('section')).on('click', '#appended-close', function () {
+          $(element.find('section')).slideUp('slow', function () {
+            $('#appended').remove();
           })
         })
       },
