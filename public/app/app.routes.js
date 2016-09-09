@@ -35,7 +35,7 @@ angular.module('smarthome')
         url: '/dashboard',
         templateUrl: '/app/component/dashboard/dashboard.html',
         controller: 'dashboardCtrl',
-        resolve: {
+        // resolve: {
         //   user: (dashboardSrvc) => {
         //      return dashboardSrvc.getUser();
         //  },
@@ -52,7 +52,7 @@ angular.module('smarthome')
     //      }
     //    });
     //  }
-         }
+        //  }
       })
       .state('manage', {
         url: '/manage',

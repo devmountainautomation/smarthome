@@ -382,25 +382,7 @@ angular.module('smarthome').config(function ($stateProvider, $urlRouterProvider)
   }).state('dashboard', {
     url: '/dashboard',
     templateUrl: '/app/component/dashboard/dashboard.html',
-    controller: 'dashboardCtrl',
-    resolve: {
-      //   user: (dashboardSrvc) => {
-      //      return dashboardSrvc.getUser();
-      //  },
-      //  authUser: ($state, dashboardSrvc) => {
-      //    return dashboardSrvc.checkAuth().then((response) => {
-      //      console.log(response);
-      //      if (response.data === 'unauthorized') {
-      //        $state.go('login');
-      //        setTimeout(() => {
-      //          swal("Error", 'Please Login or Sign Up', 'error');
-      //        }, 400);
-      //      } else {
-      //        return response.data;
-      //      }
-      //    });
-      //  }
-    }
+    controller: 'dashboardCtrl'
   }).state('manage', {
     url: '/manage',
     templateUrl: '/app/component/manage/manage.html',
