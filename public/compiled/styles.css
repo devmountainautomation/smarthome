@@ -415,6 +415,16 @@ textarea {
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Lato', sans-serif; }
 
+.dash-section {
+  height: 100vh;
+  width: 100vw;
+  background: #36454f; }
+
+.test {
+  height: 100vh;
+  width: 100vw;
+  background: blue; }
+
 /*Header*/
 .header {
   width: 100vw;
@@ -532,7 +542,8 @@ h1, h2, h3, h4, h5, h6 {
   display: none;
   position: fixed;
   overflow: hidden;
-  z-index: 4; }
+  z-index: 4;
+  font-family: 'Source Sans Pro'; }
   .menu .menu-box-container {
     margin-top: 10vh;
     height: 50vh;
@@ -598,9 +609,9 @@ h1, h2, h3, h4, h5, h6 {
         padding: 3vh;
         font-size: 1.5rem;
         color: #F0F0F0; }
-    .menu .menu-list-container #lp-login p:hover {
-      color: #FFD700; }
-    .menu .menu-list-container #lp-contact p:hover {
+    .menu .menu-list-container #lp-contact p:hover,
+    .menu .menu-list-container #lp-login p:hover,
+    .menu .menu-list-container #lp-logout p:hover {
       color: #FFD700; }
   .menu .social-hex {
     height: 20vh;

@@ -378,6 +378,10 @@ angular.module('smarthome').config(function ($stateProvider, $urlRouterProvider)
   }).state('login', {
     url: '/login',
     templateUrl: '/app/component/login/login.html'
+  }).state('dashboard', {
+    url: '/dashboard',
+    templateUrl: '/app/component/dashboard/dashboard.html',
+    controller: 'dashboardCtrl'
   }).state('manage', {
     url: '/manage',
     templateUrl: '/app/component/manage/manage.html',
@@ -386,31 +390,105 @@ angular.module('smarthome').config(function ($stateProvider, $urlRouterProvider)
 });
 'use strict';
 
-angular.module('smarthome').directive('headDir', function () {
-    return {
-        restrict: 'EA',
-        templateUrl: './app/component/header/header.html',
-        link: function link(scope, elems, attrs) {
-            $(document).ready(function () {
-                $('.logged-in').hide();
-                $('#hamburger').click(function () {
-                    $('#hamburger').toggleClass('open');
-                    $('#menu').toggle('slide', 'left', 500);
-                    $('.landing-page').toggleClass('menu-open');
-                });
+angular.module('smarthome').directive('dashDir', function () {
+  return {
+    restrict: 'EA',
+    link: function link(scope, elems, attrs) {
+      $(document).ready(function () {});
+    }
+  };
+});
+'use strict';
 
-                $(window).on('scroll', function () {
-                    if ($(window).scrollTop() > 50) {
-                        $('.header').addClass('active');
-                        $('.ham-slide').addClass('span-invert');
-                    } else {
-                        $('.header').removeClass('active');
-                        $('.ham-slide').removeClass('span-invert');
-                    }
-                });
-            });
+angular.module('smarthome').controller('dashboardCtrl', function ($scope, dashboardSrvc) {});
+'use strict';
+
+angular.module('smarthome').service('dashboardSrvc', function ($http) {});
+'use strict';
+
+angular.module('smarthome').directive('headDir', function ($state, $compile) {
+  return {
+    restrict: 'EA',
+    templateUrl: './app/component/header/header.html',
+    controller: 'headerCtrl',
+    link: function link(scope, elems, attrs) {
+      $(document).ready(function () {
+        // $('.logged-in').hide();
+
+        if ($state.current.name === 'landing page' || $state.current.name === 'login') {
+          $('#hamburger').click(function () {
+            $('#hamburger').toggleClass('open');
+            $('#menu').toggle('slide', 'left', 500);
+            $('.landing-page').toggleClass('menu-open');
+          });
+
+          $(window).on('scroll', function () {
+            if ($(window).scrollTop() > 50) {
+              $('.header').addClass('active');
+              $('.ham-slide').addClass('span-invert');
+            } else {
+              $('.header').removeClass('active');
+              $('.ham-slide').removeClass('span-invert');
+            }
+          });
+        } else {
+
+          var elmnt = $compile('<div class="menu-box-container">\n                  <div class="lp-boxes" id="box1">\n                      <i class="fa fa-tachometer fa-fw fa-3x" aria-hidden="true"></i>\n                      <p>Dashboard</p>\n                  </div>\n                  <div class="lp-boxes" id="box2">\n                      <i class="fa fa-plus-square fa-fw fa-3x" aria-hidden="true"></i>\n                      <p>Add Device</p>\n                  </div>\n                  <div class="lp-boxes" id="box3">\n                      <i class="fa fa-question fa-fw fa-3x" aria-hidden="true"></i>\n                      <p>FAQ</p>\n                  </div>\n                  <div class="lp-boxes" id="box4">\n                      <i class="fa fa-comments fa-fw fa-3x" aria-hidden="true"></i>\n                      <p>Comments</p>\n                  </div>\n              </div>\n              <div class="menu-list-container">\n                  <div class="lp-menu-item" id="lp-logout" ng-click="logout()">\n                      <p>Logout</p>\n                  </div>\n                  <div class="lp-menu-item" id="lp-contact">\n                      <p>Contact</p>\n                  </div>\n                  <div class="social-hex">\n                      <div class="hexagon"><i class="fa fa-github fa-fw fa-2x" aria-hidden="true"></i></div>\n                      <div class="hexagon"><i class="fa fa-linkedin fa-fw fa-2x" aria-hidden="true"></i></div>\n                      <div class="hexagon"><i class="fa fa-facebook fa-fw fa-2x" aria-hidden="true"></i></div>\n                  </div>\n              </div>')(scope);
+
+          $('.menu').empty();
+          $('.menu').html(elmnt);
+
+          $('#hamburger').click(function () {
+            $('#hamburger').toggleClass('open');
+            $('#menu').toggle('slide', 'left', 500);
+            $('.landing-page').toggleClass('menu-open');
+          });
+
+          $(window).on('scroll', function () {
+            if ($(window).scrollTop() > 50) {
+              $('.header').addClass('active');
+              $('.ham-slide').addClass('span-invert');
+            } else {
+              $('.header').removeClass('active');
+              $('.ham-slide').removeClass('span-invert');
+            }
+          });
         }
+      });
+    }
+  };
+});
+'use strict';
+
+angular.module('smarthome').controller('headerCtrl', function (headerSrvc, $scope) {
+
+    $scope.logout = function () {
+        console.log('hit');
+        headerSrvc.logout().then(function (response) {
+            swal("Success!", "Logout Successful!", "success");
+            setTimeout(function () {
+                if (response) {
+                    $state.go('landing page');
+                }
+            }, 1500);
+        });
     };
+});
+'use strict';
+
+angular.module('smarthome').service('headerSrvc', function ($http) {
+  var _this = this;
+
+  this.logout = function () {
+    _this.logout = function () {
+      return $http.get('/logout').then(function (response) {
+        console.log(response);
+        return response.data;
+      }).catch(function (err) {
+        console.log(err);
+      });
+    };
+  };
 });
 'use strict';
 
@@ -463,26 +541,30 @@ angular.module('smarthome').directive('compareTo', function () {
 'use strict';
 
 angular.module('smarthome').controller('loginCtrl', function ($scope, $state, loginService) {
-  $scope.localLogin = function () {
-    loginService.login($scope.email, $scope.password);
+
+  $scope.localLogin = function (email, password) {
+    loginService.login(email, password).then(function (response) {
+      $state.go('landing page');
+    });
   };
-  $scope.createLocalUser = function () {
-    loginService.createLocalUser($scope.signup - name, $scope.signup - email, $scope.signup - password, $scope.signup - phone);
+
+  $scope.createLocalUser = function (name, email, password, phone) {
+    loginService.createLocalUser(name, email, password, phone);
   };
-});
+}); //End loginCtrl
 'use strict';
 
-angular.module('smarthome').service('loginService', function ($http) {
+angular.module('smarthome').service('loginService', function ($http, $state) {
   this.login = function (email, password) {
     return $http({
       method: 'POST',
       url: '/auth/local',
       data: {
-        email: email,
+        username: email,
         password: password
       }
     }).then(function (response) {
-      return response;
+      return response.status;
     });
   };
 
@@ -497,10 +579,10 @@ angular.module('smarthome').service('loginService', function ($http) {
         phone: phone
       }
     }).then(function (response) {
-      return response;
+      $state.go('landing page');
     });
   };
-});
+}); //End loginService
 'use strict';
 
 angular.module('smarthome').directive('signupForm', function () {
@@ -547,15 +629,16 @@ angular.module('smarthome').directive('deviceCard', function (manageService) {
           scope.icon_url = '/assets/img/window-door_icon.png';
           break;
       }
-      // manageService.getSettings(scope.id).then(function(response) {
-      element.find('i').on('click', function () {
-        if (scope.type == "Door/Window Sensor") {
-          var id = scope.id;
-          var startTime = "10:45 am";
-          var endTime = "4:45 pm";
-          element.find('section').append('\n                  <div id="appended">\n                    <i id="appended-close" class="fa fa-close"></i>\n                    <div>\n                      <h2>Notification Window</h2>\n                      <h3>Start Time</h3>\n                        <input type="text" id="start' + id + '" value="' + startTime + '"></input>\n                      <h3>End Time</h3>\n                        <input type="text" id="end' + id + '" value="' + endTime + '"></input>\n                    </div>\n\n                    <div class="checkbox-section">\n                      <h2>Notifications</h2>\n                        <div class="check-box">\n                          <div class="squaredOne">\n                            <input type="checkbox" value="None" id="settings-email-radio" name="check" checked />\n                            <label for="settings-email-radio"></label>\n                          </div>\n                          <h4> Send me an email </h4>\n                        </div>\n\n                        <div class="check-box">\n                          <div class="squaredOne">\n                            <input type="checkbox" value="None" id="settings-text-radio" name="check" checked />\n                            <label for="settings-text-radio"></label>\n                          </div>\n                          <h4> Send me a text </h4>\n                        </div>\n\n                      </div>\n                      <hr>\n                      <div class="enable-section">\n                          <div class="slide-checkbox">\n    \t\t                      <input type="checkbox" value="1" id="checkboxThreeInput" checked />\n\t  \t                        <label for="checkboxThreeInput"></label>\n\t                         </div>\n                         <h4>Enable/Disable Device</h4>\n                      </div>');
-        }
-        // })
+      manageService.getSettings(scope.id).then(function (response) {
+        element.find('i').on('click', function () {
+          /// Door + Window Sensor ///
+          if (scope.type == "Door/Window Sensor") {
+            var id = scope.id;
+            var startTime = "10:45 am";
+            var endTime = "4:45 pm";
+            element.find('section').append('\n                  <div id="appended">\n                    <i id="appended-close" class="fa fa-close"></i>\n                    <div>\n                      <h2>Notification Window</h2>\n                      <h3>Start Time</h3>\n                        <input type="text" id="start' + id + '" value="' + startTime + '"></input>\n                      <h3>End Time</h3>\n                        <input type="text" id="end' + id + '" value="' + endTime + '"></input>\n                    </div>\n\n                    <div class="checkbox-section">\n                      <h2>Notifications</h2>\n                        <div class="check-box">\n                          <div class="squaredOne">\n                            <input type="checkbox" value="None" id="settings-email-radio" name="check" checked />\n                            <label for="settings-email-radio"></label>\n                          </div>\n                          <h4> Send me an email </h4>\n                        </div>\n\n                        <div class="check-box">\n                          <div class="squaredOne">\n                            <input type="checkbox" value="None" id="settings-text-radio" name="check" checked />\n                            <label for="settings-text-radio"></label>\n                          </div>\n                          <h4> Send me a text </h4>\n                        </div>\n\n                      </div>\n                      <hr>\n                      <div class="enable-section">\n                          <div class="slide-checkbox">\n    \t\t                      <input type="checkbox" value="1" id="checkboxThreeInput" checked />\n\t  \t                        <label for="checkboxThreeInput"></label>\n\t                         </div>\n                         <h4>Enable/Disable Device</h4>\n                      </div>');
+          }
+        });
         $(element.find('section')).slideDown();
         $("#start" + id).timeDropper();
         $("#end" + id).timeDropper();

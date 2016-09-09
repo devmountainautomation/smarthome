@@ -1,8 +1,9 @@
 angular.module('smarthome')
-  .directive('headDir', ($state) => {
+  .directive('headDir', ($state, $compile) => {
     return {
       restrict: 'EA',
       templateUrl: './app/component/header/header.html',
+      controller: 'headerCtrl',
       link: (scope, elems, attrs) => {
         $(document).ready(() => {
           // $('.logged-in').hide();
@@ -25,7 +26,8 @@ angular.module('smarthome')
             });
 
           } else {
-            $('.menu-box-container').replaceWith(`<div class="menu-box-container">
+
+            let elmnt = $compile(`<div class="menu-box-container">
                   <div class="lp-boxes" id="box1">
                       <i class="fa fa-tachometer fa-fw fa-3x" aria-hidden="true"></i>
                       <p>Dashboard</p>
@@ -43,8 +45,8 @@ angular.module('smarthome')
                       <p>Comments</p>
                   </div>
               </div>
-              <div class="menu-list-container" ng-click="logout()">
-                  <div class="lp-menu-item" id="lp-logout">
+              <div class="menu-list-container">
+                  <div class="lp-menu-item" id="lp-logout" ng-click="logout()">
                       <p>Logout</p>
                   </div>
                   <div class="lp-menu-item" id="lp-contact">
@@ -55,7 +57,10 @@ angular.module('smarthome')
                       <div class="hexagon"><i class="fa fa-linkedin fa-fw fa-2x" aria-hidden="true"></i></div>
                       <div class="hexagon"><i class="fa fa-facebook fa-fw fa-2x" aria-hidden="true"></i></div>
                   </div>
-              </div>`);
+              </div>`)(scope);
+
+            $('.menu').empty();
+            $('.menu').html(elmnt);
 
             $('#hamburger').click(() => {
               $('#hamburger').toggleClass('open');
@@ -73,8 +78,6 @@ angular.module('smarthome')
               }
             });
           }
-
-
         });
       }
     };
