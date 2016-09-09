@@ -6,8 +6,8 @@ angular.module('smarthome')
       controller: 'headerCtrl',
       link: (scope, elems, attrs) => {
         $(document).ready(() => {
-          // $('.logged-in').hide();
 
+          ////////////ADD CHECK FOR USER TO CHANGE MENU IF USER IS LOGGED IN/////////
           if ($state.current.name === 'landing page' || $state.current.name === 'login') {
             $('#hamburger').click(() => {
               $('#hamburger').toggleClass('open');
@@ -28,7 +28,7 @@ angular.module('smarthome')
           } else {
 
             let elmnt = $compile(`<div class="menu-box-container">
-                  <div class="lp-boxes" id="box1">
+                  <div class="lp-boxes" id="box1" ui-sref="dashboard">
                       <i class="fa fa-tachometer fa-fw fa-3x" aria-hidden="true"></i>
                       <p>Dashboard</p>
                   </div>
@@ -36,13 +36,13 @@ angular.module('smarthome')
                       <i class="fa fa-plus-square fa-fw fa-3x" aria-hidden="true"></i>
                       <p>Add Device</p>
                   </div>
-                  <div class="lp-boxes" id="box3">
-                      <i class="fa fa-question fa-fw fa-3x" aria-hidden="true"></i>
-                      <p>FAQ</p>
+                  <div class="lp-boxes" id="box3" ui-sref="manage">
+                      <i class="fa fa-wrench fa-fw fa-3x" aria-hidden="true"></i>
+                      <p>Manage Devices</p>
                   </div>
                   <div class="lp-boxes" id="box4">
-                      <i class="fa fa-comments fa-fw fa-3x" aria-hidden="true"></i>
-                      <p>Comments</p>
+                      <i class="fa fa-question fa-fw fa-3x" aria-hidden="true"></i>
+                      <p>FAQ</p>
                   </div>
               </div>
               <div class="menu-list-container">

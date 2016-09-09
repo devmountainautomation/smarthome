@@ -1,11 +1,77 @@
+$dashgreen: #E3F1F4;
+
 .dash-section {
     height: 100vh;
     width: 100vw;
     background: #36454f;
+
+    .dash-label {
+        position: absolute;
+        top: 8vh;
+        left: 5vw;
+        color: $dashgreen;
+        text-decoration: underline;
+    }
+
+    .widget-container {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        .add-widget {
+            height: 40vh;
+            width: 60vw;
+            border: 1px dashed $dashgreen;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+
+            h1 {
+                color: $dashgreen;
+                text-align: center;
+            }
+        }
+    }
 }
 
-.test {
-    height: 100vh;
+.widget-selector {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
     width: 100vw;
-    background: blue;
+    height: 100vh;
+    overflow: hidden;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+
+    .select-container {
+        border-radius: 5px;
+        background-color: #F0F0F0;
+        margin: 20% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 50%;
+
+        .close-modal {
+            float: right;
+            color: #000;
+            font-size: 30px;
+            font-weight: bold;
+            position: relative;
+            z-index: 1000;
+        }
+
+        .widget-card {
+            height: 50%;
+            width: auto;
+            border: 1px solid black;
+        }
+    }
 }
