@@ -571,8 +571,7 @@ angular.module('smarthome').directive('deviceCard', function (manageService) {
       manageService.getSettings(scope.id).then(function (response) {
         element.find('i').on('click', function () {
           var setting = response;
-          var id = setting.id;
-
+          var id = scope.id;
           var startTime = setting.start_time;
           var endTime = setting.end_time;
           /// Door + Window Sensor ///
@@ -591,20 +590,18 @@ angular.module('smarthome').directive('deviceCard', function (manageService) {
             var _endTime3 = setting.end_time;
             element.find('section').append('\n                  <div id="appended">\n                    <i id="appended-close" class="fa fa-close"></i>\n                    <div>\n                      <h2>Notification Window</h2>\n                      <h3>Start Time</h3>\n                        <input type="text" id="start' + id + '" value="' + _startTime3 + '"></input>\n                      <h3>End Time</h3>\n                        <input type="text" id="end' + id + '" value="' + _endTime3 + '"></input>\n                    </div>\n\n                    <div class="checkbox-section">\n                      <h2>Notifications</h2>\n                        <div class="check-box">\n                          <div class="squaredOne">\n                            <input type="checkbox" value="None" id="settings-email-radio" name="check" checked />\n                            <label for="settings-email-radio"></label>\n                          </div>\n                          <h4> Send me an email </h4>\n                        </div>\n\n                        <div class="check-box">\n                          <div class="squaredOne">\n                            <input type="checkbox" value="None" id="settings-text-radio" name="check" checked />\n                            <label for="settings-text-radio"></label>\n                          </div>\n                          <h4> Send me a text </h4>\n                        </div>\n\n                      </div>\n                      <hr>\n                      <div class="enable-section">\n                          <div class="slide-checkbox">\n    \t\t                      <input type="checkbox" value="1" id="checkboxThreeInput" checked />\n\t  \t                        <label for="checkboxThreeInput"></label>\n\t                         </div>\n                         <h4>Enable/Disable Device</h4>\n                      </div>');
           }
+          $(element.find('section')).slideDown();
+          $("#start" + scope.id).timeDropper();
+          $("#end" + scope.id).timeDropper();
         });
-        $(element.find('section')).slideDown();
-        $("#start" + scope.id).timeDropper();
-        $("#end" + scope.id).timeDropper();
       });
       $(element.find('section')).on('click', '#appended-close', function () {
         $(element.find('section')).slideUp('slow', function () {
-          // $('#appended').remove();
+          $('#appended').remove();
         });
       });
     },
-    controller: function controller($scope) {
-      $scope.showSettings = false;
-    }
+    controller: function controller($scope) {}
   };
 }); //End directive
 'use strict';
