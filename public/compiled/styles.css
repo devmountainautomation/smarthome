@@ -2,19 +2,7 @@
    v2.0 | 20110126
    License: none (public domain)
 */
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
   margin: 0;
   padding: 0;
   border: 0;
@@ -25,8 +13,7 @@ time, mark, audio, video {
   box-sizing: border-box; }
 
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
   display: block; }
 
 body {
@@ -38,8 +25,7 @@ ol, ul {
 blockquote, q {
   quotes: none; }
 
-blockquote:before, blockquote:after,
-q:before, q:after {
+blockquote:before, blockquote:after, q:before, q:after {
   content: '';
   content: none; }
 
@@ -73,28 +59,16 @@ body {
  * 1. Add the correct display in Edge, IE, and Firefox.
  * 2. Add the correct display in IE.
  */
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-main,
-menu,
-nav,
-section,
-summary {
+article, aside, details,
+figcaption, figure, footer, header, main,
+menu, nav, section, summary {
   /* 1 */
   display: block; }
 
 /**
  * Add the correct display in IE 9-.
  */
-audio,
-canvas,
-progress,
-video {
+audio, canvas, progress, video {
   display: inline-block; }
 
 /**
@@ -130,8 +104,7 @@ a {
  * Remove the outline on focused links when they are also active or hovered
  * in all browsers (opinionated).
  */
-a:active,
-a:hover {
+a:active, a:hover {
   outline-width: 0; }
 
 /* Text-level semantics
@@ -151,15 +124,13 @@ abbr[title] {
 /**
  * Prevent the duplicate application of `bolder` by the next rule in Safari 6.
  */
-b,
-strong {
+b, strong {
   font-weight: inherit; }
 
 /**
  * Add the correct font weight in Chrome, Edge, and Safari.
  */
-b,
-strong {
+b, strong {
   font-weight: bolder; }
 
 /**
@@ -193,8 +164,7 @@ small {
  * Prevent `sub` and `sup` elements from affecting the line height in
  * all browsers.
  */
-sub,
-sup {
+sub, sup {
   font-size: 75%;
   line-height: 0;
   position: relative;
@@ -226,10 +196,7 @@ svg:not(:root) {
  * 1. Correct the inheritance and scaling of font size in all browsers.
  * 2. Correct the odd `em` font sizing in all browsers.
  */
-code,
-kbd,
-pre,
-samp {
+code, kbd, pre, samp {
   font-family: monospace, monospace;
   /* 1 */
   font-size: 1em;
@@ -259,10 +226,7 @@ hr {
 /**
  * Change font properties to `inherit` in all browsers (opinionated).
  */
-button,
-input,
-select,
-textarea {
+button, input, select, textarea {
   font: inherit; }
 
 /**
@@ -276,8 +240,7 @@ optgroup {
  * 1. Show the overflow in Edge.
  * 2. Show the overflow in Edge, Firefox, and IE.
  */
-button,
-input,
+button, input,
 select {
   /* 2 */
   overflow: visible; }
@@ -286,10 +249,7 @@ select {
  * Remove the margin in Safari.
  * 1. Remove the margin in Firefox and Safari.
  */
-button,
-input,
-select,
-textarea {
+button, input, select, textarea {
   /* 1 */
   margin: 0; }
 
@@ -297,18 +257,14 @@ textarea {
  * Remove the inheritence of text transform in Edge, Firefox, and IE.
  * 1. Remove the inheritence of text transform in Firefox.
  */
-button,
-select {
+button, select {
   /* 1 */
   text-transform: none; }
 
 /**
  * Change the cursor in all browsers (opinionated).
  */
-button,
-[type="button"],
-[type="reset"],
-[type="submit"] {
+button, [type="button"], [type="reset"], [type="submit"] {
   cursor: pointer; }
 
 /**
@@ -322,26 +278,22 @@ button,
  *    controls in Android 4.
  * 2. Correct the inability to style clickable types in iOS.
  */
-button,
-html [type="button"],
-[type="reset"],
-[type="submit"] {
+button, html [type="button"],
+[type="reset"], [type="submit"] {
   -webkit-appearance: button;
   /* 2 */ }
 
 /**
  * Remove the inner border and padding in Firefox.
  */
-button::-moz-focus-inner,
-input::-moz-focus-inner {
+button::-moz-focus-inner, input::-moz-focus-inner {
   border: 0;
   padding: 0; }
 
 /**
  * Restore the focus styles unset by the previous rule.
  */
-button:-moz-focusring,
-input:-moz-focusring {
+button:-moz-focusring, input:-moz-focusring {
   outline: 1px dotted ButtonText; }
 
 /**
@@ -383,8 +335,7 @@ textarea {
  * 1. Add the correct box sizing in IE 10-.
  * 2. Remove the padding in IE 10-.
  */
-[type="checkbox"],
-[type="radio"] {
+[type="checkbox"], [type="radio"] {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   /* 1 */
@@ -394,8 +345,7 @@ textarea {
 /**
  * Correct the cursor style of increment and decrement buttons in Chrome.
  */
-[type="number"]::-webkit-inner-spin-button,
-[type="number"]::-webkit-outer-spin-button {
+[type="number"]::-webkit-inner-spin-button, [type="number"]::-webkit-outer-spin-button {
   height: auto; }
 
 /**
@@ -408,8 +358,7 @@ textarea {
  * Remove the inner padding and cancel buttons in Chrome on OS X and
  * Safari on OS X.
  */
-[type="search"]::-webkit-search-cancel-button,
-[type="search"]::-webkit-search-decoration {
+[type="search"]::-webkit-search-cancel-button, [type="search"]::-webkit-search-decoration {
   -webkit-appearance: none; }
 
 h1, h2, h3, h4, h5, h6 {
@@ -1041,8 +990,7 @@ h1, h2, h3, h4, h5, h6 {
     display: static; }
 
 .login {
-  padding: 8vw;
-  padding-top: 15vh;
+  padding: 15vh 8vw 8vw;
   background: #eee;
   min-height: 100vh; }
 
@@ -1077,13 +1025,13 @@ h1, h2, h3, h4, h5, h6 {
       padding: 1rem;
       -webkit-box-sizing: border-box;
       box-sizing: border-box;
-      margin-bottom: .5rem;
-      border: .5px solid #ccc; }
+      margin-bottom: 0.5rem;
+      border: 0.5px solid #ccc; }
     .login-box form button {
       background: #2B7FA4;
       color: #fff;
-      padding-top: .75rem;
-      padding-bottom: .75rem;
+      padding-top: 0.75rem;
+      padding-bottom: 0.75rem;
       border: none;
       outline: none;
       border-radius: 3px; }
@@ -1091,14 +1039,14 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
     font-family: 'Lato';
     text-decoration: none;
-    padding: .75rem;
+    padding: 0.75rem;
     background: #eee;
-    border: .5 solid #ccc;
+    border: 0.5 solid #ccc;
     border-radius: 5px;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
     color: #333; }
     .login-box a i {
-      margin: 0 .5rem 0 1rem;
+      margin: 0 0.5rem 0 1rem;
       color: #2B7FA4; }
     .login-box a:visited {
       color: #333; }
@@ -1110,23 +1058,23 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 1.5rem; }
   .signup-box p {
     color: #c63535;
-    margin: 0 0 .5rem 0; }
+    margin: 0 0 0.5rem; }
 
 #signup-trigger {
   font-weight: bold;
   cursor: pointer; }
 
 @media screen and (min-width: 480px) {
-  .login-box, .signup-box {
-    margin: 0 auto 0 auto; }
+  .login-box,
+  .signup-box {
+    margin: 0 auto; }
   .login-box {
     width: 50%; }
   .signup-box {
     width: 100%; } }
 
 .devices {
-  padding: 5vw;
-  padding-top: 12vh;
+  padding: 12vh 5vw 5vw;
   background: #36454f;
   min-height: 100vh; }
   .devices h1 {
@@ -1135,7 +1083,7 @@ h1, h2, h3, h4, h5, h6 {
     color: #F56A4C; }
     .devices h1 u {
       text-decoration: none;
-      border-bottom: .5px solid #F56A4C; }
+      border-bottom: 0.5px solid #F56A4C; }
   .devices .device-box {
     display: -webkit-box;
     display: -webkit-flex;
@@ -1215,7 +1163,7 @@ h1, h2, h3, h4, h5, h6 {
   .setting-menu h3 {
     text-transform: uppercase;
     font-weight: 400;
-    font-size: .5em; }
+    font-size: 0.5em; }
   .setting-menu input {
     width: 100%;
     -webkit-box-sizing: border-box;
@@ -1224,7 +1172,7 @@ h1, h2, h3, h4, h5, h6 {
     border: none;
     font-family: 'Lato';
     color: #F56A4C;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
     text-align: center;
     font-size: 1.5em;
     font-weight: bold; }
@@ -1254,25 +1202,25 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   width: 1.15rem;
   float: left;
-  margin-right: .75rem; }
+  margin-right: 0.75rem; }
 
 .squaredOne label {
-  margin-top: .35rem;
+  margin-top: 0.35rem;
   float: left;
   display: block;
   width: 1.15rem;
   height: 1.15rem;
   border-radius: 100px;
-  -webkit-transition: all .5s ease;
-  transition: all .5s ease;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
   cursor: pointer;
   position: absolute;
   top: 5px;
   left: 5px;
   z-index: 1;
   background: #333;
-  -webkit-box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.5);
-  box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.5); }
+  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5); }
 
 .squaredOne input[type=checkbox]:checked + label {
   background: #26ca28; }
@@ -1287,7 +1235,7 @@ h1, h2, h3, h4, h5, h6 {
   -ms-flex-align: center;
   align-items: center; }
   .enable-section h4 {
-    font-size: .75rem;
+    font-size: 0.75rem;
     float: left; }
   .enable-section input[type="checkbox"] {
     opacity: 0; }
@@ -1296,7 +1244,7 @@ h1, h2, h3, h4, h5, h6 {
   width: 120px;
   height: 40px;
   background: #333;
-  margin: 20px .5rem;
+  margin: 20px 0.5rem;
   float: left;
   border-radius: 50px;
   position: relative; }
@@ -1324,8 +1272,8 @@ h1, h2, h3, h4, h5, h6 {
   width: 52px;
   height: 22px;
   border-radius: 50px;
-  -webkit-transition: all .5s ease;
-  transition: all .5s ease;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
   cursor: pointer;
   position: absolute;
   top: 9px;
@@ -1458,7 +1406,7 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 2;
   left: 50%;
   margin-left: -20px;
-  font-size: .8em;
+  font-size: 0.8em;
   opacity: 0;
   font-weight: bold; }
 
@@ -1636,8 +1584,8 @@ h1, h2, h3, h4, h5, h6 {
 .td-alert {
   -webkit-animation-name: td-alert;
   animation-name: td-alert;
-  -webkit-animation-duration: .8s;
-  animation-duration: .8s;
+  -webkit-animation-duration: 0.8s;
+  animation-duration: 0.8s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both; }
 
@@ -1709,8 +1657,8 @@ h1, h2, h3, h4, h5, h6 {
 .td-fadein {
   -webkit-animation-name: td-fadein;
   animation-name: td-fadein;
-  -webkit-animation-duration: .3s;
-  animation-duration: .3s; }
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s; }
 
 @-webkit-keyframes td-fadeout {
   0% {
@@ -1725,8 +1673,8 @@ h1, h2, h3, h4, h5, h6 {
     opacity: 0; } }
 
 .td-fadeout {
-  -webkit-animation: td-fadeout .3s forwards;
-  animation: td-fadeout .3s forwards; }
+  -webkit-animation: td-fadeout 0.3s forwards;
+  animation: td-fadeout 0.3s forwards; }
 
 @-webkit-keyframes td-dropdown {
   0% {
@@ -1751,8 +1699,8 @@ h1, h2, h3, h4, h5, h6 {
 .td-dropdown {
   -webkit-animation-name: td-dropdown;
   animation-name: td-dropdown;
-  -webkit-animation-duration: .5s;
-  animation-duration: .5s; }
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s; }
 
 .td-bulletpoint,
 .td-bulletpoint div,

@@ -1,182 +1,168 @@
 /*Header*/
 .header {
-    width: 100vw;
-    height: 7vh;
-    padding: 5vh;
-    position: fixed;
-    z-index: 5;
-    background: transparent;
-    color: #fff;
-    transition: all 0.2s ease-in;
+  width: 100vw;
+  height: 7vh;
+  padding: 5vh;
+  position: fixed;
+  z-index: 5;
+  background: transparent;
+  color: #fff;
+  transition: all 0.2s ease-in;
 
-    .header-content {
-        display: flex;
+  .header-content {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+
+    #hamburger {
+      width: 35px;
+      height: 35px;
+      position: absolute;
+      cursor: pointer;
+      left: 5%;
+      top: 22px;
+      transform: rotate(0deg);
+      transition: 0.5s ease-in-out;
+
+      .span-invert {
+        background: #000;
+      }
+
+      span {
+        display: block;
+        position: absolute;
+        background: #fff;
+        height: 5%;
         width: 100%;
-        height: 100%;
-        justify-content: center;
-        align-items: center;
-
-        #hamburger {
-            width: 35px;
-            height: 35px;
-            position: absolute;
-            cursor: pointer;
-            left: 5%;
-            top: 22px;
-            transform: rotate(0deg);
-            transition: 0.5s ease-in-out;
-
-            .span-invert {
-                background: #000;
-            }
-
-            span {
-                display: block;
-                position: absolute;
-                background: #fff;
-                height: 5%;
-                width: 100%;
-                border-radius: 9px;
-                opacity: 1;
-                left: 0;
-                transform: rotate(0deg);
-                transition: 0.25s ease-in-out;
-            }
-        }
-
-        .logo-container {
-            font-family: 'Source Sans Pro';
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-
-            .logo {
-                width: 40px;
-                height: 35px;
-                margin: 0 1%;
-            }
-        }
+        border-radius: 9px;
+        opacity: 1;
+        left: 0;
+        transform: rotate(0deg);
+        transition: 0.25s ease-in-out;
+      }
     }
+
+    .logo-container {
+      font-family: 'Source Sans Pro';
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+
+      .logo {
+        width: 40px;
+        height: 35px;
+        margin: 0 1%;
+      }
+    }
+  }
 }
 
 .menu-open {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .active {
-    background: #fff;
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
-    color: #000;
+  background: #fff;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+  color: #000;
 }
 
 #hamburger span:nth-child(1) {
-    top: 0;
+  top: 0;
 }
 
 #hamburger span:nth-child(2) {
-    top: 9px;
+  top: 9px;
 }
 
 #hamburger span:nth-child(3) {
-    top: 18px;
+  top: 18px;
 }
 
 #hamburger.open span:nth-child(1) {
-    top: 10px;
-    transform: rotate(135deg);
+  top: 10px;
+  transform: rotate(135deg);
 }
 
 #hamburger.open span:nth-child(2) {
-    opacity: 0;
-    left: -60px;
+  opacity: 0;
+  left: -60px;
 }
 
 #hamburger.open span:nth-child(3) {
-    top: 10px;
-    transform: rotate(-135deg);
+  top: 10px;
+  transform: rotate(-135deg);
 }
 
 .menu {
-    height: 100vh;
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(#383838, #232323);
+  display: none;
+  position: fixed;
+  overflow: hidden;
+  z-index: 4;
+  font-family: 'Source Sans Pro';
+
+  .menu-box-container {
+    margin-top: 10vh;
+    height: 50vh;
     width: 100vw;
-    background: linear-gradient(#383838, #232323);
-    display: none;
-    position: fixed;
-    overflow: hidden;
-    z-index: 4;
-    font-family: 'Source Sans Pro';
+    display: flex;
+    flex-wrap: wrap;
 
-    .menu-box-container {
-        margin-top: 10vh;
-        height: 50vh;
-        width: 100vw;
-        display: flex;
-        flex-wrap: wrap;
+    .lp-boxes {
+      height: 25vh;
+      width: 50vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      outline: none;
 
-        .lp-boxes {
-            height: 25vh;
-            width: 50vw;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            outline: none;
+      &:active,
+      &:hover {
+        color: #FFD700;
+      }
 
-            &:active,
-            &:hover {
-                color: #FFD700;
-            }
+      .fa {
+        margin: 2vh;
+      }
 
-            .fa {
-                margin: 2vh;
-            }
-
-            p {
-                font-size: 1.5rem;
-                color: #F0F0F0;
-            }
-        }
-
-        #box1 {
-            border-top: 1px solid #999999;
-            border-right: 1px solid #999999;
-            border-bottom: 1px solid #999999;
-        }
-
-        #box2 {
-            border-top: 1px solid #999999;
-            border-bottom: 1px solid #999999;
-        }
-
-        #box3 {
-            border-bottom: 1px solid #999999;
-            border-right: 1px solid #999999;
-        }
-
-        #box4 {
-            border-bottom: 1px solid #999999;
-        }
+      p {
+        font-size: 1.5rem;
+        color: #F0F0F0;
+      }
     }
 
-    .menu-list-container {
-        height: 40vh;
-        width: 100vw;
+    #box1 {
+      border-top: 1px solid #999999;
+      border-right: 1px solid #999999;
+      border-bottom: 1px solid #999999;
+    }
 
-        .lp-menu-item {
-            height: 10vh;
-            width: 100vw;
-            border-bottom: 1px solid #999999;
-            text-align: center;
-            cursor: pointer;
+    #box2 {
+      border-top: 1px solid #999999;
+      border-bottom: 1px solid #999999;
+    }
 
-            p {
-                padding: 3vh;
-                font-size: 1.5rem;
-                color: #F0F0F0;
-            }
-        }
+    #box3 {
+      border-bottom: 1px solid #999999;
+      border-right: 1px solid #999999;
+    }
+
+    #box4 {
+      border-bottom: 1px solid #999999;
+    }
+  }
+
+  .menu-list-container {
+    height: 40vh;
+    width: 100vw;
 
         #lp-contact,
         #lp-login,
@@ -186,276 +172,288 @@
                     color: #FFD700;
                 }
             }
-        }
+
+    .lp-menu-item {
+      height: 10vh;
+      width: 100vw;
+      border-bottom: 1px solid #999999;
+      text-align: center;
+      cursor: pointer;
+
+      p {
+        padding: 3vh;
+        font-size: 1.5rem;
+        color: #F0F0F0;
+      }
     }
 
-    .social-hex {
-        height: 20vh;
-        width: 100vw;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 10vw;
-        cursor: pointer;
+  .social-hex {
+    height: 20vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10vw;
+    cursor: pointer;
 
-        .fa-facebook {
-            &:active,
-            &:hover {
-                color: #FFD700;
-            }
-        }
-
-        .fa-github {
-            &:active,
-            &:hover {
-                color: #FFD700;
-            }
-        }
-
-        .fa-linkedin {
-            &:active,
-            &:hover {
-                color: #FFD700;
-            }
-        }
+    .fa-facebook {
+      &:active,
+      &:hover {
+        color: #FFD700;
+      }
     }
+
+    .fa-github {
+      &:active,
+      &:hover {
+        color: #FFD700;
+      }
+    }
+
+    .fa-linkedin {
+      &:active,
+      &:hover {
+        color: #FFD700;
+      }
+    }
+  }
 }
 
 .hexagon {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 75px;
-    height: 43.30px;
-    background-color: #515151;
-    margin: 21.65px 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 75px;
+  height: 43.30px;
+  background-color: #515151;
+  margin: 21.65px 0;
 }
 
 .hexagon:after,
 .hexagon:before {
-    content: "";
-    position: absolute;
-    width: 0;
-    border-left: 37.5px solid transparent;
-    border-right: 37.5px solid transparent;
+  content: "";
+  position: absolute;
+  width: 0;
+  border-left: 37.5px solid transparent;
+  border-right: 37.5px solid transparent;
 }
 
 .hexagon:before {
-    bottom: 100%;
-    border-bottom: 21.65px solid #515151;
+  bottom: 100%;
+  border-bottom: 21.65px solid #515151;
 }
 
 .hexagon:after {
-    top: 100%;
-    width: 0;
-    border-top: 21.65px solid #515151;
+  top: 100%;
+  width: 0;
+  border-top: 21.65px solid #515151;
 }
 
 .landing-page {
-    height: 100vh;
-    width: 100vw;
-    position: absolute;
-    z-index: -2;
-    background: url('../assets/img/landing-page-smaller.jpg')center no-repeat;
-    background-size: cover;
-    // filter: blur(5px);
-    .landing-container {
-        height: 100%;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        text-align: center;
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  z-index: -2;
+  background: url('../assets/img/landing-page-smaller.jpg')center no-repeat;
+  background-size: cover;
+  // filter: blur(5px);
+  .landing-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    text-align: center;
 
-        .landing-banner {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            font-size: 1.5rem;
-            color: #fff;
+    .landing-banner {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      font-size: 1.5rem;
+      color: #fff;
 
-            .landing-CTA {
-                background: none;
-                border: none;
-                color: #fff;
-                padding: 1rem;
-                border: 3px solid #19A2C6;
-                outline: none;
+      .landing-CTA {
+        background: none;
+        border: none;
+        color: #fff;
+        padding: 1rem;
+        border: 3px solid #19A2C6;
+        outline: none;
 
-                &:active {
-                    background-color: #19A2C6;
-                }
-            }
+        &:active {
+          background-color: #19A2C6;
         }
+      }
     }
+  }
 }
 
 .dummy-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(#065A82, #3c454e);
+  color: #fff;
+  height: 20vh;
+  width: 100vw;
+
+  .breaker {
+    height: 2px;
+    width: 20vw;
+    background: #fff;
+    border: none;
+    margin-top: -5px;
+  }
+}
+
+.lp-about {
+  height: 200vh;
+  width: 100vw;
+
+  .what-we-do {
+    height: 70vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background: url('http://images.vivintcdn.com/global/vivint.com/home/2016/home-protect-bg-r2.jpg')center center no-repeat;
+    background-size: cover;
+    padding: 5%;
+
+    h1 {
+      text-align: center;
+      color: #fff;
+      padding: 5%;
+    }
+
+    .lp-img-container {
+      height: 40%;
+      width: 100%;
+      padding: 7vw;
+      display: flex;
+      justify-content: space-between;
+
+      .lp-img-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 33%;
+        text-align: center;
+
+        img {
+          width: 35px;
+          height: 35px;
+          margin-bottom: 10px;
+        }
+
+        p {
+          color: #fff;
+          font-family: 'Lato';
+          font-weight: 100;
+        }
+      }
+    }
+  }
+
+  .why-we-do {
+    height: 35vh;
+    width: 100vw;
+    background: #EEEEEE;
+    margin: 0;
+    text-align: center;
+    padding: 5%;
+
+    h2 {
+      font-size: 1.5em;
+      margin-bottom: 5vw;
+    }
+
+    p {
+      padding: 5%;
+      font-weight: 100;
+    }
+  }
+
+  .what-we-offer {
+    height: 100vh;
+    width: 100vw;
+    background: #FFFFFF;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(#065A82, #3c454e);
-    color: #fff;
-    height: 20vh;
-    width: 100vw;
 
-    .breaker {
-        height: 2px;
-        width: 20vw;
-        background: #fff;
-        border: none;
-        margin-top: -5px;
-    }
-}
-
-.lp-about {
-    height: 200vh;
-    width: 100vw;
-
-    .what-we-do {
-        height: 70vh;
-        width: 100vw;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-        background: url('http://images.vivintcdn.com/global/vivint.com/home/2016/home-protect-bg-r2.jpg')center center no-repeat;
-        background-size: cover;
-        padding: 5%;
-
-        h1 {
-            text-align: center;
-            color: #fff;
-            padding: 5%;
-        }
-
-        .lp-img-container {
-            height: 40%;
-            width: 100%;
-            padding: 7vw;
-            display: flex;
-            justify-content: space-between;
-
-            .lp-img-wrapper {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                width: 33%;
-                text-align: center;
-
-                img {
-                    width: 35px;
-                    height: 35px;
-                    margin-bottom: 10px;
-                }
-
-                p {
-                    color: #fff;
-                    font-family: 'Lato';
-                    font-weight: 100;
-                }
-            }
-        }
+    h1 {
+      margin-bottom: 0;
     }
 
-    .why-we-do {
-        height: 35vh;
-        width: 100vw;
-        background: #EEEEEE;
-        margin: 0;
-        text-align: center;
-        padding: 5%;
+    .img-flow-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
 
-        h2 {
-            font-size: 1.5em;
-            margin-bottom: 5vw;
-        }
+      .circle-wrapper {
+        width: auto;
+        margin: 4vw;
 
         p {
-            padding: 5%;
-            font-weight: 100;
+          font-weight: 100;
+          letter-spacing: 1.2;
+          text-align: center;
+          width: 111px;
         }
+      }
     }
-
-    .what-we-offer {
-        height: 100vh;
-        width: 100vw;
-        background: #FFFFFF;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-
-        h1 {
-            margin-bottom: 0;
-        }
-
-        .img-flow-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
-
-            .circle-wrapper {
-                width: auto;
-                margin: 4vw;
-
-                p {
-                    font-weight: 100;
-                    letter-spacing: 1.2;
-                    text-align: center;
-                    width: 111px;
-                }
-            }
-        }
-    }
+  }
 }
 
 .the-dream-team {
-    height: 30vh;
-    width: 100vw;
-    background: #EEEEEE;
+  height: 30vh;
+  width: 100vw;
+  background: #EEEEEE;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .team-container {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 
-    .team-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-
-        h1 {
-            margin-bottom: 0;
-        }
-
-        p {
-            margin: 2%;
-        }
+    h1 {
+      margin-bottom: 0;
     }
+
+    p {
+      margin: 2%;
+    }
+  }
 }
 
 .lp-footer {
-    height: 10vh;
-    width: 100vw;
-    padding: 2%;
-    background: #999;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  height: 10vh;
+  width: 100vw;
+  padding: 2%;
+  background: #999;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-    .legal {
-        text-align: center;
-    }
+  .legal {
+    text-align: center;
+  }
 }
 
 .breaker-inverse {
-    height: 2px;
-    width: 20vw;
-    border: none;
-    background: #000;
+  height: 2px;
+  width: 20vw;
+  border: none;
+  background: #000;
 }

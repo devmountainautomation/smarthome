@@ -6,9 +6,4 @@ angular.module('smarthome')
         $state.go('landing page');
       });
     };
-
-    $scope.createLocalUser = (name, email, password, phone) => {
-      loginService.createLocalUser(name, email, password, phone);
-    };
-
   }); //End loginCtrl
