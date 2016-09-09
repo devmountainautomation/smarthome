@@ -1,5 +1,5 @@
 angular.module('smarthome')
-  .config(function($stateProvider, $urlRouterProvider) {
+  .config(($stateProvider, $urlRouterProvider) => {
 
     $urlRouterProvider.otherwise('/');
 

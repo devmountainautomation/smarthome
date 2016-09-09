@@ -105,6 +105,7 @@ passport.use(new LocalStrategy((username, password, done) => {
     if (!bcrypt.compareSync(password, user.password)) {
       return done(null, false);
     }
+    console.log("passport user", user);
     return done(null, user);
   });
 }));

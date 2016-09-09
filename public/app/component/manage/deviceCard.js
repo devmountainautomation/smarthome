@@ -3,7 +3,7 @@ angular.module('smarthome')
     return {
 
       restrict: 'EA',
-      templateUrl: '/app/component/manage/deviceCard.html',
+      templateUrl: './app/component/manage/deviceCard.html',
       scope: {
         type: "@",
         nickname: "@",
@@ -11,18 +11,35 @@ angular.module('smarthome')
       },
       link: function(scope, element, attrs) {
         switch (scope.type) {
-          case "Door/Window Sensor":
-            scope.icon_url = '/assets/img/window-door_icon.png';
-            break;
+          case "Door/Window Sensor": {
+              scope.icon_url = '/assets/img/window-door_icon.png';
+              break;
+          }
+          case "Sound Sensor": {
+              scope.icon_url = './assets/img/sound-placeholder.jpg';
+              break;
+          }
+          case "Smoke Detector": {
+              scope.icon_url = './assets/img/thermometer-icon.png';
+              break;
+          }
+          case "Motion Sensor": {
+              scope.icon_url = './assets/img/motion-placeholder.jpg';
+              break;
+          }
+          default: {
+              scope.icon_url = './assets/img/protect-icon-01.png';
+          }
         }
-      manageService.getSettings(scope.id).then(function(response) {
-        element.find('i').on('click', function() {
-          /// Door + Window Sensor ///
-          if (scope.type == "Door/Window Sensor") {
-            var id = scope.id;
-            var startTime = "10:45 am";
-            var endTime = "4:45 pm";
-            element.find('section').append(`
+        manageService.getSettings(scope.id).then(response => {
+          element.find('i').on('click', () => {
+            /// Door + Window Sensor ///
+            let setting = response[0];
+            if (scope.type == "Door/Window Sensor") {
+              let id = setting.id;
+              let startTime = setting.start_time;
+              let endTime = setting.end_time;
+              element.find('section').append(`
                   <div id="appended">
                     <i id="appended-close" class="fa fa-close"></i>
                     <div>
@@ -60,20 +77,20 @@ angular.module('smarthome')
 	                         </div>
                          <h4>Enable/Disable Device</h4>
                       </div>`);
-          }
+            }
           })
           $(element.find('section')).slideDown();
-          $("#start" + id).timeDropper();
-          $("#end" + id).timeDropper();
+          $("#start" + scope.id).timeDropper();
+          $("#end" + scope.id).timeDropper();
         })
-        $(element.find('section')).on('click', '#appended-close', function () {
-          $(element.find('section')).slideUp('slow', function () {
+        $(element.find('section')).on('click', '#appended-close', function() {
+          $(element.find('section')).slideUp('slow', function() {
             $('#appended').remove();
           })
         })
-      },
+    },
       controller: function($scope) {
-
+          $scope.showSettings = false;
 
       }
     }

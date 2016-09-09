@@ -64,7 +64,7 @@ const deviceCtrl = require('./controllers/deviceCtrl.js');
 app.get('/users/', userCtrl.getUser);
 app.get('/users/sensors/', deviceCtrl.getUserSensors);
 app.get('/modules', deviceCtrl.getModules);
-//get settings
+app.get('/settings/:id', deviceCtrl.getSettings);
 
 //*********** Put Requests *******************//
 app.put('/settings/:type', deviceCtrl.updateSettings);
@@ -101,6 +101,7 @@ app.get('/auth/facebook/callback', passport.authenticate('facebook', {
 }));
 
 app.post('/auth/local', passport.authenticate('local'), (req, res) => {
+
   res.status(200).redirect('/home');
 });
 

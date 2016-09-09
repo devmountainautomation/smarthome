@@ -1,42 +1,22 @@
 angular.module('smarthome')
-  .controller('manageCtrl', function ($scope, manageService) {
-    var getDevices = () => {
-      manageService.getDevices().then(function (response) {
-        var devices = [{
-          module_id: '12r443',
-          type: 'Door/Window Sensor',
-          nickname: 'Razzbury Piii'
-        },
-        {
-          module_id: '12303',
-          type: 'Door/Window Sensor',
-          nickname: 'Yo mama'
-        }];
-        devices.forEach((e) => {
-          if (e.type == 'Door/Window Sensor') {
-            e.icon_url = '/assets/img/window-door_icon.png';
-          }
-        })
-        $scope.devices = devices;
+  .controller('manageCtrl', ($scope, manageService) => {
+
+    (() => {
+      manageService.getDevices().then(response => {
+        // let devices = response;
+        // devices.forEach((e) => {
+        //   if (e.type === 'Door/Window Sensor') {
+        //     e.icon_url = './assets/img/window-door_icon.png';
+        //   } else if (e.type === "Smoke Detector") {
+        //     e.icon_url = './assets/img/thermometer-icon.png';
+        //   } else if (e.type === 'Motion Sensor') {
+        //     e.icon_url = './assets/img/motion-placeholder.jpg';
+        //   } else if (e.type === 'Sound Sensor') {
+        //     e.icon_url = './assets/img/sound-placeholder.jpg';
+        //   }
+        // })
+        $scope.devices = response;
       })
-    };
-    // getDevices();
+    })();
 
-    var devices = [{
-      module_id: '12r443',
-      type: 'Door/Window Sensor',
-      nickname: 'Razzbury Piii'
-    },
-    {
-      module_id: '12303',
-      type: 'Door/Window Sensor',
-      nickname: 'Yo mama'
-    }];
-    devices.forEach((e) => {
-      if (e.type == 'Door/Window Sensor') {
-        e.icon_url = '/assets/img/window-door_icon.png';
-      }
-    })
-    $scope.devices = devices;
-
-  });
+  }); //End manageCtrl
