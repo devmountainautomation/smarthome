@@ -388,49 +388,49 @@ angular.module('smarthome').config(function ($stateProvider, $urlRouterProvider)
 'use strict';
 
 angular.module('smarthome').directive('headDir', function () {
-    return {
-        restrict: 'EA',
-        templateUrl: './app/component/header/header.html',
-        link: function link(scope, elems, attrs) {
-            $(document).ready(function () {
-                $('.logged-in').hide();
-                $('#hamburger').click(function () {
-                    $('#hamburger').toggleClass('open');
-                    $('#menu').toggle('slide', 'left', 500);
-                    $('.landing-page').toggleClass('menu-open');
-                });
+  return {
+    restrict: 'EA',
+    templateUrl: './app/component/header/header.html',
+    link: function link(scope, elems, attrs) {
+      $(document).ready(function () {
+        $('.logged-in').hide();
+        $('#hamburger').click(function () {
+          $('#hamburger').toggleClass('open');
+          $('#menu').toggle('slide', 'left', 500);
+          $('.landing-page').toggleClass('menu-open');
+        });
 
-                $(window).on('scroll', function () {
-                    if ($(window).scrollTop() > 50) {
-                        $('.header').addClass('active');
-                        $('.ham-slide').addClass('span-invert');
-                    } else {
-                        $('.header').removeClass('active');
-                        $('.ham-slide').removeClass('span-invert');
-                    }
-                });
-            });
-        }
-    };
+        $(window).on('scroll', function () {
+          if ($(window).scrollTop() > 50) {
+            $('.header').addClass('active');
+            $('.ham-slide').addClass('span-invert');
+          } else {
+            $('.header').removeClass('active');
+            $('.ham-slide').removeClass('span-invert');
+          }
+        });
+      });
+    }
+  };
 });
 'use strict';
 
 angular.module('smarthome').directive('landingDir', function () {
-    return {
-        restrict: 'EA',
-        link: function link(scope, elem, attrs) {
-            $(document).ready(function () {
-                // $(window).scroll(() => {
-                //     let winScroll = $(window).scrollTop() - 35;
-                //     if (winScroll < $('.landing-banner').offset().top - ($(window).height() / 3)) {
-                //         console.log(winScroll);
-                //         $('.skew-right').css("transform", "skewY(" + (winScroll / 2) + "deg)");
-                //         $('.skew-left').css("transform", "skewY(" + (-winScroll / 2) + "deg)");
-                //     }
-                // });
-            });
-        }
-    };
+  return {
+    restrict: 'EA',
+    link: function link(scope, elem, attrs) {
+      $(document).ready(function () {
+        // $(window).scroll(() => {
+        //     let winScroll = $(window).scrollTop() - 35;
+        //     if (winScroll < $('.landing-banner').offset().top - ($(window).height() / 3)) {
+        //         console.log(winScroll);
+        //         $('.skew-right').css("transform", "skewY(" + (winScroll / 2) + "deg)");
+        //         $('.skew-left').css("transform", "skewY(" + (-winScroll / 2) + "deg)");
+        //     }
+        // });
+      });
+    }
+  };
 });
 'use strict';
 
@@ -469,10 +469,6 @@ angular.module('smarthome').controller('loginCtrl', function ($scope, $state, lo
     loginService.login(email, password).then(function (response) {
       $state.go('landing page');
     });
-  };
-
-  $scope.createLocalUser = function (name, email, password, phone) {
-    loginService.createLocalUser(name, email, password, phone);
   };
 }); //End loginCtrl
 'use strict';
@@ -617,18 +613,6 @@ angular.module('smarthome').controller('manageCtrl', function ($scope, manageSer
 
   (function () {
     manageService.getDevices().then(function (response) {
-      // let devices = response;
-      // devices.forEach((e) => {
-      //   if (e.type === 'Door/Window Sensor') {
-      //     e.icon_url = './assets/img/window-door_icon.png';
-      //   } else if (e.type === "Smoke Detector") {
-      //     e.icon_url = './assets/img/thermometer-icon.png';
-      //   } else if (e.type === 'Motion Sensor') {
-      //     e.icon_url = './assets/img/motion-placeholder.jpg';
-      //   } else if (e.type === 'Sound Sensor') {
-      //     e.icon_url = './assets/img/sound-placeholder.jpg';
-      //   }
-      // })
       $scope.devices = response;
     });
   })();

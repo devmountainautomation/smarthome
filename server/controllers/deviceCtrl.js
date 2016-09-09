@@ -10,7 +10,7 @@ module.exports = {
     });
   },
   getSettings: (req, res, next) => {
-    db.read_device_settings([req.params.id], (err, response) => {
+    db.read_device_settings([req.params.sensorId], (err, response) => {
       res.json(response);
     });
   },
@@ -61,7 +61,7 @@ module.exports = {
     var nickname = req.query.nickname.split(',').join(' ');
     db.destroy_sensor([req.user.id, nickname], (err, response) => {
       if (err) {
-        res.status(500).send("Failed to devare sensor");
+        res.status(500).send("Failed to delete sensor");
       } else {
         res.send(200);
       }

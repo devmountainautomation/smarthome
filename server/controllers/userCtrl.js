@@ -70,12 +70,10 @@ module.exports = {
     res.status(500).send("No User data Provided");
   },
   destroyUser: (req, res, next) => {
-    db.destroy_user([req.user.name], (err, response) => {
-      if (err) {
-        res.status(500).send("Failed to devare user");
-      } else {
-        res.send(200);
-      }
+    db.destroy_user_settings([req.user.id], (err, response) => {
+      db.destroy_user_sensors([req.user.id], (err, response) => {
+        db.destroy_user([req.user.id], (err, response) => {});
+      });
     });
   }
 }; //End Export

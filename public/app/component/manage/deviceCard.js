@@ -8,7 +8,7 @@ angular.module('smarthome')
         nickname: "@",
         id: "@"
       },
-      link: function(scope, element, attrs) {
+      link: (scope, element, attrs) => {
         switch (scope.type) {
           case "Door/Window Sensor":
             {
@@ -211,13 +211,13 @@ angular.module('smarthome')
           $("#start" + scope.id).timeDropper();
           $("#end" + scope.id).timeDropper();
         })
-        $(element.find('section')).on('click', '#appended-close', function() {
-          $(element.find('section')).slideUp('slow', function() {
+        $(element.find('section')).on('click', '#appended-close', () => {
+          $(element.find('section')).slideUp('slow', () => {
             // $('#appended').remove();
           })
         })
       },
-      controller: function($scope) {
+      controller: ($scope) => {
         $scope.showSettings = false;
       }
     }

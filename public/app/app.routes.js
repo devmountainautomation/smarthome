@@ -18,4 +18,4 @@ angular.module('smarthome')
         templateUrl: '/app/component/manage/manage.html',
         controller: 'manageCtrl'
       })
-    });
+  });

@@ -36,11 +36,11 @@ angular.module('smarthome')
           time.push(hour, min);
           result = time.join(':');
           result += " PM";
-      } else if (Number(hour) === 12) {
+        } else if (Number(hour) === 12) {
           time.push(hour, min);
           result = time.join(':');
           result += " PM";
-      } else if (Number(hour) === 0) {
+        } else if (Number(hour) === 0) {
           hour = 12;
           time.push(hour, min);
           result = time.join(':');
