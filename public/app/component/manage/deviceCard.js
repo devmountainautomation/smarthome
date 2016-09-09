@@ -213,7 +213,7 @@ angular.module('smarthome')
         })
         $(element.find('section')).on('click', '#appended-close', function() {
           $(element.find('section')).slideUp('slow', function() {
-            $('#appended').remove();
+            // $('#appended').remove();
           })
         })
       },

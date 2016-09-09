@@ -538,7 +538,6 @@ angular.module('smarthome').directive('signupForm', function () {
 
 angular.module('smarthome').directive('deviceCard', function (manageService) {
   return {
-
     restrict: 'EA',
     templateUrl: './app/component/manage/deviceCard.html',
     scope: {
@@ -575,13 +574,26 @@ angular.module('smarthome').directive('deviceCard', function (manageService) {
       }
       manageService.getSettings(scope.id).then(function (response) {
         element.find('i').on('click', function () {
+          var setting = response;
+          var id = setting.id;
+
+          var startTime = setting.start_time;
+          var endTime = setting.end_time;
           /// Door + Window Sensor ///
-          var setting = response[0];
           if (scope.type == "Door/Window Sensor") {
-            var id = setting.id;
-            var startTime = setting.start_time;
-            var endTime = setting.end_time;
             element.find('section').append('\n                  <div id="appended">\n                    <i id="appended-close" class="fa fa-close"></i>\n                    <div>\n                      <h2>Notification Window</h2>\n                      <h3>Start Time</h3>\n                        <input type="text" id="start' + id + '" value="' + startTime + '"></input>\n                      <h3>End Time</h3>\n                        <input type="text" id="end' + id + '" value="' + endTime + '"></input>\n                    </div>\n\n                    <div class="checkbox-section">\n                      <h2>Notifications</h2>\n                        <div class="check-box">\n                          <div class="squaredOne">\n                            <input type="checkbox" value="None" id="settings-email-radio" name="check" checked />\n                            <label for="settings-email-radio"></label>\n                          </div>\n                          <h4> Send me an email </h4>\n                        </div>\n\n                        <div class="check-box">\n                          <div class="squaredOne">\n                            <input type="checkbox" value="None" id="settings-text-radio" name="check" checked />\n                            <label for="settings-text-radio"></label>\n                          </div>\n                          <h4> Send me a text </h4>\n                        </div>\n\n                      </div>\n                      <hr>\n                      <div class="enable-section">\n                          <div class="slide-checkbox">\n    \t\t                      <input type="checkbox" value="1" id="checkboxThreeInput" checked />\n\t  \t                        <label for="checkboxThreeInput"></label>\n\t                         </div>\n                         <h4>Enable/Disable Device</h4>\n                      </div>');
+          } else if (scope.type == "Smoke Detector") {
+            var _startTime = setting.start_time;
+            var _endTime = setting.end_time;
+            element.find('section').append('\n                  <div id="appended">\n                    <i id="appended-close" class="fa fa-close"></i>\n                    <div>\n                      <h2>Notification Window</h2>\n                      <h3>Start Time</h3>\n                        <input type="text" id="start' + id + '" value="' + _startTime + '"></input>\n                      <h3>End Time</h3>\n                        <input type="text" id="end' + id + '" value="' + _endTime + '"></input>\n                    </div>\n\n                    <div class="checkbox-section">\n                      <h2>Notifications</h2>\n                        <div class="check-box">\n                          <div class="squaredOne">\n                            <input type="checkbox" value="None" id="settings-email-radio" name="check" checked />\n                            <label for="settings-email-radio"></label>\n                          </div>\n                          <h4> Send me an email </h4>\n                        </div>\n\n                        <div class="check-box">\n                          <div class="squaredOne">\n                            <input type="checkbox" value="None" id="settings-text-radio" name="check" checked />\n                            <label for="settings-text-radio"></label>\n                          </div>\n                          <h4> Send me a text </h4>\n                        </div>\n\n                      </div>\n                      <hr>\n                      <div class="enable-section">\n                          <div class="slide-checkbox">\n    \t\t                      <input type="checkbox" value="1" id="checkboxThreeInput" checked />\n\t  \t                        <label for="checkboxThreeInput"></label>\n\t                         </div>\n                         <h4>Enable/Disable Device</h4>\n                      </div>');
+          } else if (scope.type == "Sound Sensor") {
+            var _startTime2 = setting.start_time;
+            var _endTime2 = setting.end_time;
+            element.find('section').append('\n                  <div id="appended">\n                    <i id="appended-close" class="fa fa-close"></i>\n                    <div>\n                      <h2>Notification Window</h2>\n                      <h3>Start Time</h3>\n                        <input type="text" id="start' + id + '" value="' + _startTime2 + '"></input>\n                      <h3>End Time</h3>\n                        <input type="text" id="end' + id + '" value="' + _endTime2 + '"></input>\n                    </div>\n\n                    <div class="checkbox-section">\n                      <h2>Notifications</h2>\n                        <div class="check-box">\n                          <div class="squaredOne">\n                            <input type="checkbox" value="None" id="settings-email-radio" name="check" checked />\n                            <label for="settings-email-radio"></label>\n                          </div>\n                          <h4> Send me an email </h4>\n                        </div>\n\n                        <div class="check-box">\n                          <div class="squaredOne">\n                            <input type="checkbox" value="None" id="settings-text-radio" name="check" checked />\n                            <label for="settings-text-radio"></label>\n                          </div>\n                          <h4> Send me a text </h4>\n                        </div>\n\n                      </div>\n                      <hr>\n                      <div class="enable-section">\n                          <div class="slide-checkbox">\n    \t\t                      <input type="checkbox" value="1" id="checkboxThreeInput" checked />\n\t  \t                        <label for="checkboxThreeInput"></label>\n\t                         </div>\n                         <h4>Enable/Disable Device</h4>\n                      </div>');
+          } else if (scope.type == "Motion Sensor") {
+            var _startTime3 = setting.start_time;
+            var _endTime3 = setting.end_time;
+            element.find('section').append('\n                  <div id="appended">\n                    <i id="appended-close" class="fa fa-close"></i>\n                    <div>\n                      <h2>Notification Window</h2>\n                      <h3>Start Time</h3>\n                        <input type="text" id="start' + id + '" value="' + _startTime3 + '"></input>\n                      <h3>End Time</h3>\n                        <input type="text" id="end' + id + '" value="' + _endTime3 + '"></input>\n                    </div>\n\n                    <div class="checkbox-section">\n                      <h2>Notifications</h2>\n                        <div class="check-box">\n                          <div class="squaredOne">\n                            <input type="checkbox" value="None" id="settings-email-radio" name="check" checked />\n                            <label for="settings-email-radio"></label>\n                          </div>\n                          <h4> Send me an email </h4>\n                        </div>\n\n                        <div class="check-box">\n                          <div class="squaredOne">\n                            <input type="checkbox" value="None" id="settings-text-radio" name="check" checked />\n                            <label for="settings-text-radio"></label>\n                          </div>\n                          <h4> Send me a text </h4>\n                        </div>\n\n                      </div>\n                      <hr>\n                      <div class="enable-section">\n                          <div class="slide-checkbox">\n    \t\t                      <input type="checkbox" value="1" id="checkboxThreeInput" checked />\n\t  \t                        <label for="checkboxThreeInput"></label>\n\t                         </div>\n                         <h4>Enable/Disable Device</h4>\n                      </div>');
           }
         });
         $(element.find('section')).slideDown();
@@ -590,7 +602,7 @@ angular.module('smarthome').directive('deviceCard', function (manageService) {
       });
       $(element.find('section')).on('click', '#appended-close', function () {
         $(element.find('section')).slideUp('slow', function () {
-          $('#appended').remove();
+          // $('#appended').remove();
         });
       });
     },
@@ -598,7 +610,7 @@ angular.module('smarthome').directive('deviceCard', function (manageService) {
       $scope.showSettings = false;
     }
   };
-});
+}); //End directive
 'use strict';
 
 angular.module('smarthome').controller('manageCtrl', function ($scope, manageService) {
@@ -639,7 +651,44 @@ angular.module('smarthome').service('manageService', function ($http) {
       method: 'GET',
       url: 'settings/' + id
     }).then(function (response) {
-      return response.data;
+      var startTime = timeConverter(response.data[0].start_time);
+      var endTime = timeConverter(response.data[0].end_time);
+      response.data[0].start_time = startTime;
+      response.data[0].end_time = endTime;
+      return response.data[0];
     });
+  };
+
+  var timeConverter = function timeConverter(rawTime) {
+    if (rawTime) {
+      var result = void 0;
+      var time = rawTime.split(':');
+      time.pop();
+      var min = time[1];
+      var hour = time[0];
+      time.splice(0, 2);
+      if (Number(hour) > 12) {
+        hour -= 12;
+        time.push(hour, min);
+        result = time.join(':');
+        result += " PM";
+      } else if (Number(hour) === 12) {
+        time.push(hour, min);
+        result = time.join(':');
+        result += " PM";
+      } else if (Number(hour) === 0) {
+        hour = 12;
+        time.push(hour, min);
+        result = time.join(':');
+        result += " AM";
+      } else {
+        time.push(hour, min);
+        result = time.join(':');
+        result += " AM";
+      }
+      return result;
+    } else {
+      return "N/A";
+    }
   };
 }); //End manageService

@@ -30,7 +30,15 @@ passport.use(new FacebookStrategy({
         } else {
           db.update_fb_id([profile.emails[0].value, profile.id], (err, res) => {
             db.read_user_by_email([profile.emails[0].value], (err, updatedUser) => {
-              done(null, updatedUser);
+              if (!updatedUser.photo) {
+                db.update_photo([profile.emails[0].value, profile.photos[0].value], (err, res) => {
+                  db.read_user_by_email([profile.emails[0].value], (err, photoUpdate) => {
+                    done(null, photoUpdate);
+                  });
+                });
+              } else {
+                done(null, updatedUser);
+              }
             });
           });
         }
@@ -72,8 +80,15 @@ passport.use(new GoogleStrategy({
         } else {
           db.update_google_id([profile.emails[0].value, profile.id], (err, res) => {
             db.read_user_by_email([profile.emails[0].value], (err, updatedUser) => {
-              console.log(updatedUser);
-              done(null, updatedUser);
+              if (!updatedUser.photo) {
+                db.update_photo([profile.emails[0].value, profile.photos[0].value], (err, res) => {
+                  db.read_user_by_email([profile.emails[0].value], (err, photoUpdate) => {
+                    done(null, photoUpdate);
+                  });
+                });
+              } else {
+                done(null, updatedUser);
+              }
             });
           });
         }

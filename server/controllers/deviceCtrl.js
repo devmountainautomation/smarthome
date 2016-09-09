@@ -5,9 +5,7 @@ const saltRounds = 10;
 
 module.exports = {
   getUserSensors: (req, res, next) => {
-      console.log('req.user', req.user);
     db.read_user_sensors([req.user.id], (err, response) => {
-        console.log('err', err, 'db response', response);
       res.json(response);
     });
   },
