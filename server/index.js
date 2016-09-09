@@ -55,28 +55,29 @@ const pubnub = require('./controllers/pubnub.js');
 
 // Controllers
 const userCtrl = require('./controllers/userCtrl.js');
-
+const deviceCtrl = require('./controllers/deviceCtrl.js');
 
 ////////////// Endpoints /////////////////////////
 
 
 //*********** Get Requests ********************//
 app.get('/users/', userCtrl.getUser);
-app.get('/users/sensors/', userCtrl.getUserSensors);
-app.get('/modules', userCtrl.getModules);
+app.get('/users/sensors/', deviceCtrl.getUserSensors);
+app.get('/modules', deviceCtrl.getModules);
+//get settings
 
 //*********** Put Requests *******************//
-app.put('/settings/:type', userCtrl.updateSettings);
+app.put('/settings/:type', deviceCtrl.updateSettings);
 app.put('/users/', userCtrl.updateUser);
 
 //*********** Post Requests *****************//
-app.post('/settings/:type', userCtrl.createSettings);
+app.post('/settings/:type', deviceCtrl.createSettings);
 app.post('/users', userCtrl.createLocalUser);
-app.post('/sensors/', userCtrl.createSensor);
+app.post('/sensors/', deviceCtrl.createSensor);
 
 //*********** Delete Requests ***************//
 app.delete('/users/', userCtrl.destroyUser);
-app.delete('/sensors/:type', userCtrl.destroySensor);
+app.delete('/sensors/:type', deviceCtrl.destroySensor);
 
 //auth
 const passportJS = require('./config/passport.js');

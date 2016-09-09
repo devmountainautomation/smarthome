@@ -1,15 +1,15 @@
-INSERT INTO users (name, email, phone, password, location, pubsub, pubpub, pubchan, google, fb)
-VALUES ('Craig Andersen', 'andersen.craigm@gmail.com', '8013690655', 'craig', 'America/Los_Angeles', 'fakekeys9e0dsa', 'fakekeysi902l', 'my_channel', 'fakegoogle', 'fakefacebook');
-INSERT INTO users (name, email, phone, password, location, pubsub, pubpub, pubchan, google, fb)
-VALUES ('Noelle Reid', 'reidnoelle2@gmail.com', '4136685669', 'noelle', 'America/Denver', 'fakekeys9e0dsa', 'fakekeysi902l', 'my_channel', 'fakegoogle', 'fakefacebook');
-INSERT INTO users (name, email, phone, password, location, pubsub, pubpub, pubchan, google, fb)
-VALUES ('Steven Isbell', 'steven.isbell18@gmail.com', '5412150391', 'steven', 'America/Chicago', 'fakekeys9e0dsa', 'fakekeysi902l', 'my_channel', 'fakegoogle', 'fakefacebook');
-INSERT INTO users (name, email, phone, password, location, pubsub, pubpub, pubchan, google, fb)
-VALUES ('Jonathan Junca', 'junca8@gmail.com', '8019202933', 'jonathan', 'America/New_York', 'fakekeys9e0dsa', 'fakekeysi902l', 'my_channel', 'fakegoogle', 'fakefacebook');
-INSERT INTO users (name, email, phone, password, location, pubsub, pubpub, pubchan, google, fb)
-VALUES ('Jeremy Robertson', 'jeremy@devmounta.in', '8015555555', 'jeremy', 'America/Phoenix', 'fakekeys9e0dsa', 'fakekeysi902l', 'my_channel', 'fakegoogle', 'fakefacebook');
-INSERT INTO users (name, email, phone, password, location, pubsub, pubpub, pubchan, google, fb)
-VALUES ('Jim Bob', 'jim_bob@aol.com', '5555555555', 'jimbob', 'America/Vancouver', 'fakekeys9e0dsa', 'fakekeysi902l', 'my_channel', 'fakegoogle', 'fakefacebook');
+INSERT INTO users (name, email, phone, password, location, pubsub, pubpub, pubchan, photo, google, fb)
+VALUES ('Craig Andersen', 'andersen.craigm@gmail.com', '8013690655', '$2a$10$JxVR/IumyRGkM87QhJzwkOq2bB7igigK3yte/6dkkXEEJ02Fveu/C', 'America/Los_Angeles', null, null, null, null, null, null);
+INSERT INTO users (name, email, phone, password, location, pubsub, pubpub, pubchan, photo, google, fb)
+VALUES ('Noelle Reid', 'reidnoelle2@gmail.com', '8019606245', '$2a$10$istbkvCPQrwYmdAW.hERMOs2/aqkwu/uXzuqqTBWoYoRd.6Hego.y', 'America/Denver', null, null, null, null, null, null);
+INSERT INTO users (name, email, phone, password, location, pubsub, pubpub, pubchan, photo, google, fb)
+VALUES ('Steven Isbell', 'steven.isbell18@gmail.com', '5412150391', '$2a$10$AelEHJI2GSSe7ZRGMxkGre6LbSdeWEHl854BDgZ7g6G5lHw1SUKnG', 'America/Chicago', null, null, null, null, null, null);
+INSERT INTO users (name, email, phone, password, location, pubsub, pubpub, pubchan, photo, google, fb)
+VALUES ('Jonathan Junca', 'junca8@gmail.com', '8019202933', '$2a$10$FAm8BdNiAUPnOO8rVEMk/uN4ZZoz5rd60fIMsU2.8RdNIb2q9Ja4.', 'America/New_York', null, null, null, null, null, null);
+INSERT INTO users (name, email, phone, password, location, pubsub, pubpub, pubchan, photo, google, fb)
+VALUES ('Jeremy Robertson', 'jeremy@devmounta.in', '8015555555', '$2a$10$RQ1CZJ92p3Cjtc8JOxWg7.Io6iVbI.kl/Yowrlf2zljrbIHwjIiOa', 'America/Phoenix', null, null, null, null, null, null);
+INSERT INTO users (name, email, phone, password, location, pubsub, pubpub, pubchan, photo, google, fb)
+VALUES ('Jim Bob', 'jim_bob@aol.com', '5555555555', '$2a$10$eu8PD5V2/WrOLuzWCdvbWuxJmVjKgs67WcR.NZj6zefgLi2Oxzckq', 'America/Vancouver', null, null, null, null, null, null);
 
 INSERT INTO modules (type) VALUES ('Sound Sensor');
 INSERT INTO modules (type) VALUES ('Smoke Detector');
