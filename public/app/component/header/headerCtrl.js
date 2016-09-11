@@ -1,8 +1,12 @@
 angular.module('smarthome')
-  .controller('headerCtrl', (headerSrvc, $scope, $state) => {
+  .controller('headerCtrl', (headerSrvc, $scope, $state, $rootScope) => {
 
-    // $scope.user = user.data;
-    // console.log($scope.user);
+    (() => {
+      headerSrvc.getUser().then((response => {
+        $scope.user = response.data;
+        console.log($scope.user);
+      }));
+    })();
 
     $scope.logout = () => {
       console.log('hit');
@@ -13,6 +17,17 @@ angular.module('smarthome')
             $state.go('landing page');
           }
         }, 1500);
+      });
+    };
+
+    $scope.updateMe = (updateUser) => {
+      headerSrvc.updateMe(updateUser).then(response => {
+        if (response.status === 200) {
+          $('.user-update').hide(300);
+          swal("Success!", "Your Information Has Been Saved!", "success");
+        } else {
+          swal("Error!", "Hmm...Something Wasn't Right", "error");
+        }
       });
     };
 

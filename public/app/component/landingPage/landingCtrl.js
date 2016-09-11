@@ -1,9 +1,11 @@
 angular.module('smarthome')
-  .controller('landingCtrl', (landingSrvc, $scope, $state) => {
+  .controller('landingCtrl', (landingSrvc, $scope) => {
 
-    $scope.getUser = () => {
-      landingSrvc.getUser().then((user) => {
-        $scope.user = user;
-      });
-    };
+    (() => {
+        landingSrvc.getUser().then((response => {
+          $scope.user = response.data;
+          console.log($scope.user);
+        }));
+    })();
+
   });

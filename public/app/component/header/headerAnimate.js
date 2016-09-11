@@ -3,12 +3,13 @@ angular.module('smarthome')
     return {
       restrict: 'EA',
       templateUrl: './app/component/header/header.html',
+      scope: false,
       controller: 'headerCtrl',
-      link: (scope, elems, attrs) => {
+      link: (scope, elem, attrs) => {
+        let $scope = scope;
         $(document).ready(() => {
 
-          ////////////ADD CHECK FOR USER TO CHANGE MENU IF USER IS LOGGED IN/////////
-          if ($state.current.name === 'landing page' || $state.current.name === 'login') {
+          if (!$scope.user) {
             $('#hamburger').click(() => {
               $('#hamburger').toggleClass('open');
               $('#menu').toggle('slide', 'left', 500);
@@ -46,11 +47,11 @@ angular.module('smarthome')
                   </div>
               </div>
               <div class="menu-list-container">
+                  <div class="lp-menu-item" id="lp-contact">
+                      <p>Update Profile</p>
+                  </div>
                   <div class="lp-menu-item" id="lp-logout" ng-click="logout()">
                       <p>Logout</p>
-                  </div>
-                  <div class="lp-menu-item" id="lp-contact">
-                      <p>Contact</p>
                   </div>
                   <div class="social-hex">
                       <div class="hexagon"><i class="fa fa-github fa-fw fa-2x" aria-hidden="true"></i></div>
@@ -66,6 +67,20 @@ angular.module('smarthome')
               $('#hamburger').toggleClass('open');
               $('#menu').toggle('slide', 'left', 500);
               $('.landing-page').toggleClass('menu-open');
+            });
+
+            $('#lp-contact').on('click', () => {
+              $('#hamburger').toggleClass('open');
+              $('#menu').toggle('slide', 'left', 500);
+              $('.user-update').show(300);
+              $('body').css("overflow-y", "hidden");
+            });
+
+            $('.close-modal').on('click', () => {
+              $('.user-update').hide(300);
+              $('body').css("overflow-y", "auto");
+              $('#hamburger').toggleClass('open');
+              $('#menu').toggle('slide', 'left', 500);
             });
 
             $(window).on('scroll', () => {

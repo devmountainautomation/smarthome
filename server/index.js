@@ -87,7 +87,7 @@ app.get('/auth/google', passport.authenticate('google', {
   scope: ['profile', 'email']
 }));
 app.get('/auth/google/callback', passport.authenticate('google', {
-  successRedirect: '/dashboard',
+  successRedirect: '/#/dashboard',
   failureRedirect: '/#/login'
 }));
 
@@ -96,16 +96,12 @@ app.get('/auth/facebook', passport.authenticate('facebook', {
 }));
 
 app.get('/auth/facebook/callback', passport.authenticate('facebook', {
-  successRedirect: '/dashboard',
+  successRedirect: '/#/dashboard',
   failureRedirect: '/#/login'
 }));
 
 app.post('/auth/local', passport.authenticate('local'), (req, res) => {
   res.status(200).redirect('/dashboard');
-});
-
-app.get('/dashboard', userCtrl.requireAuth, (req, res) => {
-  res.redirect('/#/login');
 });
 
 app.get('/logout', userCtrl.logout);

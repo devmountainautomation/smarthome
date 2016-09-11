@@ -1,4 +1,4 @@
-const app = require('../index.js')
+const app = require('../index.js');
 const Pubnub = require('pubnub');
 const config = require('../config/config.js');
 const db = app.get('db');
