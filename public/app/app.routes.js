@@ -18,4 +18,9 @@ angular.module('smarthome')
         templateUrl: '/app/component/manage/manage.html',
         controller: 'manageCtrl'
       })
+      .state('addDevice', {
+        url: '/add',
+        templateUrl: 'app/component/add/add.html',
+        controller: 'addCtrl'
+      })
   });

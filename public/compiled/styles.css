@@ -364,13 +364,212 @@ textarea {
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Lato', sans-serif; }
 
+.add-device {
+  background: #343f46;
+  padding: 7vh 5vw 5vw;
+  min-height: 100vh;
+  overflow: hidden;
+  color: #F56A4C;
+  font-weight: 100; }
+  .add-device u {
+    text-decoration: none;
+    border-bottom: 0.5px solid #F56A4C; }
+  .add-device i {
+    color: #eee;
+    font-size: 1.5rem;
+    float: left;
+    padding-top: 16vh; }
+  .add-device .gradient {
+    float: left;
+    width: 10vw;
+    height: 35vh;
+    position: absolute;
+    top: 16vh;
+    z-index: 50; }
+  .add-device .gradient-left {
+    left: 2.2rem;
+    background: -webkit-gradient(linear, left top, right top, from(#343f46), to(rgba(52, 63, 70, 0)));
+    background: -webkit-linear-gradient(left, #343f46, rgba(52, 63, 70, 0));
+    background: linear-gradient(to right, #343f46, rgba(52, 63, 70, 0));
+    background: -webkit-linear-gradient(to right, #343f46, rgba(52, 63, 70, 0)); }
+  .add-device .gradient-right {
+    right: 2.3rem;
+    background: -webkit-gradient(linear, left top, right top, from(rgba(52, 63, 70, 0)), to(#343f46));
+    background: -webkit-linear-gradient(left, rgba(52, 63, 70, 0), #343f46);
+    background: linear-gradient(to right, rgba(52, 63, 70, 0), #343f46);
+    background: -webkit-linear-gradient(to right, rgba(52, 63, 70, 0), #343f46); }
+  .add-device input[type=checkbox],
+  .add-device input[type=radio] {
+    opacity: 0;
+    position: absolute; }
+
+.choose-type {
+  height: 35vh;
+  width: 80vw;
+  overflow-x: scroll;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  float: left;
+  position: relative;
+  padding: 0 10vw; }
+
+.module-type {
+  height: 80%;
+  margin: 5vh 0.75rem 0; }
+  .module-type label {
+    -webkit-clip-path: circle(50% at center);
+    clip-path: circle(50% at center);
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    height: 20vh;
+    width: 20vh;
+    background: #36454f; }
+    .module-type label:hover {
+      background: #395161; }
+    .module-type label input[type=checkbox]:checked + label {
+      background: #3b5e75; }
+    .module-type label img {
+      width: 80%;
+      margin: auto; }
+
+.animate-show {
+  opacity: 1; }
+
+.animate-show.ng-hide-add, .animate-show.ng-hide-remove {
+  -webkit-transition: all linear 0.5s;
+  transition: all linear 0.5s; }
+
+.animate-show.ng-hide {
+  line-height: 0;
+  opacity: 0;
+  padding: 0 10px; }
+
+.choose-settings-section {
+  clear: both;
+  padding-top: 5vh; }
+  .choose-settings-section .button-box {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding: 2rem; }
+  .choose-settings-section button {
+    background: #395161;
+    border: none;
+    padding: 1rem 3rem;
+    margin: 0 auto;
+    color: #F56A4C;
+    font-family: 'Lato';
+    text-transform: uppercase;
+    font-weight: 400; }
+    .choose-settings-section button:hover {
+      background: #3b5e75; }
+  .choose-settings-section h2,
+  .choose-settings-section h3,
+  .choose-settings-section h4,
+  .choose-settings-section h5 {
+    color: #eee; }
+  .choose-settings-section h2 {
+    font-size: 1.75rem;
+    margin-top: 1rem;
+    margin-bottom: 0.25rem; }
+  .choose-settings-section h3 {
+    text-transform: uppercase; }
+  .choose-settings-section input[type=text] {
+    background: #36454f;
+    border: none;
+    -webkit-transition: all 0.6s;
+    transition: all 0.6s;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 1.5em;
+    color: #F56A4C;
+    margin-bottom: 0.5rem; }
+  .choose-settings-section input[type=text]:focus {
+    font-weight: bold;
+    background: #395161;
+    border: none;
+    -webkit-transition: all 600;
+    transition: all 600; }
+  .choose-settings-section .checkbox-section {
+    text-align: left;
+    width: 100%;
+    margin-bottom: 20px; }
+    .choose-settings-section .checkbox-section input[type="checkbox"] {
+      opacity: 0; }
+    .choose-settings-section .checkbox-section .check-box {
+      width: 100%;
+      clear: both;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+      margin-top: 1em; }
+      .choose-settings-section .checkbox-section .check-box h4 {
+        font-size: 1rem;
+        text-transform: uppercase;
+        font-weight: normal; }
+    .choose-settings-section .checkbox-section .squaredOne label {
+      margin-top: -.95em; }
+
+.timepicker-input {
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  background: none;
+  border: none;
+  font-family: 'Lato';
+  color: #F56A4C;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: bold; }
+
+::-webkit-scrollbar {
+  width: 1rem; }
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background: #36454f; }
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #395161; }
+
 /*Header*/
 .header {
   width: 100vw;
   height: 7vh;
   padding: 5vh;
   position: fixed;
-  z-index: 5;
+  z-index: 999;
   background: transparent;
   color: #fff;
   -webkit-transition: all 0.2s ease-in;
@@ -481,7 +680,7 @@ h1, h2, h3, h4, h5, h6 {
   display: none;
   position: fixed;
   overflow: hidden;
-  z-index: 4;
+  z-index: 998;
   font-family: 'Source Sans Pro'; }
   .menu .menu-box-container {
     margin-top: 10vh;
