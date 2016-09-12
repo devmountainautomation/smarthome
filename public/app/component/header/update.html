@@ -1,0 +1,24 @@
+<section class="user-update">
+  <div class="user-modal">
+    <form class="modal-content">
+      <div class="user-modal-content">
+        <div class="close-modal"><i class="fa fa-close fa-fw fa-lg"></i></div>
+        <h2>Complete Each Field</h2>
+        <br>
+        <label>Name</label>
+        <input type="text" ng-value="user.name" ng-model="user.name" placeholder="John Doe" required>
+        <label>Email</label>
+        <input type="email" ng-value="user.email" ng-model="user.email" placeholder="example@example.com" required>
+        <label>Phone Number</label>
+        <input type="tel" ng-value="user.phone" ng-model="user.phone" placeholder="555-555-5555" required>
+        <label>PubNub Subscription Key</label>
+        <input type="password" ng-value="user.pubsub" ng-model="user.pubsub" placeholder="PubNub Subscription Key" required>
+        <label>PubNub Publish Key</label>
+        <input type="password" ng-value="user.pubpub" ng-model="user.pubpub" placeholder="PubNub Publish Key" required>
+        <label>PubNub Channel</label>
+        <input type="text" ng-value="user.pubchan" ng-model="user.pubchan" placeholder="PubNub Channel" required>
+        <button class="user-update-CTA" ng-click="updateMe(user)">Submit</button>
+      </div>
+    </form>
+  </div>
+</section>
