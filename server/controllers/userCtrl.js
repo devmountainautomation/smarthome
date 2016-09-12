@@ -23,30 +23,10 @@ module.exports = {
       res.json(response);
     });
   },
-  getUserSensors: (req, res, next) => {
-    db.read_user_sensors([req.user.id], (err, response) => {
-      res.json(response);
-    });
-  },
-  getModules: (req, res, next) => {
-    db.read_modules((err, response) => {
-      res.json(response);
-    });
-  },
-  updateSettings: (req, res, next) => {
-      var data = req.body;
-      db.get_module_id([req.params.type], (err, response) => {
-        var moduleId = response.id;
-      });
-      db.update_settings([moduleId, req.user.id, data.active, data.email, data.sms, data.start_time, data.end_time], (err, response) => {
-        if (err) {
-          res.status(500).send('Update Failed');
-        }
-        res.sendStatus(200);
-      });
-  },
   updateUser: (req, res, next) => {
-    var data = data;
+    var data = req.body;
+    data.pubsub = bcrypt.hashSync(data.pubsub, saltRounds);
+    data.pubpub = bcrypt.hashSync(data.pubpub, saltRounds);
     db.update_user([req.user.id, data.name, data.email, data.phone, data.pubsub, data.pubpub, data.pubchan], (err, response) => {
       if (err) {
         res.status(500).send("Update Failed");
@@ -55,75 +35,47 @@ module.exports = {
       }
     });
   },
-  createSettings: (req, res, next) => {
+  createLocalUser: (req, res, next) => {
     var data = req.body;
-      db.get_module_id([req.params.type], (err, response) => {
-        var moduleId = response.id;
-      });
-      db.create_sensor_settings([moduleId, req.user.id, data.active, data.email, data.sms, data.start_time, data.end_time], (err, response) => {
-        if (err) {
-          res.status(500).send("Failed to add settings");
+    db.users.findOne({
+      email: data.email
+    }, (err, user) => {
+      if (err) {
+        res.status(500).send('User add Failed');
+      } else if (user) {
+        if (user.password) {
+          res.status(404).send("User already exists");
         } else {
-          res.send(200);
+          bcrypt.hash(data.password, saltRounds, (err, hash) => {
+            db.update_user_password([data.email, data.phone, hash], (err, res) => {});
+          });
+          res.status(200).send("User Updated");
         }
-      });
+      } else {
+        bcrypt.hash(data.password, saltRounds, (err, hash) => {
+          db.users.insert({
+            name: data.name,
+            email: data.email,
+            password: hash,
+            phone: data.phone
+          });
+        });
+        res.status(200).send("User Added!");
+      }
+    });
   },
-  createUser: (req, res, next) => {
-    if (req.body) {
-      var data = req.body;
-      db.create_user([data.name, data.email, data.phone, data.pubsub, data.pubpub, data.pubchan, data.google, data.fb], (err, response) => {
-        if (err) {
-          res.status(500).send('Failed User Add');
-        } else {
-          res.send(200);
-        }
-      });
-    }
-  },
-    createLocalUser: (req, res, next) => {
-      bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
-        db.users.insert({name: req.body.name, email: req.body.email,
-          password: hash, phone: req.body.phone});
-      });
-    },
-    logout: (req, res, next) => {
-        if (req.user) {
-            req.logout();
-            res.redirect('/#/');
+  logout: (req, res, next) => {
+    if (req.user) {
+      req.logout();
+      res.redirect('/#/');
     }
     res.status(500).send("No User data Provided");
   },
-  createSensor: (req, res, next) => {
-    var data = req.body;
-    db.get_module_id([data.type], (err, response) => {
-      var type = response.type;
-    });
-    db.create_sensor([data.nickname, req.user.id, type], (err, response) => {
-      if (err) {
-        res.status(500).send('Failed to add Sensor');
-      } else {
-        res.send(200);
-      }
-    });
-  },
   destroyUser: (req, res, next) => {
-    db.destroy_user([req.user.name], (err, response) => {
-      if (err) {
-        res.status(500).send("Failed to devare user");
-      } else {
-        res.send(200);
-      }
-    });
-  },
-  destroySensor: (req, res, next) => {
-      var nickname = req.query.nickname.split(',').join(' ');
-      db.destroy_sensor([req.user.id, nickname], (err, response) => {
-        if (err) {
-          res.status(500).send("Failed to devare sensor");
-        } else {
-          res.send(200);
-        }
+    db.destroy_user_settings([req.user.id], (err, response) => {
+      db.destroy_user_sensors([req.user.id], (err, response) => {
+        db.destroy_user([req.user.id], (err, response) => {});
       });
+    });
   }
-
-};
+}; //End Export

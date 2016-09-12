@@ -1,0 +1,17 @@
+<div class="this-device-card">
+  <article class="device-card-preview">
+    <i class="fa fa-cog" ng-click="showSettings = !showSettings"></i>
+    <div>
+      <img ng-src="{{icon_url}}" alt="{{type}}" />
+      <h3>{{nickname}}</h3>
+    </div>
+    <hr>
+  </article>
+
+
+  <section ng-show="showSettings" class="setting-menu">
+    <h2>{{nickname}}</h2>
+    <hr>
+
+  </section>
+</div>

@@ -1,30 +1,35 @@
 angular.module('smarthome')
-  .service('loginService', function ($http) {
-      this.login = function (email, password) {
-        return $http({
-          method: 'POST',
-          url: '/auth/local',
-          data: {
-            email: email,
-            password: password
-          }
-        }).then(function (response) {
-          return response;
-        })
-      }
+  .service('loginService', function($http, $state) {
+    this.login = (email, password) => {
+      return $http({
+        method: 'POST',
+        url: '/auth/local',
+        data: {
+          username: email,
+          password: password
+        }
+      }).then(response => {
+        return response.status;
+      });
+    };
 
-      this.createLocalUser = function (name, email, password, phone) {
-        return $http({
-          method: 'POST',
-          url: '/users',
-          data: {
-            name: name,
-            email: email,
-            password: password,
-            phone: phone
-          }
-        }).then(function (response) {
-          return response;
-        })
-      }
-  })
+    this.createLocalUser = (name, email, password, phone) => {
+      return $http({
+        method: 'POST',
+        url: '/users',
+        data: {
+          name: name,
+          email: email,
+          password: password,
+          phone: phone
+        }
+      }).then(response => {
+        $state.go('landing page');
+      });
+    };
+
+    this.getUser = () => {
+      return $http.get('/me');
+    };
+
+  }); //End loginService

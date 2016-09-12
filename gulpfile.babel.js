@@ -25,7 +25,7 @@ gulp.task('styles', () => {
 });
 
 gulp.task('frontjs', () => {
-  return gulp.src(["./public/app/app.module.js", ...paths.jsSource])
+  return gulp.src(["./public/app/app.module.js", "./public/app/timedropper.js", ...paths.jsSource])
   .pipe(plumber())
   .pipe(babel({
     presets: ["es2015"]

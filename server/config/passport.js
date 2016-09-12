@@ -8,86 +8,129 @@ const LocalStrategy = require('passport-local').Strategy;
 const FacebookStrategy = require('passport-facebook').Strategy;
 
 passport.use(new FacebookStrategy({
-    clientID: auth.facebookAuth.clientID,
-    clientSecret: auth.facebookAuth.clientSecret,
-    callbackURL: auth.facebookAuth.callbackURL
+  clientID: auth.facebookAuth.clientID,
+  clientSecret: auth.facebookAuth.clientSecret,
+  callbackURL: auth.facebookAuth.callbackURL,
+  profileFields: ['id', 'name', 'displayName', 'photos', 'email']
 }, (token, refreshToken, profile, done) => {
-  console.log(token);
-  console.log(profile);
   db.users.findOne({
-    facebook_id: profile.id
-}, (err, user) => {
+    email: profile.emails[0].value
+  }, (err, user) => {
     if (err) {
-        done(err, null);
+      done(err, null);
     } else if (user) {
-        console.log("found user", err, user);
-        done(null, user);
+      db.users.findOne({
+        fb: profile.id
+      }, (err, user) => {
+        if (err) {
+          done(err, null);
+        } else if (user) {
+          console.log("found user", err, user);
+          done(null, user);
+        } else {
+          db.update_fb_id([profile.emails[0].value, profile.id], (err, res) => {
+            db.read_user_by_email([profile.emails[0].value], (err, updatedUser) => {
+              if (!updatedUser.photo) {
+                db.update_photo([profile.emails[0].value, profile.photos[0].value], (err, res) => {
+                  db.read_user_by_email([profile.emails[0].value], (err, photoUpdate) => {
+                    done(null, photoUpdate);
+                  });
+                });
+              } else {
+                done(null, updatedUser);
+              }
+            });
+          });
+        }
+      });
     } else {
-        db.users.insert({
-            name: profile.displayName,
-            email: profile.emails[0].value,
-            image: profile.photos[0].value,
-            facebook_id: profile.id
-        }, (err, newUser) => {
-            console.log("new user", user);
-        });
-        done(null, user);
+      db.users.insert({
+        name: profile.displayName,
+        email: profile.emails[0].value,
+        photo: profile.photos[0].value,
+        fb: profile.id
+      }, (err, newUser) => {
+        console.log("new user", newUser);
+        done(null, newUser);
+      });
     }
-});
+  });
 
 }));
 
 passport.use(new GoogleStrategy({
-    clientID: auth.googleAuth.consumerKey,
-    clientSecret: auth.googleAuth.consumerSecret,
-    callbackURL: auth.googleAuth.callbackURL,
+  clientID: auth.googleAuth.consumerKey,
+  clientSecret: auth.googleAuth.consumerSecret,
+  callbackURL: auth.googleAuth.callbackURL,
 }, (token, refreshToken, profile, done) => {
-    db.users.findOne({
-        google_id: profile.id
-    }, (err, user) => {
+  db.users.findOne({
+    email: profile.emails[0].value
+  }, (err, user) => {
+    if (err) {
+      done(err, null);
+    } else if (user) {
+      db.users.findOne({
+        google: profile.id
+      }, (err, user) => {
         if (err) {
-            done(err, null);
+          done(err, null);
         } else if (user) {
-            console.log("found user", err, user);
-            done(null, user);
+          console.log("found user", err, user);
+          done(null, user);
         } else {
-            db.users.insert({
-                name: profile.displayName,
-                email: profile.emails[0].value,
-                image: profile.photos[0].value,
-                google_id: profile.id
-            }, (err, newUser) => {
-                console.log("new user", user);
+          db.update_google_id([profile.emails[0].value, profile.id], (err, res) => {
+            db.read_user_by_email([profile.emails[0].value], (err, updatedUser) => {
+              if (!updatedUser.photo) {
+                db.update_photo([profile.emails[0].value, profile.photos[0].value], (err, res) => {
+                  db.read_user_by_email([profile.emails[0].value], (err, photoUpdate) => {
+                    done(null, photoUpdate);
+                  });
+                });
+              } else {
+                done(null, updatedUser);
+              }
             });
-            done(null, user);
+          });
         }
-    });
+      });
+    } else {
+      db.users.insert({
+        name: profile.displayName,
+        email: profile.emails[0].value,
+        photo: profile.photos[0].value,
+        google: profile.id
+      }, (err, newUser) => {
+        console.log("new user", newUser);
+        done(null, user);
+      });
+    }
+  });
 
 }));
 
 passport.use(new LocalStrategy((username, password, done) => {
-    db.get_user_by_username([username], (err, user) => {
-        console.log(user, err);
-        user = user[0];
-        if (err) {
-            return done(err);
-        }
-        if (!user) {
-            return done(null, false);
-        }
-        if (!bcrypt.compareSync(password, user.password)) {
-            return done(null, false);
-        }
-        return done(null, user);
-    });
+  db.get_user_by_email([username], (err, user) => {
+    user = user[0];
+    if (err) {
+      return done(err);
+    }
+    if (!user) {
+      return done(null, false);
+    }
+    if (!bcrypt.compareSync(password, user.password)) {
+      return done(null, false);
+    }
+    console.log("passport user", user);
+    return done(null, user);
+  });
 }));
 
 
 passport.serializeUser((user, done) => {
-    done(null, user);
+  done(null, user);
 });
 passport.deserializeUser((obj, done) => {
-    done(null, obj);
+  done(null, obj);
 });
 
 module.exports = passport;
