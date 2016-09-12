@@ -18,9 +18,11 @@ const db = app.get('db');
       pubnub[e.id].addListener({
         message: message => {
           console.log("This is the message for id " + e.id + ":", message);
+
           db.read_device_id([message.message.nickname, e.id], (err, id) => {
             db.read_device_settings([id], (err, settings) => {
-                
+                var alertTime = timeConverter(message.timetoken / 10000000);
+                console.log(alertTime);
             });
           });
         },
@@ -41,8 +43,17 @@ const db = app.get('db');
   });
 })();
 
-let timeConverter = time => {
-
+var timeConverter = time => {
+    var a = new Date(time * 1000);
+    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    var year = a.getFullYear();
+    var month = months[a.getMonth()];
+    var date = a.getDate();
+    var hour = a.getHours();
+    var minutes = a.getMinutes();
+    var seconds = a.getSeconds();
+    var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + minutes + ':' + seconds;
+    return time;
 };
 // var pubnub = new Pubnub({
 //   subscribeKey: config.SubscribeKey,
