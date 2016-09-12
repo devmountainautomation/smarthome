@@ -25,7 +25,7 @@ module.exports = {
   },
   updateUser: (req, res, next) => {
     var data = data;
-    db.update_user([req.user.id, data.name, data.email, data.phone, data.pubsub, data.pubpub, data.pubchan], (err, response) => {
+    db.update_user([req.user.id, data.name, data.email, data.phone, data.password, data.pubsub, data.pubpub, data.pubchan], (err, response) => {
       if (err) {
         res.status(500).send("Update Failed");
       } else {

@@ -217,7 +217,6 @@ angular.module('smarthome')
         })
       },
       controller: ($scope) => {
-
       }
     }
   }); //End directive
