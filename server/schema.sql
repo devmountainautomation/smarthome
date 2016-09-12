@@ -39,6 +39,17 @@ CREATE TABLE settings
   active BOOLEAN,
   email BOOLEAN,
   sms BOOLEAN,
-  start_time time,
-  end_time time
+  start_time timestamp,
+  end_time timestamp
+);
+
+CREATE TABLE history
+(
+  id SERIAL PRIMARY KEY,
+  user_id INT REFERENCES users(id),
+  sensor_id INT REFERENCES sensors(id),
+  alert BOOLEAN,
+  seen BOOLEAN,
+  status VARCHAR(20),
+  time_stamp timestamp
 );

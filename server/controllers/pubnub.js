@@ -1,5 +1,6 @@
 const app = require('../index.js');
 const Pubnub = require('pubnub');
+const moment = require('moment');
 const config = require('../config/config.js');
 const db = app.get('db');
 
@@ -18,11 +19,18 @@ const db = app.get('db');
       pubnub[e.id].addListener({
         message: message => {
           console.log("This is the message for id " + e.id + ":", message);
-
           db.read_device_id([message.message.nickname, e.id], (err, id) => {
-            db.read_device_settings([id], (err, settings) => {
-                var alertTime = timeConverter(message.timetoken / 10000000);
-                console.log(alertTime);
+            db.read_device_settings([id[0].id], (err, settings) => {
+              var alert = false;
+              var start = moment(settings[0].start_time);
+              var end = moment(settings[0].end_time);
+              var now = moment((message.timetoken / 10000));
+              if (settings[0].active) {
+                if (now.format('HH:mm') >= start.format('HH:mm') && now.format('HH:mm') <= end.format('HH:mm')) {
+                  alert = true;
+                }
+              }
+              db.create_history([e.id, id[0].id, alert, false, message.message.status, now.format('YYYY-MM-DD HH:mm:ss')], (err, response) => {});
             });
           });
         },
@@ -43,18 +51,6 @@ const db = app.get('db');
   });
 })();
 
-var timeConverter = time => {
-    var a = new Date(time * 1000);
-    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    var year = a.getFullYear();
-    var month = months[a.getMonth()];
-    var date = a.getDate();
-    var hour = a.getHours();
-    var minutes = a.getMinutes();
-    var seconds = a.getSeconds();
-    var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + minutes + ':' + seconds;
-    return time;
-};
 // var pubnub = new Pubnub({
 //   subscribeKey: config.SubscribeKey,
 //   publishKey: config.PublishKey,
