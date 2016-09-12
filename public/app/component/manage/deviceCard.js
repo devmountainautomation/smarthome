@@ -58,7 +58,7 @@ angular.module('smarthome')
                       <h2>Notifications</h2>
                         <div class="check-box">
                           <div class="squaredOne">
-                            <input type="checkbox" value="None" id="settings-email-radio" name="check" checked />
+                            <input type="checkbox" value="email" id="settings-email-radio" name="check" checked />
                             <label for="settings-email-radio"></label>
                           </div>
                           <h4> Send me an email </h4>
@@ -66,7 +66,7 @@ angular.module('smarthome')
 
                         <div class="check-box">
                           <div class="squaredOne">
-                            <input type="checkbox" value="None" id="settings-text-radio" name="check" checked />
+                            <input type="checkbox" value="text" id="settings-text-radio" name="check" checked />
                             <label for="settings-text-radio"></label>
                           </div>
                           <h4> Send me a text </h4>
@@ -76,7 +76,7 @@ angular.module('smarthome')
                       <hr>
                       <div class="enable-section">
                           <div class="slide-checkbox">
-    		                      <input type="checkbox" value="1" id="checkboxThreeInput" checked />
+    		                      <input type="checkbox" value="true" ng-model="isEnabled" id="checkboxThreeInput" checked />
 	  	                        <label for="checkboxThreeInput"></label>
 	                         </div>
                          <h4>Enable/Disable Device</h4>

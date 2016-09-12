@@ -62,4 +62,9 @@ angular.module('smarthome')
           }
         }
       })
+      .state('addDevice', {
+        url: '/add',
+        templateUrl: 'app/component/add/add.html',
+        controller: 'addCtrl'
+      })
   });
