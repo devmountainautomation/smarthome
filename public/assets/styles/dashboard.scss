@@ -5,6 +5,57 @@ $dashgreen: #E3F1F4;
     width: 100vw;
     background: #36454f;
 
+    .notifications {
+        height: 100%;
+        width: 100%;
+        padding: 20% 10%;
+        display: flex;
+        justify-content: center;
+
+        .notifications-container {
+            height: 20%;
+            width: 90%;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.25);
+            margin-bottom: 5vh;
+
+            .notifications-wrapper {
+                display: flex;
+                height: 100%;
+                width: 100%;
+                background: #70A0AF;
+
+                .circle-left {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 20%;
+                    cursor: pointer;
+                    background: linear-gradient(#A0C1B9, #F4E8C1);
+                }
+                .central-note-wrapper {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    width: 100%;
+
+                    .alert-time {
+                        display: flex;
+                    }
+
+                    .alert-info {
+                        margin-top: 20%;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+/*
     .dash-label {
         position: absolute;
         top: 8vh;
@@ -75,3 +126,4 @@ $dashgreen: #E3F1F4;
         }
     }
 }
+*/
