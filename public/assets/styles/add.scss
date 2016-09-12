@@ -1,0 +1,191 @@
+.add-device {
+  background: #343f46;
+  padding: 7vh 5vw 5vw;
+  min-height: 100vh;
+  overflow: hidden;
+  color: #F56A4C;
+  font-weight: 100;
+  u {
+    text-decoration: none;
+    border-bottom: 0.5px solid #F56A4C;
+  }
+  i {
+    color: #eee;
+    font-size: 1.5rem;
+    float: left;
+    padding-top: 16vh;
+  }
+  .gradient {
+    float: left;
+    width: 10vw;
+    height: 35vh;
+    position: absolute;
+    top: 16vh;
+    z-index: 50;
+  }
+  .gradient-left {
+    left: 2.2rem;
+    background: linear-gradient(to right, #343f46 , rgba(#343f46, 0));
+    background: -webkit-linear-gradient(to right, #343f46 , rgba(#343f46, 0));
+  }
+  .gradient-right {
+    right: 2.3rem;
+    background: linear-gradient(to right, rgba(#343f46, 0), #343f46);
+    background: -webkit-linear-gradient(to right, rgba(#343f46, 0), #343f46);
+  }
+  input[type=checkbox],
+  input[type=radio] {
+    opacity: 0;
+    position: absolute;
+  }
+}
+.choose-type {
+  height: 35vh;
+  width: 80vw;
+  overflow-x: scroll;
+  display: flex;
+  flex-direction: row;
+  float: left;
+  position: relative;
+  padding: 0 10vw;
+}
+.module-type {
+  height: 80%;
+  margin: 5vh 0.75rem 0;
+  label {
+    clip-path: circle(50% at center);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20vh;
+    width: 20vh;
+    background: #36454f;
+    &:hover {
+      background: #395161;
+    }
+    input[type=checkbox]:checked + label {
+      background: #3b5e75;
+    }
+    img {
+      width: 80%;
+      margin: auto;
+    }
+  }
+}
+.animate-show {
+  opacity: 1;
+}
+
+.animate-show.ng-hide-add, .animate-show.ng-hide-remove {
+  transition: all linear 0.5s;
+}
+
+.animate-show.ng-hide {
+  line-height: 0;
+  opacity: 0;
+  padding: 0 10px;
+}
+.choose-settings-section {
+  clear: both;
+  padding-top: 5vh;
+  .button-box {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+  }
+  button {
+    background: #395161;
+    border: none;
+    padding: 1rem 3rem;
+    margin: 0 auto;
+    color: #F56A4C;
+    font-family: 'Lato';
+    text-transform: uppercase;
+    font-weight: 400;
+    &:hover {
+      background: #3b5e75;
+    }
+  }
+  h2,
+  h3,
+  h4,
+  h5 {
+    color: #eee;
+  }
+  h2 {
+    font-size: 1.75rem;
+    margin-top: 1rem;
+    margin-bottom: 0.25rem;
+  }
+  h3 {
+    text-transform: uppercase;
+  }
+  input[type=text] {
+    background: #36454f;
+    border: none;
+    transition: all 0.6s;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 1.5em;
+    color: #F56A4C;
+    margin-bottom: 0.5rem;
+  }
+  input[type=text]:focus {
+    font-weight: bold;
+    background: #395161;
+    border: none;
+    transition: all 600;
+  }
+  .checkbox-section {
+    text-align: left;
+    width: 100%;
+    margin-bottom: 20px;
+    input[type="checkbox"] {
+      opacity: 0;
+    }
+    .check-box {
+      width: 100%;
+      clear: both;
+      display: flex;
+      align-items: center;
+      margin-top: 1em;
+      h4 {
+        font-size: 1rem;
+        text-transform: uppercase;
+        font-weight: normal;
+      }
+    }
+    .squaredOne {
+    }
+    .squaredOne label {
+      margin-top: -.95em;
+    }
+  }
+}
+.timepicker-input {
+  width: 100%;
+  box-sizing: border-box;
+  background: none;
+  border: none;
+  font-family: 'Lato';
+  color: #F56A4C;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+::-webkit-scrollbar {
+    width: 1rem;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: #36454f;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #395161;
+}
