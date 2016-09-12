@@ -5,8 +5,9 @@
     <div class="notifications">
         <div class="notifications-container">
             <div class="notifications-wrapper">
-                <div class="circle-left"><i class="fa fa-circle-thin fa-lg fa-fw" aria-hidden="true"></i></div>
+                <div class="circle-left" ng-click="updateNote(id)" ng-model="note.seen" ng-value="true"><i class="fa fa-circle-thin fa-lg fa-fw" aria-hidden="true"></i></div>
                 <div class="central-note-wrapper">
+                    <!-- id="{{note.id}}" needs to go in the wrapper-->
                     <div class="alert-time"><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i><p>alert time</p></div>
                     <div class="alert-info"><p>Insert alert phrase</p></div>
                 </div>

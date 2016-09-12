@@ -14,4 +14,17 @@ angular.module('smarthome')
       return $http.get('/me');
     };
 
+    this.getNotifications = () => {
+      return $http.get('/notifications');
+    };
+
+    this.updateNote = (id) => {
+      return $http({
+        method: 'PUT',
+        url: '/notifications/' + id
+      }).then(response => {
+        let results = response.data;
+      });
+    };
+
   });
