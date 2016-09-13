@@ -65,10 +65,12 @@ app.get('/users/', userCtrl.getUser);
 app.get('/users/sensors/', deviceCtrl.getUserSensors);
 app.get('/modules', deviceCtrl.getModules);
 app.get('/settings/:sensorId', deviceCtrl.getSettings);
+app.get('/notifications', deviceCtrl.getNotifications);
 
 //*********** Put Requests *******************//
 app.put('/settings/:type', deviceCtrl.updateSettings);
 app.put('/users/', userCtrl.updateUser);
+app.put('/notifications/:id', deviceCtrl.updateNotification);//the id is the notification id
 
 //*********** Post Requests *****************//
 app.post('/settings/:type', deviceCtrl.createSettings);
@@ -101,7 +103,7 @@ app.get('/auth/facebook/callback', passport.authenticate('facebook', {
 }));
 
 app.post('/auth/local', passport.authenticate('local'), (req, res) => {
-  res.status(200).redirect('/dashboard');
+  res.status(200).redirect('/#/dashboard');
 });
 
 app.get('/logout', userCtrl.logout);
@@ -110,7 +112,7 @@ app.get('/me', (req, res, next) => {
   if (req.user) {
     res.send(req.user);
   } else {
-    res.status(400).json('Not Logged In!');
+    res.status(200);
   }
 });
 

@@ -3,7 +3,7 @@ angular.module('smarthome')
 
     $scope.localLogin = (email, password) => {
       loginService.login(email, password).then(response => {
-        $state.go('landing page');
+        $state.go('dashboard');
       });
     };
 
@@ -14,7 +14,6 @@ angular.module('smarthome')
     })();
 
     $scope.logout = () => {
-      console.log('hit');
       headerSrvc.logout().then((response) => {
         swal("Success!", "Logout Successful!", "success");
         setTimeout(() => {

@@ -27,7 +27,7 @@ module.exports = {
     var data = req.body;
     data.pubsub = bcrypt.hashSync(data.pubsub, saltRounds);
     data.pubpub = bcrypt.hashSync(data.pubpub, saltRounds);
-    db.update_user([req.user.id, data.name, data.email, data.phone, data.pubsub, data.pubpub, data.pubchan], (err, response) => {
+    db.update_user([req.user.id, data.name, data.email, data.phone, data.password, data.pubsub, data.pubpub, data.pubchan], (err, response) => {
       if (err) {
         res.status(500).send("Update Failed");
       } else {
@@ -69,7 +69,9 @@ module.exports = {
       req.logout();
       res.redirect('/#/');
     }
-    res.status(500).send("No User data Provided");
+    else {
+        res.status(500).send("No User data Provided");
+    }
   },
   destroyUser: (req, res, next) => {
     db.destroy_user_settings([req.user.id], (err, response) => {

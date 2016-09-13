@@ -38,8 +38,7 @@ angular.module('smarthome')
         manageService.getSettings(scope.id).then(response => {
           element.find('i').on('click', () => {
             let setting = response;
-            let id = setting.id;
-
+            let id = scope.id;
             let startTime = setting.start_time;
             let endTime = setting.end_time;
             /// Door + Window Sensor ///
@@ -206,10 +205,9 @@ angular.module('smarthome')
                          <h4>Enable/Disable Device</h4>
                       </div>`);
             }
-          $(element.find('section')).slideDown();
-          console.log('id', scope.id);
-          $("#start" + scope.id).timeDropper();
-          $("#end" + scope.id).timeDropper();
+            $(element.find('section')).slideDown();
+            $("#start" + scope.id).timeDropper();
+            $("#end" + scope.id).timeDropper();
           })
         })
         $(element.find('section')).on('click', '#appended-close', () => {
@@ -219,7 +217,6 @@ angular.module('smarthome')
         })
       },
       controller: ($scope) => {
-        $scope.showSettings = false;
       }
     }
   }); //End directive

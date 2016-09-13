@@ -1,6 +1,7 @@
 const app = require('../index.js');
 const db = app.get('db');
 const bcrypt = require('bcrypt');
+const moment = require('moment');
 const saltRounds = 10;
 
 module.exports = {
@@ -11,6 +12,8 @@ module.exports = {
   },
   getSettings: (req, res, next) => {
     db.read_device_settings([req.params.sensorId], (err, response) => {
+      response[0].start_time = moment(response[0].start_time).format('h:mm A');
+      response[0].end_time = moment(response[0].end_time).format('h:mm A');
       res.json(response);
     });
   },
@@ -18,6 +21,26 @@ module.exports = {
     db.read_modules((err, response) => {
       res.json(response);
     });
+  },
+  getNotifications: (req, res, next) => {
+    db.read_history([req.user.id], (err, response) => {
+      var history = [];
+      for (var i = 0; i < response.length; i++) {
+        if (response[i].seen === false && response[i].alert === true) {
+          var obj = {};
+          obj.id = response[i].id;
+          obj.status = response[i].status;
+          obj.timeStamp = moment(response[i].time_stamp).format('h:mm A MMM DD, YYYY');
+          obj.nickname = response[i].nickname;
+          history.push(obj);
+        }
+      }
+      res.json(history);
+    });
+  },
+  updateNotification: (req, res, next) => {
+    db.update_notification([req.params.id], (err, response) => {});
+    res.sendStatus(200);
   },
   updateSettings: (req, res, next) => {
     var data = req.body;
