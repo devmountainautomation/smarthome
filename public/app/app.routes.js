@@ -3,10 +3,18 @@ angular.module('smarthome')
 
     $urlRouterProvider.otherwise('/');
 
+    $urlRouterProvider.when(/section[0-9]+/, function () {
+      // no op
+    });
+
     $stateProvider
       .state('landing page', {
         url: '/',
         templateUrl: './app/component/landingPage/landingPage.html',
+      })
+      .state('getStarted', {
+        url: '/getstarted',
+        templateUrl: './app/component/getStarted/getStarted.html'
       })
       .state('login', {
         url: '/login',
@@ -67,4 +75,5 @@ angular.module('smarthome')
         templateUrl: 'app/component/add/add.html',
         controller: 'addCtrl'
       })
+
   });
