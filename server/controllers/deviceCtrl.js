@@ -40,7 +40,7 @@ module.exports = {
   },
   updateNotification: (req, res, next) => {
     db.update_notification([req.params.id], (err, response) => {});
-    res.send(200);
+    res.sendStatus(200);
   },
   updateSettings: (req, res, next) => {
     var data = req.body;

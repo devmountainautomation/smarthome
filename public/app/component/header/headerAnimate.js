@@ -27,7 +27,6 @@ angular.module('smarthome')
             });
 
           } else {
-
             let elmnt = $compile(
               `<div class="menu-box-container">
                 <div class="lp-boxes" id="box1" ui-sref="dashboard">
