@@ -1,15 +1,14 @@
 angular.module('smarthome')
-  .controller('headerCtrl', (headerSrvc, $scope, $state, $rootScope) => {
+  .controller('headerCtrl', (headerSrvc, $scope, $state) => {
 
     (() => {
-      headerSrvc.getUser().then((response => {
+      headerSrvc.getUser().then(response => {
         $scope.user = response.data;
-        console.log($scope.user);
-      }));
+      });
     })();
 
     $scope.logout = () => {
-      headerSrvc.logout().then((response) => {
+      headerSrvc.logout().then(response => {
         swal("Success!", "Logout Successful!", "success");
         setTimeout(() => {
           if (response) {
@@ -30,4 +29,4 @@ angular.module('smarthome')
       });
     };
 
-  });
+}); //End headerCtrl
