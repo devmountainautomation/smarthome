@@ -35,6 +35,7 @@
     "gulp-sass": "^2.3.2",
     "jstz": "^1.0.7",
     "massive": "^2.5.0",
+    "moment": "^2.15.0",
     "moment-timezone": "^0.5.5",
     "parser": "^0.1.4",
     "passport": "^0.3.2",
