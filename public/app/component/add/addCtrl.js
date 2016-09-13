@@ -10,6 +10,11 @@ angular.module('smarthome')
     $('#motion-start').timeDropper({setCurrentTime: true});
     $('#motion-end').timeDropper({setCurrentTime: true});
 
+    $("#door-window-settings").hide();
+    $("#smoke-settings").hide();
+    $("#sound-settings").hide();
+    $("#motion-settings").hide();
+
     var gotoElement = function (eID){
      addService.scrollTo(eID);
    }
@@ -19,33 +24,33 @@ angular.module('smarthome')
         case "breech":
         {
           $("#door-window-settings").slideDown();
-          $("#smoke-settings").slideUp();
-          $("#sound-settings").slideUp();
-          $("#motion-settings").slideUp();
+          $("#smoke-settings").hide();
+          $("#sound-settings").hide();
+          $("#motion-settings").hide();
           break;
         }
         case "smoke_detector":
         {
           $("#smoke-settings").slideDown();
-          $("#door-window-settings").slideUp();
-          $("#sound-settings").slideUp();
-          $("#motion-settings").slideUp();
+          $("#door-window-settings").hide();
+          $("#sound-settings").hide();
+          $("#motion-settings").hide();
           break;
         }
         case "sound":
         {
           $("#sound-settings").slideDown();
-          $("#door-window-settings").slideUp();
-          $("#smoke-settings").slideUp();
-          $("#motion-settings").slideUp();
+          $("#door-window-settings").hide();
+          $("#smoke-settings").hide();
+          $("#motion-settings").hide();
           break;
         }
         case "motion":
         {
           $("#motion-settings").slideDown();
-          $("#door-window-settings").slideUp();
-          $("#smoke-settings").slideUp();
-          $("#sound-settings").slideUp();
+          $("#door-window-settings").hide();
+          $("#smoke-settings").hide();
+          $("#sound-settings").hide();
           break;
         }
       }

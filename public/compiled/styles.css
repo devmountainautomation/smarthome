@@ -1788,7 +1788,7 @@ html.fp-enabled,
 .setting-menu {
   background: #343f46;
   padding: 5vw;
-  position: absolute;
+  position: fixed;
   top: 23vh;
   left: 5vw;
   width: 90%;
