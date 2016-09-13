@@ -23,7 +23,7 @@ angular.module('smarthome')
         method: 'PUT',
         url: '/notifications/' + id
       }).then(response => {
-        let results = response.data;
+        return response;
       });
     };
 

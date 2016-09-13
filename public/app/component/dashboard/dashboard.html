@@ -3,13 +3,13 @@
 
 <section class="dash-section">
     <div class="notifications">
-        <div class="notifications-container">
+        <div class="notifications-container" ng-repeat="note in notes | orderBy: 'timeStamp'" id="{{note.id}}">
             <div class="notifications-wrapper">
-                <div class="circle-left" ng-click="updateNote(id)" ng-model="note.seen" ng-value="true"><i class="fa fa-circle-thin fa-lg fa-fw" aria-hidden="true"></i></div>
+                <div class="circle-left" ng-click="updateNote(note.id)"><i class="fa fa-circle-thin fa-lg fa-fw" aria-hidden="true"></i></div>
+                <!-- ng-model="note.seen" ng-value="true" -->
                 <div class="central-note-wrapper">
-                    <!-- id="{{note.id}}" needs to go in the wrapper-->
-                    <div class="alert-time"><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i><p>alert time</p></div>
-                    <div class="alert-info"><p>Insert alert phrase</p></div>
+                    <div class="alert-time"><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i><p>{{note.timeStamp}}</p></div>
+                    <div class="alert-info"><p>Door {{note.status}}</p></div>
                 </div>
             </div>
         </div>

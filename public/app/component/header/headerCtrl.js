@@ -9,7 +9,6 @@ angular.module('smarthome')
     })();
 
     $scope.logout = () => {
-      console.log('hit');
       headerSrvc.logout().then((response) => {
         swal("Success!", "Logout Successful!", "success");
         setTimeout(() => {

@@ -1149,26 +1149,27 @@ angular.module('smarthome').controller('dashboardCtrl', function ($scope, dashbo
     });
   })();
 
-  //   $scope.getNotifications = () => {
-  //     dashboardSrvc.getNotifications().then(response => {
-  //       $scope.notes = response.data;
-  //     });
-  //   };
-  // });
-  // $scope.getNotifications();
-  //
-  // $scope.updateNote = (id) => {
-  //   dashboardSrvc.updateNote(id).then(response => {
-  //     if (response) {
-  //       $('#' + id).fadeOut().toggle('slide', 'left');
-  //       $scope.getNotifications();
-  //     }
-  //     else {
-  //       swal('Error', 'Hmm, something happened. Please Try Again.', 'error');
-  //     }
-  //   });
-  // };
+  $scope.getNotifications = function () {
+    dashboardSrvc.getNotifications().then(function (response) {
+      console.log(response.data);
+      $scope.notes = response.data;
+    });
+  };
+  $scope.getNotifications();
 
+  $scope.updateNote = function (id) {
+    dashboardSrvc.updateNote(id).then(function (response) {
+      if (response.status === 200) {
+        $('#' + id).addClass('slide-out');
+        setTimeout(function () {
+          $scope.getNotifications();
+        }, 800);
+      } else {
+        console.log(response);
+        swal('Error', 'Hmm, something happened. Please Try Again.', 'error');
+      }
+    });
+  };
 });
 'use strict';
 
@@ -1196,7 +1197,7 @@ angular.module('smarthome').service('dashboardSrvc', function ($http) {
       method: 'PUT',
       url: '/notifications/' + id
     }).then(function (response) {
-      var results = response.data;
+      return response;
     });
   };
 });
@@ -1295,7 +1296,7 @@ angular.module('smarthome').directive('headDir', function ($state, $compile) {
           });
         } else {
 
-          var elmnt = $compile('<div class="menu-box-container">\n                  <div class="lp-boxes" id="box1" ui-sref="dashboard">\n                      <i class="fa fa-tachometer fa-fw fa-3x" aria-hidden="true"></i>\n                      <p>Dashboard</p>\n                  </div>\n                  <div class="lp-boxes" id="box2">\n                      <i class="fa fa-plus-square fa-fw fa-3x" aria-hidden="true"></i>\n                      <p>Add Device</p>\n                  </div>\n                  <div class="lp-boxes" id="box3" ui-sref="manage">\n                      <i class="fa fa-wrench fa-fw fa-3x" aria-hidden="true"></i>\n                      <p>Manage Devices</p>\n                  </div>\n                  <div class="lp-boxes" id="box4">\n                      <i class="fa fa-question fa-fw fa-3x" aria-hidden="true"></i>\n                      <p>FAQ</p>\n                  </div>\n              </div>\n              <div class="menu-list-container">\n                  <div class="lp-menu-item" id="lp-contact">\n                      <p>Update Profile</p>\n                  </div>\n                  <div class="lp-menu-item" id="lp-logout" ng-click="logout()">\n                      <p>Logout</p>\n                  </div>\n                  <div class="social-hex">\n                      <div class="hexagon"><i class="fa fa-github fa-fw fa-2x" aria-hidden="true"></i></div>\n                      <div class="hexagon"><i class="fa fa-linkedin fa-fw fa-2x" aria-hidden="true"></i></div>\n                      <div class="hexagon"><i class="fa fa-facebook fa-fw fa-2x" aria-hidden="true"></i></div>\n                  </div>\n              </div>')(scope);
+          var elmnt = $compile('<div class="menu-box-container">\n                  <div class="lp-boxes" id="box1" ui-sref="dashboard">\n                      <i class="fa fa-tachometer fa-fw fa-3x" aria-hidden="true"></i>\n                      <p>Dashboard</p>\n                  </div>\n                  <div class="lp-boxes" id="box2" ui-sref="addDevice">\n                      <i class="fa fa-plus-square fa-fw fa-3x" aria-hidden="true"></i>\n                      <p>Add Device</p>\n                  </div>\n                  <div class="lp-boxes" id="box3" ui-sref="manage">\n                      <i class="fa fa-wrench fa-fw fa-3x" aria-hidden="true"></i>\n                      <p>Manage Devices</p>\n                  </div>\n                  <div class="lp-boxes" id="box4">\n                      <i class="fa fa-question fa-fw fa-3x" aria-hidden="true"></i>\n                      <p>FAQ</p>\n                  </div>\n              </div>\n              <div class="menu-list-container">\n                  <div class="lp-menu-item" id="lp-contact">\n                      <p>Update Profile</p>\n                  </div>\n                  <div class="lp-menu-item" id="lp-logout" ng-click="logout()">\n                      <p>Logout</p>\n                  </div>\n                  <div class="social-hex">\n                      <div class="hexagon"><i class="fa fa-github fa-fw fa-2x" aria-hidden="true"></i></div>\n                      <div class="hexagon"><i class="fa fa-linkedin fa-fw fa-2x" aria-hidden="true"></i></div>\n                      <div class="hexagon"><i class="fa fa-facebook fa-fw fa-2x" aria-hidden="true"></i></div>\n                  </div>\n              </div>')(scope);
 
           $('.menu').empty();
           $('.menu').html(elmnt);
@@ -1346,7 +1347,6 @@ angular.module('smarthome').controller('headerCtrl', function (headerSrvc, $scop
   })();
 
   $scope.logout = function () {
-    console.log('hit');
     headerSrvc.logout().then(function (response) {
       swal("Success!", "Logout Successful!", "success");
       setTimeout(function () {
@@ -1408,44 +1408,6 @@ angular.module('smarthome').directive('update', function () {
     link: function link(scope, elem, attrs) {
       var $scope = scope;
     }
-  };
-});
-'use strict';
-
-angular.module('smarthome').directive('landingDir', function () {
-  return {
-    restrict: 'EA',
-    link: function link(scope, elem, attrs) {
-      $(document).ready(function () {
-        // $(window).scroll(() => {
-        //     let winScroll = $(window).scrollTop() - 35;
-        //     if (winScroll < $('.landing-banner').offset().top - ($(window).height() / 3)) {
-        //         console.log(winScroll);
-        //         $('.skew-right').css("transform", "skewY(" + (winScroll / 2) + "deg)");
-        //         $('.skew-left').css("transform", "skewY(" + (-winScroll / 2) + "deg)");
-        //     }
-        // });
-      });
-    }
-  };
-});
-'use strict';
-
-angular.module('smarthome').controller('landingCtrl', function (landingSrvc, $scope) {
-
-  (function () {
-    landingSrvc.getUser().then(function (response) {
-      $scope.user = response.data;
-      console.log($scope.user);
-    });
-  })();
-});
-'use strict';
-
-angular.module('smarthome').service('landingSrvc', function ($http) {
-
-  this.getUser = function () {
-    return $http.get('/me');
   };
 });
 'use strict';
@@ -1570,6 +1532,44 @@ angular.module('smarthome').directive('signupForm', function () {
 });
 'use strict';
 
+angular.module('smarthome').directive('landingDir', function () {
+  return {
+    restrict: 'EA',
+    link: function link(scope, elem, attrs) {
+      $(document).ready(function () {
+        // $(window).scroll(() => {
+        //     let winScroll = $(window).scrollTop() - 35;
+        //     if (winScroll < $('.landing-banner').offset().top - ($(window).height() / 3)) {
+        //         console.log(winScroll);
+        //         $('.skew-right').css("transform", "skewY(" + (winScroll / 2) + "deg)");
+        //         $('.skew-left').css("transform", "skewY(" + (-winScroll / 2) + "deg)");
+        //     }
+        // });
+      });
+    }
+  };
+});
+'use strict';
+
+angular.module('smarthome').controller('landingCtrl', function (landingSrvc, $scope) {
+
+  (function () {
+    landingSrvc.getUser().then(function (response) {
+      $scope.user = response.data;
+      console.log($scope.user);
+    });
+  })();
+});
+'use strict';
+
+angular.module('smarthome').service('landingSrvc', function ($http) {
+
+  this.getUser = function () {
+    return $http.get('/me');
+  };
+});
+'use strict';
+
 angular.module('smarthome').directive('deviceCard', function (manageService) {
   return {
     restrict: 'EA',
@@ -1609,8 +1609,7 @@ angular.module('smarthome').directive('deviceCard', function (manageService) {
       manageService.getSettings(scope.id).then(function (response) {
         element.find('i').on('click', function () {
           var setting = response;
-          var id = setting.id;
-
+          var id = scope.id;
           var startTime = setting.start_time;
           var endTime = setting.end_time;
           /// Door + Window Sensor ///
@@ -1630,7 +1629,6 @@ angular.module('smarthome').directive('deviceCard', function (manageService) {
             element.find('section').append('\n                  <div id="appended">\n                    <i id="appended-close" class="fa fa-close"></i>\n                    <div>\n                      <h2>Notification Window</h2>\n                      <h3>Start Time</h3>\n                        <input type="text" id="start' + id + '" value="' + _startTime3 + '"></input>\n                      <h3>End Time</h3>\n                        <input type="text" id="end' + id + '" value="' + _endTime3 + '"></input>\n                    </div>\n\n                    <div class="checkbox-section">\n                      <h2>Notifications</h2>\n                        <div class="check-box">\n                          <div class="squaredOne">\n                            <input type="checkbox" value="None" id="settings-email-radio" name="check" checked />\n                            <label for="settings-email-radio"></label>\n                          </div>\n                          <h4> Send me an email </h4>\n                        </div>\n\n                        <div class="check-box">\n                          <div class="squaredOne">\n                            <input type="checkbox" value="None" id="settings-text-radio" name="check" checked />\n                            <label for="settings-text-radio"></label>\n                          </div>\n                          <h4> Send me a text </h4>\n                        </div>\n\n                      </div>\n                      <hr>\n                      <div class="enable-section">\n                          <div class="slide-checkbox">\n    \t\t                      <input type="checkbox" value="1" id="checkboxThreeInput" checked />\n\t  \t                        <label for="checkboxThreeInput"></label>\n\t                         </div>\n                         <h4>Enable/Disable Device</h4>\n                      </div>');
           }
           $(element.find('section')).slideDown();
-          console.log('id', scope.id);
           $("#start" + scope.id).timeDropper();
           $("#end" + scope.id).timeDropper();
         });
@@ -1641,9 +1639,7 @@ angular.module('smarthome').directive('deviceCard', function (manageService) {
         });
       });
     },
-    controller: function controller($scope) {
-      $scope.showSettings = false;
-    }
+    controller: function controller($scope) {}
   };
 }); //End directive
 'use strict';

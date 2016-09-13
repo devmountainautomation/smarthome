@@ -33,7 +33,7 @@ angular.module('smarthome')
                       <i class="fa fa-tachometer fa-fw fa-3x" aria-hidden="true"></i>
                       <p>Dashboard</p>
                   </div>
-                  <div class="lp-boxes" id="box2">
+                  <div class="lp-boxes" id="box2" ui-sref="addDevice">
                       <i class="fa fa-plus-square fa-fw fa-3x" aria-hidden="true"></i>
                       <p>Add Device</p>
                   </div>
