@@ -59,7 +59,6 @@ const deviceCtrl = require('./controllers/deviceCtrl.js');
 
 ////////////// Endpoints /////////////////////////
 
-
 //*********** Get Requests ********************//
 app.get('/users/', userCtrl.getUser);
 app.get('/users/sensors/', deviceCtrl.getUserSensors);
