@@ -3,7 +3,7 @@
     height: 7vh;
     padding: 5vh;
     position: fixed;
-    z-index: 5;
+    z-index: 10001;
     background: transparent;
     color: #fff;
     transition: all 0.2s ease-in;
@@ -103,7 +103,7 @@
     display: none;
     position: fixed;
     overflow: hidden;
-    z-index: 4;
+    z-index: 10000;
     font-family: 'Source Sans Pro';
 
     .menu-box-container {

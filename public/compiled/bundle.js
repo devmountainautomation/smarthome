@@ -436,7 +436,23 @@ angular.module('smarthome').config(function ($stateProvider, $urlRouterProvider)
   }).state('addDevice', {
     url: '/add',
     templateUrl: 'app/component/add/add.html',
-    controller: 'addCtrl'
+    controller: 'addCtrl',
+    resolve: {
+      checkAuth: function checkAuth($state, dashboardSrvc) {
+        return dashboardSrvc.checkAuth().then(function (response) {
+          if (response.data === 'unauthorized') {
+            $state.go('login');
+            setTimeout(function () {
+              swal("Error", 'Please Login or Sign Up', 'error');
+            }, 400);
+          }
+        });
+      }
+    }
+  }).state('about', {
+    url: '/about',
+    templateUrl: '/app/component/about/about.html',
+    controller: 'aboutCtrl'
   });
 });
 "use strict";
@@ -1118,6 +1134,8 @@ angular.module('smarthome').service('addService', function ($http) {
     });
   };
 });
+"use strict";
+"use strict";
 'use strict';
 
 angular.module('smarthome').directive('dashDir', function () {
@@ -1200,71 +1218,6 @@ angular.module('smarthome').service('dashboardSrvc', function ($http) {
       return response;
     });
   };
-});
-'use strict';
-
-angular.module('smarthome').directive('fullPage', function () {
-    return {
-        restrict: 'EA',
-        templateUrl: './app/component/getStarted/fullPage.html',
-        controller: 'getStartedCtrl',
-        link: function link(scope, elems, attrs) {
-            $(document).ready(function () {
-                var length = scope.slides.length;
-                $('#fullpage').fullpage({
-                    anchors: ['section1', 'section2', 'section3', 'section4', 'section5'],
-                    navigation: true,
-                    navigationPosition: 'left',
-                    onLeave: function onLeave(index, nextIndex, direction) {
-                        if (index === 1 || nextIndex === 1) $('.move-up').toggle();
-                        if (index === length || nextIndex === length) $('.move-down').toggle();
-                        scope.currentIndex = nextIndex;
-                    }
-                });
-                $(document).on('click', '.move-up', function () {
-                    scope.currentIndex--;
-                    $.fn.fullpage.moveTo('section' + scope.currentIndex);
-                });
-                $(document).on('click', '.move-down', function () {
-                    scope.currentIndex++;
-                    $.fn.fullpage.moveTo('section' + scope.currentIndex);
-                });
-            });
-        }
-    };
-});
-'use strict';
-
-angular.module('smarthome').controller('getStartedCtrl', function ($scope) {
-
-  $scope.currentIndex = 1;
-
-  $scope.slides = [{
-    id: 1,
-    header: "Get the right equipment",
-    text: "HomeOne is configured to work with a Rasberry Pi",
-    img: "../../../assets/img/getStarted/raspberrypi.png"
-  }, {
-    id: 2,
-    header: "Create a PubNub account",
-    text: "PubNub is the link between your Raspberry Pi and your HomeOne portal",
-    img: "../../../assets/img/getStarted/pubnub.png"
-  }, {
-    id: 3,
-    header: "Register your device on your HomeOne account",
-    text: "Registering your device gives you the ability to set notification time windows and view historical data",
-    img: "../../../assets/img/devautomation logo-1.png"
-  }, {
-    id: 4,
-    header: "Download the HomeOne software on your Raspberry Pi",
-    text: "After installing a Raspberry Pi OS, download node and npm install home-one",
-    img: "../../../assets/img/getStarted/download.svg"
-  }, {
-    id: 5,
-    header: "Install the device in your home",
-    text: "Once the device is installed, HomeOne will take care of the rest",
-    img: "../../../assets/img/getStarted/tools.svg"
-  }];
 });
 'use strict';
 
@@ -1412,123 +1365,68 @@ angular.module('smarthome').directive('update', function () {
 });
 'use strict';
 
-angular.module('smarthome').directive('compareTo', function () {
-  return {
-    restrict: 'A',
-    require: "ngModel",
-    scope: {
-      otherValue: "=compareTo"
-    },
-    link: function link(scope, element, attrs, ngModel) {
-      ngModel.$validators.compareTo = function (modelValue) {
-        return modelValue == scope.otherValue;
-      };
-      scope.$watch("otherValue", function () {
-        ngModel.$validate();
-      });
-      element.on('blur', function () {
-        if (element.hasClass('ng-invalid')) {
-          $('.password-confirmation-alert').removeClass('hidden');
+angular.module('smarthome').directive('fullPage', function () {
+    return {
+        restrict: 'EA',
+        templateUrl: './app/component/getStarted/fullPage.html',
+        controller: 'getStartedCtrl',
+        link: function link(scope, elems, attrs) {
+            $(document).ready(function () {
+                var length = scope.slides.length;
+                $('#fullpage').fullpage({
+                    anchors: ['section1', 'section2', 'section3', 'section4', 'section5'],
+                    navigation: true,
+                    navigationPosition: 'left',
+                    onLeave: function onLeave(index, nextIndex, direction) {
+                        if (index === 1 || nextIndex === 1) $('.move-up').toggle();
+                        if (index === length || nextIndex === length) $('.move-down').toggle();
+                        scope.currentIndex = nextIndex;
+                    }
+                });
+                $(document).on('click', '.move-up', function () {
+                    scope.currentIndex--;
+                    $.fn.fullpage.moveTo('section' + scope.currentIndex);
+                });
+                $(document).on('click', '.move-down', function () {
+                    scope.currentIndex++;
+                    $.fn.fullpage.moveTo('section' + scope.currentIndex);
+                });
+            });
         }
-      });
-      element.on('keyup', function () {
-        if (element.hasClass('ng-valid')) {
-          $('.password-confirmation-alert').addClass('hidden');
-        }
-      });
-    }
-  };
+    };
 });
 'use strict';
 
-angular.module('smarthome').controller('loginCtrl', function ($scope, $state, loginService) {
+angular.module('smarthome').controller('getStartedCtrl', function ($scope) {
 
-  $scope.localLogin = function (email, password) {
-    loginService.login(email, password).then(function (response) {
-      $state.go('landing page');
-    });
-  };
+  $scope.currentIndex = 1;
 
-  (function () {
-    loginService.getUser().then(function (response) {
-      $scope.user = response.data;
-    });
-  })();
-
-  $scope.logout = function () {
-    console.log('hit');
-    headerSrvc.logout().then(function (response) {
-      swal("Success!", "Logout Successful!", "success");
-      setTimeout(function () {
-        if (response) {
-          $state.go('landing page');
-        }
-      }, 1500);
-    });
-  };
-}); //End loginCtrl
-'use strict';
-
-angular.module('smarthome').service('loginService', function ($http, $state) {
-  this.login = function (email, password) {
-    return $http({
-      method: 'POST',
-      url: '/auth/local',
-      data: {
-        username: email,
-        password: password
-      }
-    }).then(function (response) {
-      return response.status;
-    });
-  };
-
-  this.createLocalUser = function (name, email, password, phone) {
-    return $http({
-      method: 'POST',
-      url: '/users',
-      data: {
-        name: name,
-        email: email,
-        password: password,
-        phone: phone
-      }
-    }).then(function (response) {
-      $state.go('landing page');
-    });
-  };
-
-  this.getUser = function () {
-    return $http.get('/me');
-  };
-}); //End loginService
-'use strict';
-
-angular.module('smarthome').directive('signupForm', function () {
-  return {
-    restrict: 'E',
-    templateUrl: "app/component/login/signupForm.html",
-    controller: function controller($scope, loginService) {
-      $scope.createLocalUser = function () {
-        loginService.createLocalUser($scope.signup_name, $scope.signup_email, $scope.signup_password, $scope.signup_phone);
-      };
-    },
-    link: function link(scope, element, attrs) {
-      $('#signup-trigger').on('click', function () {
-        $('.signup-expander').slideToggle();
-      });
-      $('#email').on('blur', function () {
-        if ($('#email').hasClass('ng-invalid')) {
-          $('.email-confirmation-alert').removeClass('hidden');
-        }
-      });
-      $('#email').on('keyup', function () {
-        if ($('#email').hasClass('ng-valid')) {
-          $('.email-confirmation-alert').addClass('hidden');
-        }
-      });
-    }
-  };
+  $scope.slides = [{
+    id: 1,
+    header: "Get the right equipment",
+    text: "HomeOne is configured to work with a Rasberry Pi",
+    img: "../../../assets/img/getStarted/raspberrypi.png"
+  }, {
+    id: 2,
+    header: "Create a PubNub account",
+    text: "PubNub is the link between your Raspberry Pi and your HomeOne portal",
+    img: "../../../assets/img/getStarted/pubnub.png"
+  }, {
+    id: 3,
+    header: "Register your device on your HomeOne account",
+    text: "Registering your device gives you the ability to set notification time windows and view historical data",
+    img: "../../../assets/img/devautomation logo-1.png"
+  }, {
+    id: 4,
+    header: "Download the HomeOne software on your Raspberry Pi",
+    text: "After installing a Raspberry Pi OS, download node and npm install home-one",
+    img: "../../../assets/img/getStarted/download.svg"
+  }, {
+    id: 5,
+    header: "Install the device in your home",
+    text: "Once the device is installed, HomeOne will take care of the rest",
+    img: "../../../assets/img/getStarted/tools.svg"
+  }];
 });
 'use strict';
 
@@ -1713,3 +1611,123 @@ angular.module('smarthome').service('manageService', function ($http) {
     }
   };
 }); //End manageService
+'use strict';
+
+angular.module('smarthome').directive('compareTo', function () {
+  return {
+    restrict: 'A',
+    require: "ngModel",
+    scope: {
+      otherValue: "=compareTo"
+    },
+    link: function link(scope, element, attrs, ngModel) {
+      ngModel.$validators.compareTo = function (modelValue) {
+        return modelValue == scope.otherValue;
+      };
+      scope.$watch("otherValue", function () {
+        ngModel.$validate();
+      });
+      element.on('blur', function () {
+        if (element.hasClass('ng-invalid')) {
+          $('.password-confirmation-alert').removeClass('hidden');
+        }
+      });
+      element.on('keyup', function () {
+        if (element.hasClass('ng-valid')) {
+          $('.password-confirmation-alert').addClass('hidden');
+        }
+      });
+    }
+  };
+});
+'use strict';
+
+angular.module('smarthome').controller('loginCtrl', function ($scope, $state, loginService) {
+
+  $scope.localLogin = function (email, password) {
+    loginService.login(email, password).then(function (response) {
+      $state.go('landing page');
+    });
+  };
+
+  (function () {
+    loginService.getUser().then(function (response) {
+      $scope.user = response.data;
+    });
+  })();
+
+  $scope.logout = function () {
+    console.log('hit');
+    headerSrvc.logout().then(function (response) {
+      swal("Success!", "Logout Successful!", "success");
+      setTimeout(function () {
+        if (response) {
+          $state.go('landing page');
+        }
+      }, 1500);
+    });
+  };
+}); //End loginCtrl
+'use strict';
+
+angular.module('smarthome').service('loginService', function ($http, $state) {
+  this.login = function (email, password) {
+    return $http({
+      method: 'POST',
+      url: '/auth/local',
+      data: {
+        username: email,
+        password: password
+      }
+    }).then(function (response) {
+      return response.status;
+    });
+  };
+
+  this.createLocalUser = function (name, email, password, phone) {
+    return $http({
+      method: 'POST',
+      url: '/users',
+      data: {
+        name: name,
+        email: email,
+        password: password,
+        phone: phone
+      }
+    }).then(function (response) {
+      $state.go('landing page');
+    });
+  };
+
+  this.getUser = function () {
+    return $http.get('/me');
+  };
+}); //End loginService
+'use strict';
+
+angular.module('smarthome').directive('signupForm', function () {
+  return {
+    restrict: 'E',
+    templateUrl: "app/component/login/signupForm.html",
+    controller: function controller($scope, loginService) {
+      $scope.createLocalUser = function () {
+        loginService.createLocalUser($scope.signup_name, $scope.signup_email, $scope.signup_password, $scope.signup_phone);
+      };
+    },
+    link: function link(scope, element, attrs) {
+      $('#signup-trigger').on('click', function () {
+        $('.signup-expander').slideToggle();
+      });
+      $('#email').on('blur', function () {
+        if ($('#email').hasClass('ng-invalid')) {
+          $('.email-confirmation-alert').removeClass('hidden');
+        }
+      });
+      $('#email').on('keyup', function () {
+        if ($('#email').hasClass('ng-valid')) {
+          $('.email-confirmation-alert').addClass('hidden');
+        }
+      });
+    }
+  };
+});

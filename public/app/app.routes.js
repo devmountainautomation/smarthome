@@ -73,7 +73,24 @@ angular.module('smarthome')
       .state('addDevice', {
         url: '/add',
         templateUrl: 'app/component/add/add.html',
-        controller: 'addCtrl'
+        controller: 'addCtrl',
+        resolve: {
+          checkAuth: ($state, dashboardSrvc) => {
+            return dashboardSrvc.checkAuth().then(response => {
+              if (response.data === 'unauthorized') {
+                $state.go('login');
+                setTimeout(() => {
+                  swal("Error", 'Please Login or Sign Up', 'error');
+                }, 400);
+              }
+            });
+          }
+        }
+      })
+      .state('about', {
+        url: '/about',
+        templateUrl: '/app/component/about/about.html',
+        controller: 'aboutCtrl',
       })
 
   });

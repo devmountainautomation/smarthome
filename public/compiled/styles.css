@@ -839,7 +839,7 @@ h1, h2, h3, h4, h5, h6 {
   height: 7vh;
   padding: 5vh;
   position: fixed;
-  z-index: 5;
+  z-index: 10001;
   background: transparent;
   color: #fff;
   -webkit-transition: all 0.2s ease-in;
@@ -950,7 +950,7 @@ h1, h2, h3, h4, h5, h6 {
   display: none;
   position: fixed;
   overflow: hidden;
-  z-index: 4;
+  z-index: 10000;
   font-family: 'Source Sans Pro'; }
   .menu .menu-box-container {
     margin-top: 10vh;
