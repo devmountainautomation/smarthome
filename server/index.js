@@ -103,7 +103,7 @@ app.get('/auth/facebook/callback', passport.authenticate('facebook', {
 }));
 
 app.post('/auth/local', passport.authenticate('local'), (req, res) => {
-  res.status(200).redirect('/dashboard');
+  res.status(200).redirect('/#/dashboard');
 });
 
 app.get('/logout', userCtrl.logout);
@@ -112,7 +112,7 @@ app.get('/me', (req, res, next) => {
   if (req.user) {
     res.send(req.user);
   } else {
-    res.status(400).json('Not Logged In!');
+    res.status(200);
   }
 });
 

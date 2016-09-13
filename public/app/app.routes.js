@@ -1,11 +1,11 @@
 angular.module('smarthome')
   .config(($stateProvider, $urlRouterProvider) => {
 
-    $urlRouterProvider.otherwise('/');
+      $urlRouterProvider.otherwise('/');
 
-    $urlRouterProvider.when(/section[0-9]+/, function () {
-      // no op
-    });
+      $urlRouterProvider.when(/section[0-9]+/, () => {
+          // no op
+      });
 
     $stateProvider
       .state('landing page', {
@@ -18,7 +18,7 @@ angular.module('smarthome')
       })
       .state('login', {
         url: '/login',
-        templateUrl: '/app/component/login/login.html',
+        templateUrl: './app/component/login/login.html',
         controller: 'loginCtrl',
         resolve: {
           checkAuth: ($state, dashboardSrvc) => {
@@ -32,7 +32,7 @@ angular.module('smarthome')
       })
       .state('dashboard', {
         url: '/dashboard',
-        templateUrl: '/app/component/dashboard/dashboard.html',
+        templateUrl: './app/component/dashboard/dashboard.html',
         controller: 'dashboardCtrl',
         resolve: {
           user: (dashboardSrvc) => {
@@ -52,7 +52,7 @@ angular.module('smarthome')
       })
       .state('manage', {
         url: '/manage',
-        templateUrl: '/app/component/manage/manage.html',
+        templateUrl: './app/component/manage/manage.html',
         controller: 'manageCtrl',
         resolve: {
           user: (dashboardSrvc) => {
@@ -72,7 +72,7 @@ angular.module('smarthome')
       })
       .state('addDevice', {
         url: '/add',
-        templateUrl: 'app/component/add/add.html',
+        templateUrl: './app/component/add/add.html',
         controller: 'addCtrl'
       })
 

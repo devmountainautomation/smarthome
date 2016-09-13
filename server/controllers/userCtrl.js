@@ -69,7 +69,9 @@ module.exports = {
       req.logout();
       res.redirect('/#/');
     }
-    res.status(500).send("No User data Provided");
+    else {
+        res.status(500).send("No User data Provided");
+    }
   },
   destroyUser: (req, res, next) => {
     db.destroy_user_settings([req.user.id], (err, response) => {
