@@ -12,6 +12,8 @@ module.exports = {
   },
   getSettings: (req, res, next) => {
     db.read_device_settings([req.params.sensorId], (err, response) => {
+      response[0].start_time = moment(response[0].start_time).format('h:mm A');
+      response[0].end_time = moment(response[0].end_time).format('h:mm A');
       res.json(response);
     });
   },
@@ -29,6 +31,7 @@ module.exports = {
           obj.id = response[i].id;
           obj.status = response[i].status;
           obj.timeStamp = moment(response[i].time_stamp).format('h:mm A MMM DD, YYYY');
+          obj.nickname = response[i].nickname;
           history.push(obj);
         }
       }

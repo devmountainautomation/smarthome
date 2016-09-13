@@ -9,15 +9,14 @@ angular.module('smarthome')
     this.logout = () => {
       return $http.get('/logout')
         .then(response => {
-          console.log(response);
           return response.data;
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
         });
     };
 
-    this.updateMe = (updateUser) => {
+    this.updateMe = updateUser => {
       return $http({
         method: 'PUT',
         url: '/users/',
@@ -26,7 +25,7 @@ angular.module('smarthome')
         .then(response => {
           return response;
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
       });
     };

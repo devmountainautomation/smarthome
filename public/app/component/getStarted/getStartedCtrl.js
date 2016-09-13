@@ -1,4 +1,4 @@
-angular.module('smarthome').controller('getStartedCtrl', function($scope) {
+angular.module('smarthome').controller('getStartedCtrl', $scope => {
 
   $scope.currentIndex = 1;
 
