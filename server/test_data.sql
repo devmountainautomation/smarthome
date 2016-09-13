@@ -15,24 +15,24 @@ INSERT INTO modules (type) VALUES ('Sound Sensor');
 INSERT INTO modules (type) VALUES ('Smoke Detector');
 INSERT INTO modules (type) VALUES ('Motion Sensor');
 
-INSERT INTO sensors (nickname, user_id, module_id) VALUES ('Front door', 1, 1);
-INSERT INTO sensors (nickname, user_id, module_id) VALUES ('Front door', 2, 1);
-INSERT INTO sensors (nickname, user_id, module_id) VALUES ('Front door', 3, 1);
-INSERT INTO sensors (nickname, user_id, module_id) VALUES ('Front door', 4, 1);
-INSERT INTO sensors (nickname, user_id, module_id) VALUES ('Front door', 5, 1);
-INSERT INTO sensors (nickname, user_id, module_id) VALUES ('Front door', 6, 1);
-INSERT INTO sensors (nickname, user_id, module_id) VALUES ('Back door', 1, 1);
-INSERT INTO sensors (nickname, user_id, module_id) VALUES ('Back door', 2, 1);
-INSERT INTO sensors (nickname, user_id, module_id) VALUES ('Back door', 3, 1);
-INSERT INTO sensors (nickname, user_id, module_id) VALUES ('Back door', 4, 1);
-INSERT INTO sensors (nickname, user_id, module_id) VALUES ('Back door', 5, 1);
-INSERT INTO sensors (nickname, user_id, module_id) VALUES ('Back door', 6, 1);
-INSERT INTO sensors (nickname, user_id, module_id) VALUES ('Kids window', 1, 1);
-INSERT INTO sensors (nickname, user_id, module_id) VALUES ('Kids window', 2, 1);
-INSERT INTO sensors (nickname, user_id, module_id) VALUES ('Maser Bedroom window', 3, 1);
-INSERT INTO sensors (nickname, user_id, module_id) VALUES ('Kids window', 4, 1);
-INSERT INTO sensors (nickname, user_id, module_id) VALUES ('Kitchen window', 5, 1);
-INSERT INTO sensors (nickname, user_id, module_id) VALUES ('Kids window', 6, 1);
+INSERT INTO sensors (nickname, user_id, module_id) VALUES ('Front Door', 1, 1);
+INSERT INTO sensors (nickname, user_id, module_id) VALUES ('Front Door', 2, 1);
+INSERT INTO sensors (nickname, user_id, module_id) VALUES ('Front Door', 3, 1);
+INSERT INTO sensors (nickname, user_id, module_id) VALUES ('Front Door', 4, 1);
+INSERT INTO sensors (nickname, user_id, module_id) VALUES ('Front Door', 5, 1);
+INSERT INTO sensors (nickname, user_id, module_id) VALUES ('Front Door', 6, 1);
+INSERT INTO sensors (nickname, user_id, module_id) VALUES ('Back Door', 1, 1);
+INSERT INTO sensors (nickname, user_id, module_id) VALUES ('Back Door', 2, 1);
+INSERT INTO sensors (nickname, user_id, module_id) VALUES ('Back Door', 3, 1);
+INSERT INTO sensors (nickname, user_id, module_id) VALUES ('Back Door', 4, 1);
+INSERT INTO sensors (nickname, user_id, module_id) VALUES ('Back Door', 5, 1);
+INSERT INTO sensors (nickname, user_id, module_id) VALUES ('Back Door', 6, 1);
+INSERT INTO sensors (nickname, user_id, module_id) VALUES ('Kids Window', 1, 1);
+INSERT INTO sensors (nickname, user_id, module_id) VALUES ('Kids Window', 2, 1);
+INSERT INTO sensors (nickname, user_id, module_id) VALUES ('Master Bedroom Window', 3, 1);
+INSERT INTO sensors (nickname, user_id, module_id) VALUES ('Kids Window', 4, 1);
+INSERT INTO sensors (nickname, user_id, module_id) VALUES ('Kitchen Window', 5, 1);
+INSERT INTO sensors (nickname, user_id, module_id) VALUES ('Kids Window', 6, 1);
 INSERT INTO sensors (nickname, user_id, module_id) VALUES ('Living Room Motion', 1, 4);
 INSERT INTO sensors (nickname, user_id, module_id) VALUES ('Living Room Motion', 2, 4);
 INSERT INTO sensors (nickname, user_id, module_id) VALUES ('Living Room Motion', 3, 4);
@@ -48,53 +48,53 @@ INSERT INTO sensors (nickname, user_id, module_id) VALUES ('Laundry Sensor', 4, 
 INSERT INTO sensors (nickname, user_id, module_id) VALUES ('Laundry Sensor', 5, 2);
 
 INSERT INTO settings (user_id, module_id, sensor_id, active, email, sms, start_time, end_time)
-VALUES (1, 1, 1, true, true, true, '10:30 PM', '07:00 AM');
+VALUES (1, 1, 1, true, true, true, '2016-09-12 10:30 PM', '2016-09-12 07:00 AM');
 INSERT INTO settings (user_id, module_id, sensor_id, active, email, sms, start_time, end_time)
-VALUES (2, 1, 2, true, true, true, '10:00 PM', '08:00 AM');
+VALUES (2, 1, 2, true, true, true, '2016-09-12 10:00 PM', '2016-09-12 08:00 AM');
 INSERT INTO settings (user_id, module_id, sensor_id, active, email, sms, start_time, end_time)
-VALUES (3, 1, 3, true, true, true, '10:30 PM', '06:30 AM');
+VALUES (3, 1, 3, true, true, true, '2016-09-12 10:30 PM', '2016-09-12 06:30 AM');
 INSERT INTO settings (user_id, module_id, sensor_id, active, email, sms, start_time, end_time)
-VALUES (4, 1, 4, true, true, true, '11:00 PM', '07:00 AM');
+VALUES (4, 1, 4, true, true, true, '2016-09-12 11:00 PM', '2016-09-12 07:00 AM');
 INSERT INTO settings (user_id, module_id, sensor_id, active, email, sms, start_time, end_time)
-VALUES (5, 1, 5, true, true, true, '12:30 AM', '05:00 AM');
+VALUES (5, 1, 5, true, true, true, '2016-09-12 12:30 AM', '2016-09-12 05:00 AM');
 INSERT INTO settings (user_id, module_id, sensor_id, active, email, sms, start_time, end_time)
-VALUES (6, 1, 6, true, true, true, '10:00 PM', '07:30 AM');
+VALUES (6, 1, 6, true, true, true, '2016-09-12 10:00 PM', '2016-09-12 07:30 AM');
 INSERT INTO settings (user_id, module_id, sensor_id, active, email, sms, start_time, end_time)
-VALUES (1, 1, 7, true, true, true, '10:30 PM', '07:00 AM');
+VALUES (1, 1, 7, true, true, true, '2016-09-12 10:30 PM', '2016-09-12 07:00 AM');
 INSERT INTO settings (user_id, module_id, sensor_id, active, email, sms, start_time, end_time)
-VALUES (2, 1, 8, true, true, true, '10:00 PM', '08:00 AM');
+VALUES (2, 1, 8, true, true, true, '2016-09-12 10:00 PM', '2016-09-12 08:00 AM');
 INSERT INTO settings (user_id, module_id, sensor_id, active, email, sms, start_time, end_time)
-VALUES (3, 1, 9, true, true, true, '10:30 PM', '06:30 AM');
+VALUES (3, 1, 9, true, true, true, '2016-09-12 10:30 PM', '2016-09-12 06:30 AM');
 INSERT INTO settings (user_id, module_id, sensor_id, active, email, sms, start_time, end_time)
-VALUES (4, 1, 10, true, true, true, '11:00 PM', '07:00 AM');
+VALUES (4, 1, 10, true, true, true, '2016-09-12 11:00 PM', '2016-09-12 07:00 AM');
 INSERT INTO settings (user_id, module_id, sensor_id, active, email, sms, start_time, end_time)
-VALUES (5, 1, 11, true, true, true, '12:30 AM', '05:00 AM');
+VALUES (5, 1, 11, true, true, true, '2016-09-12 12:30 AM', '2016-09-12 05:00 AM');
 INSERT INTO settings (user_id, module_id, sensor_id, active, email, sms, start_time, end_time)
-VALUES (6, 1, 12, true, true, true, '10:00 PM', '07:30 AM');
+VALUES (6, 1, 12, true, true, true, '2016-09-12 10:00 PM', '2016-09-12 07:30 AM');
 INSERT INTO settings (user_id, module_id, sensor_id, active, email, sms, start_time, end_time)
-VALUES (1, 1, 13, true, true, true, '10:30 PM', '07:00 AM');
+VALUES (1, 1, 13, true, true, true, '2016-09-12 10:30 PM', '2016-09-12 07:00 AM');
 INSERT INTO settings (user_id, module_id, sensor_id, active, email, sms, start_time, end_time)
-VALUES (2, 1, 14, true, true, true, '10:00 PM', '08:00 AM');
+VALUES (2, 1, 14, true, true, true, '2016-09-12 10:00 PM', '2016-09-12 08:00 AM');
 INSERT INTO settings (user_id, module_id, sensor_id, active, email, sms, start_time, end_time)
-VALUES (3, 1, 15, true, true, true, '10:30 PM', '06:30 AM');
+VALUES (3, 1, 15, true, true, true, '2016-09-12 10:30 PM', '2016-09-12 06:30 AM');
 INSERT INTO settings (user_id, module_id, sensor_id, active, email, sms, start_time, end_time)
-VALUES (4, 1, 16, true, true, true, '11:00 PM', '07:00 AM');
+VALUES (4, 1, 16, true, true, true, '2016-09-12 11:00 PM', '2016-09-12 07:00 AM');
 INSERT INTO settings (user_id, module_id, sensor_id, active, email, sms, start_time, end_time)
-VALUES (5, 1, 17, true, true, true, '12:30 AM', '05:00 AM');
+VALUES (5, 1, 17, true, true, true, '2016-09-12 12:30 AM', '2016-09-12 05:00 AM');
 INSERT INTO settings (user_id, module_id, sensor_id, active, email, sms, start_time, end_time)
-VALUES (6, 1, 18, true, true, true, '10:00 PM', '07:30 AM');
+VALUES (6, 1, 18, true, true, true, '2016-09-12 10:00 PM', '2016-09-12 07:30 AM');
 INSERT INTO settings (user_id, module_id, sensor_id, active, email, sms, start_time, end_time)
-VALUES (1, 4, 19, true, true, true, '10:30 PM', '07:00 AM');
+VALUES (1, 4, 19, true, true, true, '2016-09-12 10:30 PM', '2016-09-12 07:00 AM');
 INSERT INTO settings (user_id, module_id, sensor_id, active, email, sms, start_time, end_time)
-VALUES (2, 4, 20, true, true, true, '10:00 PM', '08:00 AM');
+VALUES (2, 4, 20, true, true, true, '2016-09-12 10:00 PM', '2016-09-12 08:00 AM');
 INSERT INTO settings (user_id, module_id, sensor_id, active, email, sms, start_time, end_time)
-VALUES (3, 4, 21, true, true, true, '10:30 PM', '06:30 AM');
+VALUES (3, 4, 21, true, true, true, '2016-09-12 10:30 PM', '2016-09-12 06:30 AM');
 INSERT INTO settings (user_id, module_id, sensor_id, active, email, sms, start_time, end_time)
-VALUES (4, 4, 22, true, true, true, '11:00 PM', '07:00 AM');
+VALUES (4, 4, 22, true, true, true, '2016-09-12 11:00 PM', '2016-09-12 07:00 AM');
 INSERT INTO settings (user_id, module_id, sensor_id, active, email, sms, start_time, end_time)
-VALUES (5, 4, 23, true, true, true, '12:30 AM', '05:00 AM');
+VALUES (5, 4, 23, true, true, true, '2016-09-12 12:30 AM', '2016-09-12 05:00 AM');
 INSERT INTO settings (user_id, module_id, sensor_id, active, email, sms, start_time, end_time)
-VALUES (6, 4, 24, true, true, true, '10:00 PM', '07:30 AM');
+VALUES (6, 4, 24, true, true, true, '2016-09-12 10:00 PM', '2016-09-12 07:30 AM');
 INSERT INTO settings (user_id, module_id, sensor_id, active, email, sms, start_time, end_time)
 VALUES (2, 3, 25, true, true, true, null, null);
 INSERT INTO settings (user_id, module_id, sensor_id, active, email, sms, start_time, end_time)
@@ -104,8 +104,25 @@ VALUES (5, 3, 27, true, true, true, null, null);
 INSERT INTO settings (user_id, module_id, sensor_id, active, email, sms, start_time, end_time)
 VALUES (6, 3, 28, true, true, true, null, null);
 INSERT INTO settings (user_id, module_id, sensor_id, active, email, sms, start_time, end_time)
-VALUES (1, 2, 29, true, true, true, '10:30 PM', '07:00 AM');
+VALUES (1, 2, 29, true, true, true, '2016-09-12 10:30 PM', '2016-09-12 07:00 AM');
 INSERT INTO settings (user_id, module_id, sensor_id, active, email, sms, start_time, end_time)
-VALUES (4, 2, 30, true, true, true, '11:00 PM', '07:00 AM');
+VALUES (4, 2, 30, true, true, true, '2016-09-12 11:00 PM', '2016-09-12 07:00 AM');
 INSERT INTO settings (user_id, module_id, sensor_id, active, email, sms, start_time, end_time)
-VALUES (5, 2, 31, true, true, true, '12:30 AM', '05:00 AM');
+VALUES (5, 2, 31, true, true, true, '2016-09-12 12:30 AM', '2016-09-12 05:00 AM');
+
+INSERT INTO history (user_id, sensor_id, alert, seen, status, time_stamp) VALUES (3, 1, true, false, 'Open', '2016-09-12 14:41:45');
+INSERT INTO history (user_id, sensor_id, alert, seen, status, time_stamp) VALUES (3, 1, true, false, 'Open', '2016-09-12 14:41:55');
+INSERT INTO history (user_id, sensor_id, alert, seen, status, time_stamp) VALUES (3, 1, true, false, 'Open', '2016-09-12 14:32:45');
+INSERT INTO history (user_id, sensor_id, alert, seen, status, time_stamp) VALUES (3, 1, true, false, 'Open', '2016-09-12 14:32:48');
+INSERT INTO history (user_id, sensor_id, alert, seen, status, time_stamp) VALUES (3, 1, true, false, 'Open', '2016-09-12 14:41:45');
+INSERT INTO history (user_id, sensor_id, alert, seen, status, time_stamp) VALUES (3, 1, true, false, 'Open', '2016-09-12 14:41:45');
+INSERT INTO history (user_id, sensor_id, alert, seen, status, time_stamp) VALUES (3, 1, true, false, 'Open', '2016-09-12 14:41:45');
+INSERT INTO history (user_id, sensor_id, alert, seen, status, time_stamp) VALUES (3, 1, true, false, 'Open', '2016-09-12 14:41:45');
+INSERT INTO history (user_id, sensor_id, alert, seen, status, time_stamp) VALUES (3, 1, true, false, 'Open', '2016-09-12 14:41:45');
+INSERT INTO history (user_id, sensor_id, alert, seen, status, time_stamp) VALUES (3, 1, true, false, 'Open', '2016-09-12 14:41:45');
+INSERT INTO history (user_id, sensor_id, alert, seen, status, time_stamp) VALUES (3, 1, true, false, 'Open', '2016-09-12 14:41:45');
+INSERT INTO history (user_id, sensor_id, alert, seen, status, time_stamp) VALUES (3, 1, true, false, 'Open', '2016-09-12 14:41:45');
+INSERT INTO history (user_id, sensor_id, alert, seen, status, time_stamp) VALUES (3, 1, true, false, 'Open', '2016-09-12 14:41:45');
+INSERT INTO history (user_id, sensor_id, alert, seen, status, time_stamp) VALUES (3, 1, true, false, 'Open', '2016-09-12 14:41:45');
+INSERT INTO history (user_id, sensor_id, alert, seen, status, time_stamp) VALUES (3, 1, true, false, 'Open', '2016-09-12 14:41:45');
+INSERT INTO history (user_id, sensor_id, alert, seen, status, time_stamp) VALUES (3, 1, true, false, 'Open', '2016-09-12 14:41:45');

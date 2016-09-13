@@ -65,10 +65,12 @@ app.get('/users/', userCtrl.getUser);
 app.get('/users/sensors/', deviceCtrl.getUserSensors);
 app.get('/modules', deviceCtrl.getModules);
 app.get('/settings/:sensorId', deviceCtrl.getSettings);
+app.get('/notifications', deviceCtrl.getNotifications);
 
 //*********** Put Requests *******************//
 app.put('/settings/:type', deviceCtrl.updateSettings);
 app.put('/users/', userCtrl.updateUser);
+app.put('/notifications/:id', deviceCtrl.updateNotification);//the id is the notification id
 
 //*********** Post Requests *****************//
 app.post('/settings/:type', deviceCtrl.createSettings);
