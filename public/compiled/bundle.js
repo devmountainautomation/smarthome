@@ -1093,6 +1093,11 @@ angular.module('smarthome').controller('addCtrl', function ($scope, addService) 
   $('#motion-start').timeDropper({ setCurrentTime: true });
   $('#motion-end').timeDropper({ setCurrentTime: true });
 
+  $("#door-window-settings").hide();
+  $("#smoke-settings").hide();
+  $("#sound-settings").hide();
+  $("#motion-settings").hide();
+
   var gotoElement = function gotoElement(eID) {
     addService.scrollTo(eID);
   };
@@ -1102,33 +1107,33 @@ angular.module('smarthome').controller('addCtrl', function ($scope, addService) 
       case "breech":
         {
           $("#door-window-settings").slideDown();
-          $("#smoke-settings").slideUp();
-          $("#sound-settings").slideUp();
-          $("#motion-settings").slideUp();
+          $("#smoke-settings").hide();
+          $("#sound-settings").hide();
+          $("#motion-settings").hide();
           break;
         }
       case "smoke_detector":
         {
           $("#smoke-settings").slideDown();
-          $("#door-window-settings").slideUp();
-          $("#sound-settings").slideUp();
-          $("#motion-settings").slideUp();
+          $("#door-window-settings").hide();
+          $("#sound-settings").hide();
+          $("#motion-settings").hide();
           break;
         }
       case "sound":
         {
           $("#sound-settings").slideDown();
-          $("#door-window-settings").slideUp();
-          $("#smoke-settings").slideUp();
-          $("#motion-settings").slideUp();
+          $("#door-window-settings").hide();
+          $("#smoke-settings").hide();
+          $("#motion-settings").hide();
           break;
         }
       case "motion":
         {
           $("#motion-settings").slideDown();
-          $("#door-window-settings").slideUp();
-          $("#smoke-settings").slideUp();
-          $("#sound-settings").slideUp();
+          $("#door-window-settings").hide();
+          $("#smoke-settings").hide();
+          $("#sound-settings").hide();
           break;
         }
     }
@@ -1676,6 +1681,7 @@ angular.module('smarthome').directive('deviceCard', function (manageService) {
             var _endTime3 = setting.end_time;
             element.find('section').append('\n                  <div id="appended">\n                    <i id="appended-close" class="fa fa-close"></i>\n                    <div>\n                      <h2>Notification Window</h2>\n                      <h3>Start Time</h3>\n                        <input type="text" id="start' + id + '" value="' + _startTime3 + '"></input>\n                      <h3>End Time</h3>\n                        <input type="text" id="end' + id + '" value="' + _endTime3 + '"></input>\n                    </div>\n\n                    <div class="checkbox-section">\n                      <h2>Notifications</h2>\n                        <div class="check-box">\n                          <div class="squaredOne">\n                            <input type="checkbox" value="None" id="settings-email-radio" name="check" checked />\n                            <label for="settings-email-radio"></label>\n                          </div>\n                          <h4> Send me an email </h4>\n                        </div>\n\n                        <div class="check-box">\n                          <div class="squaredOne">\n                            <input type="checkbox" value="None" id="settings-text-radio" name="check" checked />\n                            <label for="settings-text-radio"></label>\n                          </div>\n                          <h4> Send me a text </h4>\n                        </div>\n\n                      </div>\n                      <hr>\n                      <div class="enable-section">\n                          <div class="slide-checkbox">\n    \t\t                      <input type="checkbox" value="1" id="checkboxThreeInput" checked />\n\t  \t                        <label for="checkboxThreeInput"></label>\n\t                         </div>\n                         <h4>Enable/Disable Device</h4>\n                      </div>');
           }
+          $('.devices').css("overflow", "hidden");
           $(element.find('section')).slideDown();
           $("#start" + scope.id).timeDropper();
           $("#end" + scope.id).timeDropper();
@@ -1683,6 +1689,7 @@ angular.module('smarthome').directive('deviceCard', function (manageService) {
       });
       $(element.find('section')).on('click', '#appended-close', function () {
         $(element.find('section')).slideUp('slow', function () {
+          $('.devices').css("overflow", "auto");
           $('#appended').remove();
         });
       });
