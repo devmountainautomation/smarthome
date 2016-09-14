@@ -1,5 +1,5 @@
 angular.module('smarthome')
-  .controller('addCtrl', ($scope, addService) => {
+  .controller('addCtrl', ($scope, addService, $http) => {
     $scope.settings = {};
 
     $('#breech-start').timeDropper({
@@ -71,11 +71,12 @@ angular.module('smarthome')
             break;
           }
       }
-    });
-
-    $scope.addBreech = settings => {
-      addService.addDevice(settings).then(response => {
-        addService.addBreech(settings).then(response => {
+    })
+    $scope.addBreech = () => {
+      $scope.settings.start_time = $('#breech-start').val();
+      $scope.settings.end_time = $('#breech-end').val();
+      addService.addDevice($scope.settings).then(response => {
+        addService.addBreech($scope.settings).then(response => {
           return response;
         })
       })

@@ -1,7 +1,7 @@
 angular.module('smarthome')
-  .service('addService', function($http) {
-
-    this.addDevice = settings => {
+  .service('addService', function ($http) {
+    this.addDevice = function (settings) {
+      console.log(settings);
       return $http({
         method: 'POST',
         url: '/sensors',
@@ -10,8 +10,8 @@ angular.module('smarthome')
         return response;
       });
     };
-
-    this.addBreech = settings => {
+    this.addBreech = function (settings) {
+      console.log(settings);
       return $http({
         method: 'POST',
         url: '/settings/breech',
