@@ -1,11 +1,11 @@
 angular.module('smarthome')
   .config(($stateProvider, $urlRouterProvider) => {
 
-      $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/');
 
-      $urlRouterProvider.when(/section[0-9]+/, () => {
-          // no op
-      });
+    $urlRouterProvider.when(/section[0-9]+/, function () {
+      // no op
+    });
 
     $stateProvider
       .state('landing page', {
@@ -14,7 +14,8 @@ angular.module('smarthome')
       })
       .state('getStarted', {
         url: '/getstarted',
-        templateUrl: './app/component/getStarted/getStarted.html'
+        templateUrl: './app/component/getStarted/getStarted.html',
+        controller: 'getStartedCtrl'
       })
       .state('login', {
         url: '/login',

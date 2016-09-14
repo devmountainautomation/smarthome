@@ -1,7 +1,5 @@
 angular.module('smarthome').controller('getStartedCtrl', $scope => {
 
-  $scope.currentIndex = 1;
-
   $scope.slides = [
     {
       id: 1,
