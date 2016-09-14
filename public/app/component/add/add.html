@@ -57,12 +57,12 @@
   <div>
     <h1>Door/Window Sensor</h1>
     <h2>Nickname</h2>
-    <input type="text" ng-model="nickname">
+    <input type="text" ng-model="settings.nickname" />
     <h2>Notification Window</h2>
     <h3>Start Time</h3>
-      <input type="text" class="timepicker-input" placeholder="Select" id="breech-start"></input>
+      <input type="text" class="timepicker-input" placeholder="Select" id="breech-start" />
     <h3>End Time</h3>
-      <input type="text" class="timepicker-input" placeholder="Select" id="breech-end"></input>
+      <input type="text" class="timepicker-input" placeholder="Select" id="breech-end" />
   </div>
 
   <div class="checkbox-section">
@@ -77,7 +77,7 @@
 
       <div class="check-box">
         <div class="squaredOne">
-          <input type="checkbox" value="true" id="settings-text-radio" name="settings.text" checked />
+          <input type="checkbox" value="true" id="settings-text-radio" ng-model="settings.sms" checked />
           <label for="settings-text-radio"></label>
         </div>
         <h4> Send me a text </h4>
@@ -87,7 +87,7 @@
     <hr>
 
 <div class="button-box">
-  <button type="button" ng-click="addBreech()">Add Device</button>
+  <button type="button" ng-click="addBreech(settings)">Add Device</button>
 </div>
 
 </section>

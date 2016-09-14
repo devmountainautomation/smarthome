@@ -37,12 +37,14 @@
     "massive": "^2.5.0",
     "moment": "^2.15.0",
     "moment-timezone": "^0.5.5",
+    "nodemailer": "^2.6.0",
     "parser": "^0.1.4",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",
     "passport-google-oauth20": "^1.0.0",
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
-    "pubnub": "^4.0.8"
+    "pubnub": "^4.0.8",
+    "twilio": "^2.10.0"
   }
 }
