@@ -1,5 +1,5 @@
 angular.module('smarthome')
-  .controller('addCtrl', ($scope, addService) => {
+  .controller('addCtrl', ($scope, addService, $http) => {
     $scope.settings = {};
     $('#breech-start').timeDropper({setCurrentTime: true});
     $('#breech-end').timeDropper({setCurrentTime: true});
@@ -14,6 +14,8 @@ angular.module('smarthome')
     $("#smoke-settings").hide();
     $("#sound-settings").hide();
     $("#motion-settings").hide();
+    $("#camera-settings").hide();
+    $("#therm-settings").hide();
 
     var gotoElement = function (eID){
      addService.scrollTo(eID);
@@ -27,6 +29,28 @@ angular.module('smarthome')
           $("#smoke-settings").hide();
           $("#sound-settings").hide();
           $("#motion-settings").hide();
+          $("#therm-settings").hide();
+          $("#camera-settings").hide();
+          break;
+        }
+        case "therm":
+        {
+          $("#therm-settings").slideDown();
+          $("#camera-settings").hide();
+          $("#door-window-settings").hide();
+          $("#smoke-settings").hide();
+          $("#sound-settings").hide();
+          $("#motion-settings").hide();
+          break;
+        }
+        case "camera":
+        {
+          $("#camera-settings").slideDown();
+          $("#door-window-settings").hide();
+          $("#smoke-settings").hide();
+          $("#sound-settings").hide();
+          $("#motion-settings").hide();
+          $("#therm-settings").hide();
           break;
         }
         case "smoke_detector":
@@ -35,6 +59,8 @@ angular.module('smarthome')
           $("#door-window-settings").hide();
           $("#sound-settings").hide();
           $("#motion-settings").hide();
+          $("#therm-settings").hide();
+          $("#camera-settings").hide();
           break;
         }
         case "sound":
@@ -43,6 +69,8 @@ angular.module('smarthome')
           $("#door-window-settings").hide();
           $("#smoke-settings").hide();
           $("#motion-settings").hide();
+          $("#therm-settings").hide();
+          $("#camera-settings").hide();
           break;
         }
         case "motion":
@@ -51,11 +79,15 @@ angular.module('smarthome')
           $("#door-window-settings").hide();
           $("#smoke-settings").hide();
           $("#sound-settings").hide();
+          $("#therm-settings").hide();
+          $("#camera-settings").hide();
           break;
         }
       }
     })
     $scope.addBreech = () => {
+      $scope.settings.start_time = $('#breech-start').val();
+      $scope.settings.end_time = $('#breech-end').val();
       addService.addDevice($scope.settings).then(response => {
         addService.addBreech($scope.settings).then(response => {
           return response;

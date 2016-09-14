@@ -15,21 +15,35 @@
   <div class="module-type">
     <input type="radio" name="module" ng-model="module_type" id="smoke-radio" value="smoke_detector">
     <label for="smoke-radio">
-      <img src="./assets/img/protect-icon-01.png" alt="" />
+      <img src="./assets/img/smoke_icon.png" alt="" />
     </label>
   </div>
 
   <div class="module-type">
     <input type="radio" name="module" ng-model="module_type" id="sound-radio" value="sound">
     <label for="sound-radio">
-      <img src="./assets/img/protect-icon-02.png" alt="" />
+      <img src="./assets/img/sound_icon.png" alt="" />
+    </label>
+  </div>
+
+  <div class="module-type">
+    <input type="radio" name="module" ng-model="module_type" id="camera-radio" value="camera">
+    <label for="camera-radio">
+      <img src="./assets/img/camera_icon.png" alt="" />
+    </label>
+  </div>
+
+  <div class="module-type">
+    <input type="radio" name="module" ng-model="module_type" id="therm-radio" value="therm">
+    <label for="therm-radio">
+      <img src="./assets/img/thermometer-icon.png" alt="" />
     </label>
   </div>
 
   <div class="module-type">
     <input type="radio" name="module" ng-model="module_type" id="motion-radio" value="motion">
     <label for="motion-radio">
-      <img src="./assets/img/protect-icon-03.png" alt="" />
+      <img src="./assets/img/motion_icon.png" alt="" />
     </label>
   </div>
 
@@ -46,9 +60,9 @@
     <input type="text" ng-model="nickname">
     <h2>Notification Window</h2>
     <h3>Start Time</h3>
-      <input type="text" class="timepicker-input" placeholder="Select" id="breech-start" ng-model="settings.startTime"></input>
+      <input type="text" class="timepicker-input" placeholder="Select" id="breech-start"></input>
     <h3>End Time</h3>
-      <input type="text" class="timepicker-input" placeholder="Select" id="breech-end" ng-model="settings.endTime"></input>
+      <input type="text" class="timepicker-input" placeholder="Select" id="breech-end"></input>
   </div>
 
   <div class="checkbox-section">
@@ -91,5 +105,12 @@
   <h2>Motion Sensor Settings</h2>
 </section>
 
+<section class="choose-settings-section" id="therm-settings">
+  <h2>Thermometer Settings</h2>
+</section>
+
+<section class="choose-settings-section" id="camera-settings">
+  <h2>Camera Settings</h2>
+</section>
 
 </main>
