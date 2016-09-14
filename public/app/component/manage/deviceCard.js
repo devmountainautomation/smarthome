@@ -205,6 +205,7 @@ angular.module('smarthome')
                          <h4>Enable/Disable Device</h4>
                       </div>`);
             }
+            $('.devices').css("overflow", "hidden")
             $(element.find('section')).slideDown();
             $("#start" + scope.id).timeDropper();
             $("#end" + scope.id).timeDropper();
@@ -212,6 +213,7 @@ angular.module('smarthome')
         })
         $(element.find('section')).on('click', '#appended-close', () => {
           $(element.find('section')).slideUp('slow', () => {
+            $('.devices').css("overflow", "auto")
             $('#appended').remove();
           })
         })
