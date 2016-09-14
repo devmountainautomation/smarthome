@@ -384,7 +384,7 @@ angular.module('smarthome').config(function ($stateProvider, $urlRouterProvider)
     templateUrl: './app/component/getStarted/getStarted.html'
   }).state('login', {
     url: '/login',
-    templateUrl: '/app/component/login/login.html',
+    templateUrl: './app/component/login/login.html',
     controller: 'loginCtrl',
     resolve: {
       checkAuth: function checkAuth($state, dashboardSrvc) {
@@ -397,7 +397,7 @@ angular.module('smarthome').config(function ($stateProvider, $urlRouterProvider)
     }
   }).state('dashboard', {
     url: '/dashboard',
-    templateUrl: '/app/component/dashboard/dashboard.html',
+    templateUrl: './app/component/dashboard/dashboard.html',
     controller: 'dashboardCtrl',
     resolve: {
       user: function user(dashboardSrvc) {
@@ -416,7 +416,7 @@ angular.module('smarthome').config(function ($stateProvider, $urlRouterProvider)
     }
   }).state('manage', {
     url: '/manage',
-    templateUrl: '/app/component/manage/manage.html',
+    templateUrl: './app/component/manage/manage.html',
     controller: 'manageCtrl',
     resolve: {
       user: function user(dashboardSrvc) {
@@ -1057,7 +1057,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 "use strict";
 'use strict';
 
-angular.module('smarthome').controller('addCtrl', function ($scope, addService) {
+angular.module('smarthome').controller('addCtrl', function ($scope, addService, $http) {
   $scope.settings = {};
   $('#breech-start').timeDropper({ setCurrentTime: true });
   $('#breech-end').timeDropper({ setCurrentTime: true });
@@ -1114,6 +1114,8 @@ angular.module('smarthome').controller('addCtrl', function ($scope, addService) 
     }
   });
   $scope.addBreech = function () {
+    $scope.settings.start_time = $('#breech-start').val();
+    $scope.settings.end_time = $('#breech-end').val();
     addService.addDevice($scope.settings).then(function (response) {
       addService.addBreech($scope.settings).then(function (response) {
         return response;
@@ -1125,7 +1127,8 @@ angular.module('smarthome').controller('addCtrl', function ($scope, addService) 
 
 angular.module('smarthome').service('addService', function ($http) {
   this.addDevice = function (settings) {
-    return http({
+    console.log(settings);
+    return $http({
       method: 'POST',
       url: '/sensors',
       data: {
@@ -1134,7 +1137,8 @@ angular.module('smarthome').service('addService', function ($http) {
     });
   };
   this.addBreech = function (settings) {
-    return http({
+    console.log(settings);
+    return $http({
       method: 'POST',
       url: '/settings/breech',
       data: settings
@@ -1227,34 +1231,34 @@ angular.module('smarthome').service('dashboardSrvc', function ($http) {
 'use strict';
 
 angular.module('smarthome').directive('fullPage', function () {
-    return {
-        restrict: 'EA',
-        templateUrl: './app/component/getStarted/fullPage.html',
-        controller: 'getStartedCtrl',
-        link: function link(scope, elems, attrs) {
-            $(document).ready(function () {
-                var length = scope.slides.length;
-                $('#fullpage').fullpage({
-                    anchors: ['section1', 'section2', 'section3', 'section4', 'section5'],
-                    navigation: true,
-                    navigationPosition: 'left',
-                    onLeave: function onLeave(index, nextIndex, direction) {
-                        if (index === 1 || nextIndex === 1) $('.move-up').toggle();
-                        if (index === length || nextIndex === length) $('.move-down').toggle();
-                        scope.currentIndex = nextIndex;
-                    }
-                });
-                $(document).on('click', '.move-up', function () {
-                    scope.currentIndex--;
-                    $.fn.fullpage.moveTo('section' + scope.currentIndex);
-                });
-                $(document).on('click', '.move-down', function () {
-                    scope.currentIndex++;
-                    $.fn.fullpage.moveTo('section' + scope.currentIndex);
-                });
-            });
-        }
-    };
+  return {
+    restrict: 'EA',
+    templateUrl: './app/component/getStarted/fullPage.html',
+    controller: 'getStartedCtrl',
+    link: function link(scope, elems, attrs) {
+      $(document).ready(function () {
+        var length = scope.slides.length;
+        $('#fullpage').fullpage({
+          anchors: ['section1', 'section2', 'section3', 'section4', 'section5'],
+          navigation: true,
+          navigationPosition: 'left',
+          onLeave: function onLeave(index, nextIndex, direction) {
+            if (index === 1 || nextIndex === 1) $('.move-up').toggle();
+            if (index === length || nextIndex === length) $('.move-down').toggle();
+            scope.currentIndex = nextIndex;
+          }
+        });
+        $(document).on('click', '.move-up', function () {
+          scope.currentIndex--;
+          $.fn.fullpage.moveTo('section' + scope.currentIndex);
+        });
+        $(document).on('click', '.move-down', function () {
+          scope.currentIndex++;
+          $.fn.fullpage.moveTo('section' + scope.currentIndex);
+        });
+      });
+    }
+  };
 });
 'use strict';
 
@@ -1318,8 +1322,7 @@ angular.module('smarthome').directive('headDir', function ($state, $compile) {
             }
           });
         } else {
-
-          var elmnt = $compile('<div class="menu-box-container">\n                  <div class="lp-boxes" id="box1" ui-sref="dashboard">\n                      <i class="fa fa-tachometer fa-fw fa-3x" aria-hidden="true"></i>\n                      <p>Dashboard</p>\n                  </div>\n                  <div class="lp-boxes" id="box2" ui-sref="addDevice">\n                      <i class="fa fa-plus-square fa-fw fa-3x" aria-hidden="true"></i>\n                      <p>Add Device</p>\n                  </div>\n                  <div class="lp-boxes" id="box3" ui-sref="manage">\n                      <i class="fa fa-wrench fa-fw fa-3x" aria-hidden="true"></i>\n                      <p>Manage Devices</p>\n                  </div>\n                  <div class="lp-boxes" id="box4">\n                      <i class="fa fa-question fa-fw fa-3x" aria-hidden="true"></i>\n                      <p>FAQ</p>\n                  </div>\n              </div>\n              <div class="menu-list-container">\n                  <div class="lp-menu-item" id="lp-contact">\n                      <p>Update Profile</p>\n                  </div>\n                  <div class="lp-menu-item" id="lp-logout" ng-click="logout()">\n                      <p>Logout</p>\n                  </div>\n                  <div class="social-hex">\n                      <div class="hexagon"><i class="fa fa-github fa-fw fa-2x" aria-hidden="true"></i></div>\n                      <div class="hexagon"><i class="fa fa-linkedin fa-fw fa-2x" aria-hidden="true"></i></div>\n                      <div class="hexagon"><i class="fa fa-facebook fa-fw fa-2x" aria-hidden="true"></i></div>\n                  </div>\n              </div>')(scope);
+          var elmnt = $compile('<div class="menu-box-container">\n                <div class="lp-boxes" id="box1" ui-sref="dashboard">\n                  <i class="fa fa-tachometer fa-fw fa-3x" aria-hidden="true"></i>\n                  <p>Dashboard</p>\n                </div>\n                <div class="lp-boxes" id="box2">\n                  <i class="fa fa-plus-square fa-fw fa-3x" aria-hidden="true"></i>\n                  <p>Add Device</p>\n                </div>\n                <div class="lp-boxes" id="box3" ui-sref="manage">\n                  <i class="fa fa-wrench fa-fw fa-3x" aria-hidden="true"></i>\n                  <p>Manage Devices</p>\n                </div>\n                <div class="lp-boxes" id="box4">\n                  <i class="fa fa-question fa-fw fa-3x" aria-hidden="true"></i>\n                  <p>FAQ</p>\n                </div>\n              </div>\n              <div class="menu-list-container">\n                <div class="lp-menu-item" id="lp-contact">\n                  <p>Update Profile</p>\n                </div>\n                <div class="lp-menu-item" id="lp-logout" ng-click="logout()">\n                  <p>Logout</p>\n                </div>\n                <div class="social-hex">\n                  <div class="hexagon"><i class="fa fa-github fa-fw fa-2x" aria-hidden="true"></i></div>\n                  <div class="hexagon"><i class="fa fa-linkedin fa-fw fa-2x" aria-hidden="true"></i></div>\n                  <div class="hexagon"><i class="fa fa-facebook fa-fw fa-2x" aria-hidden="true"></i></div>\n                </div>\n              </div>')(scope);
 
           $('.menu').empty();
           $('.menu').html(elmnt);
@@ -1360,12 +1363,11 @@ angular.module('smarthome').directive('headDir', function ($state, $compile) {
 });
 'use strict';
 
-angular.module('smarthome').controller('headerCtrl', function (headerSrvc, $scope, $state, $rootScope) {
+angular.module('smarthome').controller('headerCtrl', function (headerSrvc, $scope, $state) {
 
   (function () {
     headerSrvc.getUser().then(function (response) {
       $scope.user = response.data;
-      console.log($scope.user);
     });
   })();
 
@@ -1390,7 +1392,7 @@ angular.module('smarthome').controller('headerCtrl', function (headerSrvc, $scop
       }
     });
   };
-});
+}); //End headerCtrl
 'use strict';
 
 angular.module('smarthome').service('headerSrvc', function ($http) {
@@ -1401,7 +1403,6 @@ angular.module('smarthome').service('headerSrvc', function ($http) {
 
   this.logout = function () {
     return $http.get('/logout').then(function (response) {
-      console.log(response);
       return response.data;
     }).catch(function (err) {
       console.log(err);
@@ -1506,7 +1507,7 @@ angular.module('smarthome').controller('loginCtrl', function ($scope, $state, lo
 
   $scope.localLogin = function (email, password) {
     loginService.login(email, password).then(function (response) {
-      $state.go('landing page');
+      $state.go('dashboard');
     });
   };
 
@@ -1517,7 +1518,6 @@ angular.module('smarthome').controller('loginCtrl', function ($scope, $state, lo
   })();
 
   $scope.logout = function () {
-    console.log('hit');
     headerSrvc.logout().then(function (response) {
       swal("Success!", "Logout Successful!", "success");
       setTimeout(function () {
@@ -1593,7 +1593,7 @@ angular.module('smarthome').directive('signupForm', function () {
 });
 'use strict';
 
-angular.module('smarthome').directive('deviceCard', function (manageService) {
+angular.module('smarthome').directive('deviceCard', function (manageService, $compile) {
   return {
     restrict: 'EA',
     templateUrl: './app/component/manage/deviceCard.html',
@@ -1630,31 +1630,36 @@ angular.module('smarthome').directive('deviceCard', function (manageService) {
           }
       }
       manageService.getSettings(scope.id).then(function (response) {
+        var settings = response;
         element.find('i').on('click', function () {
-          var setting = response;
           var id = scope.id;
-          var startTime = setting.start_time;
-          var endTime = setting.end_time;
+          var startTime = settings.start_time;
+          var endTime = settings.end_time;
+          // let active = setting.active;
+          // let email;
+          // let sms = setting.sms;
+          var content = void 0;
           /// Door + Window Sensor ///
           if (scope.type == "Door/Window Sensor") {
-            element.find('section').append('\n                  <div id="appended">\n                    <i id="appended-close" class="fa fa-close"></i>\n                    <div>\n                      <h2>Notification Window</h2>\n                      <h3>Start Time</h3>\n                        <input type="text" id="start' + id + '" value="' + startTime + '"></input>\n                      <h3>End Time</h3>\n                        <input type="text" id="end' + id + '" value="' + endTime + '"></input>\n                    </div>\n\n                    <div class="checkbox-section">\n                      <h2>Notifications</h2>\n                        <div class="check-box">\n                          <div class="squaredOne">\n                            <input type="checkbox" value="email" id="settings-email-radio" name="check" checked />\n                            <label for="settings-email-radio"></label>\n                          </div>\n                          <h4> Send me an email </h4>\n                        </div>\n\n                        <div class="check-box">\n                          <div class="squaredOne">\n                            <input type="checkbox" value="text" id="settings-text-radio" name="check" checked />\n                            <label for="settings-text-radio"></label>\n                          </div>\n                          <h4> Send me a text </h4>\n                        </div>\n\n                      </div>\n                      <hr>\n                      <div class="enable-section">\n                          <div class="slide-checkbox">\n    \t\t                      <input type="checkbox" value="true" ng-model="isEnabled" id="checkboxThreeInput" checked />\n\t  \t                        <label for="checkboxThreeInput"></label>\n\t                         </div>\n                         <h4>Enable/Disable Device</h4>\n                      </div>');
+            content = $compile('\n                  <div id="appended">\n                    <i id="appended-close" class="fa fa-close"></i>\n                    <div>\n                      <h2>Notification Window</h2>\n                      <h3>Start Time</h3>\n                    <input type="text" id="start' + id + '" value="' + startTime + '"></input>\n                      <h3>End Time</h3>\n                    <input type="text" id="end' + id + '" value="' + endTime + '"></input>\n                    </div>\n                    <div class="checkbox-section">\n                      <h2>Notifications</h2>\n                        <div class="check-box">\n                          <div class="squaredOne">\n                            <input type="checkbox" id="settings-email-radio" ng-model="settings.email"/>\n                            <label for="settings-email-radio"></label>\n                          </div>\n                          <h4> Send me an email </h4>\n                        </div>\n                        <div class="check-box">\n                          <div class="squaredOne">\n                            <input type="checkbox" id="settings-text-radio" ng-model="settings.sms" />\n                            <label for="settings-text-radio"></label>\n                          </div>\n                          <h4> Send me a text </h4>\n                        </div>\n\n                      </div>\n                      <hr>\n                      <div class="enable-section">\n                          <div class="slide-checkbox">\n    \t\t                      <input type="checkbox" ng-model="settings.active" id="checkboxThreeInput"/>\n\t  \t                        <label for="checkboxThreeInput"></label>\n\t                         </div>\n                         <h4>Enable/Disable Device</h4>\n                      </div>\n                      <div>\n                      <hr>\n                      <button type="button" ng-click="saveSettings()"> Save Settings </button>\n                      </div>')(scope);
           } else if (scope.type == "Smoke Detector") {
             var _startTime = setting.start_time;
             var _endTime = setting.end_time;
-            element.find('section').append('\n                  <div id="appended">\n                    <i id="appended-close" class="fa fa-close"></i>\n                    <div>\n                      <h2>Notification Window</h2>\n                      <h3>Start Time</h3>\n                        <input type="text" id="start' + id + '" value="' + _startTime + '"></input>\n                      <h3>End Time</h3>\n                        <input type="text" id="end' + id + '" value="' + _endTime + '"></input>\n                    </div>\n\n                    <div class="checkbox-section">\n                      <h2>Notifications</h2>\n                        <div class="check-box">\n                          <div class="squaredOne">\n                            <input type="checkbox" value="None" id="settings-email-radio" name="check" checked />\n                            <label for="settings-email-radio"></label>\n                          </div>\n                          <h4> Send me an email </h4>\n                        </div>\n\n                        <div class="check-box">\n                          <div class="squaredOne">\n                            <input type="checkbox" value="None" id="settings-text-radio" name="check" checked />\n                            <label for="settings-text-radio"></label>\n                          </div>\n                          <h4> Send me a text </h4>\n                        </div>\n\n                      </div>\n                      <hr>\n                      <div class="enable-section">\n                          <div class="slide-checkbox">\n    \t\t                      <input type="checkbox" value="1" id="checkboxThreeInput" checked />\n\t  \t                        <label for="checkboxThreeInput"></label>\n\t                         </div>\n                         <h4>Enable/Disable Device</h4>\n                      </div>');
+            content = $compile('\n                  <div id="appended">\n                    <i id="appended-close" class="fa fa-close"></i>\n                    <div>\n                      <h2>Notification Window</h2>\n                      <h3>Start Time</h3>\n                        <input type="text" id="start' + id + '" value="' + _startTime + '"></input>\n                      <h3>End Time</h3>\n                        <input type="text" id="end' + id + '" value="' + _endTime + '"></input>\n                    </div>\n\n                    <div class="checkbox-section">\n                      <h2>Notifications</h2>\n                        <div class="check-box">\n                          <div class="squaredOne">\n                            <input type="checkbox" value="None" id="settings-email-radio" name="check" checked />\n                            <label for="settings-email-radio"></label>\n                          </div>\n                          <h4> Send me an email </h4>\n                        </div>\n\n                        <div class="check-box">\n                          <div class="squaredOne">\n                            <input type="checkbox" value="None" id="settings-text-radio" name="check" checked />\n                            <label for="settings-text-radio"></label>\n                          </div>\n                          <h4> Send me a text </h4>\n                        </div>\n\n                      </div>\n                      <hr>\n                      <div class="enable-section">\n                          <div class="slide-checkbox">\n    \t\t                      <input type="checkbox" value="1" id="checkboxThreeInput" checked />\n\t  \t                        <label for="checkboxThreeInput"></label>\n\t                         </div>\n                         <h4>Enable/Disable Device</h4>\n                      </div>\n                      <button type="button" ng-click="saveSettings()"></button>\n                    ')(scope);
           } else if (scope.type == "Sound Sensor") {
             var _startTime2 = setting.start_time;
             var _endTime2 = setting.end_time;
-            element.find('section').append('\n                  <div id="appended">\n                    <i id="appended-close" class="fa fa-close"></i>\n                    <div>\n                      <h2>Notification Window</h2>\n                      <h3>Start Time</h3>\n                        <input type="text" id="start' + id + '" value="' + _startTime2 + '"></input>\n                      <h3>End Time</h3>\n                        <input type="text" id="end' + id + '" value="' + _endTime2 + '"></input>\n                    </div>\n\n                    <div class="checkbox-section">\n                      <h2>Notifications</h2>\n                        <div class="check-box">\n                          <div class="squaredOne">\n                            <input type="checkbox" value="None" id="settings-email-radio" name="check" checked />\n                            <label for="settings-email-radio"></label>\n                          </div>\n                          <h4> Send me an email </h4>\n                        </div>\n\n                        <div class="check-box">\n                          <div class="squaredOne">\n                            <input type="checkbox" value="None" id="settings-text-radio" name="check" checked />\n                            <label for="settings-text-radio"></label>\n                          </div>\n                          <h4> Send me a text </h4>\n                        </div>\n\n                      </div>\n                      <hr>\n                      <div class="enable-section">\n                          <div class="slide-checkbox">\n    \t\t                      <input type="checkbox" value="1" id="checkboxThreeInput" checked />\n\t  \t                        <label for="checkboxThreeInput"></label>\n\t                         </div>\n                         <h4>Enable/Disable Device</h4>\n                      </div>');
+            content = $compile('\n                  <div id="appended">\n                    <i id="appended-close" class="fa fa-close"></i>\n                    <div>\n                      <h2>Notification Window</h2>\n                      <h3>Start Time</h3>\n                        <input type="text" id="start' + id + '" value="' + _startTime2 + '"></input>\n                      <h3>End Time</h3>\n                        <input type="text" id="end' + id + '" value="' + _endTime2 + '"></input>\n                    </div>\n\n                    <div class="checkbox-section">\n                      <h2>Notifications</h2>\n                        <div class="check-box">\n                          <div class="squaredOne">\n                            <input type="checkbox" value="None" id="settings-email-radio" name="check" checked />\n                            <label for="settings-email-radio"></label>\n                          </div>\n                          <h4> Send me an email </h4>\n                        </div>\n\n                        <div class="check-box">\n                          <div class="squaredOne">\n                            <input type="checkbox" value="None" id="settings-text-radio" name="check" checked />\n                            <label for="settings-text-radio"></label>\n                          </div>\n                          <h4> Send me a text </h4>\n                        </div>\n\n                      </div>\n                      <hr>\n                      <div class="enable-section">\n                          <div class="slide-checkbox">\n    \t\t                      <input type="checkbox" value="1" id="checkboxThreeInput" checked />\n\t  \t                        <label for="checkboxThreeInput"></label>\n\t                         </div>\n                         <h4>Enable/Disable Device</h4>\n                      </div>\n                      <button type="button" ng-click="saveSettings()"></button>\n                    ')(scope);
           } else if (scope.type == "Motion Sensor") {
             var _startTime3 = setting.start_time;
             var _endTime3 = setting.end_time;
-            element.find('section').append('\n                  <div id="appended">\n                    <i id="appended-close" class="fa fa-close"></i>\n                    <div>\n                      <h2>Notification Window</h2>\n                      <h3>Start Time</h3>\n                        <input type="text" id="start' + id + '" value="' + _startTime3 + '"></input>\n                      <h3>End Time</h3>\n                        <input type="text" id="end' + id + '" value="' + _endTime3 + '"></input>\n                    </div>\n\n                    <div class="checkbox-section">\n                      <h2>Notifications</h2>\n                        <div class="check-box">\n                          <div class="squaredOne">\n                            <input type="checkbox" value="None" id="settings-email-radio" name="check" checked />\n                            <label for="settings-email-radio"></label>\n                          </div>\n                          <h4> Send me an email </h4>\n                        </div>\n\n                        <div class="check-box">\n                          <div class="squaredOne">\n                            <input type="checkbox" value="None" id="settings-text-radio" name="check" checked />\n                            <label for="settings-text-radio"></label>\n                          </div>\n                          <h4> Send me a text </h4>\n                        </div>\n\n                      </div>\n                      <hr>\n                      <div class="enable-section">\n                          <div class="slide-checkbox">\n    \t\t                      <input type="checkbox" value="1" id="checkboxThreeInput" checked />\n\t  \t                        <label for="checkboxThreeInput"></label>\n\t                         </div>\n                         <h4>Enable/Disable Device</h4>\n                      </div>');
+            content = $compile('\n                  <div id="appended">\n                    <i id="appended-close" class="fa fa-close"></i>\n                    <div>\n                      <h2>Notification Window</h2>\n                      <h3>Start Time</h3>\n                    <input type="text" id="start' + id + '" ng-value="settings.startTime" ng-model="settings.start_time"></input>\n                      <h3>End Time</h3>\n                    <input type="text" id="end' + id + '" ng-value="settings.endTime"></input>\n                    </div>\n\n                    <div class="checkbox-section">\n                      <h2>Notifications</h2>\n                        <div class="check-box">\n                          <div class="squaredOne">\n                            <input type="checkbox" value="true" ng-value="settings.email" id="settings-email-radio"/>\n                            <label for="settings-email-radio"></label>\n                          </div>\n                          <h4> Send me an email </h4>\n                        </div>\n\n                        <div class="check-box">\n                          <div class="squaredOne">\n                            <input type="checkbox" value="true" ng-value="settings.text" id="settings-text-radio"/>\n                            <label for="settings-text-radio"></label>\n                          </div>\n                          <h4> Send me a text </h4>\n                        </div>\n\n                      </div>\n                      <hr>\n                      <div class="enable-section">\n                          <div class="slide-checkbox">\n    \t\t                      <input ng-value="settings.active" type="checkbox" value="1" id="checkboxThreeInput" checked />\n\t  \t                        <label for="checkboxThreeInput"></label>\n\t                         </div>\n                         <h4>Enable/Disable Device</h4>\n                      </div>\n                      <hr>\n                      <button type="button" ng-click="saveSettings()"></button>\n                    ')(scope);
           }
+          $(element.find('section')).html(content);
           $('.devices').css("overflow", "hidden");
-          $(element.find('section')).slideDown();
           $("#start" + scope.id).timeDropper();
           $("#end" + scope.id).timeDropper();
+          $(element.find('section')).slideDown();
         });
       });
       $(element.find('section')).on('click', '#appended-close', function () {
@@ -1664,14 +1669,30 @@ angular.module('smarthome').directive('deviceCard', function (manageService) {
         });
       });
     },
-    controller: function controller($scope) {}
+    controller: function controller($scope, manageService) {
+
+      manageService.getSettings($scope.id).then(function (response) {
+        $scope.settings = response;
+      });
+      $scope.saveSettings = function () {
+        console.log('saved settings', $scope.settings);
+        var crazy = $('#start' + $scope.id).val();
+        console.log('start', crazy);
+        $scope.settings.start_time = $('#start' + $scope.id).val();
+        $scope.settings.end_time = $('#end' + $scope.id).val();
+        manageService.saveSettings($scope.id, $scope.settings).then(function (response) {
+          $('#appended').closest('section').slideUp('slow', function () {
+            $('.devices').css("overflow", "auto");
+            $('#appended').remove();
+          });
+        });
+      };
+    }
   };
 }); //End directive
 'use strict';
 
 angular.module('smarthome').controller('manageCtrl', function ($scope, manageService, user) {
-
-  $scope.user = user.data;
 
   (function () {
     manageService.getDevices().then(function (response) {
@@ -1697,44 +1718,21 @@ angular.module('smarthome').service('manageService', function ($http) {
       method: 'GET',
       url: 'settings/' + id
     }).then(function (response) {
-      var startTime = timeConverter(response.data[0].start_time);
-      var endTime = timeConverter(response.data[0].end_time);
-      response.data[0].start_time = startTime;
-      response.data[0].end_time = endTime;
       return response.data[0];
     });
   };
 
-  var timeConverter = function timeConverter(rawTime) {
-    if (rawTime) {
-      var result = void 0;
-      var time = rawTime.split(':');
-      time.pop();
-      var min = time[1];
-      var hour = time[0];
-      time.splice(0, 2);
-      if (Number(hour) > 12) {
-        hour -= 12;
-        time.push(hour, min);
-        result = time.join(':');
-        result += " PM";
-      } else if (Number(hour) === 12) {
-        time.push(hour, min);
-        result = time.join(':');
-        result += " PM";
-      } else if (Number(hour) === 0) {
-        hour = 12;
-        time.push(hour, min);
-        result = time.join(':');
-        result += " AM";
-      } else {
-        time.push(hour, min);
-        result = time.join(':');
-        result += " AM";
+  this.saveSettings = function (id, settings) {
+    return $http({
+      method: 'PUT',
+      url: 'settings/' + id,
+      data: {
+        active: settings.active,
+        email: settings.email,
+        sms: settings.text,
+        start_time: settings.startTime,
+        end_time: settings.endTime
       }
-      return result;
-    } else {
-      return "N/A";
-    }
+    });
   };
 }); //End manageService

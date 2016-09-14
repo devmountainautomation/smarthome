@@ -464,7 +464,7 @@ h1, h2, h3, h4, h5, h6 {
 .choose-settings-section {
   clear: both;
   padding-top: 5vh; }
-  .choose-settings-section .button-box {
+  .choose-settings-section .-box {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -1789,16 +1789,30 @@ html.fp-enabled,
   background: #343f46;
   padding: 5vw;
   position: fixed;
-  top: 23vh;
+  top: 22vh;
   left: 5vw;
   width: 90%;
   max-height: 83vh; }
+  .setting-menu hr {
+    clear: both; }
+  .setting-menu button {
+    background: #395161;
+    border: none;
+    padding: 1rem 3rem;
+    margin: 0 auto;
+    color: #F56A4C;
+    font-family: 'Lato';
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: .75em; }
+    .setting-menu button:hover {
+      background: #3b5e75; }
   .setting-menu #appended {
     position: relative; }
   .setting-menu i {
     position: absolute;
-    top: -14vw;
-    right: -3vw;
+    top: 0;
+    right: -1vw;
     text-align: right; }
   .setting-menu h2 {
     margin-bottom: 1rem;
