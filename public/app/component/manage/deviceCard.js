@@ -17,7 +17,7 @@ angular.module('smarthome')
             }
           case "Sound Sensor":
             {
-              scope.icon_url = './assets/img/sound-placeholder.jpg';
+              scope.icon_url = './assets/img/sound_icon.png';
               break;
             }
           case "Smoke Detector":
@@ -27,12 +27,12 @@ angular.module('smarthome')
             }
           case "Motion Sensor":
             {
-              scope.icon_url = './assets/img/motion-placeholder.jpg';
+              scope.icon_url = './assets/img/motion_icon.png';
               break;
             }
           default:
             {
-              scope.icon_url = './assets/img/protect-icon-01.png';
+              scope.icon_url = './assets/img/protect_icon.png';
             }
         }
         manageService.getSettings(scope.id).then(response => {
