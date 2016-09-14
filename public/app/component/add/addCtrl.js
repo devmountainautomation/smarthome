@@ -1,14 +1,31 @@
 angular.module('smarthome')
-  .controller('addCtrl', ($scope, addService, $http) => {
+  .controller('addCtrl', ($scope, addService) => {
     $scope.settings = {};
-    $('#breech-start').timeDropper({setCurrentTime: true});
-    $('#breech-end').timeDropper({setCurrentTime: true});
-    $('#smoke-start').timeDropper({setCurrentTime: true});
-    $('#smoke-end').timeDropper({setCurrentTime: true});
-    $('#sound-start').timeDropper({setCurrentTime: true});
-    $('#sound-end').timeDropper({setCurrentTime: true});
-    $('#motion-start').timeDropper({setCurrentTime: true});
-    $('#motion-end').timeDropper({setCurrentTime: true});
+
+    $('#breech-start').timeDropper({
+      setCurrentTime: true
+    });
+    $('#breech-end').timeDropper({
+      setCurrentTime: true
+    });
+    $('#smoke-start').timeDropper({
+      setCurrentTime: true
+    });
+    $('#smoke-end').timeDropper({
+      setCurrentTime: true
+    });
+    $('#sound-start').timeDropper({
+      setCurrentTime: true
+    });
+    $('#sound-end').timeDropper({
+      setCurrentTime: true
+    });
+    $('#motion-start').timeDropper({
+      setCurrentTime: true
+    });
+    $('#motion-end').timeDropper({
+      setCurrentTime: true
+    });
 
     $("#door-window-settings").hide();
     $("#smoke-settings").hide();
@@ -17,11 +34,11 @@ angular.module('smarthome')
     $("#camera-settings").hide();
     $("#therm-settings").hide();
 
-    var gotoElement = function (eID){
-     addService.scrollTo(eID);
-   }
+    let gotoElement = eID => {
+      addService.scrollTo(eID);
+  };
 
-    $scope.$watch('module_type', (value) => {
+    $scope.$watch('module_type', value => {
       switch (value) {
         case "breech":
         {
@@ -93,6 +110,6 @@ angular.module('smarthome')
           return response;
         })
       })
-    }
+    };
 
-  })
+  });

@@ -1,5 +1,5 @@
 angular.module('smarthome')
-  .controller('manageCtrl', ($scope, manageService, user) => {
+  .controller('manageCtrl', ($scope, manageService) => {
 
     (() => {
       manageService.getDevices().then(response => {

@@ -243,7 +243,7 @@ angular.module('smarthome')
           console.log('start', crazy)
           $scope.settings.start_time = $('#start' + $scope.id).val();
           $scope.settings.end_time = $('#end' + $scope.id).val();
-          manageService.saveSettings($scope.id, $scope.settings).then(
+          manageService.saveSettings($scope.settings).then(
             function (response) {
               $('#appended').closest('section').slideUp('slow', () => {
                   $('.devices').css("overflow", "auto")
