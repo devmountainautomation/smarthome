@@ -19,4 +19,12 @@ angular.module('smarthome')
       })
     };
 
+    this.saveSettings = settings => {
+      return $http({
+        method: 'PUT',
+        url: 'settings/',
+        data: settings
+      })
+  };
+  
   }); //End manageService

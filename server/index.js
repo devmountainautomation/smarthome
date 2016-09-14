@@ -10,11 +10,13 @@ const bcrypt = require('bcrypt');
 const Pubnub = require('pubnub');
 const jstz = require('jstz');
 const timeZone = require('moment-timezone');
+const nodemailer = require('nodemailer');
 
 const FacebookStrategy = require('passport-facebook').Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const LocalStrategy = require('passport-local').Strategy;
 const config = require('./config/config.js');
+const client = require('twilio')(config.twilioSID, config.twilioAuthToken);
 const auth = require('./config/auth.js');
 const connString = config.connString;
 const path = require('path');
@@ -59,7 +61,6 @@ const deviceCtrl = require('./controllers/deviceCtrl.js');
 
 ////////////// Endpoints /////////////////////////
 
-
 //*********** Get Requests ********************//
 app.get('/users/', userCtrl.getUser);
 app.get('/users/sensors/', deviceCtrl.getUserSensors);
@@ -68,14 +69,14 @@ app.get('/settings/:sensorId', deviceCtrl.getSettings);
 app.get('/notifications', deviceCtrl.getNotifications);
 
 //*********** Put Requests *******************//
-app.put('/settings/:type', deviceCtrl.updateSettings);
+app.put('/settings', deviceCtrl.updateSettings);
 app.put('/users/', userCtrl.updateUser);
 app.put('/notifications/:id', deviceCtrl.updateNotification);//the id is the notification id
 
 //*********** Post Requests *****************//
 app.post('/settings/:type', deviceCtrl.createSettings);
 app.post('/users', userCtrl.createLocalUser);
-app.post('/sensors', deviceCtrl.createSensor);
+app.post('/sensors/:type', deviceCtrl.createSensor);
 
 //*********** Delete Requests ***************//
 app.delete('/users', userCtrl.destroyUser);

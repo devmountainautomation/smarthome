@@ -74,20 +74,36 @@
 .setting-menu {
   background: #343f46;
   padding: 5vw;
-  position: absolute;
-  top: 23vh;
+  position: fixed;
+  top: 22vh;
   left: 5vw;
   width: 90%;
   max-height: 83vh;
-
+  hr {
+    clear: both;
+  }
+  button {
+    background: #395161;
+    border: none;
+    padding: 1rem 3rem;
+    margin: 0 auto;
+    color: #F56A4C;
+    font-family: 'Lato';
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: .75em;
+    &:hover {
+      background: #3b5e75;
+    }
+  }
   #appended {
     position: relative;
   }
 
   i {
     position: absolute;
-    top: -14vw;
-    right: -3vw;
+    top: 0;
+    right: -1vw;
     text-align: right;
   }
 
