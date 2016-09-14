@@ -1,0 +1,22 @@
+  <nav class="cd-vertical-nav">
+		<ul>
+
+      <li ng-repeat="slide in slides">
+				<a class="slider-a" href="#section{{slide.id}}">
+					<span class="label">{{slide.title}}</span>
+				</a>
+			</li>
+
+		</ul>
+	</nav>
+
+	<button class="cd-nav-trigger cd-image-replace">Open navigation<span aria-hidden="true"></span></button>
+
+	<section ng-repeat="slide in slides" id="section{{slide.id}}" class="cd-section">
+
+      <span class="slider-header">{{slide.id}}: {{slide.header}}</span>
+      <span class="slider-text">{{slide.text}}</span>
+      <img class="slider-image" ng-src="{{slide.img}}">
+
+  	<a href="#section2" class="cd-scroll-down cd-img-replace"></a>
+	</section>
