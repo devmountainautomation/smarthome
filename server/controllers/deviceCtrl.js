@@ -1,8 +1,24 @@
 const app = require('../index.js');
 const db = app.get('db');
+const config = require('../config/config.js');
 const bcrypt = require('bcrypt');
 const moment = require('moment');
+const nodemailer = require('nodemailer');
+const client = require('twilio')(config.twilioSID, config.twilioAuthToken);
 const saltRounds = 10;
+
+var EMAIL_ACCOUNT_USER = config.emailAccountUser;
+var EMAIL_ACCOUNT_PASSWORD = config.emailPassword;
+var YOUR_NAME = config.emailName;
+
+
+var smtpTransport = nodemailer.createTransport("SMTP",{
+  service: "Gmail",  // sets automatically host, port and connection security settings
+  auth: {
+    user: EMAIL_ACCOUNT_USER,
+    pass: EMAIL_ACCOUNT_PASSWORD
+  }
+});
 
 module.exports = {
   getUserSensors: (req, res, next) => {
@@ -43,6 +59,7 @@ module.exports = {
     res.sendStatus(200);
   },
   updateSettings: (req, res, next) => {
+    console.log('made it to server');
     var data = req.body;
     db.get_module_id([req.params.type], (err, response) => {
       var moduleId = response.id;
@@ -56,7 +73,24 @@ module.exports = {
   },
   createSettings: (req, res, next) => {
     var data = req.body;
-    db.get_module_id([req.params.type], (err, response) => {
+    var type = '';
+    switch (req.params.type) {
+      case breech:
+        type = 'Windows/Door Sensor';
+        break;
+      case smoke:
+        type = 'Smoke Detector';
+        break;
+      case motion:
+        type = 'Motion Sensor';
+        break;
+      case sound:
+        type = 'Sound Sensor';
+        break;
+      default:
+        type = null;
+    }
+    db.get_module_id([type], (err, response) => {
       var moduleId = response.id;
     });
     db.create_sensor_settings([moduleId, req.user.id, data.active, data.email, data.sms, data.start_time, data.end_time], (err, response) => {
@@ -88,6 +122,39 @@ module.exports = {
       } else {
         res.send(200);
       }
+    });
+  },
+  sendText: function(req, res, next) {
+    var messages = [];
+    for (var i = 0; i < req.body.to.length; i++) {
+      client.sendMessage({
+        to: req.body.to[i],
+        from: req.body.from,
+        body: req.body.message
+      }, function(err, message) {
+        if (err) {
+          res.send(err);
+        } else {
+          messages.push(message);
+        }
+      });
+    }
+    res.send("messages sent");
+  },
+  sendEmail: function(req, res, next) {
+    smtpTransport.sendMail({ //email options
+      from: YOUR_NAME + " " + EMAIL_ACCOUNT_USER, // sender address.  Must be the same as authenticated user if using GMail.
+      to: req.body.toField, // receiver
+      subject: req.body.subjectField, // subject
+      text: req.body.textField // body
+    }, function(error, response) { //callback
+      if (error) {
+        console.log(error);
+      } else {
+        console.log("Message sent: " + response.message);
+        res.send("email sent");
+      }
+      smtpTransport.close(); // shut down the connection pool, no more messages.  Comment this line out to continue sending emails.
     });
   }
 }; //End Export

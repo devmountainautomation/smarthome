@@ -10,11 +10,13 @@ const bcrypt = require('bcrypt');
 const Pubnub = require('pubnub');
 const jstz = require('jstz');
 const timeZone = require('moment-timezone');
+const nodemailer = require('nodemailer');
 
 const FacebookStrategy = require('passport-facebook').Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const LocalStrategy = require('passport-local').Strategy;
 const config = require('./config/config.js');
+const client = require('twilio')(config.twilioSID, config.twilioAuthToken);
 const auth = require('./config/auth.js');
 const connString = config.connString;
 const path = require('path');
