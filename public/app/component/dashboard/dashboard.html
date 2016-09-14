@@ -3,7 +3,7 @@
 
 <section class="dash-section">
     <div class="notifications">
-        <div class="notifications-container" ng-repeat="note in notes" id="{{note.id}}">
+        <div class="notifications-container" ng-repeat="note in notes | orderBy: 'timeStamp'" id="{{note.id}}">
             <div class="notifications-wrapper">
                 <div class="circle-left" ng-click="updateNote(note.id)"><i class="fa fa-circle-thin fa-lg fa-fw" aria-hidden="true"></i></div>
                 <div class="central-note-wrapper">

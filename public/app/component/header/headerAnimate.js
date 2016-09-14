@@ -13,6 +13,7 @@ angular.module('smarthome')
             $('#hamburger').click(() => {
               $('#hamburger').toggleClass('open');
               $('#menu').toggle('slide', 'left', 500);
+              setTimeout(() => {$('html, body').scrollTop(0);}, 500);
               $('body').toggleClass('menu-open');
             });
 
@@ -33,7 +34,7 @@ angular.module('smarthome')
                   <i class="fa fa-tachometer fa-fw fa-3x" aria-hidden="true"></i>
                   <p>Dashboard</p>
                 </div>
-                <div class="lp-boxes" id="box2">
+                <div class="lp-boxes" id="box2" ui-sref="addDevice">
                   <i class="fa fa-plus-square fa-fw fa-3x" aria-hidden="true"></i>
                   <p>Add Device</p>
                 </div>
@@ -54,9 +55,9 @@ angular.module('smarthome')
                   <p>Logout</p>
                 </div>
                 <div class="social-hex">
-                  <div class="hexagon"><i class="fa fa-github fa-fw fa-2x" aria-hidden="true"></i></div>
+                  <a href="https://github.com/devmountainautomation/smarthome"><div class="hexagon"><i class="fa fa-github fa-fw fa-2x" aria-hidden="true"></i></div></a>
                   <div class="hexagon"><i class="fa fa-linkedin fa-fw fa-2x" aria-hidden="true"></i></div>
-                  <div class="hexagon"><i class="fa fa-facebook fa-fw fa-2x" aria-hidden="true"></i></div>
+                  <a href="https://www.facebook.com/dmsmarthome/"><div class="hexagon"><i class="fa fa-facebook fa-fw fa-2x" aria-hidden="true"></i></div></a>
                 </div>
               </div>`)(scope);
 

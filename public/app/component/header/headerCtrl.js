@@ -1,5 +1,14 @@
 angular.module('smarthome')
-  .controller('headerCtrl', (headerSrvc, $scope, $state) => {
+  .controller('headerCtrl', (headerSrvc, $scope, $state, $location, $anchorScroll) => {
+
+    $scope.scrollTo = (id) => {
+      $location.hash(id);
+      $('#hamburger').toggleClass('open');
+      $('#menu').toggle('slide', 'left', 500);
+      $('body').toggleClass('menu-open');
+      $anchorScroll();
+
+    }
 
     (() => {
       headerSrvc.getUser().then(response => {

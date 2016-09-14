@@ -111,7 +111,7 @@ angular.module('smarthome')
       })
       .state('about', {
         url: '/about',
-        templateUrl: '/app/component/about/about.html',
+        templateUrl: 'app/component/about/about.html',
         controller: 'aboutCtrl',
         resolve: {
           classStrip: () => {
