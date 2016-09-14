@@ -31,6 +31,8 @@ angular.module('smarthome')
     $("#smoke-settings").hide();
     $("#sound-settings").hide();
     $("#motion-settings").hide();
+    $("#camera-settings").hide();
+    $("#therm-settings").hide();
 
     let gotoElement = eID => {
       addService.scrollTo(eID);
@@ -39,37 +41,65 @@ angular.module('smarthome')
     $scope.$watch('module_type', value => {
       switch (value) {
         case "breech":
-          {
-            $("#door-window-settings").slideDown();
-            $("#smoke-settings").hide();
-            $("#sound-settings").hide();
-            $("#motion-settings").hide();
-            break;
-          }
+        {
+          $("#door-window-settings").slideDown();
+          $("#smoke-settings").hide();
+          $("#sound-settings").hide();
+          $("#motion-settings").hide();
+          $("#therm-settings").hide();
+          $("#camera-settings").hide();
+          break;
+        }
+        case "therm":
+        {
+          $("#therm-settings").slideDown();
+          $("#camera-settings").hide();
+          $("#door-window-settings").hide();
+          $("#smoke-settings").hide();
+          $("#sound-settings").hide();
+          $("#motion-settings").hide();
+          break;
+        }
+        case "camera":
+        {
+          $("#camera-settings").slideDown();
+          $("#door-window-settings").hide();
+          $("#smoke-settings").hide();
+          $("#sound-settings").hide();
+          $("#motion-settings").hide();
+          $("#therm-settings").hide();
+          break;
+        }
         case "smoke_detector":
-          {
-            $("#smoke-settings").slideDown();
-            $("#door-window-settings").hide();
-            $("#sound-settings").hide();
-            $("#motion-settings").hide();
-            break;
-          }
+        {
+          $("#smoke-settings").slideDown();
+          $("#door-window-settings").hide();
+          $("#sound-settings").hide();
+          $("#motion-settings").hide();
+          $("#therm-settings").hide();
+          $("#camera-settings").hide();
+          break;
+        }
         case "sound":
-          {
-            $("#sound-settings").slideDown();
-            $("#door-window-settings").hide();
-            $("#smoke-settings").hide();
-            $("#motion-settings").hide();
-            break;
-          }
+        {
+          $("#sound-settings").slideDown();
+          $("#door-window-settings").hide();
+          $("#smoke-settings").hide();
+          $("#motion-settings").hide();
+          $("#therm-settings").hide();
+          $("#camera-settings").hide();
+          break;
+        }
         case "motion":
-          {
-            $("#motion-settings").slideDown();
-            $("#door-window-settings").hide();
-            $("#smoke-settings").hide();
-            $("#sound-settings").hide();
-            break;
-          }
+        {
+          $("#motion-settings").slideDown();
+          $("#door-window-settings").hide();
+          $("#smoke-settings").hide();
+          $("#sound-settings").hide();
+          $("#therm-settings").hide();
+          $("#camera-settings").hide();
+          break;
+        }
       }
     })
     $scope.addBreech = () => {
