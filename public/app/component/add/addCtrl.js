@@ -1,5 +1,5 @@
 angular.module('smarthome')
-  .controller('addCtrl', ($scope, addService, $http) => {
+  .controller('addCtrl', ($scope, addService) => {
     $scope.settings = {};
 
     $('#breech-start').timeDropper({
