@@ -10,6 +10,9 @@ $dashgreen: #E3F1F4;
     width: 100%;
     background: #36454f;
     overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     .notifications {
         height: 100%;
@@ -66,6 +69,15 @@ $dashgreen: #E3F1F4;
     }
 
 }
+
+.no-notes {
+    color: #000;
+    position: absolute;
+    text-align: center;
+    padding: 5%;
+}
+
+
 
 .slide-out {
     transform: translateX(-2000px);

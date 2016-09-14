@@ -13,7 +13,7 @@ angular.module('smarthome')
             $('#hamburger').click(() => {
               $('#hamburger').toggleClass('open');
               $('#menu').toggle('slide', 'left', 500);
-              $('.landing-page').toggleClass('menu-open');
+              $('body').toggleClass('menu-open');
             });
 
             $(window).on('scroll', () => {
@@ -41,9 +41,9 @@ angular.module('smarthome')
                   <i class="fa fa-wrench fa-fw fa-3x" aria-hidden="true"></i>
                   <p>Manage Devices</p>
                 </div>
-                <div class="lp-boxes" id="box4">
-                  <i class="fa fa-question fa-fw fa-3x" aria-hidden="true"></i>
-                  <p>FAQ</p>
+                <div class="lp-boxes" id="box4" ui-sref="about">
+                  <i class="fa fa-user fa-fw fa-3x" aria-hidden="true"></i>
+                  <p>Our Team</p>
                 </div>
               </div>
               <div class="menu-list-container">
@@ -66,7 +66,7 @@ angular.module('smarthome')
             $('#hamburger').click(() => {
               $('#hamburger').toggleClass('open');
               $('#menu').toggle('slide', 'left', 500);
-              $('.landing-page').toggleClass('menu-open');
+              $('body').toggleClass('menu-open');
             });
 
             $('#lp-contact').on('click', () => {

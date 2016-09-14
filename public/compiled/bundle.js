@@ -378,13 +378,23 @@ angular.module('smarthome').config(function ($stateProvider, $urlRouterProvider)
 
   $stateProvider.state('landing page', {
     url: '/',
-    templateUrl: './app/component/landingPage/landingPage.html'
+    templateUrl: './app/component/landingPage/landingPage.html',
+    resolve: {
+      classStrip: function classStrip() {
+        $('body').removeClass('menu-open');
+      }
+    }
   }).state('getStarted', {
     url: '/getstarted',
-    templateUrl: './app/component/getStarted/getStarted.html'
+    templateUrl: './app/component/getStarted/getStarted.html',
+    resolve: {
+      classStrip: function classStrip() {
+        $('body').removeClass('menu-open');
+      }
+    }
   }).state('login', {
     url: '/login',
-    templateUrl: '/app/component/login/login.html',
+    templateUrl: './app/component/login/login.html',
     controller: 'loginCtrl',
     resolve: {
       checkAuth: function checkAuth($state, dashboardSrvc) {
@@ -393,11 +403,14 @@ angular.module('smarthome').config(function ($stateProvider, $urlRouterProvider)
             $state.go('dashboard');
           }
         });
+      },
+      classStrip: function classStrip() {
+        $('body').removeClass('menu-open');
       }
     }
   }).state('dashboard', {
     url: '/dashboard',
-    templateUrl: '/app/component/dashboard/dashboard.html',
+    templateUrl: './app/component/dashboard/dashboard.html',
     controller: 'dashboardCtrl',
     resolve: {
       user: function user(dashboardSrvc) {
@@ -412,11 +425,14 @@ angular.module('smarthome').config(function ($stateProvider, $urlRouterProvider)
             }, 400);
           }
         });
+      },
+      classStrip: function classStrip() {
+        $('body').removeClass('menu-open');
       }
     }
   }).state('manage', {
     url: '/manage',
-    templateUrl: '/app/component/manage/manage.html',
+    templateUrl: './app/component/manage/manage.html',
     controller: 'manageCtrl',
     resolve: {
       user: function user(dashboardSrvc) {
@@ -431,6 +447,9 @@ angular.module('smarthome').config(function ($stateProvider, $urlRouterProvider)
             }, 400);
           }
         });
+      },
+      classStrip: function classStrip() {
+        $('body').removeClass('menu-open');
       }
     }
   }).state('addDevice', {
@@ -447,12 +466,20 @@ angular.module('smarthome').config(function ($stateProvider, $urlRouterProvider)
             }, 400);
           }
         });
+      },
+      classStrip: function classStrip() {
+        $('body').removeClass('menu-open');
       }
     }
   }).state('about', {
     url: '/about',
     templateUrl: '/app/component/about/about.html',
-    controller: 'aboutCtrl'
+    controller: 'aboutCtrl',
+    resolve: {
+      classStrip: function classStrip() {
+        $('body').removeClass('menu-open');
+      }
+    }
   });
 });
 "use strict";
@@ -1171,6 +1198,13 @@ angular.module('smarthome').controller('dashboardCtrl', function ($scope, dashbo
     dashboardSrvc.getNotifications().then(function (response) {
       console.log(response.data);
       $scope.notes = response.data;
+      if (response.data.length < 1) {
+        $('.notifications').css('display', 'none');
+        $('.no-notes').removeClass('hidden');
+      } else if (response.data.length >= 1) {
+        $('.notifications').css('display', 'block');
+        $('.no-notes').addClass('hidden');
+      }
     });
   };
   $scope.getNotifications();
@@ -1221,179 +1255,35 @@ angular.module('smarthome').service('dashboardSrvc', function ($http) {
 });
 'use strict';
 
-angular.module('smarthome').directive('headDir', function ($state, $compile) {
+angular.module('smarthome').directive('fullPage', function () {
   return {
     restrict: 'EA',
-    templateUrl: './app/component/header/header.html',
-    scope: false,
-    controller: 'headerCtrl',
-    link: function link(scope, elem, attrs) {
-      var $scope = scope;
+    templateUrl: './app/component/getStarted/fullPage.html',
+    controller: 'getStartedCtrl',
+    link: function link(scope, elems, attrs) {
       $(document).ready(function () {
-
-        if (!$scope.user) {
-          $('#hamburger').click(function () {
-            $('#hamburger').toggleClass('open');
-            $('#menu').toggle('slide', 'left', 500);
-            $('.landing-page').toggleClass('menu-open');
-          });
-
-          $(window).on('scroll', function () {
-            if ($(window).scrollTop() > 50) {
-              $('.header').addClass('active');
-              $('.ham-slide').addClass('span-invert');
-            } else {
-              $('.header').removeClass('active');
-              $('.ham-slide').removeClass('span-invert');
-            }
-          });
-        } else {
-
-          var elmnt = $compile('<div class="menu-box-container">\n                  <div class="lp-boxes" id="box1" ui-sref="dashboard">\n                      <i class="fa fa-tachometer fa-fw fa-3x" aria-hidden="true"></i>\n                      <p>Dashboard</p>\n                  </div>\n                  <div class="lp-boxes" id="box2" ui-sref="addDevice">\n                      <i class="fa fa-plus-square fa-fw fa-3x" aria-hidden="true"></i>\n                      <p>Add Device</p>\n                  </div>\n                  <div class="lp-boxes" id="box3" ui-sref="manage">\n                      <i class="fa fa-wrench fa-fw fa-3x" aria-hidden="true"></i>\n                      <p>Manage Devices</p>\n                  </div>\n                  <div class="lp-boxes" id="box4">\n                      <i class="fa fa-question fa-fw fa-3x" aria-hidden="true"></i>\n                      <p>FAQ</p>\n                  </div>\n              </div>\n              <div class="menu-list-container">\n                  <div class="lp-menu-item" id="lp-contact">\n                      <p>Update Profile</p>\n                  </div>\n                  <div class="lp-menu-item" id="lp-logout" ng-click="logout()">\n                      <p>Logout</p>\n                  </div>\n                  <div class="social-hex">\n                      <div class="hexagon"><i class="fa fa-github fa-fw fa-2x" aria-hidden="true"></i></div>\n                      <div class="hexagon"><i class="fa fa-linkedin fa-fw fa-2x" aria-hidden="true"></i></div>\n                      <div class="hexagon"><i class="fa fa-facebook fa-fw fa-2x" aria-hidden="true"></i></div>\n                  </div>\n              </div>')(scope);
-
-          $('.menu').empty();
-          $('.menu').html(elmnt);
-
-          $('#hamburger').click(function () {
-            $('#hamburger').toggleClass('open');
-            $('#menu').toggle('slide', 'left', 500);
-            $('.landing-page').toggleClass('menu-open');
-          });
-
-          $('#lp-contact').on('click', function () {
-            $('#hamburger').toggleClass('open');
-            $('#menu').toggle('slide', 'left', 500);
-            $('.user-update').show(300);
-            $('body').css("overflow-y", "hidden");
-          });
-
-          $('.close-modal').on('click', function () {
-            $('.user-update').hide(300);
-            $('body').css("overflow-y", "auto");
-            $('#hamburger').toggleClass('open');
-            $('#menu').toggle('slide', 'left', 500);
-          });
-
-          $(window).on('scroll', function () {
-            if ($(window).scrollTop() > 50) {
-              $('.header').addClass('active');
-              $('.ham-slide').addClass('span-invert');
-            } else {
-              $('.header').removeClass('active');
-              $('.ham-slide').removeClass('span-invert');
-            }
-          });
-        }
+        var length = scope.slides.length;
+        $('#fullpage').fullpage({
+          anchors: ['section1', 'section2', 'section3', 'section4', 'section5'],
+          navigation: true,
+          navigationPosition: 'left',
+          onLeave: function onLeave(index, nextIndex, direction) {
+            if (index === 1 || nextIndex === 1) $('.move-up').toggle();
+            if (index === length || nextIndex === length) $('.move-down').toggle();
+            scope.currentIndex = nextIndex;
+          }
+        });
+        $(document).on('click', '.move-up', function () {
+          scope.currentIndex--;
+          $.fn.fullpage.moveTo('section' + scope.currentIndex);
+        });
+        $(document).on('click', '.move-down', function () {
+          scope.currentIndex++;
+          $.fn.fullpage.moveTo('section' + scope.currentIndex);
+        });
       });
     }
   };
-});
-'use strict';
-
-angular.module('smarthome').controller('headerCtrl', function (headerSrvc, $scope, $state, $rootScope) {
-
-  (function () {
-    headerSrvc.getUser().then(function (response) {
-      $scope.user = response.data;
-      console.log($scope.user);
-    });
-  })();
-
-  $scope.logout = function () {
-    headerSrvc.logout().then(function (response) {
-      swal("Success!", "Logout Successful!", "success");
-      setTimeout(function () {
-        if (response) {
-          $state.go('landing page');
-        }
-      }, 1500);
-    });
-  };
-
-  $scope.updateMe = function (updateUser) {
-    headerSrvc.updateMe(updateUser).then(function (response) {
-      if (response.status === 200) {
-        $('.user-update').hide(300);
-        swal("Success!", "Your Information Has Been Saved!", "success");
-      } else {
-        swal("Error!", "Hmm...Something Wasn't Right", "error");
-      }
-    });
-  };
-});
-'use strict';
-
-angular.module('smarthome').service('headerSrvc', function ($http) {
-
-  this.getUser = function () {
-    return $http.get('/me');
-  };
-
-  this.logout = function () {
-    return $http.get('/logout').then(function (response) {
-      console.log(response);
-      return response.data;
-    }).catch(function (err) {
-      console.log(err);
-    });
-  };
-
-  this.updateMe = function (updateUser) {
-    return $http({
-      method: 'PUT',
-      url: '/users/',
-      data: updateUser
-    }).then(function (response) {
-      return response;
-    }).catch(function (err) {
-      console.log(err);
-    });
-  };
-});
-'use strict';
-
-angular.module('smarthome').directive('update', function () {
-  return {
-    restrict: 'EA',
-    templateUrl: './app/component/header/update.html',
-    scope: false,
-    controller: 'headerCtrl',
-    link: function link(scope, elem, attrs) {
-      var $scope = scope;
-    }
-  };
-});
-'use strict';
-
-angular.module('smarthome').directive('fullPage', function () {
-    return {
-        restrict: 'EA',
-        templateUrl: './app/component/getStarted/fullPage.html',
-        controller: 'getStartedCtrl',
-        link: function link(scope, elems, attrs) {
-            $(document).ready(function () {
-                var length = scope.slides.length;
-                $('#fullpage').fullpage({
-                    anchors: ['section1', 'section2', 'section3', 'section4', 'section5'],
-                    navigation: true,
-                    navigationPosition: 'left',
-                    onLeave: function onLeave(index, nextIndex, direction) {
-                        if (index === 1 || nextIndex === 1) $('.move-up').toggle();
-                        if (index === length || nextIndex === length) $('.move-down').toggle();
-                        scope.currentIndex = nextIndex;
-                    }
-                });
-                $(document).on('click', '.move-up', function () {
-                    scope.currentIndex--;
-                    $.fn.fullpage.moveTo('section' + scope.currentIndex);
-                });
-                $(document).on('click', '.move-down', function () {
-                    scope.currentIndex++;
-                    $.fn.fullpage.moveTo('section' + scope.currentIndex);
-                });
-            });
-        }
-    };
 });
 'use strict';
 
@@ -1427,6 +1317,147 @@ angular.module('smarthome').controller('getStartedCtrl', function ($scope) {
     text: "Once the device is installed, HomeOne will take care of the rest",
     img: "../../../assets/img/getStarted/tools.svg"
   }];
+});
+'use strict';
+
+angular.module('smarthome').directive('headDir', function ($state, $compile) {
+  return {
+    restrict: 'EA',
+    templateUrl: './app/component/header/header.html',
+    scope: false,
+    controller: 'headerCtrl',
+    link: function link(scope, elem, attrs) {
+      var $scope = scope;
+      $(document).ready(function () {
+
+        if (!$scope.user) {
+          $('#hamburger').click(function () {
+            $('#hamburger').toggleClass('open');
+            $('#menu').toggle('slide', 'left', 500);
+            $('body').toggleClass('menu-open');
+          });
+
+          $(window).on('scroll', function () {
+            if ($(window).scrollTop() > 50) {
+              $('.header').addClass('active');
+              $('.ham-slide').addClass('span-invert');
+            } else {
+              $('.header').removeClass('active');
+              $('.ham-slide').removeClass('span-invert');
+            }
+          });
+        } else {
+          var elmnt = $compile('<div class="menu-box-container">\n                <div class="lp-boxes" id="box1" ui-sref="dashboard">\n                  <i class="fa fa-tachometer fa-fw fa-3x" aria-hidden="true"></i>\n                  <p>Dashboard</p>\n                </div>\n                <div class="lp-boxes" id="box2">\n                  <i class="fa fa-plus-square fa-fw fa-3x" aria-hidden="true"></i>\n                  <p>Add Device</p>\n                </div>\n                <div class="lp-boxes" id="box3" ui-sref="manage">\n                  <i class="fa fa-wrench fa-fw fa-3x" aria-hidden="true"></i>\n                  <p>Manage Devices</p>\n                </div>\n                <div class="lp-boxes" id="box4" ui-sref="about">\n                  <i class="fa fa-user fa-fw fa-3x" aria-hidden="true"></i>\n                  <p>Our Team</p>\n                </div>\n              </div>\n              <div class="menu-list-container">\n                <div class="lp-menu-item" id="lp-contact">\n                  <p>Update Profile</p>\n                </div>\n                <div class="lp-menu-item" id="lp-logout" ng-click="logout()">\n                  <p>Logout</p>\n                </div>\n                <div class="social-hex">\n                  <div class="hexagon"><i class="fa fa-github fa-fw fa-2x" aria-hidden="true"></i></div>\n                  <div class="hexagon"><i class="fa fa-linkedin fa-fw fa-2x" aria-hidden="true"></i></div>\n                  <div class="hexagon"><i class="fa fa-facebook fa-fw fa-2x" aria-hidden="true"></i></div>\n                </div>\n              </div>')(scope);
+
+          $('.menu').empty();
+          $('.menu').html(elmnt);
+
+          $('#hamburger').click(function () {
+            $('#hamburger').toggleClass('open');
+            $('#menu').toggle('slide', 'left', 500);
+            $('body').toggleClass('menu-open');
+          });
+
+          $('#lp-contact').on('click', function () {
+            $('#hamburger').toggleClass('open');
+            $('#menu').toggle('slide', 'left', 500);
+            $('.user-update').show(300);
+            $('body').css("overflow-y", "hidden");
+          });
+
+          $('.close-modal').on('click', function () {
+            $('.user-update').hide(300);
+            $('body').css("overflow-y", "auto");
+            $('#hamburger').toggleClass('open');
+            $('#menu').toggle('slide', 'left', 500);
+          });
+
+          $(window).on('scroll', function () {
+            if ($(window).scrollTop() > 50) {
+              $('.header').addClass('active');
+              $('.ham-slide').addClass('span-invert');
+            } else {
+              $('.header').removeClass('active');
+              $('.ham-slide').removeClass('span-invert');
+            }
+          });
+        }
+      });
+    }
+  };
+});
+'use strict';
+
+angular.module('smarthome').controller('headerCtrl', function (headerSrvc, $scope, $state) {
+
+  (function () {
+    headerSrvc.getUser().then(function (response) {
+      $scope.user = response.data;
+    });
+  })();
+
+  $scope.logout = function () {
+    headerSrvc.logout().then(function (response) {
+      swal("Success!", "Logout Successful!", "success");
+      setTimeout(function () {
+        if (response) {
+          $state.go('landing page');
+        }
+      }, 1500);
+    });
+  };
+
+  $scope.updateMe = function (updateUser) {
+    headerSrvc.updateMe(updateUser).then(function (response) {
+      if (response.status === 200) {
+        $('.user-update').hide(300);
+        swal("Success!", "Your Information Has Been Saved!", "success");
+      } else {
+        swal("Error!", "Hmm...Something Wasn't Right", "error");
+      }
+    });
+  };
+}); //End headerCtrl
+'use strict';
+
+angular.module('smarthome').service('headerSrvc', function ($http) {
+
+  this.getUser = function () {
+    return $http.get('/me');
+  };
+
+  this.logout = function () {
+    return $http.get('/logout').then(function (response) {
+      return response.data;
+    }).catch(function (err) {
+      console.log(err);
+    });
+  };
+
+  this.updateMe = function (updateUser) {
+    return $http({
+      method: 'PUT',
+      url: '/users/',
+      data: updateUser
+    }).then(function (response) {
+      return response;
+    }).catch(function (err) {
+      console.log(err);
+    });
+  };
+});
+'use strict';
+
+angular.module('smarthome').directive('update', function () {
+  return {
+    restrict: 'EA',
+    templateUrl: './app/component/header/update.html',
+    scope: false,
+    controller: 'headerCtrl',
+    link: function link(scope, elem, attrs) {
+      var $scope = scope;
+    }
+  };
 });
 'use strict';
 
@@ -1464,6 +1495,125 @@ angular.module('smarthome').service('landingSrvc', function ($http) {
 
   this.getUser = function () {
     return $http.get('/me');
+  };
+});
+'use strict';
+
+angular.module('smarthome').directive('compareTo', function () {
+  return {
+    restrict: 'A',
+    require: "ngModel",
+    scope: {
+      otherValue: "=compareTo"
+    },
+    link: function link(scope, element, attrs, ngModel) {
+      ngModel.$validators.compareTo = function (modelValue) {
+        return modelValue == scope.otherValue;
+      };
+      scope.$watch("otherValue", function () {
+        ngModel.$validate();
+      });
+      element.on('blur', function () {
+        if (element.hasClass('ng-invalid')) {
+          $('.password-confirmation-alert').removeClass('hidden');
+        }
+      });
+      element.on('keyup', function () {
+        if (element.hasClass('ng-valid')) {
+          $('.password-confirmation-alert').addClass('hidden');
+        }
+      });
+    }
+  };
+});
+'use strict';
+
+angular.module('smarthome').controller('loginCtrl', function ($scope, $state, loginService) {
+
+  $scope.localLogin = function (email, password) {
+    loginService.login(email, password).then(function (response) {
+      $state.go('dashboard');
+    });
+  };
+
+  (function () {
+    loginService.getUser().then(function (response) {
+      $scope.user = response.data;
+    });
+  })();
+
+  $scope.logout = function () {
+    headerSrvc.logout().then(function (response) {
+      swal("Success!", "Logout Successful!", "success");
+      setTimeout(function () {
+        if (response) {
+          $state.go('landing page');
+        }
+      }, 1500);
+    });
+  };
+}); //End loginCtrl
+'use strict';
+
+angular.module('smarthome').service('loginService', function ($http, $state) {
+  this.login = function (email, password) {
+    return $http({
+      method: 'POST',
+      url: '/auth/local',
+      data: {
+        username: email,
+        password: password
+      }
+    }).then(function (response) {
+      return response.status;
+    });
+  };
+
+  this.createLocalUser = function (name, email, password, phone) {
+    return $http({
+      method: 'POST',
+      url: '/users',
+      data: {
+        name: name,
+        email: email,
+        password: password,
+        phone: phone
+      }
+    }).then(function (response) {
+      $state.go('landing page');
+    });
+  };
+
+  this.getUser = function () {
+    return $http.get('/me');
+  };
+}); //End loginService
+'use strict';
+
+angular.module('smarthome').directive('signupForm', function () {
+  return {
+    restrict: 'E',
+    templateUrl: "app/component/login/signupForm.html",
+    controller: function controller($scope, loginService) {
+      $scope.createLocalUser = function () {
+        loginService.createLocalUser($scope.signup_name, $scope.signup_email, $scope.signup_password, $scope.signup_phone);
+      };
+    },
+    link: function link(scope, element, attrs) {
+      $('#signup-trigger').on('click', function () {
+        $('.signup-expander').slideToggle();
+      });
+      $('#email').on('blur', function () {
+        if ($('#email').hasClass('ng-invalid')) {
+          $('.email-confirmation-alert').removeClass('hidden');
+        }
+      });
+      $('#email').on('keyup', function () {
+        if ($('#email').hasClass('ng-valid')) {
+          $('.email-confirmation-alert').addClass('hidden');
+        }
+      });
+    }
   };
 });
 'use strict';
@@ -1544,8 +1694,6 @@ angular.module('smarthome').directive('deviceCard', function (manageService) {
 
 angular.module('smarthome').controller('manageCtrl', function ($scope, manageService, user) {
 
-  $scope.user = user.data;
-
   (function () {
     manageService.getDevices().then(function (response) {
       $scope.devices = response;
@@ -1570,164 +1718,7 @@ angular.module('smarthome').service('manageService', function ($http) {
       method: 'GET',
       url: 'settings/' + id
     }).then(function (response) {
-      var startTime = timeConverter(response.data[0].start_time);
-      var endTime = timeConverter(response.data[0].end_time);
-      response.data[0].start_time = startTime;
-      response.data[0].end_time = endTime;
       return response.data[0];
     });
   };
-
-  var timeConverter = function timeConverter(rawTime) {
-    if (rawTime) {
-      var result = void 0;
-      var time = rawTime.split(':');
-      time.pop();
-      var min = time[1];
-      var hour = time[0];
-      time.splice(0, 2);
-      if (Number(hour) > 12) {
-        hour -= 12;
-        time.push(hour, min);
-        result = time.join(':');
-        result += " PM";
-      } else if (Number(hour) === 12) {
-        time.push(hour, min);
-        result = time.join(':');
-        result += " PM";
-      } else if (Number(hour) === 0) {
-        hour = 12;
-        time.push(hour, min);
-        result = time.join(':');
-        result += " AM";
-      } else {
-        time.push(hour, min);
-        result = time.join(':');
-        result += " AM";
-      }
-      return result;
-    } else {
-      return "N/A";
-    }
-  };
 }); //End manageService
-'use strict';
-
-angular.module('smarthome').directive('compareTo', function () {
-  return {
-    restrict: 'A',
-    require: "ngModel",
-    scope: {
-      otherValue: "=compareTo"
-    },
-    link: function link(scope, element, attrs, ngModel) {
-      ngModel.$validators.compareTo = function (modelValue) {
-        return modelValue == scope.otherValue;
-      };
-      scope.$watch("otherValue", function () {
-        ngModel.$validate();
-      });
-      element.on('blur', function () {
-        if (element.hasClass('ng-invalid')) {
-          $('.password-confirmation-alert').removeClass('hidden');
-        }
-      });
-      element.on('keyup', function () {
-        if (element.hasClass('ng-valid')) {
-          $('.password-confirmation-alert').addClass('hidden');
-        }
-      });
-    }
-  };
-});
-'use strict';
-
-angular.module('smarthome').controller('loginCtrl', function ($scope, $state, loginService) {
-
-  $scope.localLogin = function (email, password) {
-    loginService.login(email, password).then(function (response) {
-      $state.go('landing page');
-    });
-  };
-
-  (function () {
-    loginService.getUser().then(function (response) {
-      $scope.user = response.data;
-    });
-  })();
-
-  $scope.logout = function () {
-    console.log('hit');
-    headerSrvc.logout().then(function (response) {
-      swal("Success!", "Logout Successful!", "success");
-      setTimeout(function () {
-        if (response) {
-          $state.go('landing page');
-        }
-      }, 1500);
-    });
-  };
-}); //End loginCtrl
-'use strict';
-
-angular.module('smarthome').service('loginService', function ($http, $state) {
-  this.login = function (email, password) {
-    return $http({
-      method: 'POST',
-      url: '/auth/local',
-      data: {
-        username: email,
-        password: password
-      }
-    }).then(function (response) {
-      return response.status;
-    });
-  };
-
-  this.createLocalUser = function (name, email, password, phone) {
-    return $http({
-      method: 'POST',
-      url: '/users',
-      data: {
-        name: name,
-        email: email,
-        password: password,
-        phone: phone
-      }
-    }).then(function (response) {
-      $state.go('landing page');
-    });
-  };
-
-  this.getUser = function () {
-    return $http.get('/me');
-  };
-}); //End loginService
-'use strict';
-
-angular.module('smarthome').directive('signupForm', function () {
-  return {
-    restrict: 'E',
-    templateUrl: "app/component/login/signupForm.html",
-    controller: function controller($scope, loginService) {
-      $scope.createLocalUser = function () {
-        loginService.createLocalUser($scope.signup_name, $scope.signup_email, $scope.signup_password, $scope.signup_phone);
-      };
-    },
-    link: function link(scope, element, attrs) {
-      $('#signup-trigger').on('click', function () {
-        $('.signup-expander').slideToggle();
-      });
-      $('#email').on('blur', function () {
-        if ($('#email').hasClass('ng-invalid')) {
-          $('.email-confirmation-alert').removeClass('hidden');
-        }
-      });
-      $('#email').on('keyup', function () {
-        if ($('#email').hasClass('ng-valid')) {
-          $('.email-confirmation-alert').addClass('hidden');
-        }
-      });
-    }
-  };
-});

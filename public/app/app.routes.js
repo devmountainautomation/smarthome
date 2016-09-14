@@ -11,10 +11,20 @@ angular.module('smarthome')
       .state('landing page', {
         url: '/',
         templateUrl: './app/component/landingPage/landingPage.html',
+        resolve: {
+          classStrip: () => {
+            $('body').removeClass('menu-open');
+          }
+        }
       })
       .state('getStarted', {
         url: '/getstarted',
-        templateUrl: './app/component/getStarted/getStarted.html'
+        templateUrl: './app/component/getStarted/getStarted.html',
+        resolve: {
+          classStrip: () => {
+            $('body').removeClass('menu-open');
+          }
+        }
       })
       .state('login', {
         url: '/login',
@@ -27,6 +37,9 @@ angular.module('smarthome')
                 $state.go('dashboard');
               }
             });
+          },
+          classStrip: () => {
+            $('body').removeClass('menu-open');
           }
         }
       })
@@ -47,6 +60,9 @@ angular.module('smarthome')
                 }, 400);
               }
             });
+          },
+          classStrip: () => {
+            $('body').removeClass('menu-open');
           }
         }
       })
@@ -67,6 +83,9 @@ angular.module('smarthome')
                 }, 400);
               }
             });
+          },
+          classStrip: () => {
+            $('body').removeClass('menu-open');
           }
         }
       })
@@ -84,6 +103,9 @@ angular.module('smarthome')
                 }, 400);
               }
             });
+          },
+          classStrip: () => {
+            $('body').removeClass('menu-open');
           }
         }
       })
@@ -91,6 +113,11 @@ angular.module('smarthome')
         url: '/about',
         templateUrl: '/app/component/about/about.html',
         controller: 'aboutCtrl',
+        resolve: {
+          classStrip: () => {
+            $('body').removeClass('menu-open');
+          }
+        }
       })
 
   });
