@@ -11,21 +11,20 @@ $dashgreen: #E3F1F4;
     background: #36454f;
     overflow: auto;
     display: flex;
-    align-items: center;
     justify-content: center;
 
     .notifications {
-        height: 100%;
-        width: 100%;
-        padding: 20% 10%;
+        height: 50vh;
+        width: 90%;
+        margin-top: 10vh;
+        padding: 5vh 5vh;
         display: flex;
-        flex-shrink: 0;
         overflow: auto;
         flex-direction: column;
         justify-content: center;
 
         .notifications-container {
-            height: 20%;
+            height: 15vh;
             display: flex;
             align-items: center;
             margin-bottom: 5vh;

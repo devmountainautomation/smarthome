@@ -4,7 +4,9 @@ angular.module('smarthome')
       restrict: 'EA',
       controller: 'aboutCtrl',
       link: (scope, elem, attrs) => {
-
+        $(document).ready(() => {
+        
+        });
       }
     };
   });
