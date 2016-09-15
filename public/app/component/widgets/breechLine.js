@@ -14,10 +14,13 @@ angular.module('smarthome')
     controller($scope, dashboardSrvc) {
         dashboardSrvc.getHistory($scope.id).then(
           function (response) {
-            $scope.rawData = response;
-          }
-        var values = [];
-        
+            var rawData = response;
+            console.log('response', response);
+      var values = [];
+      var buckets = [];
+      for (var i = 0; i < rawData.length; i++) {
+
+      }
 
       $scope.options = {
             chart: {
@@ -115,7 +118,7 @@ angular.module('smarthome')
                 }
             ];
         };
-      )
+      })
     }
   }
   })

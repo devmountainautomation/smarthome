@@ -2978,3 +2978,11 @@ html.fp-enabled,
 
 .td-lancette div:last-child:after {
   top: 36px; }
+
+.breech-dashed {
+  stroke-dasharray: 5,5; }
+
+.nvd3 text {
+  font-family: 'Lato';
+  text-transform: uppercase;
+  fill: white; }
