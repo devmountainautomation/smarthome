@@ -5,11 +5,13 @@ angular.module('smarthome')
       dashboardSrvc.getUser().then((response => {
         $scope.user = response.data;
       }));
+      dashboardSrvc.getNotifications().then(response => {
+        $scope.notes = response.data;
+      });
     })();
 
     $scope.getNotifications = () => {
       dashboardSrvc.getNotifications().then(response => {
-        console.log(response.data);
         $scope.notes = response.data;
         if(response.data.length < 1) {
           $('.notifications').css('display', 'none');
@@ -21,7 +23,6 @@ angular.module('smarthome')
         }
       });
     };
-    $scope.getNotifications();
 
     $scope.updateNote = (id) => {
       dashboardSrvc.updateNote(id).then(response => {
@@ -36,7 +37,5 @@ angular.module('smarthome')
         }
       });
     };
-
-
 
   });
