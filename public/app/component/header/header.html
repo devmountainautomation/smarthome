@@ -5,18 +5,18 @@
       <span class="ham-slide"></span>
       <span class="ham-slide"></span>
     </div>
-    <div class="logo-container">Home<img class="logo" src="../../../assets/img/devautomation logo-1.png" alt="logo" />One</div>
+    <div class="logo-container" ui-sref="landing page">Home<img class="logo" src="../../../assets/img/devautomation logo-1.png" alt="logo" />One</div>
   </div>
 
 </header>
 
 <section class="menu" id="menu">
   <div class="menu-box-container">
-    <div class="lp-boxes" id="box1" ui-sref="getStarted">
+    <div class="lp-boxes" id="box1">
       <i class="fa fa-paper-plane fa-fw fa-3x" aria-hidden="true"></i>
-      <p>Get Started</p>
+      <p>Tutorials</p>
     </div>
-    <div class="lp-boxes" id="box2">
+    <div class="lp-boxes" id="box2" ng-click="scrollTo('tech')">
       <i class="fa fa-magic fa-fw fa-3x" aria-hidden="true"></i>
       <p>Our Tech</p>
     </div>
@@ -38,9 +38,9 @@
       <p>Contact</p>
     </div>
     <div class="social-hex">
-      <div class="hexagon"><i class="fa fa-github fa-fw fa-2x" aria-hidden="true"></i></div>
+      <a href="https://github.com/devmountainautomation/smarthome"><div class="hexagon"><i class="fa fa-github fa-fw fa-2x" aria-hidden="true"></i></div></a>
       <div class="hexagon"><i class="fa fa-linkedin fa-fw fa-2x" aria-hidden="true"></i></div>
-      <div class="hexagon"><i class="fa fa-facebook fa-fw fa-2x" aria-hidden="true"></i></div>
+      <a href="https://www.facebook.com/dmsmarthome/"><div class="hexagon"><i class="fa fa-facebook fa-fw fa-2x" aria-hidden="true"></i></div></a>
     </div>
   </div>
 </section>

@@ -110,19 +110,19 @@ VALUES (4, 2, 30, true, true, true, '2016-09-12 11:00 PM', '2016-09-12 07:00 AM'
 INSERT INTO settings (user_id, module_id, sensor_id, active, email, sms, start_time, end_time)
 VALUES (5, 2, 31, true, true, true, '2016-09-12 12:30 AM', '2016-09-12 05:00 AM');
 
-INSERT INTO history (user_id, sensor_id, alert, seen, status, time_stamp) VALUES (3, 1, true, false, 'Open', '2016-09-12 14:41:45');
-INSERT INTO history (user_id, sensor_id, alert, seen, status, time_stamp) VALUES (3, 1, true, false, 'Open', '2016-09-12 14:41:55');
-INSERT INTO history (user_id, sensor_id, alert, seen, status, time_stamp) VALUES (3, 1, true, false, 'Open', '2016-09-12 14:32:45');
-INSERT INTO history (user_id, sensor_id, alert, seen, status, time_stamp) VALUES (3, 1, true, false, 'Open', '2016-09-12 14:32:48');
-INSERT INTO history (user_id, sensor_id, alert, seen, status, time_stamp) VALUES (3, 1, true, false, 'Open', '2016-09-12 14:41:45');
-INSERT INTO history (user_id, sensor_id, alert, seen, status, time_stamp) VALUES (3, 1, true, false, 'Open', '2016-09-12 14:41:45');
-INSERT INTO history (user_id, sensor_id, alert, seen, status, time_stamp) VALUES (3, 1, true, false, 'Open', '2016-09-12 14:41:45');
-INSERT INTO history (user_id, sensor_id, alert, seen, status, time_stamp) VALUES (3, 1, true, false, 'Open', '2016-09-12 14:41:45');
-INSERT INTO history (user_id, sensor_id, alert, seen, status, time_stamp) VALUES (3, 1, true, false, 'Open', '2016-09-12 14:41:45');
-INSERT INTO history (user_id, sensor_id, alert, seen, status, time_stamp) VALUES (3, 1, true, false, 'Open', '2016-09-12 14:41:45');
-INSERT INTO history (user_id, sensor_id, alert, seen, status, time_stamp) VALUES (3, 1, true, false, 'Open', '2016-09-12 14:41:45');
-INSERT INTO history (user_id, sensor_id, alert, seen, status, time_stamp) VALUES (3, 1, true, false, 'Open', '2016-09-12 14:41:45');
-INSERT INTO history (user_id, sensor_id, alert, seen, status, time_stamp) VALUES (3, 1, true, false, 'Open', '2016-09-12 14:41:45');
-INSERT INTO history (user_id, sensor_id, alert, seen, status, time_stamp) VALUES (3, 1, true, false, 'Open', '2016-09-12 14:41:45');
-INSERT INTO history (user_id, sensor_id, alert, seen, status, time_stamp) VALUES (3, 1, true, false, 'Open', '2016-09-12 14:41:45');
-INSERT INTO history (user_id, sensor_id, alert, seen, status, time_stamp) VALUES (3, 1, true, false, 'Open', '2016-09-12 14:41:45');
+  INSERT INTO history (user_id, sensor_id, alert, seen, status, time_stamp) VALUES (3, 1, true, false, 'Open', '2016-09-12 14:41:45');
+  INSERT INTO history (user_id, sensor_id, alert, seen, status, time_stamp) VALUES (3, 1, true, false, 'Open', '2016-09-12 14:41:55');
+  INSERT INTO history (user_id, sensor_id, alert, seen, status, time_stamp) VALUES (3, 1, true, false, 'Open', '2016-09-12 14:32:45');
+  INSERT INTO history (user_id, sensor_id, alert, seen, status, time_stamp) VALUES (3, 1, true, false, 'Open', '2016-09-12 14:32:48');
+  INSERT INTO history (user_id, sensor_id, alert, seen, status, time_stamp) VALUES (3, 1, true, false, 'Open', '2016-09-12 14:41:45');
+  INSERT INTO history (user_id, sensor_id, alert, seen, status, time_stamp) VALUES (3, 1, true, false, 'Open', '2016-09-12 14:41:45');
+  INSERT INTO history (user_id, sensor_id, alert, seen, status, time_stamp) VALUES (3, 1, true, false, 'Open', '2016-09-12 14:41:45');
+  INSERT INTO history (user_id, sensor_id, alert, seen, status, time_stamp) VALUES (3, 1, true, false, 'Open', '2016-09-12 14:41:45');
+  INSERT INTO history (user_id, sensor_id, alert, seen, status, time_stamp) VALUES (3, 1, true, false, 'Open', '2016-09-12 14:41:45');
+  INSERT INTO history (user_id, sensor_id, alert, seen, status, time_stamp) VALUES (3, 1, true, false, 'Open', '2016-09-12 14:41:45');
+  INSERT INTO history (user_id, sensor_id, alert, seen, status, time_stamp) VALUES (3, 1, true, false, 'Open', '2016-09-12 14:41:45');
+  INSERT INTO history (user_id, sensor_id, alert, seen, status, time_stamp) VALUES (3, 1, true, false, 'Open', '2016-09-12 14:41:45');
+  INSERT INTO history (user_id, sensor_id, alert, seen, status, time_stamp) VALUES (3, 1, true, false, 'Open', '2016-09-12 14:41:45');
+  INSERT INTO history (user_id, sensor_id, alert, seen, status, time_stamp) VALUES (3, 1, true, false, 'Open', '2016-09-12 14:41:45');
+  INSERT INTO history (user_id, sensor_id, alert, seen, status, time_stamp) VALUES (3, 1, true, false, 'Open', '2016-09-12 14:41:45');
+  INSERT INTO history (user_id, sensor_id, alert, seen, status, time_stamp) VALUES (3, 1, true, false, 'Open', '2016-09-12 14:41:45');
