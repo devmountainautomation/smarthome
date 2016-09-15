@@ -7,18 +7,19 @@ const nodemailer = require('nodemailer');
 const client = require('twilio')(config.twilioSID, config.twilioAuthToken);
 const saltRounds = 10;
 
-var EMAIL_ACCOUNT_USER = config.emailAccountUser;
-var EMAIL_ACCOUNT_PASSWORD = config.emailPassword;
-var YOUR_NAME = config.emailName;
+// var EMAIL_ACCOUNT_USER = config.emailAccountUser;
+// var EMAIL_ACCOUNT_PASSWORD = config.emailPassword;
+// var YOUR_NAME = config.emailName;
+//
+//
+// var smtpTransport = nodemailer.createTransport({
+//   service: "gmail", // sets automatically host, port and connection security settings
+//   auth: {
+//     user: EMAIL_ACCOUNT_USER,
+//     pass: EMAIL_ACCOUNT_PASSWORD
+//   }
+// });
 
-
-var smtpTransport = nodemailer.createTransport("SMTP", {
-  service: "Gmail", // sets automatically host, port and connection security settings
-  auth: {
-    user: EMAIL_ACCOUNT_USER,
-    pass: EMAIL_ACCOUNT_PASSWORD
-  }
-});
 
 module.exports = {
   getUserSensors: (req, res, next) => {
@@ -155,6 +156,7 @@ module.exports = {
         }
       })
     }
+  },
     // sendText: function(req, res, next) {
     //   var messages = [];
     //   for (var i = 0; i < req.body.to.length; i++) {
@@ -173,19 +175,14 @@ module.exports = {
     //   res.send("messages sent");
     // },
     // sendEmail: function(req, res, next) {
-    //   smtpTransport.sendMail({ //email options
-    //     from: YOUR_NAME + " " + EMAIL_ACCOUNT_USER, // sender address.  Must be the same as authenticated user if using GMail.
-    //     to: req.body.toField, // receiver
-    //     subject: req.body.subjectField, // subject
-    //     text: req.body.textField // body
-    //   }, function(error, response) { //callback
-    //     if (error) {
-    //       console.log(error);
-    //     } else {
-    //       console.log("Message sent: " + response.message);
+    //   smtpTransport.sendMail({
+    //     from: '"Home One" <homeoneautomation@gmail.com>',
+    //     to: 'andersen.craigm@gmail.com',
+    //     subject: 'HomeOne Alert!',
+    //     text: 'Your Front Door is Open'
+    // }, () => {
     //       res.send("email sent");
-    //     }
-    //     smtpTransport.close(); // shut down the connection pool, no more messages.  Comment this line out to continue sending emails.
+    //     smtpTransport.close();
     //   });
     // }
 }; //End Export
