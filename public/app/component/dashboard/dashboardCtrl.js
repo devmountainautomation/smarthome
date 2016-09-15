@@ -11,6 +11,14 @@ angular.module('smarthome')
       dashboardSrvc.getNotifications().then(response => {
         console.log(response.data);
         $scope.notes = response.data;
+        if(response.data.length < 1) {
+          $('.notifications').css('display', 'none');
+          $('.no-notes').removeClass('hidden');
+        }
+        else if(response.data.length >= 1) {
+          $('.notifications').css('display', 'block');
+          $('.no-notes').addClass('hidden');
+        }
       });
     };
     $scope.getNotifications();

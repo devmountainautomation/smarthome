@@ -1,20 +1,31 @@
 angular.module('smarthome')
   .config(($stateProvider, $urlRouterProvider) => {
 
-      $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/');
 
-      $urlRouterProvider.when(/section[0-9]+/, () => {
-          // no op
-      });
+    $urlRouterProvider.when(/section[0-9]+/, function () {
+      // no op
+    });
 
     $stateProvider
       .state('landing page', {
         url: '/',
         templateUrl: './app/component/landingPage/landingPage.html',
+        resolve: {
+          classStrip: () => {
+            $('body').removeClass('menu-open');
+          }
+        }
       })
       .state('getStarted', {
         url: '/getstarted',
-        templateUrl: './app/component/getStarted/getStarted.html'
+        templateUrl: './app/component/getStarted/getStarted.html',
+        controller: 'getStartedCtrl',
+        resolve: {
+          classStrip: () => {
+            $('body').removeClass('menu-open');
+          }
+        }
       })
       .state('login', {
         url: '/login',
@@ -27,6 +38,9 @@ angular.module('smarthome')
                 $state.go('dashboard');
               }
             });
+          },
+          classStrip: () => {
+            $('body').removeClass('menu-open');
           }
         }
       })
@@ -47,6 +61,9 @@ angular.module('smarthome')
                 }, 400);
               }
             });
+          },
+          classStrip: () => {
+            $('body').removeClass('menu-open');
           }
         }
       })
@@ -67,6 +84,9 @@ angular.module('smarthome')
                 }, 400);
               }
             });
+          },
+          classStrip: () => {
+            $('body').removeClass('menu-open');
           }
         }
       })
@@ -84,13 +104,21 @@ angular.module('smarthome')
                 }, 400);
               }
             });
+          },
+          classStrip: () => {
+            $('body').removeClass('menu-open');
           }
         }
       })
       .state('about', {
         url: '/about',
-        templateUrl: '/app/component/about/about.html',
+        templateUrl: 'app/component/about/about.html',
         controller: 'aboutCtrl',
+        resolve: {
+          classStrip: () => {
+            $('body').removeClass('menu-open');
+          }
+        }
       })
 
   });
