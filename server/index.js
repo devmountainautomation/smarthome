@@ -67,6 +67,7 @@ app.get('/users/sensors/', deviceCtrl.getUserSensors);
 app.get('/modules', deviceCtrl.getModules);
 app.get('/settings/:sensorId', deviceCtrl.getSettings);
 app.get('/notifications', deviceCtrl.getNotifications);
+app.get('/history/:id', deviceCtrl.readHistory);
 
 //*********** Put Requests *******************//
 app.put('/settings', deviceCtrl.updateSettings);
