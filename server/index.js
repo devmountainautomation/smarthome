@@ -71,7 +71,7 @@ app.get('/notifications', deviceCtrl.getNotifications);
 //*********** Put Requests *******************//
 app.put('/settings', deviceCtrl.updateSettings);
 app.put('/users/', userCtrl.updateUser);
-app.put('/notifications/:id', deviceCtrl.updateNotification);//the id is the notification id
+app.put('/notifications/:id', deviceCtrl.updateNotification);
 
 //*********** Post Requests *****************//
 app.post('/settings/:type', deviceCtrl.createSettings);
@@ -81,6 +81,8 @@ app.post('/sensors/:type', deviceCtrl.createSensor);
 //*********** Delete Requests ***************//
 app.delete('/users', userCtrl.destroyUser);
 app.delete('/sensors', deviceCtrl.destroySensor);
+
+// app.post('/email', deviceCtrl.sendEmail);
 
 //auth
 const passportJS = require('./config/passport.js');
