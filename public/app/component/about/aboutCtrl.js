@@ -1,9 +1,4 @@
-angular.module('smarthome').controller('aboutCtrl', ($scope, aboutService) => {
+angular.module('smarthome')
+  .controller('aboutCtrl', ($scope) => {
 
-  $scope.sendEmail = () => {
-    aboutService.sendEmail().then(response => {
-      console.log(response);
-    });
-  };
-
-});
+  });
