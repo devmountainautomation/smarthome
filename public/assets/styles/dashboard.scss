@@ -28,10 +28,7 @@ $dashgreen: #E3F1F4;
             display: flex;
             align-items: center;
             margin-bottom: 5vh;
-
-            &:hover {
-                box-shadow: 0 5px 5px rgba(0, 0, 0, 0.25);
-            }
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.25);
 
             .notifications-wrapper {
                 display: flex;

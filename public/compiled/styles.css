@@ -808,10 +808,9 @@ svg {
       -webkit-align-items: center;
       -ms-flex-align: center;
       align-items: center;
-      margin-bottom: 5vh; }
-      .dash-section .notifications .notifications-container:hover {
-        -webkit-box-shadow: 0 5px 5px rgba(0, 0, 0, 0.25);
-        box-shadow: 0 5px 5px rgba(0, 0, 0, 0.25); }
+      margin-bottom: 5vh;
+      -webkit-box-shadow: 0 5px 5px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 5px 5px rgba(0, 0, 0, 0.25); }
       .dash-section .notifications .notifications-container .notifications-wrapper {
         display: -webkit-box;
         display: -webkit-flex;

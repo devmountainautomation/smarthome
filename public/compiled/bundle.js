@@ -485,6 +485,20 @@ angular.module('smarthome').config(function ($stateProvider, $urlRouterProvider)
 });
 'use strict';
 
+angular.module('smarthome').directive('aboutDir', function () {
+  return {
+    restrict: 'EA',
+    controller: 'aboutCtrl',
+    link: function link(scope, elem, attrs) {
+      $(document).ready(function () {});
+    }
+  };
+});
+'use strict';
+
+angular.module('smarthome').controller('aboutCtrl', function ($scope) {});
+'use strict';
+
 angular.module('smarthome').controller('addCtrl', function ($scope, addService) {
   $scope.settings = {};
 
@@ -622,20 +636,6 @@ angular.module('smarthome').service('addService', function ($http) {
     });
   };
 });
-'use strict';
-
-angular.module('smarthome').directive('aboutDir', function () {
-  return {
-    restrict: 'EA',
-    controller: 'aboutCtrl',
-    link: function link(scope, elem, attrs) {
-      $(document).ready(function () {});
-    }
-  };
-});
-'use strict';
-
-angular.module('smarthome').controller('aboutCtrl', function ($scope) {});
 'use strict';
 
 angular.module('smarthome').directive('dashDir', function () {
