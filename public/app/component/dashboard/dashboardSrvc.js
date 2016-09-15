@@ -18,10 +18,10 @@ angular.module('smarthome')
       return $http.get('/notifications');
     };
 
-    this.updateNote = (id) => {
+    this.updateNote = id => {
       return $http({
         method: 'PUT',
-        url: '/notifications/' + id
+        url: `/notifications/${id}`
       }).then(response => {
         return response;
       });
