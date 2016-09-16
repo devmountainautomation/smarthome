@@ -146,7 +146,17 @@ module.exports = {
           res.send(200);
         }
       });
-  },
+    },
+    readHistory: (req, res, next) => {
+      db.read_all_history([req.params.id], (err, resp) => {
+        if (err) {
+          console.log(err);
+          res.status(500).send(err)
+        } else {
+          res.json(resp);
+        }
+      })
+    },
     // sendText: function(req, res, next) {
     //   var messages = [];
     //   for (var i = 0; i < req.body.to.length; i++) {
