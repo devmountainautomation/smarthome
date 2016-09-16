@@ -215,8 +215,9 @@ Vertical navigation
     padding: 3em 0 0;
     margin: 1.4em auto;
     border-bottom: none;
-    font-size: 1.2rem;
-    color: #eaf2e3;
+    font-size: 15px;
+    font-weight: 500;
+    color: #eaf2e3 !important;
   }
   .cd-vertical-nav a.active {
     color: #eaf2e3;
@@ -259,7 +260,7 @@ Vertical navigation
     top: 8px;
     height: 16px;
     width: 16px;
-    background: url(https://codyhouse.co/demo/vertical-fixed-navigation-2/img/cd-nav-icons.svg) no-repeat;
+    /* background: url(../assets/img/getStarted/cd-nav-icons.svg) no-repeat; */
     -webkit-transform: translateX(-50%) scale(0);
     -moz-transform: translateX(-50%) scale(0);
     -ms-transform: translateX(-50%) scale(0);
@@ -274,65 +275,85 @@ Vertical navigation
   }
   .cd-vertical-nav li:first-of-type a::after {
     /* change icon using image sprites */
-    background-position: 0px -48px;
+    /* background-position: 0px -48px; */
     /* fix bug with transitions - set scale(0.01) rather than scale(0) */
-    -webkit-transform: translateX(-50%) translateY(4.5em) scale(0.01);
-    -moz-transform: translateX(-50%) translateY(4.5em) scale(0.01);
-    -ms-transform: translateX(-50%) translateY(4.5em) scale(0.01);
-    -o-transform: translateX(-50%) translateY(4.5em) scale(0.01);
-    transform: translateX(-50%) translateY(4.5em) scale(0.01);
+    background: url(../assets/img/getStarted/equipment.svg) no-repeat;
+    -webkit-transform: translateX(-50%) translateY(6em) scale(0.01);
+    -moz-transform: translateX(-50%) translateY(6em) scale(0.01);
+    -ms-transform: translateX(-50%) translateY(6em) scale(0.01);
+    -o-transform: translateX(-50%) translateY(6em) scale(0.01);
+    transform: translateX(-50%) translateY(6em) scale(0.01);
   }
   .cd-vertical-nav li:first-of-type a::before {
-    -webkit-transform: translateX(-50%) translateY(4.5em) scale(0.25);
-    -moz-transform: translateX(-50%) translateY(4.5em) scale(0.25);
-    -ms-transform: translateX(-50%) translateY(4.5em) scale(0.25);
-    -o-transform: translateX(-50%) translateY(4.5em) scale(0.25);
-    transform: translateX(-50%) translateY(4.5em) scale(0.25);
+    -webkit-transform: translateX(-50%) translateY(6em) scale(0.25);
+    -moz-transform: translateX(-50%) translateY(6em) scale(0.25);
+    -ms-transform: translateX(-50%) translateY(6em) scale(0.25);
+    -o-transform: translateX(-50%) translateY(6em) scale(0.25);
+    transform: translateX(-50%) translateY(6em) scale(0.25);
   }
   .cd-vertical-nav li:nth-of-type(2) a::after {
-    background-position: 0px -32px;
-    -webkit-transform: translateX(-50%) translateY(1.5em) scale(0.01);
-    -moz-transform: translateX(-50%) translateY(1.5em) scale(0.01);
-    -ms-transform: translateX(-50%) translateY(1.5em) scale(0.01);
-    -o-transform: translateX(-50%) translateY(1.5em) scale(0.01);
-    transform: translateX(-50%) translateY(1.5em) scale(0.01);
+    /* background-position: 0px -32px; */
+    background: url(../assets/img/getStarted/pubnub.svg) no-repeat;
+    -webkit-transform: translateX(-50%) translateY(3em) scale(0.01);
+    -moz-transform: translateX(-50%) translateY(3em) scale(0.01);
+    -ms-transform: translateX(-50%) translateY(3em) scale(0.01);
+    -o-transform: translateX(-50%) translateY(3em) scale(0.01);
+    transform: translateX(-50%) translateY(3em) scale(0.01);
   }
   .cd-vertical-nav li:nth-of-type(2) a::before {
-    -webkit-transform: translateX(-50%) translateY(1.5em) scale(0.25);
-    -moz-transform: translateX(-50%) translateY(1.5em) scale(0.25);
-    -ms-transform: translateX(-50%) translateY(1.5em) scale(0.25);
-    -o-transform: translateX(-50%) translateY(1.5em) scale(0.25);
-    transform: translateX(-50%) translateY(1.5em) scale(0.25);
+    -webkit-transform: translateX(-50%) translateY(3em) scale(0.25);
+    -moz-transform: translateX(-50%) translateY(3em) scale(0.25);
+    -ms-transform: translateX(-50%) translateY(3em) scale(0.25);
+    -o-transform: translateX(-50%) translateY(3em) scale(0.25);
+    transform: translateX(-50%) translateY(3em) scale(0.25);
   }
   .cd-vertical-nav li:nth-of-type(3) a::after {
-    background-position: 0px -16px;
-    -webkit-transform: translateX(-50%) translateY(-1.5em) scale(0.01);
-    -moz-transform: translateX(-50%) translateY(-1.5em) scale(0.01);
-    -ms-transform: translateX(-50%) translateY(-1.5em) scale(0.01);
-    -o-transform: translateX(-50%) translateY(-1.5em) scale(0.01);
-    transform: translateX(-50%) translateY(-1.5em) scale(0.01);
+    /* background-position: 0px -16px; */
+    background: url(../assets/img/getStarted/homeone.svg) no-repeat;
+    -webkit-transform: translateX(-50%) translateY(0em) scale(0.01);
+    -moz-transform: translateX(-50%) translateY(0em) scale(0.01);
+    -ms-transform: translateX(-50%) translateY(0em) scale(0.01);
+    -o-transform: translateX(-50%) translateY(0em) scale(0.01);
+    transform: translateX(-50%) translateY(0em) scale(0.01);
   }
   .cd-vertical-nav li:nth-of-type(3) a::before {
-    -webkit-transform: translateX(-50%) translateY(-1.5em) scale(0.25);
-    -moz-transform: translateX(-50%) translateY(-1.5em) scale(0.25);
-    -ms-transform: translateX(-50%) translateY(-1.5em) scale(0.25);
-    -o-transform: translateX(-50%) translateY(-1.5em) scale(0.25);
-    transform: translateX(-50%) translateY(-1.5em) scale(0.25);
+    -webkit-transform: translateX(-50%) translateY(0em) scale(0.25);
+    -moz-transform: translateX(-50%) translateY(0em) scale(0.25);
+    -ms-transform: translateX(-50%) translateY(0em) scale(0.25);
+    -o-transform: translateX(-50%) translateY(0em) scale(0.25);
+    transform: translateX(-50%) translateY(0em) scale(0.25);
   }
   .cd-vertical-nav li:nth-of-type(4) a::after {
-    background-position: 0px 0px;
-    -webkit-transform: translateX(-50%) translateY(-4.5em) scale(0.01);
-    -moz-transform: translateX(-50%) translateY(-4.5em) scale(0.01);
-    -ms-transform: translateX(-50%) translateY(-4.5em) scale(0.01);
-    -o-transform: translateX(-50%) translateY(-4.5em) scale(0.01);
-    transform: translateX(-50%) translateY(-4.5em) scale(0.01);
+    /* background-position: 0px 0px; */
+    background: url(../assets/img/getStarted/software.svg) no-repeat;
+    -webkit-transform: translateX(-50%) translateY(-3em) scale(0.01);
+    -moz-transform: translateX(-50%) translateY(-3em) scale(0.01);
+    -ms-transform: translateX(-50%) translateY(-3em) scale(0.01);
+    -o-transform: translateX(-50%) translateY(-3em) scale(0.01);
+    transform: translateX(-50%) translateY(-3em) scale(0.01);
   }
   .cd-vertical-nav li:nth-of-type(4) a::before {
-    -webkit-transform: translateX(-50%) translateY(-4.5em) scale(0.25);
-    -moz-transform: translateX(-50%) translateY(-4.5em) scale(0.25);
-    -ms-transform: translateX(-50%) translateY(-4.5em) scale(0.25);
-    -o-transform: translateX(-50%) translateY(-4.5em) scale(0.25);
-    transform: translateX(-50%) translateY(-4.5em) scale(0.25);
+    -webkit-transform: translateX(-50%) translateY(-3em) scale(0.25);
+    -moz-transform: translateX(-50%) translateY(-3em) scale(0.25);
+    -ms-transform: translateX(-50%) translateY(-3em) scale(0.25);
+    -o-transform: translateX(-50%) translateY(-3em) scale(0.25);
+    transform: translateX(-50%) translateY(-3em) scale(0.25);
+  }
+  .cd-vertical-nav li:nth-of-type(5) a::after {
+    /* background-position: 0px 0px; */
+    background: url(../assets/img/getStarted/install.svg) no-repeat;
+    -webkit-transform: translateX(-50%) translateY(-6em) scale(0.01);
+    -moz-transform: translateX(-50%) translateY(-6em) scale(0.01);
+    -ms-transform: translateX(-50%) translateY(-6em) scale(0.01);
+    -o-transform: translateX(-50%) translateY(-6em) scale(0.01);
+    transform: translateX(-50%) translateY(-6em) scale(0.01);
+  }
+  .cd-vertical-nav li:nth-of-type(5) a::before {
+    -webkit-transform: translateX(-50%) translateY(-6em) scale(0.25);
+    -moz-transform: translateX(-50%) translateY(-6em) scale(0.25);
+    -ms-transform: translateX(-50%) translateY(-6em) scale(0.25);
+    -o-transform: translateX(-50%) translateY(-6em) scale(0.25);
+    transform: translateX(-50%) translateY(-6em) scale(0.25);
   }
   .cd-vertical-nav .label {
     display: block;
