@@ -39,36 +39,6 @@ angular.module('smarthome')
           maxValue = FrequencyValues[i].y;
         }
       }
-      // var minDate = getDate(data[0]),
-      //   maxDate = getDate(data[data.length-1]);
-
-
-      // var  y = d3.scale.linear().domain([0, 50]).range([h, 0]),
-      // var  x = d3.time.scale().domain([minDate, maxDate]).range([0, w]);
-      // var tickMultiFormat = d3.time.format.multi([
-      //     ["%b %-d", function(d) { return d.getDate() != 1; }], // not the first of the month
-      //     ["%b %-d", function(d) { return d.getMonth(); }], // not Jan 1st
-      //     ["%Y", function() { return true; }]
-      // ]);
-      // for (let i = 0; i < rawData.length; i++) {
-      //   if (rawData[i].status == "Open") {
-      //     for (let j = 0; j < dates.length; j++) {
-      //       if (dates[j].date == moment(rawData[i].time_stamp).format("MM-DD")) {
-      //         dates[j].count++;
-      //         break;
-      //         console.log(moment(rawData[i]).time_stamp);
-      //       }
-      //     } dates.push({date: moment(rawData[i].time_stamp).format("MM-DD"),
-      //       stamp: moment(rawData[i].time_stamp), count: 1})
-      //   }
-      // }
-      // var FrequencyValues = [];
-      // for (let i = 0; i < dates.length; i++) {
-      //   console.log(dates[i]);
-      //   FrequencyValues.push({x: dates[i].stamp, y: dates[i].count})
-      // }
-// dates[i].date
-
 
       $scope.options = {
             chart: {
@@ -144,19 +114,9 @@ angular.module('smarthome')
                     color: '#ff7f0e',
                     strokeWidth: 2,
                     classed: 'breech-dashed'
-                },
-                // {
-                //     values: [{x: 3, y: 4},{x: 4, y: 7},{x: 5, y: 14},{x: 6, y: 54}],
-                //     key: 'Duration Open',
-                //     color: '#77a1ff',
-                //     area: true
-                // }
+                }
             ];
       })
     }
   }
   })
-
-// UPDATE history SET time_stamp = '2016-09-07T20:41:45.000Z' WHERE id IN (13, 14, 15, 16);
-
-// 2016-09-01T20:41:45.000Z
