@@ -119,4 +119,4 @@ angular.module('smarthome')
       })
     }
   }
-  })
+})
