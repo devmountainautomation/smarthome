@@ -21,4 +21,8 @@ angular.module('smarthome')
       });
     };
 
+    this.getUser = () => {
+      return $http.get('/me');
+    };
+
   });

@@ -219,39 +219,39 @@ angular.module('smarthome')
                     `)(scope);
             }
             $(element.find('section')).html(content);
-            $('.devices').css("overflow", "hidden")
+            $('body').addClass('menu-open');
             $("#start" + scope.id).timeDropper();
             $("#end" + scope.id).timeDropper();
             $(element.find('section')).slideDown();
-          })
-        })
+          });
+        });
         $(element.find('section')).on('click', '#appended-close', () => {
           $(element.find('section')).slideUp('slow', () => {
-            $('.devices').css("overflow", "auto")
+            $('body').removeClass('menu-open');
             $('#appended').remove();
-          })
-        })
+          });
+        });
       },
       controller: ($scope, manageService) => {
 
         manageService.getSettings($scope.id).then(function(response) {
           $scope.settings = response;
-        })
+        });
         $scope.saveSettings = function () {
           console.log('saved settings', $scope.settings);
           var crazy = $('#start' + $scope.id).val();
-          console.log('start', crazy)
+          console.log('start', crazy);
           $scope.settings.start_time = $('#start' + $scope.id).val();
           $scope.settings.end_time = $('#end' + $scope.id).val();
           manageService.saveSettings($scope.settings).then(
             function (response) {
               $('#appended').closest('section').slideUp('slow', () => {
-                  $('.devices').css("overflow", "auto")
+                  $('body').removeClass('menu-open');
                   $('#appended').remove();
-                })
+                });
             }
-          )
-        }
+          );
+        };
       }
-    }
+    };
   }); //End directive

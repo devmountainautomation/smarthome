@@ -13,9 +13,11 @@
 <svg version="1.1" id="Layer_2" xmlns:x="&ns_extend;" xmlns:i="&ns_ai;" xmlns:graph="&ns_graphs;"
 	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100"
 	 style="enable-background:new 0 0 100 100;" xml:space="preserve">
+	 <defs>
 	 <pattern id="svg-image" patternUnits="userSpaceOnUse" height="100" width="100">
-		 <image x="0" y="0" height="100" width="100" xlink:href="./devautomation logo-1.png"/>
+		 <image x="0" y="0" height="100" width="100" xlink:href="http://globalgamejam.org/sites/default/files/styles/game_sidebar__normal/public/game/featured_image/promo_5.png?itok=9dymM8JD"/>
 		 </pattern>
+	 </defs>
 <style type="text/css">
 	.st0{stroke:#000000;stroke-width:0.2586;stroke-miterlimit:10;}
 	.st1{fill:#FFFFFF;}

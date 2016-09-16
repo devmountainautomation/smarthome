@@ -496,11 +496,32 @@ angular.module('smarthome').directive('aboutDir', function () {
 });
 'use strict';
 
-angular.module('smarthome').controller('aboutCtrl', function ($scope) {});
+angular.module('smarthome').controller('aboutCtrl', function ($scope, aboutSrvc) {
+
+  (function () {
+    aboutSrvc.getUser().then(function (response) {
+      $scope.user = response.data;
+    });
+  })();
+});
+'use strict';
+
+angular.module('smarthome').service('aboutSrvc', function ($http) {
+
+  this.getUser = function () {
+    return $http.get('/me');
+  };
+});
 'use strict';
 
 angular.module('smarthome').controller('addCtrl', function ($scope, addService) {
   $scope.settings = {};
+
+  (function () {
+    addService.getUser().then(function (response) {
+      $scope.user = response.data;
+    });
+  })();
 
   $('#breech-start').timeDropper({
     setCurrentTime: true
@@ -635,6 +656,10 @@ angular.module('smarthome').service('addService', function ($http) {
       return response;
     });
   };
+
+  this.getUser = function () {
+    return $http.get('/me');
+  };
 });
 'use strict';
 
@@ -669,7 +694,6 @@ angular.module('smarthome').controller('dashboardCtrl', function ($scope, dashbo
 
   $scope.getNotifications = function () {
     dashboardSrvc.getNotifications().then(function (response) {
-      console.log(response.data);
       $scope.notes = response.data;
       if (response.data.length < 1) {
         $('.notifications').css('display', 'none');
@@ -680,6 +704,7 @@ angular.module('smarthome').controller('dashboardCtrl', function ($scope, dashbo
       }
     });
   };
+
   $scope.getNotifications();
 
   $scope.updateNote = function (id) {
@@ -882,6 +907,44 @@ angular.module('smarthome').controller('getStartedCtrl', function ($scope) {
 });
 'use strict';
 
+angular.module('smarthome').directive('landingDir', function () {
+  return {
+    restrict: 'EA',
+    link: function link(scope, elem, attrs) {
+      $(document).ready(function () {
+        // $(window).scroll(() => {
+        //     let winScroll = $(window).scrollTop() - 35;
+        //     if (winScroll < $('.landing-banner').offset().top - ($(window).height() / 3)) {
+        //         console.log(winScroll);
+        //         $('.skew-right').css("transform", "skewY(" + (winScroll / 2) + "deg)");
+        //         $('.skew-left').css("transform", "skewY(" + (-winScroll / 2) + "deg)");
+        //     }
+        // });
+      });
+    }
+  };
+});
+'use strict';
+
+angular.module('smarthome').controller('landingCtrl', function (landingSrvc, $scope) {
+
+  (function () {
+    landingSrvc.getUser().then(function (response) {
+      $scope.user = response.data;
+      console.log($scope.user);
+    });
+  })();
+});
+'use strict';
+
+angular.module('smarthome').service('landingSrvc', function ($http) {
+
+  this.getUser = function () {
+    return $http.get('/me');
+  };
+});
+'use strict';
+
 angular.module('smarthome').directive('headDir', function ($state, $compile) {
   return {
     restrict: 'EA',
@@ -911,10 +974,10 @@ angular.module('smarthome').directive('headDir', function ($state, $compile) {
               $('.ham-slide').removeClass('span-invert');
             }
           });
-        } else {
+        } else if ($scope.user) {
           var elmnt = $compile('<div class="menu-box-container">\n                <div class="lp-boxes" id="box1" ui-sref="dashboard">\n                  <i class="fa fa-tachometer fa-fw fa-3x" aria-hidden="true"></i>\n                  <p>Dashboard</p>\n                </div>\n                <div class="lp-boxes" id="box2" ui-sref="addDevice">\n                  <i class="fa fa-plus-square fa-fw fa-3x" aria-hidden="true"></i>\n                  <p>Add Device</p>\n                </div>\n                <div class="lp-boxes" id="box3" ui-sref="manage">\n                  <i class="fa fa-wrench fa-fw fa-3x" aria-hidden="true"></i>\n                  <p>Manage Devices</p>\n                </div>\n                <div class="lp-boxes" id="box4" ui-sref="about">\n                  <i class="fa fa-user fa-fw fa-3x" aria-hidden="true"></i>\n                  <p>Our Team</p>\n                </div>\n              </div>\n              <div class="menu-list-container">\n                <div class="lp-menu-item" id="lp-contact">\n                  <p>Update Profile</p>\n                </div>\n                <div class="lp-menu-item" id="lp-logout" ng-click="logout()">\n                  <p>Logout</p>\n                </div>\n                <div class="social-hex">\n                  <a href="https://github.com/devmountainautomation/smarthome"><div class="hexagon"><i class="fa fa-github fa-fw fa-2x" aria-hidden="true"></i></div></a>\n                  <div class="hexagon"><i class="fa fa-linkedin fa-fw fa-2x" aria-hidden="true"></i></div>\n                  <a href="https://www.facebook.com/dmsmarthome/"><div class="hexagon"><i class="fa fa-facebook fa-fw fa-2x" aria-hidden="true"></i></div></a>\n                </div>\n              </div>')(scope);
 
-          $('.menu').empty();
+          // $('.menu').empty();
           $('.menu').html(elmnt);
 
           $('#hamburger').click(function () {
@@ -972,11 +1035,7 @@ angular.module('smarthome').controller('headerCtrl', function (headerSrvc, $scop
   $scope.logout = function () {
     headerSrvc.logout().then(function (response) {
       swal("Success!", "Logout Successful!", "success");
-      setTimeout(function () {
-        if (response) {
-          $state.go('landing page');
-        }
-      }, 1500);
+      $state.go('landing page');
     });
   };
 
@@ -1030,44 +1089,6 @@ angular.module('smarthome').directive('update', function () {
     link: function link(scope, elem, attrs) {
       var $scope = scope;
     }
-  };
-});
-'use strict';
-
-angular.module('smarthome').directive('landingDir', function () {
-  return {
-    restrict: 'EA',
-    link: function link(scope, elem, attrs) {
-      $(document).ready(function () {
-        // $(window).scroll(() => {
-        //     let winScroll = $(window).scrollTop() - 35;
-        //     if (winScroll < $('.landing-banner').offset().top - ($(window).height() / 3)) {
-        //         console.log(winScroll);
-        //         $('.skew-right').css("transform", "skewY(" + (winScroll / 2) + "deg)");
-        //         $('.skew-left').css("transform", "skewY(" + (-winScroll / 2) + "deg)");
-        //     }
-        // });
-      });
-    }
-  };
-});
-'use strict';
-
-angular.module('smarthome').controller('landingCtrl', function (landingSrvc, $scope) {
-
-  (function () {
-    landingSrvc.getUser().then(function (response) {
-      $scope.user = response.data;
-      console.log($scope.user);
-    });
-  })();
-});
-'use strict';
-
-angular.module('smarthome').service('landingSrvc', function ($http) {
-
-  this.getUser = function () {
-    return $http.get('/me');
   };
 });
 'use strict';
@@ -1254,7 +1275,7 @@ angular.module('smarthome').directive('deviceCard', function (manageService, $co
             content = $compile('\n                  <div id="appended">\n                    <i id="appended-close" class="fa fa-close"></i>\n                    <div>\n                      <h2>Notification Window</h2>\n                      <h3>Start Time</h3>\n                    <input type="text" id="start' + id + '" ng-value="settings.startTime" ng-model="settings.start_time"></input>\n                      <h3>End Time</h3>\n                    <input type="text" id="end' + id + '" ng-value="settings.endTime"></input>\n                    </div>\n\n                    <div class="checkbox-section">\n                      <h2>Notifications</h2>\n                        <div class="check-box">\n                          <div class="squaredOne">\n                            <input type="checkbox" value="true" ng-value="settings.email" id="settings-email-radio"/>\n                            <label for="settings-email-radio"></label>\n                          </div>\n                          <h4> Send me an email </h4>\n                        </div>\n\n                        <div class="check-box">\n                          <div class="squaredOne">\n                            <input type="checkbox" value="true" ng-value="settings.text" id="settings-text-radio"/>\n                            <label for="settings-text-radio"></label>\n                          </div>\n                          <h4> Send me a text </h4>\n                        </div>\n\n                      </div>\n                      <hr>\n                      <div class="enable-section">\n                          <div class="slide-checkbox">\n    \t\t                      <input ng-value="settings.active" type="checkbox" value="1" id="checkboxThreeInput" checked />\n\t  \t                        <label for="checkboxThreeInput"></label>\n\t                         </div>\n                         <h4>Enable/Disable Device</h4>\n                      </div>\n                      <hr>\n                      <button type="button" ng-click="saveSettings()"></button>\n                    ')(scope);
           }
           $(element.find('section')).html(content);
-          $('.devices').css("overflow", "hidden");
+          $('body').addClass('menu-open');
           $("#start" + scope.id).timeDropper();
           $("#end" + scope.id).timeDropper();
           $(element.find('section')).slideDown();
@@ -1262,7 +1283,7 @@ angular.module('smarthome').directive('deviceCard', function (manageService, $co
       });
       $(element.find('section')).on('click', '#appended-close', function () {
         $(element.find('section')).slideUp('slow', function () {
-          $('.devices').css("overflow", "auto");
+          $('body').removeClass('menu-open');
           $('#appended').remove();
         });
       });
@@ -1280,7 +1301,7 @@ angular.module('smarthome').directive('deviceCard', function (manageService, $co
         $scope.settings.end_time = $('#end' + $scope.id).val();
         manageService.saveSettings($scope.settings).then(function (response) {
           $('#appended').closest('section').slideUp('slow', function () {
-            $('.devices').css("overflow", "auto");
+            $('body').removeClass('menu-open');
             $('#appended').remove();
           });
         });
@@ -1295,6 +1316,12 @@ angular.module('smarthome').controller('manageCtrl', function ($scope, manageSer
   (function () {
     manageService.getDevices().then(function (response) {
       $scope.devices = response;
+    });
+  })();
+
+  (function () {
+    manageService.getUser().then(function (response) {
+      $scope.user = response.data;
     });
   })();
 }); //End manageCtrl
@@ -1326,5 +1353,9 @@ angular.module('smarthome').service('manageService', function ($http) {
       url: 'settings/',
       data: settings
     });
+  };
+
+  this.getUser = function () {
+    return $http.get('/me');
   };
 }); //End manageService

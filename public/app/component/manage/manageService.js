@@ -7,7 +7,7 @@ angular.module('smarthome')
         url: 'users/sensors'
       }).then(response => {
         return response.data;
-      })
+      });
     };
 
     this.getSettings = (id) => {
@@ -16,7 +16,7 @@ angular.module('smarthome')
         url: `settings/${id}`
       }).then(response => {
         return response.data[0];
-      })
+      });
     };
 
     this.saveSettings = settings => {
@@ -24,7 +24,11 @@ angular.module('smarthome')
         method: 'PUT',
         url: 'settings/',
         data: settings
-      })
+      });
   };
-  
+
+  this.getUser = () => {
+    return $http.get('/me');
+  };
+
   }); //End manageService
