@@ -5,9 +5,6 @@ angular.module('smarthome')
       dashboardSrvc.getUser().then((response => {
         $scope.user = response.data;
       }));
-      dashboardSrvc.getNotifications().then(response => {
-        $scope.notes = response.data;
-      });
     })();
 
     $scope.getNotifications = () => {
@@ -23,6 +20,8 @@ angular.module('smarthome')
         }
       });
     };
+
+    $scope.getNotifications();
 
     $scope.updateNote = (id) => {
       dashboardSrvc.updateNote(id).then(response => {
