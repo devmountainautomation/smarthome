@@ -2,6 +2,12 @@ angular.module('smarthome')
   .controller('addCtrl', ($scope, addService) => {
     $scope.settings = {};
 
+    (() => {
+      addService.getUser().then((response => {
+        $scope.user = response.data;
+      }));
+    })();
+
     $('#breech-start').timeDropper({
       setCurrentTime: true
     });
@@ -101,15 +107,15 @@ angular.module('smarthome')
           break;
         }
       }
-    })
+    });
     $scope.addBreech = () => {
       $scope.settings.start_time = $('#breech-start').val();
       $scope.settings.end_time = $('#breech-end').val();
       addService.addDevice($scope.settings).then(response => {
         addService.addBreech($scope.settings).then(response => {
           return response;
-        })
-      })
+        });
+      });
     };
 
   });

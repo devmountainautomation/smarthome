@@ -13,7 +13,9 @@ angular.module('smarthome')
             $('#hamburger').click(() => {
               $('#hamburger').toggleClass('open');
               $('#menu').toggle('slide', 'left', 500);
-              setTimeout(() => {$('html, body').scrollTop(0);}, 500);
+              setTimeout(() => {
+                $('html, body').scrollTop(0);
+              }, 500);
               $('body').toggleClass('menu-open');
             });
 
@@ -27,7 +29,7 @@ angular.module('smarthome')
               }
             });
 
-          } else {
+          } else if ($scope.user) {
             let elmnt = $compile(
               `<div class="menu-box-container">
                 <div class="lp-boxes" id="box1" ui-sref="dashboard">
@@ -61,7 +63,7 @@ angular.module('smarthome')
                 </div>
               </div>`)(scope);
 
-            $('.menu').empty();
+            // $('.menu').empty();
             $('.menu').html(elmnt);
 
             $('#hamburger').click(() => {
