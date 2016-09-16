@@ -32,7 +32,7 @@ angular.module('smarthome')
         method: 'GET',
         url: `/history/${id}`
       }).then(response => {
-        return response;
+        return response.data;
       })
     }
 

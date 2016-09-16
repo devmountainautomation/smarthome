@@ -148,15 +148,15 @@ module.exports = {
       });
     },
     readHistory: (req, res, next) => {
-      db.read_history([req.params.id], (err, resp) => {
+      db.read_all_history([req.params.id], (err, resp) => {
         if (err) {
-          res.status(500).send("not found")
+          console.log(err);
+          res.status(500).send(err)
         } else {
           res.json(resp);
         }
       })
-    }
-  },
+    },
     // sendText: function(req, res, next) {
     //   var messages = [];
     //   for (var i = 0; i < req.body.to.length; i++) {

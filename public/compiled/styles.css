@@ -2028,7 +2028,7 @@ html.fp-enabled,
     -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
-    background: url("http://images.vivintcdn.com/global/vivint.com/home/2016/home-protect-bg-r2.jpg") center center no-repeat;
+    background: url("../assets/img/home-protect-why.jpg") center center no-repeat;
     background-size: cover;
     padding: 5%; }
     .lp-about .what-we-do h1 {

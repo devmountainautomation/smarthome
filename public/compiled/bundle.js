@@ -665,11 +665,13 @@ angular.module('smarthome').controller('dashboardCtrl', function ($scope, dashbo
     dashboardSrvc.getUser().then(function (response) {
       $scope.user = response.data;
     });
+    dashboardSrvc.getNotifications().then(function (response) {
+      $scope.notes = response.data;
+    });
   })();
 
   $scope.getNotifications = function () {
     dashboardSrvc.getNotifications().then(function (response) {
-      console.log(response.data);
       $scope.notes = response.data;
       if (response.data.length < 1) {
         $('.notifications').css('display', 'none');
@@ -680,7 +682,6 @@ angular.module('smarthome').controller('dashboardCtrl', function ($scope, dashbo
       }
     });
   };
-  $scope.getNotifications();
 
   $scope.updateNote = function (id) {
     dashboardSrvc.updateNote(id).then(function (response) {
@@ -731,7 +732,7 @@ angular.module('smarthome').service('dashboardSrvc', function ($http) {
       method: 'GET',
       url: '/history/' + id
     }).then(function (response) {
-      return response;
+      return response.data;
     });
   };
 });
@@ -1353,20 +1354,73 @@ angular.module('smarthome').directive('breechLine', function () {
             dashboardSrvc.getHistory($scope.id).then(function (response) {
                 var rawData = response;
                 console.log('response', response);
-                var values = [];
-                var buckets = [];
-                for (var i = 0; i < rawData.length; i++) {}
+                var dates = [];
+                for (var i = 29; i >= 0; i--) {
+                    dates.push({ date: moment().subtract(i, 'days').format("MM-DD"),
+                        count: 0, stamp: moment().subtract(i, 'days') });
+                }
+                for (var _i = 0; _i < rawData.length; _i++) {
+                    for (var j = 0; j < dates.length; j++) {
+                        if (moment(rawData[_i].time_stamp).format("MM-DD") == dates[j].date) {
+                            dates[j].count++;
+                            break;
+                        }
+                    }
+                }
+                var FrequencyValues = [];
+                for (var _i2 = 0; _i2 < dates.length; _i2++) {
+                    FrequencyValues.push({ x: dates[_i2].stamp, y: dates[_i2].count });
+                }
+                var maxValue = 0;
+                for (var _i3 = 0; _i3 < FrequencyValues.length; _i3++) {
+                    if (FrequencyValues[_i3].y > maxValue) {
+                        maxValue = FrequencyValues[_i3].y;
+                    }
+                }
+                // var minDate = getDate(data[0]),
+                //   maxDate = getDate(data[data.length-1]);
+
+
+                // var  y = d3.scale.linear().domain([0, 50]).range([h, 0]),
+                // var  x = d3.time.scale().domain([minDate, maxDate]).range([0, w]);
+                // var tickMultiFormat = d3.time.format.multi([
+                //     ["%b %-d", function(d) { return d.getDate() != 1; }], // not the first of the month
+                //     ["%b %-d", function(d) { return d.getMonth(); }], // not Jan 1st
+                //     ["%Y", function() { return true; }]
+                // ]);
+                // for (let i = 0; i < rawData.length; i++) {
+                //   if (rawData[i].status == "Open") {
+                //     for (let j = 0; j < dates.length; j++) {
+                //       if (dates[j].date == moment(rawData[i].time_stamp).format("MM-DD")) {
+                //         dates[j].count++;
+                //         break;
+                //         console.log(moment(rawData[i]).time_stamp);
+                //       }
+                //     } dates.push({date: moment(rawData[i].time_stamp).format("MM-DD"),
+                //       stamp: moment(rawData[i].time_stamp), count: 1})
+                //   }
+                // }
+                // var FrequencyValues = [];
+                // for (let i = 0; i < dates.length; i++) {
+                //   console.log(dates[i]);
+                //   FrequencyValues.push({x: dates[i].stamp, y: dates[i].count})
+                // }
+                // dates[i].date
+
 
                 $scope.options = {
                     chart: {
                         type: 'lineChart',
                         height: 400,
+                        forceY: maxValue + Math.floor(maxValue * .15),
                         margin: {
                             top: 20,
                             right: 20,
                             bottom: 40,
-                            left: 55
+                            left: 75
                         },
+                        xScale: d3.time.scale(),
+                        yScale: d3.scale.linear(),
                         x: function x(d) {
                             return d.x;
                         },
@@ -1389,21 +1443,20 @@ angular.module('smarthome').directive('breechLine', function () {
                             }
                         },
                         xAxis: {
-                            axisLabel: 'Time (days)'
+                            axisLabel: 'Time (days)',
+                            tickFormat: function tickFormat(d) {
+                                return moment(d).format("MMM D");
+                            }
                         },
                         yAxis: {
-                            axisLabel: 'Times Opened/Duration',
-
-                            tickFormat: function tickFormat(d) {
-                                return d3.format('.02f')(d);
-                            },
-                            axisLabelDistance: -10
+                            axisLabel: 'Times Opened/Duration'
                         },
-                        callback: function callback(chart) {}
+                        axisLabelDistance: -10
                     },
+                    callback: function callback(chart) {},
                     title: {
                         enable: true,
-                        text: 'Open Frequency/Duration for ' + $scope.nickname,
+                        text: 'Open Frequency/Duration',
                         css: {
                             'font-family': 'Source Sans Pro',
                             'max-width': '50%',
@@ -1432,36 +1485,18 @@ angular.module('smarthome').directive('breechLine', function () {
                     }
                 };
 
-                $scope.data = sinAndCos();
-
-                /*Random Data Generator */
-                function sinAndCos() {
-                    var sin = [],
-                        sin2 = [],
-                        cos = [];
-
-                    //Data is represented as an array of {x,y} pairs.
-                    for (var i = 0; i < 100; i++) {
-                        sin.push({ x: i, y: Math.sin(i / 10) });
-                        sin2.push({ x: i, y: i % 10 == 5 ? null : Math.sin(i / 10) * 0.25 + 0.5 });
-                        cos.push({ x: i, y: .5 * Math.cos(i / 10 + 2) + Math.random() / 10 });
-                    }
-
-                    //Line chart data should be sent as an array of series objects.
-                    return [{
-                        values: sin,
-                        key: 'Times Opened',
-                        color: '#ff7f0e',
-                        strokeWidth: 2,
-                        classed: 'breech-dashed'
-                    }, {
-                        values: sin2,
-                        key: 'Duration Open',
-                        color: '#77a1ff',
-                        area: true
-                    }];
-                };
+                $scope.data = [{
+                    values: FrequencyValues,
+                    key: 'Times Opened',
+                    color: '#ff7f0e',
+                    strokeWidth: 2,
+                    classed: 'breech-dashed'
+                }];
             });
         }
     };
 });
+
+// UPDATE history SET time_stamp = '2016-09-07T20:41:45.000Z' WHERE id IN (13, 14, 15, 16);
+
+// 2016-09-01T20:41:45.000Z
