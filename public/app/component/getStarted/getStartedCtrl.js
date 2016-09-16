@@ -28,14 +28,14 @@ angular.module('smarthome').controller('getStartedCtrl', $scope => {
       header: "Download the HomeOne software on your Raspberry Pi",
       text: "After installing a Raspberry Pi OS, download node and npm install home-one",
       img: "../../../assets/img/getStarted/download.svg"
+    },
+    {
+      id: 5,
+      title: "Install",
+      header: "Install the device in your home",
+      text: "Once the device is installed, HomeOne will take care of the rest",
+      img: "../../../assets/img/getStarted/tools.svg"
     }
-    // {
-    //   id: 5,
-    //   title: "Install",
-    //   header: "Install the device in your home",
-    //   text: "Once the device is installed, HomeOne will take care of the rest",
-    //   img: "../../../assets/img/getStarted/tools.svg"
-    // }
   ];
 
 });
