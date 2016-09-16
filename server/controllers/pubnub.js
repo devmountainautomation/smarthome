@@ -55,11 +55,11 @@ smtpTransport.verify(function(error, success) {
                   db.read_user([e.name], (err, response) => {
                     var email = response[0].email;
                     var phone = response[0].phone;
-                    // client.sendMessage({
-                    //   to: phone,
-                    //   from: '+18016236835',
-                    //   body: `Your ${message.message.nickname} is ${message.message.status}!`
-                    // }); //end text alert
+                    client.sendMessage({
+                      to: phone,
+                      from: '+18016236835',
+                      body: `Your ${message.message.nickname} is ${message.message.status}!`
+                    }); //end text alert
                     smtpTransport.sendMail({
                       from: `${YOUR_NAME} ${EMAIL_ACCOUNT_USER}`,
                       to: email,
