@@ -27,4 +27,13 @@ angular.module('smarthome')
       });
     };
 
+    this.getHistory = (id) => {
+      return $http({
+        method: 'GET',
+        url: `/history/${id}`
+      }).then(response => {
+        return response.data;
+      })
+    }
+
   });
