@@ -3,18 +3,15 @@ angular.module('smarthome')
 
     $urlRouterProvider.otherwise('/');
 
-    $urlRouterProvider.when(/section[0-9]+/, function () {
-      // no op
-    });
-
     $stateProvider
       .state('landing page', {
         url: '/',
         templateUrl: './app/component/landingPage/landingPage.html',
+        controller: 'landingCtrl',
         resolve: {
           classStrip: () => {
             $('body').removeClass('menu-open');
-          }
+          },
         }
       })
       .state('getStarted', {

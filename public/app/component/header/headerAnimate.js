@@ -9,27 +9,7 @@ angular.module('smarthome')
         let $scope = scope;
         $(document).ready(() => {
 
-          if (!$scope.user) {
-            $('#hamburger').click(() => {
-              $('#hamburger').toggleClass('open');
-              $('#menu').toggle('slide', 'left', 500);
-              setTimeout(() => {
-                $('html, body').scrollTop(0);
-              }, 500);
-              $('body').toggleClass('menu-open');
-            });
-
-            $(window).on('scroll', () => {
-              if ($(window).scrollTop() > 50) {
-                $('.header').addClass('active');
-                $('.ham-slide').addClass('span-invert');
-              } else {
-                $('.header').removeClass('active');
-                $('.ham-slide').removeClass('span-invert');
-              }
-            });
-
-          } else if ($scope.user) {
+          if ($scope.user) {
             let elmnt = $compile(
               `<div class="menu-box-container">
                 <div class="lp-boxes" id="box1" ui-sref="dashboard">
@@ -50,7 +30,7 @@ angular.module('smarthome')
                 </div>
               </div>
               <div class="menu-list-container">
-                <div class="lp-menu-item" id="lp-contact">
+                <div class="lp-menu-item update-profile" id="lp-contact">
                   <p>Update Profile</p>
                 </div>
                 <div class="lp-menu-item" id="lp-logout" ng-click="logout()">
@@ -63,39 +43,47 @@ angular.module('smarthome')
                 </div>
               </div>`)(scope);
 
-            // $('.menu').empty();
             $('.menu').html(elmnt);
-
-            $('#hamburger').click(() => {
-              $('#hamburger').toggleClass('open');
-              $('#menu').toggle('slide', 'left', 500);
-              $('body').toggleClass('menu-open');
-            });
-
-            $('#lp-contact').on('click', () => {
-              $('#hamburger').toggleClass('open');
-              $('#menu').toggle('slide', 'left', 500);
-              $('.user-update').show(300);
-              $('body').css("overflow-y", "hidden");
-            });
-
-            $('.close-modal').on('click', () => {
-              $('.user-update').hide(300);
-              $('body').css("overflow-y", "auto");
-              $('#hamburger').toggleClass('open');
-              $('#menu').toggle('slide', 'left', 500);
-            });
-
-            $(window).on('scroll', () => {
-              if ($(window).scrollTop() > 50) {
-                $('.header').addClass('active');
-                $('.ham-slide').addClass('span-invert');
-              } else {
-                $('.header').removeClass('active');
-                $('.ham-slide').removeClass('span-invert');
-              }
-            });
           }
+
+          $('.update-profile').on('click', () => {
+            $('#hamburger').toggleClass('open');
+            $('#menu').toggle('slide', 'left', 300);
+            $('.user-update').show(300);
+            $('body').css("overflow-y", "hidden");
+          });
+
+          $('.lp-boxes').on('click', () => {
+            $('#hamburger').toggleClass('open');
+            $('#menu').toggle('slide', 'left', 500);
+          });
+
+          $('.close-modal').on('click', () => {
+            $('.user-update').hide(300);
+            $('body').css("overflow-y", "auto");
+            $('#hamburger').toggleClass('open');
+            $('#menu').toggle('slide', 'left', 300);
+          });
+
+          $(window).on('scroll', () => {
+            if ($(window).scrollTop() > 50) {
+              $('.header').addClass('active');
+              $('.ham-slide').addClass('span-invert');
+            } else {
+              $('.header').removeClass('active');
+              $('.ham-slide').removeClass('span-invert');
+            }
+          });
+
+          $('#hamburger').click(() => {
+            $('#hamburger').toggleClass('open');
+            $('#menu').toggle('slide', 'left', 300);
+            setTimeout(() => {
+                $('html, body').scrollTop(0);
+              }, 300);
+            $('body').toggleClass('menu-open');
+          });
+
         });
       }
     };
