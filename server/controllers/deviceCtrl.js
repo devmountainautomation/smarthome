@@ -96,7 +96,7 @@ module.exports = {
       if (!data.email) data.email = false;
       if (!data.sms) data.sms = false;
       db.read_device_id([data.nickname, req.user.id], (err, response) => {
-        data.sensor_id = response[0].sensor_id
+        data.sensor_id = response[0].sensor_id;
         db.create_sensor_settings([req.user.id, moduleId, data.sensor_id, true, data.email, data.sms, data.start_time, data.end_time], (err, response) => {
           if (err) {
             res.status(500).send("Failed to add settings");
@@ -146,7 +146,17 @@ module.exports = {
           res.send(200);
         }
       });
-  },
+    },
+    readHistory: (req, res, next) => {
+      db.read_all_history([req.params.id], (err, resp) => {
+        if (err) {
+          console.log(err);
+          res.status(500).send(err);
+        } else {
+          res.json(resp);
+        }
+      });
+    },
     // sendText: function(req, res, next) {
     //   var messages = [];
     //   for (var i = 0; i < req.body.to.length; i++) {
