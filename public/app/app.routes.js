@@ -3,9 +3,9 @@ angular.module('smarthome')
 
     $urlRouterProvider.otherwise('/');
 
-    $urlRouterProvider.when(/section[0-9]+/, function () {
-      // no op
-    });
+    // $urlRouterProvider.when(/section[0-9]+/, function () {
+    //   // no op
+    // });
 
     $stateProvider
       .state('landing page', {
