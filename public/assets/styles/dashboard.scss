@@ -82,6 +82,11 @@ $dashgreen: #E3F1F4;
     transition: all 2s ease-in-out
 }
 
+#resizable {
+  width: 150px;
+  height: 150px;
+  padding: 0.5em;
+}
 /*
     .dash-label {
         position: absolute;

@@ -51,6 +51,8 @@ angular.module('smarthome')
                   <div id="appended">
                     <i id="appended-close" class="fa fa-close"></i>
                     <div>
+                      <h2>${scope.nickname}</h2>
+                      <hr>
                       <h2>Notification Window</h2>
                       <h3>Start Time</h3>
                     <input type="text" id="start${id}" value="${startTime}"></input>

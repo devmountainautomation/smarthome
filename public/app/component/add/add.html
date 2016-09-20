@@ -1,116 +1,118 @@
 <head-dir></head-dir>
 <main class="add-device">
+  <div class="add-wrapper">
 
-<h1><u>Add a Device</u></h1>
-<i class="fa fa-chevron-left"></i>
-<div class="gradient gradient-left"></div>
-<section class="choose-type">
-  <div class="module-type">
-    <input type="radio" name="module" ng-model="module_type" id="breech-radio" value="breech">
-    <label for="breech-radio">
-      <img src="./assets/img/window-door_icon.png" alt="" />
-    </label>
-  </div>
-
-  <div class="module-type">
-    <input type="radio" name="module" ng-model="module_type" id="smoke-radio" value="smoke_detector">
-    <label for="smoke-radio">
-      <img src="./assets/img/smoke_icon.png" alt="" />
-    </label>
-  </div>
-
-  <div class="module-type">
-    <input type="radio" name="module" ng-model="module_type" id="sound-radio" value="sound">
-    <label for="sound-radio">
-      <img src="./assets/img/sound_icon.png" alt="" />
-    </label>
-  </div>
-
-  <div class="module-type">
-    <input type="radio" name="module" ng-model="module_type" id="camera-radio" value="camera">
-    <label for="camera-radio">
-      <img src="./assets/img/camera_icon.png" alt="" />
-    </label>
-  </div>
-
-  <div class="module-type">
-    <input type="radio" name="module" ng-model="module_type" id="therm-radio" value="therm">
-    <label for="therm-radio">
-      <img src="./assets/img/thermometer-icon.png" alt="" />
-    </label>
-  </div>
-
-  <div class="module-type">
-    <input type="radio" name="module" ng-model="module_type" id="motion-radio" value="motion">
-    <label for="motion-radio">
-      <img src="./assets/img/motion_icon.png" alt="" />
-    </label>
-  </div>
-
-</section>
-<div class="gradient gradient-right"></div>
-<i class="fa fa-chevron-right"></i>
-
-<!-- Appearing sections -->
-<section class="choose-settings-section hidden" id="door-window-settings">
-
-  <div>
-    <h1>Door/Window Sensor</h1>
-    <h2>Nickname</h2>
-    <input type="text" ng-model="settings.nickname" />
-    <h2>Notification Window</h2>
-    <h3>Start Time</h3>
-      <input type="text" class="timepicker-input" placeholder="Select" id="breech-start" />
-    <h3>End Time</h3>
-      <input type="text" class="timepicker-input" placeholder="Select" id="breech-end" />
-  </div>
-
-  <div class="checkbox-section">
-    <h2>Notifications</h2>
-      <div class="check-box">
-        <div class="squaredOne">
-          <input type="checkbox" value="true" id="settings-email-radio" ng-model="settings.email" checked />
-          <label for="settings-email-radio"></label>
-        </div>
-        <h4> Send me an email </h4>
+    <h1><u>Add a Device</u></h1>
+    <i class="fa fa-chevron-left"></i>
+    <section class="choose-type">
+      <div class="gradient gradient-left"></div>
+      <div class="module-type">
+        <input type="radio" name="module" ng-model="module_type" id="breech-radio" value="breech">
+        <label for="breech-radio">
+          <img src="./assets/img/window-door_icon.png" alt="" />
+        </label>
       </div>
 
-      <div class="check-box">
-        <div class="squaredOne">
-          <input type="checkbox" value="true" id="settings-text-radio" ng-model="settings.sms" checked />
-          <label for="settings-text-radio"></label>
-        </div>
-        <h4> Send me a text </h4>
+      <div class="module-type">
+        <input type="radio" name="module" ng-model="module_type" id="smoke-radio" value="smoke_detector">
+        <label for="smoke-radio">
+          <img src="./assets/img/smoke_icon.png" alt="" />
+        </label>
       </div>
 
-    </div>
-    <hr>
+      <div class="module-type">
+        <input type="radio" name="module" ng-model="module_type" id="sound-radio" value="sound">
+        <label for="sound-radio">
+          <img src="./assets/img/sound_icon.png" alt="" />
+        </label>
+      </div>
 
-<div class="button-box">
-  <button type="button" ng-click="addBreech(settings)">Add Device</button>
-</div>
+      <div class="module-type">
+        <input type="radio" name="module" ng-model="module_type" id="camera-radio" value="camera">
+        <label for="camera-radio">
+          <img src="./assets/img/camera_icon.png" alt="" />
+        </label>
+      </div>
 
-</section>
+      <div class="module-type">
+        <input type="radio" name="module" ng-model="module_type" id="therm-radio" value="therm">
+        <label for="therm-radio">
+          <img src="./assets/img/thermometer-icon.png" alt="" />
+        </label>
+      </div>
+
+      <div class="module-type">
+        <input type="radio" name="module" ng-model="module_type" id="motion-radio" value="motion">
+        <label for="motion-radio">
+          <img src="./assets/img/motion_icon.png" alt="" />
+        </label>
+      </div>
+
+      <div class="gradient gradient-right"></div>
+    </section>
+    <i class="fa fa-chevron-right"></i>
+
+    <!-- Appearing sections -->
+    <section class="choose-settings-section hidden" id="door-window-settings">
+
+      <div>
+        <h1>Door/Window Sensor</h1>
+        <h2>Nickname</h2>
+        <input type="text" ng-model="settings.nickname" />
+        <h2>Notification Window</h2>
+        <h3>Start Time</h3>
+        <input type="text" class="timepicker-input" placeholder="Select" id="breech-start" />
+        <h3>End Time</h3>
+        <input type="text" class="timepicker-input" placeholder="Select" id="breech-end" />
+      </div>
+
+      <div class="checkbox-section">
+        <h2>Notifications</h2>
+        <div class="check-box">
+          <div class="squaredOne">
+            <input type="checkbox" value="true" id="settings-email-radio" ng-model="settings.email" checked />
+            <label for="settings-email-radio"></label>
+          </div>
+          <h4> Send me an email </h4>
+        </div>
+
+        <div class="check-box">
+          <div class="squaredOne">
+            <input type="checkbox" value="true" id="settings-text-radio" ng-model="settings.sms" checked />
+            <label for="settings-text-radio"></label>
+          </div>
+          <h4> Send me a text </h4>
+        </div>
+
+      </div>
+      <hr>
+
+      <div class="button-box">
+        <button type="button" ng-click="addBreech(settings)">Add Device</button>
+      </div>
+
+    </section>
 
 
-<section class="choose-settings-section" id="smoke-settings">
-  <h2>Smoke Detector Settings</h2>
-</section>
+    <section class="choose-settings-section" id="smoke-settings">
+      <h2>Smoke Detector Settings</h2>
+    </section>
 
-<section class="choose-settings-section" id="sound-settings">
-  <h2>Sound Sensor Settings</h2>
-</section>
+    <section class="choose-settings-section" id="sound-settings">
+      <h2>Sound Sensor Settings</h2>
+    </section>
 
-<section class="choose-settings-section" id="motion-settings">
-  <h2>Motion Sensor Settings</h2>
-</section>
+    <section class="choose-settings-section" id="motion-settings">
+      <h2>Motion Sensor Settings</h2>
+    </section>
 
-<section class="choose-settings-section" id="therm-settings">
-  <h2>Thermometer Settings</h2>
-</section>
+    <section class="choose-settings-section" id="therm-settings">
+      <h2>Thermometer Settings</h2>
+    </section>
 
-<section class="choose-settings-section" id="camera-settings">
-  <h2>Camera Settings</h2>
-</section>
+    <section class="choose-settings-section" id="camera-settings">
+      <h2>Camera Settings</h2>
+    </section>
 
+  </div>
 </main>
