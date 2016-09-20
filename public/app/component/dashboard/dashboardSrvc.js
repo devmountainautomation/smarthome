@@ -33,7 +33,7 @@ angular.module('smarthome')
         url: `/history/${id}`
       }).then(response => {
         return response.data;
-      })
-    }
+      });
+    };
 
   });

@@ -82,7 +82,7 @@ module.exports = {
       if (!data.email) data.email = false;
       if (!data.sms) data.sms = false;
       db.read_device_id([data.nickname, req.user.id], (err, response) => {
-        data.sensor_id = response[0].sensor_id
+        data.sensor_id = response[0].sensor_id;
         db.create_sensor_settings([req.user.id, moduleId, data.sensor_id, true, data.email, data.sms, data.start_time, data.end_time], (err, response) => {
           if (err) {
             res.status(500).send("Failed to add settings");
@@ -124,10 +124,10 @@ module.exports = {
     });
   },
   destroySensor: (req, res, next) => {
-      var nickname = req.query.nickname.split(',').join(' ');
-      db.destroy_sensor([req.user.id, nickname], (err, response) => {
+      db.destroy_sensor([req.params.id], (err, response) => {
         if (err) {
-          res.status(500).send("Failed to delete sensor");
+          console.log(err);
+          res.status(204).json("Failure");
         } else {
           res.send(200);
         }
@@ -137,12 +137,41 @@ module.exports = {
       db.read_all_history([req.params.id], (err, resp) => {
         if (err) {
           console.log(err);
-          res.status(500).send(err)
+          res.status(500).send(err);
         } else {
           res.json(resp);
         }
-      })
-    }
+
+      });
+    },
+    // sendText: function(req, res, next) {
+    //   var messages = [];
+    //   for (var i = 0; i < req.body.to.length; i++) {
+    //     client.sendMessage({
+    //       to: req.body.to[i],
+    //       from: req.body.from,
+    //       body: req.body.message
+    //     }, function(err, message) {
+    //       if (err) {
+    //         res.send(err);
+    //       } else {
+    //         messages.push(message);
+    //       }
+    //     });
+    //   }
+    //   res.send("messages sent");
+    // },
+    // sendEmail: function(req, res, next) {
+    //   smtpTransport.sendMail({
+    //     from: '"Home One" <homeoneautomation@gmail.com>',
+    //     to: 'andersen.craigm@gmail.com',
+    //     subject: 'HomeOne Alert!',
+    //     text: 'Your Front Door is Open'
+    // }, () => {
+    //       res.send("email sent");
+    //     smtpTransport.close();
+    //   });
+    // }
 }; //End Export
 
 var decrypt = (id, pub) => {

@@ -41,10 +41,18 @@
 
         input {
             width: 100%;
+            outline: none;
             padding: 1rem;
             box-sizing: border-box;
             margin-bottom: 0.5rem;
-            border: 0.5px solid #ccc;
+            border: solid 1px #dcdcdc;
+            transition: box-shadow 0.3s, border 0.3s;
+
+            &.focus,
+            &:focus {
+                border: solid 1px #707070;
+                box-shadow: 0 0 5px 1px #969696;
+            }
         }
 
         button {
