@@ -7,20 +7,6 @@ const nodemailer = require('nodemailer');
 const client = require('twilio')(config.twilioSID, config.twilioAuthToken);
 const saltRounds = 10;
 
-// var EMAIL_ACCOUNT_USER = config.emailAccountUser;
-// var EMAIL_ACCOUNT_PASSWORD = config.emailPassword;
-// var YOUR_NAME = config.emailName;
-//
-//
-// var smtpTransport = nodemailer.createTransport({
-//   service: "gmail", // sets automatically host, port and connection security settings
-//   auth: {
-//     user: EMAIL_ACCOUNT_USER,
-//     pass: EMAIL_ACCOUNT_PASSWORD
-//   }
-// });
-
-
 module.exports = {
   getUserSensors: (req, res, next) => {
     db.read_user_sensors([req.user.id], (err, response) => {
@@ -155,6 +141,7 @@ module.exports = {
         } else {
           res.json(resp);
         }
+
       });
     },
     // sendText: function(req, res, next) {
@@ -186,3 +173,30 @@ module.exports = {
     //   });
     // }
 }; //End Export
+
+var decrypt = (id, pub) => {
+  var result = [];
+  var key = id % 26;
+  var text = pub;
+
+  for (var i = 0; i < text.length; i++) {
+    if (!/[^A-Za-z]/.test(text[i])) {
+      if (text[i] === text[i].toUpperCase()) {
+        cipher(text[i], key, 65, 26);
+      } else if (text[i] === text[i].toLowerCase()) {
+        cipher(text[i], key, 97, 26);
+      }
+    } else {
+      result.push(text[i]);
+    }
+  }
+  function cipher(char, key, wrap, alpha) {
+    var cryptConvert = char.charCodeAt();
+    cryptConvert -= key;
+    if (cryptConvert < wrap) {
+      cryptConvert += alpha;
+    }
+    result.push(String.fromCharCode(cryptConvert));
+  }
+  return result.join('');
+};
