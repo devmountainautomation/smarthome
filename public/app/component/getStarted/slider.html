@@ -1,22 +1,50 @@
-  <nav class="cd-vertical-nav">
-		<ul>
+<nav class="cd-vertical-nav">
+  <ul>
 
-      <li ng-repeat="slide in slides">
-				<a class="slider-a" href="#section{{slide.id}}">
-					<span class="label">{{slide.title}}</span>
-				</a>
-			</li>
+    <li ng-repeat="slide in slides">
+  		<a class="slider-a" href="#section{{slide.id}}">
+  			<span class="label">{{slide.title}}</span>
+  		</a>
+  	</li>
 
-		</ul>
-	</nav>
+  </ul>
+</nav>
 
-	<button class="cd-nav-trigger cd-image-replace">Open navigation<span aria-hidden="true"></span></button>
+<button class="cd-nav-trigger cd-image-replace">Open navigation<span aria-hidden="true"></span></button>
 
-	<section ng-repeat="slide in slides" id="section{{slide.id}}" class="cd-section">
+<section class="slider-main">
 
+  <div class="slider-intro-call">
+    <span class="slider-header">Getting Started</span>
+    <span class="slider-text">We want you to have the best experience possible with our HomeOne portal, so we have prepared this page to get you started.  Please follow the steps below:</span>
+  </div>
+
+  <div ng-repeat="slide in slides" id="section{{slide.id}}" class="cd-section">
+    <div id="slider-text-container">
       <span class="slider-header">{{slide.id}}: {{slide.header}}</span>
       <span class="slider-text">{{slide.text}}</span>
-      <img class="slider-image" ng-src="{{slide.img}}">
+    </div>
+    <img class="slider-image" ng-src="{{slide.img}}">
+  </div>
 
-  	<a href="#section2" class="cd-scroll-down cd-img-replace"></a>
-	</section>
+  <div id="section{{slides.length + 1}}" class="slider-intro-call">
+    <span class="slider-header">What now?</span>
+
+    <span class="slider-text" ng-show="showLogin">It looks like it is time to create your HomeOne account.  Please click on the link below.</span>
+    <a ui-sref="login">
+      <button type="button" ng-show="showLogin" class="next-steps-button">Login</button>
+    </a>
+
+    <span class="slider-text" ng-show="showDashboard">Continue adding/monitoring devices at your convenience.</span>
+    <a ui-sref="dashboard">
+      <button type="button" ng-show="showDashboard" class="next-steps-button">Go  to  Dashboard</button>
+    </a>
+  </div>
+
+  <div class="slider-arrow-container">
+    <div class="slider-arrow-circle">
+      <img src="../../../assets/img/getStarted/down-arrow.png" ng-click="nextSection($event)">
+    </div>
+  </div>
+
+</section>
