@@ -81,7 +81,7 @@ app.post('/sensors/:type', deviceCtrl.createSensor);
 
 //*********** Delete Requests ***************//
 app.delete('/users', userCtrl.destroyUser);
-app.delete('/sensors', deviceCtrl.destroySensor);
+app.delete('/sensors/:id', deviceCtrl.destroySensor);
 
 //auth
 const passportJS = require('./config/passport.js');

@@ -6,15 +6,17 @@
       <span class="ham-slide"></span>
     </div>
     <div class="logo-container" ui-sref="landing page">Home<img class="logo" src="../../../assets/img/devautomation logo-1.png" alt="logo" />One</div>
+    <!-- <div class="user-img">
+      <img ng-src="{{user.photo}}" alt="pic" />
+    </div> -->
   </div>
-
 </header>
 
 <section class="menu" id="menu">
   <div class="menu-box-container">
     <div class="lp-boxes" id="box1">
-      <i class="fa fa-paper-plane fa-fw fa-3x" aria-hidden="true"></i>
-      <p>Tutorials</p>
+      <i class="fa fa-paper-plane fa-fw fa-3x" aria-hidden="true" ui-sref="getStarted"></i>
+      <p>Get Started</p>
     </div>
     <div class="lp-boxes" id="box2" ng-click="scrollTo('tech')">
       <i class="fa fa-magic fa-fw fa-3x" aria-hidden="true"></i>
@@ -45,7 +47,20 @@
   </div>
 </section>
 
+<header class="desktop-header">
+  <ul class="header-media">
+    <span ui-sref="landing page" class="logo-container" ui-sref="landing page">Home<img class="logo" src="../../../assets/img/devautomation logo-1.png" alt="logo" />One</span>
+    <li ui-sref="dashboard">Dashboard</li>
+    <li ui-sref="manage">Manage Devices</li>
+    <li ui-sref="about">Our Team</li>
+    <li ng-click="logout()" class="hidden">Logout</li>
+    <li ui-sref="login">Login</li>
+  </ul>
+
+</header>
+
 <update></update>
+
 
 
 

@@ -77,7 +77,15 @@ module.exports = {
   destroyUser: (req, res, next) => {
     db.destroy_user_settings([req.user.id], (err, response) => {
       db.destroy_user_sensors([req.user.id], (err, response) => {
-        db.destroy_user([req.user.id], (err, response) => {});
+        db.destroy_user([req.user.id], (err, response) => {
+          if (err) {
+            console.log(err);
+            res.status(204).json('failure');
+          }
+          else {
+            res.status(200);
+          }
+        });
       });
     });
   }

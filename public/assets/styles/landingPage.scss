@@ -41,7 +41,8 @@
                 border: 3px solid #19A2C6;
                 outline: none;
 
-                &:active {
+                &:active,
+                &:hover {
                     background-color: #19A2C6;
                 }
             }
@@ -69,8 +70,11 @@
 }
 
 .lp-about {
-    height: 200vh;
     width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 
     .what-we-do {
         height: 70vh;
@@ -138,7 +142,6 @@
     }
 
     .what-we-offer {
-        height: 100vh;
         width: 100vw;
         background: #FFFFFF;
         display: flex;
@@ -155,10 +158,12 @@
             align-items: center;
             justify-content: center;
             flex-wrap: wrap;
+            width: 80%;
 
             .circle-wrapper {
                 width: auto;
                 margin: 4vw;
+                height: 20vh;
 
                 p {
                     font-weight: 100;

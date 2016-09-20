@@ -25,10 +25,22 @@ angular.module('smarthome')
         url: 'settings/',
         data: settings
       });
-  };
+    };
 
-  this.getUser = () => {
-    return $http.get('/me');
-  };
+    this.deleteSensor = (id) => {
+      return $http({
+        method: 'DELETE',
+        url: '/sensors/' + id
+      }).then(response => {
+        let results = response.data;
+        return response;
+      }).catch(err => {
+        return err;
+      });
+    };
+
+    this.getUser = () => {
+      return $http.get('/me');
+    };
 
   }); //End manageService
