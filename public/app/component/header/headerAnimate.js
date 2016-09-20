@@ -75,6 +75,16 @@ angular.module('smarthome')
             }
           });
 
+          $(window).on('scroll', () => {
+            if ($(window).scrollTop() > 50) {
+              $('.desktop-header').addClass('active smaller');
+              elem.find('li').addClass('span-invert');
+            } else {
+              $('.desktop-header').removeClass('active smaller');
+              elem.find('li').removeClass('span-invert');
+            }
+          });
+
           $('#hamburger').click(() => {
             $('#hamburger').toggleClass('open');
             $('#menu').toggle('slide', 'left', 300);

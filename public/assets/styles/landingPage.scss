@@ -41,7 +41,8 @@
                 border: 3px solid #19A2C6;
                 outline: none;
 
-                &:active {
+                &:active,
+                &:hover {
                     background-color: #19A2C6;
                 }
             }
