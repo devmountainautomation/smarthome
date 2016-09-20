@@ -1,11 +1,18 @@
-angular.module('smarthome')
-  .controller('getStartedCtrl', ($scope, getStartedSrvc) => {
+angular.module('smarthome').controller('getStartedCtrl', ($scope, getStartedSrvc) => {
 
-  (() => {
-    getStartedSrvc.getUser().then((response => {
-      $scope.user = response.data;
-    }));
-  })(); 
+  var getUser = function() {
+    $scope.showLogin = true;
+    $scope.showDashboard = false;
+    getStartedSrvc.getUser().then(response => {
+      if (response.data.id) {
+        $scope.showLogin = false;
+        $scope.showDashboard = true;
+      }
+    });
+  };
+
+  getUser();
 
   $scope.slides = getStartedSrvc.slides;
+
 });

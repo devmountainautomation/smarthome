@@ -9,13 +9,27 @@ angular.module('smarthome')
 
           var scrolling = false;
           var contentSections = $('.cd-section'),
+            bounceCount = 0,
+            sectionArray = ['#section1', '#section2', '#section3', '#section4', '#section5', '#section6'],
             verticalNavigation = $('.cd-vertical-nav'),
             navigationItems = verticalNavigation.find('a'),
             navTrigger = $('.cd-nav-trigger'),
-            scrollArrow = $('.cd-scroll-down');
+            removeArrow = false,
+            scrollArrow = $('.slider-arrow-circle');
 
           $(window).on('scroll', checkScroll);
 
+          var bounceFunc = function() {
+            scrollArrow.effect("bounce", { times:3 }, 1000);
+            bounceCount++
+            setTimeout(function() {
+              if (bounceCount < 3 && $(window).scrollTop() === 0) {
+                bounceFunc();
+              }
+            }, 1000);
+          };
+
+          bounceFunc();
           //smooth scroll to the selected section
           verticalNavigation.on('click', 'a', function(event) {
             event.preventDefault();
@@ -25,14 +39,32 @@ angular.module('smarthome')
 
           //smooth scroll to the second section
           scrollArrow.on('click', function(event) {
+            var bottomPagePercentage = (event.pageY / $(window).height()).toString().charAt(2);
+            var sectionIndex = Math.floor((event.pageY / $(window).height()) - 1);
+            if (bottomPagePercentage >= 8) sectionIndex++;
             event.preventDefault();
-            smoothScroll($(this.hash));
+            smoothScroll($(sectionArray[sectionIndex]));
           });
 
           // open navigation if user clicks the .cd-nav-trigger - small devices only
           navTrigger.on('click', function(event) {
             event.preventDefault();
             verticalNavigation.toggleClass('open');
+          });
+
+          $(window).scroll(() => {
+            if ($(window).scrollTop() > ($(window).height() * (sectionArray.length - 1))) {
+              if (removeArrow === false) {
+                removeArrow = true;
+                scrollArrow.toggle();
+              }
+            }
+            if ($(window).scrollTop() < ($(window).height() * (sectionArray.length - 1))) {
+              if (removeArrow === true) {
+                removeArrow = false;
+                scrollArrow.toggle();
+              }
+            }
           });
 
           function checkScroll() {
@@ -62,56 +94,6 @@ angular.module('smarthome')
               300
             );
           }
-
-          // var contentSections = $('.cd-section'),
-          // navigationItems = $('.cd-vertical-nav a');
-          //
-          // updateNavigation();
-          //
-          // $(window).on('scroll', function(){
-          // 	updateNavigation();
-          // });
-          //
-          // //smooth scroll to the section
-          // navigationItems.on('click', function(event){
-          //       event.preventDefault();
-          //       console.log("should scroll");
-          //       smoothScroll($(this.hash));
-          //   });
-          //   //smooth scroll to second section
-          //   $('.cd-scroll-down').on('click', function(event){
-          //       event.preventDefault();
-          //       smoothScroll($(this.hash));
-          //   });
-          //
-          //   //open-close navigation on touch devices
-          //   $('.touch .cd-nav-trigger').on('click', function(){
-          //   	$('.touch #cd-vertical-nav').toggleClass('open');
-          //
-          //   });
-          //   //close navigation on touch devices when selectin an elemnt from the list
-          //   $('.touch #cd-vertical-nav a').on('click', function(){
-          //   	$('.touch #cd-vertical-nav').removeClass('open');
-          //   });
-          //
-          // function updateNavigation() {
-          // 	contentSections.each(function(){
-          // 		// $this = $(this);
-          // 		var activeSection = $('#cd-vertical-nav a[href="#'+$(this).attr('id')+'"]').data('number') - 1;
-          // 		if ( ( $(this).offset().top - $(window).height()/2 < $(window).scrollTop() ) && ( $(this).offset().top + $(this).height() - $(window).height()/2 > $(window).scrollTop() ) ) {
-          // 			navigationItems.eq(activeSection).addClass('is-selected');
-          // 		}else {
-          // 			navigationItems.eq(activeSection).removeClass('is-selected');
-          // 		}
-          // 	});
-          // }
-          //
-          // function smoothScroll(target) {
-          //       $('body,html').animate(
-          //       	{'scrollTop':target.offset().top},
-          //       	600
-          //       );
-          // }
         });
       }
     };
