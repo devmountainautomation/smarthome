@@ -1,5 +1,5 @@
 angular.module('smarthome')
-  .controller('addCtrl', ($scope, addService) => {
+  .controller('addCtrl', ($scope, addService, $state) => {
     $scope.settings = {};
 
     (() => {
@@ -113,6 +113,9 @@ angular.module('smarthome')
       $scope.settings.end_time = $('#breech-end').val();
       addService.addDevice($scope.settings).then(response => {
         addService.addBreech($scope.settings).then(response => {
+          $('.choose-settings-section').hide();
+          swal('Success!', 'Device Succressfully Added!', 'success');
+          $state.go('manage');
           return response;
         });
       });

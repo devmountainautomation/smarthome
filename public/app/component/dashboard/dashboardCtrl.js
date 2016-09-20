@@ -7,6 +7,7 @@ angular.module('smarthome')
       }));
     })();
 
+
     $scope.getNotifications = () => {
       dashboardSrvc.getNotifications().then(response => {
         $scope.notes = response.data;
