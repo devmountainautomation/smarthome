@@ -81,7 +81,7 @@ app.post('/sensors/:type', deviceCtrl.createSensor);
 
 //*********** Delete Requests ***************//
 app.delete('/users', userCtrl.destroyUser);
-app.delete('/sensors', deviceCtrl.destroySensor);
+app.delete('/sensors/:id', deviceCtrl.destroySensor);
 
 // app.post('/email', deviceCtrl.sendEmail);
 

@@ -138,10 +138,10 @@ module.exports = {
     });
   },
   destroySensor: (req, res, next) => {
-      var nickname = req.query.nickname.split(',').join(' ');
-      db.destroy_sensor([req.user.id, nickname], (err, response) => {
+      db.destroy_sensor([req.params.id], (err, response) => {
         if (err) {
-          res.status(500).send("Failed to delete sensor");
+          console.log(err);
+          res.status(204).json("Failure");
         } else {
           res.send(200);
         }

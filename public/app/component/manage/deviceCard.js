@@ -37,7 +37,7 @@ angular.module('smarthome')
         }
         manageService.getSettings(scope.id).then(response => {
           let settings = response;
-          element.find('i').on('click', () => {
+          element.find('span').on('click', () => {
             let id = scope.id;
             let startTime = settings.start_time;
             let endTime = settings.end_time;
@@ -47,7 +47,7 @@ angular.module('smarthome')
             let content;
             /// Door + Window Sensor ///
             if (scope.type == "Door/Window Sensor") {
-                content = $compile(`
+              content = $compile(`
                   <div id="appended">
                     <i id="appended-close" class="fa fa-close"></i>
                     <div>
@@ -233,22 +233,58 @@ angular.module('smarthome')
         });
       },
       controller: ($scope, manageService) => {
-
+        
         manageService.getSettings($scope.id).then(function(response) {
           $scope.settings = response;
         });
-        $scope.saveSettings = function () {
+        $scope.deleteSensor = (id) => {
+          console.log(id);
+          swal({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'Cancel!',
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonClass: 'btn btn-danger',
+            buttonsStyling: false
+          }).then((id) => {
+            manageService.deleteSensor(id).then(results => {
+              if (results.status === 200) {
+                swal(
+                  'Deleted!',
+                  'Your file has been deleted.',
+                  'success'
+                );
+              } else {
+                swal('Hmm, There Was An Issue.', 'Please Try That Again.', 'error');
+              }
+            });
+          }, function(dismiss) {
+            if (dismiss === 'cancel') {
+              swal(
+                'Cancelled',
+                'Your Sensor Is Safe!',
+                'error'
+              );
+            }
+          });
+        };
+        $scope.saveSettings = function() {
           console.log('saved settings', $scope.settings);
           var crazy = $('#start' + $scope.id).val();
           console.log('start', crazy);
           $scope.settings.start_time = $('#start' + $scope.id).val();
           $scope.settings.end_time = $('#end' + $scope.id).val();
           manageService.saveSettings($scope.settings).then(
-            function (response) {
+            function(response) {
               $('#appended').closest('section').slideUp('slow', () => {
-                  $('body').removeClass('menu-open');
-                  $('#appended').remove();
-                });
+                $('body').removeClass('menu-open');
+                $('#appended').remove();
+              });
             }
           );
         };

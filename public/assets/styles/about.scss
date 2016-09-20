@@ -45,6 +45,9 @@ html {
         p {
             line-height: 1.5;
             font-size: 1.1rem;
+            width: 70vw;
+            max-width: 70vh;
+            text-align: justify;
         }
 
         .breaker {
@@ -161,7 +164,9 @@ html {
                 font-weight: 100;
                 margin-bottom: 2vh;
                 line-height: 1.5;
-                width: 50vh;
+                width: 70vw;
+                max-width: 70vh;
+                text-align: justify;
             }
         }
     }
