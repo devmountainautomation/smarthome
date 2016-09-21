@@ -28,6 +28,7 @@ angular.module('smarthome')
     };
 
     this.getHistory = (id) => {
+      console.log('id', id);
       return $http({
         method: 'GET',
         url: `/history/${id}`

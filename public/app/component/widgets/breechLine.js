@@ -4,8 +4,8 @@ angular.module('smarthome')
 
     restrict: 'E',
     scope: {
-      id: "=",
-      nickname: "="
+      id: "@",
+      nickname: "@"
     },
     templateUrl: "./app/component/widgets/breechLine.html",
     link(scope, element, attrs) {
@@ -78,7 +78,7 @@ angular.module('smarthome')
             },
             title: {
                 enable: true,
-                text: 'Open Frequency/Duration',
+                text: 'Front Door',
                 css: {
                   'font-family': 'Source Sans Pro',
                   'max-width': '50%',
@@ -113,7 +113,8 @@ angular.module('smarthome')
                     key: 'Times Opened',
                     color: '#ff7f0e',
                     strokeWidth: 2,
-                    classed: 'breech-dashed'
+                    classed: 'breech-dashed',
+                    area: true
                 }
             ];
       })

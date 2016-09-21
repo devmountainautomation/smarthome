@@ -12,9 +12,17 @@ $dashgreen: #E3F1F4;
     overflow: auto;
     display: flex;
     justify-content: center;
-
+    flex-direction: row;
+    flex-wrap: wrap;
+    .breech-box {
+      position: relative;
+      margin-top: 14vh;
+      width: 30vw;
+      min-width: 300px;
+    }
     .notifications {
         height: 50vh;
+        max-width: 700px;
         width: 90%;
         margin-top: 10vh;
         padding: 5vh 5vh;
@@ -82,11 +90,6 @@ $dashgreen: #E3F1F4;
     transition: all 2s ease-in-out
 }
 
-#resizable {
-  width: 150px;
-  height: 150px;
-  padding: 0.5em;
-}
 /*
     .dash-label {
         position: absolute;
