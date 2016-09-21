@@ -43,7 +43,19 @@ angular.module('smarthome')
                 </div>
               </div>`)(scope);
 
+              let deskElemnt = $compile(`<ul class="header-media">
+                    <span ui-sref="landing page" class="logo-container" ui-sref="landing page">Home<img class="logo" src="../../../assets/img/devautomation logo-1.png" alt="logo" />One</span>
+                    <div>
+                        <li ui-sref="dashboard">Dashboard</li>
+                        <li ui-sref="manage">Manage Devices</li>
+                        <li ui-sref="about">Our Team</li>
+                        <li ui-sref="getStarted">Get Started</li>
+                        <li ng-click="logout()">Logout</li>
+                    </div>
+                </ul>`)(scope);
+
             $('.menu').html(elmnt);
+            $('.desktop-header').html(deskElemnt);
           }
 
           $('.update-profile').on('click', () => {
@@ -78,10 +90,10 @@ angular.module('smarthome')
           $(window).on('scroll', () => {
             if ($(window).scrollTop() > 50) {
               $('.desktop-header').addClass('active smaller');
-              elem.find('li').addClass('span-invert');
+              elem.find('li').addClass('li-invert');
             } else {
               $('.desktop-header').removeClass('active smaller');
-              elem.find('li').removeClass('span-invert');
+              elem.find('li').removeClass('li-invert');
             }
           });
 
