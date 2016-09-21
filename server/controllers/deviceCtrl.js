@@ -134,7 +134,6 @@ module.exports = {
       });
     },
     readHistory: (req, res, next) => {
-      console.log(req.params.id);
       db.read_all_history([req.params.id], (err, resp) => {
         if (err) {
           console.log(err);

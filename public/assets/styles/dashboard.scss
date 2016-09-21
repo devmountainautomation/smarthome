@@ -3,7 +3,10 @@ $dashgreen: #E3F1F4;
 ::-webkit-scrollbar {
     display: none;
 }
-
+.dash-dash {
+  width: 100%;
+  max-width: 1400px;
+}
 .dash-section {
     height: 100%;
     min-height: 100vh;
@@ -14,13 +17,20 @@ $dashgreen: #E3F1F4;
     justify-content: center;
     flex-direction: row;
     flex-wrap: wrap;
+    .pie-box {
+      float: left;
+      margin: 50px;
+    }
+
     .breech-box {
+      float: left;
       position: relative;
       margin-top: 14vh;
       width: 30vw;
       min-width: 300px;
     }
     .notifications {
+        float: left;
         height: 50vh;
         max-width: 700px;
         width: 90%;
