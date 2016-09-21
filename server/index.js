@@ -105,7 +105,7 @@ app.get('/auth/facebook/callback', passport.authenticate('facebook', {
 }));
 
 app.post('/auth/local', passport.authenticate('local'), (req, res) => {
-  res.status(200).redirect('/#/dashboard');
+  res.sendStatus(200);
 });
 
 app.get('/logout', userCtrl.logout);

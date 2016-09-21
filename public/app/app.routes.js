@@ -2,7 +2,7 @@ angular.module('smarthome')
   .config(($stateProvider, $urlRouterProvider) => {
 
     $urlRouterProvider.otherwise('/');
-    
+
     $stateProvider
       .state('landing page', {
         url: '/',

@@ -8,9 +8,9 @@ angular.module('smarthome')
     })();
 
     (() => {
-      manageService.getUser().then((response => {
+      manageService.getUser().then(response => {
         $scope.user = response.data;
-      }));
+      });
     })();
 
   }); //End manageCtrl

@@ -32,7 +32,6 @@ angular.module('smarthome')
             $scope.getNotifications();
           }, 800);
         } else {
-          console.log(response);
           swal('Error', 'Hmm, something happened. Please Try Again.', 'error');
         }
       });

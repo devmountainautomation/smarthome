@@ -53,7 +53,7 @@ module.exports = {
       if (err) {
         res.status(500).send('Update Failed');
       }
-      res.send(200);
+      res.sendStatus(200);
     });
   },
   createSettings: (req, res, next) => {
@@ -87,7 +87,7 @@ module.exports = {
           if (err) {
             res.status(500).send("Failed to add settings");
           } else {
-            res.send(200);
+            res.sendStatus(200);
           }
         });
       });
@@ -118,19 +118,20 @@ module.exports = {
         if (err) {
           res.status(500).send('Failed to add Sensor');
         } else {
-          res.send(200);
+          res.sendStatus(200);
         }
       });
     });
   },
   destroySensor: (req, res, next) => {
-    db.destroy_sensor_settings([req.params.id], (err, response) => {});
-    db.destroy_sensor([req.params.id], (err, response) => {
-      if (err) {
-        res.status(204).json("Failure");
-      } else {
-        res.send(200);
-      }
+    db.destroy_sensor_settings([req.params.id], (err, response) => {
+      db.destroy_sensor([req.params.id], (err, response) => {
+        if (err) {
+          res.status(204).json("Failure");
+        } else {
+          res.sendStatus(200);
+        }
+      });
     });
   },
   readHistory: (req, res, next) => {
