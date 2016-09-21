@@ -45,6 +45,7 @@ smtpTransport.verify(function(error, success) {
       pubnub[e.id].addListener({
         message: message => {
           console.log("This is the message for id " + e.id + ":", message);
+          
           db.read_device_id([message.message.nickname, e.id], (err, id) => {
             db.read_device_settings([id[0].sensor_id], (err, settings) => {
               var alert = false;
@@ -127,58 +128,16 @@ var decrypt = (id, pub) => {
   return result.join('');
 };
 
-// var messages = [];
-// for (var i = 0; i < req.body.to.length; i++) {
-//   client.sendMessage({
-//     to: req.body.to[i],
-//     from: req.body.from,
-//     body: req.body.message
-//   }, function(err, message) {
-//     if (err) {
-//       res.send(err);
-//     } else {
-//       messages.push(message);
-//     }
-//   });
-// }
-
-// smtpTransport.sendMail({ //email options
-//   from: YOUR_NAME + " " + EMAIL_ACCOUNT_USER, // sender address.  Must be the same as authenticated user if using GMail.
-//   to: req.body.toField, // receiver
-//   subject: req.body.subjectField, // subject
-//   text: req.body.textField // body
-// }, function(error, response) { //callback
-//   if (error) {
-//     console.log(error);
-//   } else {
-//     console.log("Message sent: " + response.message);
-//     res.send("email sent");
-//   }
-//   smtpTransport.close(); // shut down the connection pool, no more messages.  Comment this line out to continue sending emails.
-// });
-
-// var pubnub = new Pubnub({
-//   subscribeKey: config.SubscribeKey,
-//   publishKey: config.PublishKey,
-//   // secretKey: config.SecretKey,
-//   ssl: true
-// });
+// // get/create/store UUID
+// var UUID = PUBNUB.db.get('session') || (function(){
+//     var uuid = PUBNUB.uuid();
+//     PUBNUB.db.set('session', uuid);
+//     return uuid;
+// })();
 //
-// pubnub.addListener({
-//   message: message => {
-//     console.log("This is the message:", message);
-//   },
-//   presence: presence => {
-//     console.log("This is the presence:", presence);
-//   },
-//   status: status => {
-//     console.log("This is the status:", status);
-//   }
+// // init PUBNUB object with UUID value
+// var pubnub = PUBNUB.init({
+//     publish_key: pubKey,
+//     subscribe_key: subKey,
+//     uuid: UUID
 // });
-//
-// pubnub.subscribe({
-//   channels: ['my_channel'],
-//   withPresence: true
-// });
-//
-// module.exports = pubnub;

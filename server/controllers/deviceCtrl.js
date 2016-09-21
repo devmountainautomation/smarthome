@@ -49,12 +49,12 @@ module.exports = {
     var data = req.body;
     data.start_time = '2016-09-12 ' + data.start_time;
     data.end_time = '2016-09-12 ' + data.end_time;
-      db.update_settings([data.sensor_id, req.user.id, data.active, data.email, data.sms, data.start_time, data.end_time], (err, response) => {
-        if (err) {
-          res.status(500).send('Update Failed');
-        }
-        res.send(200);
-      });
+    db.update_settings([data.sensor_id, req.user.id, data.active, data.email, data.sms, data.start_time, data.end_time], (err, response) => {
+      if (err) {
+        res.status(500).send('Update Failed');
+      }
+      res.send(200);
+    });
   },
   createSettings: (req, res, next) => {
     var data = req.body;
@@ -124,25 +124,25 @@ module.exports = {
     });
   },
   destroySensor: (req, res, next) => {
-      var nickname = req.query.nickname.split(',').join(' ');
-      db.destroy_sensor([req.user.id, nickname], (err, response) => {
-        if (err) {
-          res.status(500).send("Failed to delete sensor");
-        } else {
-          res.send(200);
-        }
-      });
-    },
-    readHistory: (req, res, next) => {
-      db.read_all_history([req.params.id], (err, resp) => {
-        if (err) {
-          console.log(err);
-          res.status(500).send(err)
-        } else {
-          res.json(resp);
-        }
-      })
-    }
+    db.destroy_sensor_settings([req.params.id], (err, response) => {});
+    db.destroy_sensor([req.params.id], (err, response) => {
+      if (err) {
+        res.status(500).send("Failed to delete sensor");
+      } else {
+        res.send(200);
+      }
+    });
+  },
+  readHistory: (req, res, next) => {
+    db.read_all_history([req.params.id], (err, resp) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send(err)
+      } else {
+        res.json(resp);
+      }
+    })
+  }
 }; //End Export
 
 var decrypt = (id, pub) => {
@@ -161,6 +161,7 @@ var decrypt = (id, pub) => {
       result.push(text[i]);
     }
   }
+
   function cipher(char, key, wrap, alpha) {
     var cryptConvert = char.charCodeAt();
     cryptConvert -= key;
