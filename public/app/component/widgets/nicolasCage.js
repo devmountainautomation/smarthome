@@ -4,24 +4,28 @@ angular.module('smarthome')
 
     restrict: 'E',
     scope: {
-      id: "@",
-      nickname: "@"
+      // id: "@",
+      // nickname: "@"
     },
     templateUrl: "./app/component/widgets/nicolasCage.html",
     link(scope, element, attrs) {
-      
+
     },
     controller($scope, dashboardSrvc) {
+      var colors = ['#ff7f0e', '#17A2C6', '#26ca28', '#C52128', '#dfe923', '#2f55b6'];
       $scope.options = {
             chart: {
                 type: 'pieChart',
-                height: 500,
+                color: function (d, i) {
+                  return (d.data && d.data.color) || colors[i % colors.length]
+                },
+                height: 350,
                 x: function(d){return d.key;},
                 y: function(d){return d.y;},
-                showLabels: true,
+                showLabels: false,
                 duration: 500,
                 labelThreshold: 0.01,
-                labelSunbeamLayout: true,
+                labelSunbeamLayout: false,
                 legend: {
                     margin: {
                         top: 5,
@@ -57,10 +61,6 @@ angular.module('smarthome')
             {
                 key: "Six",
                 y: 3
-            },
-            {
-                key: "Seven",
-                y: .5
             }
         ];
 
