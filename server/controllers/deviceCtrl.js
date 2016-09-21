@@ -82,7 +82,7 @@ module.exports = {
       if (!data.email) data.email = false;
       if (!data.sms) data.sms = false;
       db.read_device_id([data.nickname, req.user.id], (err, response) => {
-        data.sensor_id = response[0].sensor_id
+        data.sensor_id = response[0].sensor_id;
         db.create_sensor_settings([req.user.id, moduleId, data.sensor_id, true, data.email, data.sms, data.start_time, data.end_time], (err, response) => {
           if (err) {
             res.status(500).send("Failed to add settings");
@@ -127,7 +127,7 @@ module.exports = {
     db.destroy_sensor_settings([req.params.id], (err, response) => {});
     db.destroy_sensor([req.params.id], (err, response) => {
       if (err) {
-        res.status(500).send("Failed to delete sensor");
+        res.status(204).json("Failure");
       } else {
         res.send(200);
       }

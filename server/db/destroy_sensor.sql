@@ -1,2 +1,2 @@
 DELETE FROM sensors
-WHERE sensor_id = $1
+WHERE id = $1;

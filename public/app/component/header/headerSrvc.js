@@ -30,4 +30,14 @@ angular.module('smarthome')
       });
     };
 
+    this.deleteUser = () => {
+      return $http({
+        method: 'DELETE',
+        url: '/users'
+      })
+      .then(response => {
+        return response.data;
+      });
+    };
+
   });

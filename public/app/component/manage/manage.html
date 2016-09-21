@@ -1,16 +1,56 @@
 <head-dir></head-dir>
+<main class="device-page">
+  <div class="filler">
 
+  </div>
 <section class="devices">
   <h1><u>My Devices</u></h1>
   <section class="device-box">
 
-    <div class="device-cards" ng-repeat="device in devices track by device.nickname">
+    <div class="device-cards" ng-repeat="device in devices | orderBy: ['device.type', 'device.nickname'] track by device.nickname">
       <device-card type="{{device.type}}" id="{{device.id}}" nickname="{{device.nickname}}">
       </device-card>
     </div>
     <div class="add-device-card" ui-sref="addDevice">
       <i class="fa fa-plus"></i>
     </div>
-  </section>
 
+  </section>
+  <aside class="get-started-aside mobile-hidden">
+    <div></div>
+    <article>
+
+    <a target="_blank" href="http://www.instructables.com/id/Raspberry-Pi-Projects/">
+    <p>
+      Not sure where to start?
+    </p>
+      <img src="./assets/img/paper-airplane.png" alt="Getting Started" />
+    </a>
+  </article>
+  </aside>
+  <aside class="instructable-aside mobile-hidden">
+    <div></div>
+    <article>
+
+    <a target="_blank" href="http://www.instructables.com/id/Raspberry-Pi-Projects/">
+    <p>
+      Want more ideas?
+    </p>
+      <img src="./assets/img/instructables-logo.png" alt="instructables.com" />
+    </a>
+  </article>
+  </aside>
+  <aside class="pubnub-aside mobile-hidden">
+    <div></div>
+    <article>
+
+    <a target="_blank" href="https://www.pubnub.com/">
+    <p>
+      Manage your PubNub
+    </p>
+      <img src="./assets/img/pubnub-logo.png" alt="instructables.com" />
+    </a>
+  </article>
+  </aside>
 </section>
+</main>

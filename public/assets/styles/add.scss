@@ -5,6 +5,14 @@
   overflow: hidden;
   color: #F56A4C;
   font-weight: 100;
+
+  .add-wrapper {
+    width: 80vw;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+  }
   u {
     text-decoration: none;
     border-bottom: 0.5px solid #F56A4C;
@@ -20,16 +28,16 @@
     width: 10vw;
     height: 35vh;
     position: absolute;
-    top: 16vh;
+    top: 10vh;
     z-index: 50;
   }
   .gradient-left {
-    left: 2.2rem;
+    left: 4.2vw;
     background: linear-gradient(to right, #343f46 , rgba(#343f46, 0));
     background: -webkit-linear-gradient(to right, #343f46 , rgba(#343f46, 0));
   }
   .gradient-right {
-    right: 2.3rem;
+    right: 5.2vw;
     background: linear-gradient(to right, rgba(#343f46, 0), #343f46);
     background: -webkit-linear-gradient(to right, rgba(#343f46, 0), #343f46);
   }
@@ -41,13 +49,12 @@
 }
 .choose-type {
   height: 35vh;
-  width: 80vw;
+  width: 87%;
   overflow-x: scroll;
   display: flex;
   flex-direction: row;
   float: left;
-  position: relative;
-  padding: 0 10vw;
+  padding: 0 10vw 0 5vw;
 }
 .module-type {
   height: 80%;
@@ -125,6 +132,7 @@
     border: none;
     transition: all 0.6s;
     width: 100%;
+    max-width: 450px;
     box-sizing: border-box;
     text-align: center;
     font-size: 1.5em;
@@ -189,4 +197,13 @@
 ::-webkit-scrollbar-thumb {
     border-radius: 10px;
     background-color: #395161;
+}
+
+@media screen and (min-width: 480px) {
+  .add-device .gradient-left {
+    left: 17px;
+  }
+  .add-device .gradient-right {
+    right: 111px;
+  }
 }

@@ -2,6 +2,7 @@
 <head-dir></head-dir>
 
 <section class="dash-section">
+
     <div class="notifications">
         <div class="notifications-container" ng-repeat="note in notes | orderBy: 'timeStamp'" id="{{note.id}}">
             <div class="notifications-wrapper">
@@ -17,6 +18,9 @@
             </div>
         </div>
     </div>
+    <div class="breech-box">
+      <breech-line id="2", nickname="frontDoor"></breech-line>
+    </div>
     <div class="no-notes hidden">
         <h1>You Have No Notifications</h1>
     </div>
@@ -29,7 +33,7 @@
             <h1>Add Widget</h1>
         </div>
     </div> -->
-    
+
 </section>
 
 
