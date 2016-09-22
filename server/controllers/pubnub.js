@@ -7,32 +7,24 @@ const config = require('../config/config.js');
 const db = app.get('db');
 const nodemailer = require('nodemailer');
 const client = require('twilio')(config.twilioSID, config.twilioAuthToken);
+const users = require('./userCtrl.js');
 
 const EMAIL_ACCOUNT_USER = config.emailAccountUser;
 const EMAIL_ACCOUNT_PASSWORD = config.emailPassword;
 const YOUR_NAME = config.emailName;
 
 var smtpTransport = nodemailer.createTransport({
-  service: "gmail", // sets automatically host, port and connection security settings
+  service: "gmail",
   auth: {
     user: EMAIL_ACCOUNT_USER,
     pass: EMAIL_ACCOUNT_PASSWORD
   }
 });
 
-smtpTransport.verify(function(error, success) {
-   if (error) {
-        console.log(error);
-   } else {
-        console.log('Server is ready to take our messages');
-   }
-});
-
-//************************* Don't Delete this!! ***********************//
+var pubnub = {};
 
 (() => {
   db.get_all_users([], (err, users) => {
-    var pubnub = {};
     users.forEach((e) => {
         e.pubsub = decrypt(e.id, e.pubsub);
         e.pubpub = decrypt(e.id, e.pubpub);
@@ -45,7 +37,7 @@ smtpTransport.verify(function(error, success) {
       pubnub[e.id].addListener({
         message: message => {
           console.log("This is the message for id " + e.id + ":", message);
-          
+
           db.read_device_id([message.message.nickname, e.id], (err, id) => {
             db.read_device_settings([id[0].sensor_id], (err, settings) => {
               var alert = false;
@@ -88,18 +80,36 @@ smtpTransport.verify(function(error, success) {
         },
         status: status => {
           console.log("This is the status for id " + e.id + ":", status);
+          if (status.error === true && status.operation !== 'PNHeartbeatOperation') {
+              client.sendMessage({
+                to: '+18013690655',
+                from: '+18016236835',
+                body: `Pubnub is broken for user ${e.id}!`
+              });
+          }
         }
       });
 
       pubnub[e.id].subscribe({
         channels: [e.pubchan],
-        withPresence: true
+        // withPresence: true
       });
+    // module.exports = pubnub;
     });
-    module.exports = pubnub;
   });
 })();
 
+module.exports = {
+        destroyListener: (id, chan) => {
+            if (pubnub[id]) {
+                pubnub[id].unsubscribe(chan);
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+};
 
 var decrypt = (id, pub) => {
   var result = [];
@@ -127,17 +137,3 @@ var decrypt = (id, pub) => {
   }
   return result.join('');
 };
-
-// // get/create/store UUID
-// var UUID = PUBNUB.db.get('session') || (function(){
-//     var uuid = PUBNUB.uuid();
-//     PUBNUB.db.set('session', uuid);
-//     return uuid;
-// })();
-//
-// // init PUBNUB object with UUID value
-// var pubnub = PUBNUB.init({
-//     publish_key: pubKey,
-//     subscribe_key: subKey,
-//     uuid: UUID
-// });

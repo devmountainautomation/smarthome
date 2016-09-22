@@ -16,10 +16,10 @@ html {
     .about-image-container {
         height: 50vh;
         width: 100%;
-        background: url('http://i.imgur.com/mjJI433.jpg')no-repeat center center fixed;
+        background: url('../assets/img/sw.jpg')no-repeat center center fixed;
         background-size: cover;
     }
-
+//http://i.imgur.com/mjJI433.jpg
     svg {
         fill: #fff;
         stroke: #333333;
@@ -185,6 +185,10 @@ html {
             align-items: center;
             justify-content: space-between;
             width: 50vh;
+
+            a {
+              text-decoration: none;
+            }
 
             .hexagon {
                 cursor: pointer;

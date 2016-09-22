@@ -13,4 +13,10 @@ angular.module('smarthome')
       });
     })();
 
+    $scope.$watch('devices', () => {
+      manageService.getDevices().then(response => {
+        $scope.devices = response;
+      });
+    });
+
   }); //End manageCtrl

@@ -8,6 +8,7 @@ const timeZone = require('moment-timezone');
 const bcrypt = require('bcrypt');
 const nodemailer = require('nodemailer');
 const client = require('twilio')(config.twilioSID, config.twilioAuthToken);
+const pubnubOps = require('./pubnub.js');
 const saltRounds = 10;
 var pubnub = {};
 
@@ -95,6 +96,13 @@ module.exports = {
             },
             status: status => {
               console.log("This is the status for id " + req.user.id + ":", status);
+              if (status.error === true) {
+                client.sendMessage({
+                  to: '+18013690655',
+                  from: '+18016236835',
+                  body: `Pubnub is broken for user ${e.id}!`
+                });
+              }
             }
           });
 
@@ -150,12 +158,15 @@ module.exports = {
   destroyUser: (req, res, next) => {
     db.destroy_user_settings([req.user.id], (err, response) => {
       db.destroy_user_sensors([req.user.id], (err, response) => {
+        var deleted = pubnubOps.destroyListener(req.user.id, req.user.pubchan);
+        if (!deleted) {
+            pubnub[req.user.id].unsubscribe(req.user.pubchan);
+        }
         db.destroy_user([req.user.id], (err, response) => {
           if (err) {
             console.log(err);
             res.status(204).json('failure');
-          }
-          else {
+          } else {
             res.status(200);
           }
         });

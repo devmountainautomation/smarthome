@@ -9,8 +9,7 @@ angular.module('smarthome')
           password: password
         }
       }).then(response => {
-          console.log('login res', response);
-        return response.status;
+        return response.data.redirect;
       });
     };
 

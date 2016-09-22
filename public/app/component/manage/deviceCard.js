@@ -40,12 +40,11 @@ angular.module('smarthome')
           element.find('span').on('click', () => {
             let id = scope.id;
             if (settings.start_time === 'Invalid date') {
-                var startTime = 'ALWAYS ON';
-                var endTime = 'ALWAYS ON';
-            }
-            else {
-                var startTime = settings.start_time;
-                var endTime = settings.end_time;
+              var startTime = 'ALWAYS ON';
+              var endTime = 'ALWAYS ON';
+            } else {
+              var startTime = settings.start_time;
+              var endTime = settings.end_time;
             }
             let content;
             if (scope.type == "Door/Window Sensor") {
@@ -225,10 +224,9 @@ angular.module('smarthome')
             $('body').addClass('menu-open');
             if (scope.type === 'Smoke Detector') {
 
-            }
-            else {
-                $("#start" + scope.id).timeDropper();
-                $("#end" + scope.id).timeDropper();
+            } else {
+              $("#start" + scope.id).timeDropper();
+              $("#end" + scope.id).timeDropper();
             }
             $(element.find('section')).slideDown();
           });
@@ -240,12 +238,11 @@ angular.module('smarthome')
           });
         });
       },
-      controller: ($scope, manageService) => {
+      controller: ($scope, manageService, $timeout) => {
         manageService.getSettings($scope.id).then(function(response) {
           $scope.settings = response;
         });
         $scope.deleteSensor = (id) => {
-          console.log(id);
           swal({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -263,7 +260,7 @@ angular.module('smarthome')
               if (results.status === 200) {
                 swal(
                   'Deleted!',
-                  'Your file has been deleted.',
+                  'Your device has been deleted.',
                   'success'
                 );
               } else {
@@ -281,9 +278,7 @@ angular.module('smarthome')
           });
         };
         $scope.saveSettings = function() {
-          console.log('saved settings', $scope.settings);
           var crazy = $('#start' + $scope.id).val();
-          console.log('start', crazy);
           $scope.settings.start_time = $('#start' + $scope.id).val();
           $scope.settings.end_time = $('#end' + $scope.id).val();
           manageService.saveSettings($scope.settings).then(

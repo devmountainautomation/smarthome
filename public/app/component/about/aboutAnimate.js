@@ -5,9 +5,9 @@ angular.module('smarthome')
       controller: 'aboutCtrl',
       link: (scope, elem, attrs) => {
         $(document).ready(() => {
-          $(window).scroll(function() {
+          $(window).scroll(() => {
 
-            let winScroll = $(this).scrollTop();
+            let winScroll = $(window).scrollTop();
 
             if (winScroll > $('#craig').offset().top - ($(window).height() / 1.5)) {
               setTimeout(() => {

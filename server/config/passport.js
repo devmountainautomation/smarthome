@@ -25,7 +25,6 @@ passport.use(new FacebookStrategy({
         if (err) {
           done(err, null);
         } else if (user) {
-          console.log("found user", err, user);
           done(null, user);
         } else {
           db.update_fb_id([profile.emails[0].value, profile.id], (err, res) => {
@@ -75,7 +74,6 @@ passport.use(new GoogleStrategy({
         if (err) {
           done(err, null);
         } else if (user) {
-          console.log("found user", err, user);
           done(null, user);
         } else {
           db.update_google_id([profile.emails[0].value, profile.id], (err, res) => {
@@ -100,7 +98,6 @@ passport.use(new GoogleStrategy({
         photo: profile.photos[0].value,
         google: profile.id
       }, (err, newUser) => {
-        console.log("new user", newUser);
         done(null, user);
       });
     }
