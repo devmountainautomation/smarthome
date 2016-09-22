@@ -2,7 +2,7 @@ angular.module('smarthome')
   .directive('update', () => {
     return {
       restrict: 'EA',
-      templateUrl: './app/component/header/update.html',
+      templateUrl: './app/component/sidebar/update.html',
       scope: false,
       controller: 'headerCtrl',
       link: (scope, elem, attrs) => {

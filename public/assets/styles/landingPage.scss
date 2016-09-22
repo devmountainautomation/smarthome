@@ -36,6 +36,7 @@
             align-items: center;
             text-align: center;
             font-size: 1.5rem;
+            line-height: 1.2;
             color: #fff;
 
             .landing-CTA {
@@ -102,7 +103,7 @@
         .lp-img-container {
             height: 40%;
             width: 100%;
-            padding: 7vw;
+            padding: 7vh;
             display: flex;
             justify-content: space-between;
 
@@ -154,6 +155,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        margin-bottom: 5vh;
 
         h1 {
             margin-bottom: 0;
@@ -197,7 +199,7 @@
         flex-direction: column;
 
         h1 {
-            margin-bottom: 0;
+            margin: 0;
         }
 
         p {

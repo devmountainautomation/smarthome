@@ -401,6 +401,8 @@ a:visited {
 
                 .close-modal {
                     float: right;
+                    cursor: pointer;
+                    z-index: 9001;
                 }
 
                 input {
