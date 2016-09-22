@@ -1,3 +1,9 @@
+@media (min-width: 768px) {
+    .lp-social-media {
+        display: flex !important;
+    }
+}
+
 .landing-page {
     height: 100vh;
     width: 100vw;
@@ -203,7 +209,7 @@
 .lp-footer {
     height: 10vh;
     width: 100vw;
-    padding: 2%;
+    padding: 2% 8%;
     background: #999;
     display: flex;
     align-items: center;
@@ -211,6 +217,11 @@
 
     .legal {
         text-align: center;
+    }
+
+    .lp-social-media {
+        display: none;
+        cursor: pointer;
     }
 }
 
