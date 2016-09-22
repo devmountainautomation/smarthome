@@ -11,10 +11,8 @@
     z-index: -2;
     background: url('../assets/img/landing-page-smaller.jpg')center no-repeat;
     background-size: cover;
-    // filter: blur(5px);
     svg {
         fill: #065A82;
-        // stroke: #333333;
         height: 10vh;
         position: absolute;
         left: 0;
@@ -98,10 +96,12 @@
             text-align: center;
             color: #fff;
             padding: 5%;
+            max-width: 500px;
         }
 
         .lp-img-container {
             height: 40%;
+            max-width: 500px;
             width: 100%;
             padding: 7vh;
             display: flex;
@@ -134,17 +134,23 @@
         width: 100vw;
         background: #EEEEEE;
         margin: 0;
-        text-align: center;
-        padding: 5%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 5vh;
 
         h2 {
-            font-size: 1.5em;
-            margin-bottom: 5vw;
+            font-size: 2rem;
+            max-width: 600px;
         }
 
         p {
             padding: 5%;
+            font-size: 1rem;
             font-weight: 100;
+            max-width: 700px;
+            text-align: center;
         }
     }
 

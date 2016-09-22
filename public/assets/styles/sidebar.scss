@@ -1,3 +1,11 @@
+@media (max-width: 1000px) {
+    .dash-list-item {
+        font-size: 80% !important;
+        padding: 0 !important;
+        height: 7vh !important;
+    }
+}
+
 .dash-sidebar {
     min-height: 100%;
     width: 15vw;
@@ -36,7 +44,7 @@
                 display: flex;
                 align-items: center;
                 font-family: 'Lato';
-                font-size: 1rem;
+                font-size: 100%;
                 padding: 18px;
                 height: 7vh;
                 cursor: pointer;
@@ -51,12 +59,6 @@
                     margin-right: 3vh;
                 }
             }
-        }
-
-         .side-burger {
-            position: absolute;
-            top: 2vh;
-            left: 2vh;
         }
     }
 }

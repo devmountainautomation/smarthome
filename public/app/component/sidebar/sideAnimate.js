@@ -17,6 +17,11 @@ angular.module('smarthome')
             $('body').css('overflow-y', 'auto');
           });
 
+          $('.side-burger').on('click', () => {
+            $('.sidebar-hidden').toggle('slide', 'left', 300);
+          });
+
+
         });
       }
     };
