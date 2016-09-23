@@ -21,13 +21,13 @@ var smtpTransport = nodemailer.createTransport({
   }
 });
 
-var pubnub = {};
 
 (() => {
   db.get_all_users([], (err, users) => {
+    var pubnub = {};
     users.forEach((e) => {
-        e.pubsub = decrypt(e.id, e.pubsub);
-        e.pubpub = decrypt(e.id, e.pubpub);
+      e.pubsub = decrypt(e.id, e.pubsub);
+      e.pubpub = decrypt(e.id, e.pubpub);
       pubnub[e.id] = new Pubnub({
         subscribeKey: e.pubsub,
         publishKey: e.pubpub,
@@ -81,11 +81,11 @@ var pubnub = {};
         status: status => {
           console.log("This is the status for id " + e.id + ":", status);
           if (status.error === true && status.operation !== 'PNHeartbeatOperation') {
-              client.sendMessage({
-                to: '+18013690655',
-                from: '+18016236835',
-                body: `Pubnub is broken for user ${e.id}!`
-              });
+            client.sendMessage({
+              to: '+18013690655',
+              from: '+18016236835',
+              body: `Pubnub is broken for user ${e.id}!`
+            });
           }
         }
       });
@@ -94,22 +94,22 @@ var pubnub = {};
         channels: [e.pubchan],
         // withPresence: true
       });
-    // module.exports = pubnub;
+      module.exports = pubnub;
     });
   });
 })();
 
-module.exports = {
-        destroyListener: (id, chan) => {
-            if (pubnub[id]) {
-                pubnub[id].unsubscribe(chan);
-                return true;
-            }
-            else {
-                return false;
-            }
-        }
-};
+// module.exports = {
+//         destroyListener: (id, chan) => {
+//             if (pubnub[id]) {
+//                 pubnub[id].unsubscribe(chan);
+//                 return true;
+//             }
+//             else {
+//                 return false;
+//             }
+//         }
+// };
 
 var decrypt = (id, pub) => {
   var result = [];
@@ -127,6 +127,7 @@ var decrypt = (id, pub) => {
       result.push(text[i]);
     }
   }
+
   function cipher(char, key, wrap, alpha) {
     var cryptConvert = char.charCodeAt();
     cryptConvert -= key;
