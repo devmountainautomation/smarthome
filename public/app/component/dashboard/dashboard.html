@@ -4,6 +4,8 @@
 <section class="dash-section" id="dash-section">
 
     <div class="notifications">
+      <div class="gradient gradient-top"> </div>
+        <div class="notifications-frame">
         <div class="notifications-container" ng-repeat="note in notes | orderBy: 'timeStamp'" id="{{note.id}}">
             <div class="notifications-wrapper">
                 <div class="circle-left" ng-click="updateNote(note.id)"><i class="fa fa-circle-thin fa-lg fa-fw" aria-hidden="true"></i></div>
@@ -17,9 +19,11 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="no-notes hidden">
-      <h1>You Have No Notifications</h1>
+      </div>
+        <div class="no-notes hidden">
+          <h1>You Have No Notifications</h1>
+        </div>
+        <div class="gradient gradient-bottom"> </div>
     </div>
     <div class="breech-box">
       <breech-line id="2", nickname="frontDoor"></breech-line>

@@ -31,7 +31,7 @@
     width: 85vw;
     float: right;
     background: #36454f;
-    overflow: auto;
+    overflow: hidden;
     display: flex;
     justify-content: center;
     flex-direction: row;
@@ -55,13 +55,39 @@
         height: 50vh;
         max-width: 700px;
         width: 90%;
-        margin-top: 10vh;
+        margin-top: 12vh;
         padding: 5vh;
         display: flex;
-        overflow: auto;
         flex-direction: column;
         justify-content: center;
-
+        position: relative;
+        .notifications-frame {
+          height: 100%;
+          width: 85%;
+          margin-left: auto;
+          margin-right: auto;
+          padding-top: 3vh;
+          overflow-y: scroll;
+        }
+        .gradient {
+          width: 100%;
+          height: 2rem;
+          position: absolute;
+          &.gradient-top {
+            top: 0;
+            z-index: 50;
+            margin-bottom: -1rem;
+            background: linear-gradient(#343f46, rgba(#343f46, 0));
+            background: -webkit-linear-gradient(#343f46, rgba(#343f46, 0));
+          }
+          &.gradient-bottom {
+            bottom: 0;
+            z-index: 50;
+            margin-top: -1rem;
+            background: linear-gradient(rgba(#343f46, 0), #343f46);
+            background: -webkit-linear-gradient(rgba(#343f46, 0), #343f46);
+          }
+        }
         .notifications-container {
             height: 15vh;
             display: flex;
@@ -190,3 +216,18 @@
     }
 }
 */
+
+@media screen and (max-width: 480px) {
+  .dash-dash {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100vw;
+      .notifications, .breech-box, .pie-box {
+        float: none;
+        margin-left: auto;
+        margin-right: auto;
+      }
+  }
+
+}
