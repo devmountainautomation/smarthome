@@ -11,10 +11,8 @@
     z-index: -2;
     background: url('../assets/img/landing-page-smaller.jpg')center no-repeat;
     background-size: cover;
-    // filter: blur(5px);
     svg {
         fill: #065A82;
-        // stroke: #333333;
         height: 10vh;
         position: absolute;
         left: 0;
@@ -36,6 +34,7 @@
             align-items: center;
             text-align: center;
             font-size: 1.5rem;
+            line-height: 1.2;
             color: #fff;
 
             .landing-CTA {
@@ -97,12 +96,14 @@
             text-align: center;
             color: #fff;
             padding: 5%;
+            max-width: 500px;
         }
 
         .lp-img-container {
             height: 40%;
+            max-width: 500px;
             width: 100%;
-            padding: 7vw;
+            padding: 5vh 7vh;
             display: flex;
             justify-content: space-between;
 
@@ -133,17 +134,24 @@
         width: 100vw;
         background: #EEEEEE;
         margin: 0;
-        text-align: center;
-        padding: 5%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 5vh;
 
         h2 {
-            font-size: 1.5em;
-            margin-bottom: 5vw;
+            font-size: 2rem;
+            text-align: center;
+            max-width: 600px;
         }
 
         p {
             padding: 5%;
+            font-size: 1rem;
             font-weight: 100;
+            max-width: 700px;
+            text-align: center;
         }
     }
 
@@ -154,6 +162,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        margin-bottom: 5vh;
 
         h1 {
             margin-bottom: 0;
@@ -197,7 +206,7 @@
         flex-direction: column;
 
         h1 {
-            margin-bottom: 0;
+            margin: 0;
         }
 
         p {

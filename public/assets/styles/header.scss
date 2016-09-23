@@ -1,4 +1,4 @@
-@media (min-width: 768px) {
+@media (min-width: 769px) {
     .header {
         display: none;
     }
@@ -93,12 +93,14 @@
 }
 
 .btn {
-    width: 10vh;
+    width: 15vh;
+    height: 10vh;
     color: #fff;
     outline: none;
     border: none;
     padding: 0.5rem;
     margin: 1vh;
+    border-radius: 5px;
 }
 
 .btn-success {
@@ -401,6 +403,8 @@ a:visited {
 
                 .close-modal {
                     float: right;
+                    cursor: pointer;
+                    z-index: 9001;
                 }
 
                 input {

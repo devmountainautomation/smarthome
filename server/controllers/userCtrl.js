@@ -36,6 +36,7 @@ module.exports = {
   },
   updateUser: (req, res, next) => {
     var data = req.body;
+
     db.read_user([req.user.name], (err, response) => {
       var userData = response[0];
       if (!data.pubsub || data.pubsub[0] === 's') {
@@ -160,7 +161,7 @@ module.exports = {
       db.destroy_user_sensors([req.user.id], (err, response) => {
         var deleted = pubnubOps.destroyListener(req.user.id, req.user.pubchan);
         if (!deleted) {
-            pubnub[req.user.id].unsubscribe(req.user.pubchan);
+          pubnub[req.user.id].unsubscribe(req.user.pubchan);
         }
         db.destroy_user([req.user.id], (err, response) => {
           if (err) {

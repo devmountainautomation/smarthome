@@ -21,7 +21,7 @@ angular.module('smarthome')
 
           var bounceFunc = function() {
             scrollArrow.effect("bounce", { times:3 }, 1000);
-            bounceCount++
+            bounceCount++;
             setTimeout(function() {
               if (bounceCount < 3 && $(window).scrollTop() === 0) {
                 bounceFunc();

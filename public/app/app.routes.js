@@ -21,7 +21,7 @@ angular.module('smarthome')
         resolve: {
           classStrip: () => {
             $('body').removeClass('menu-open');
-          }
+          },
         }
       })
       .state('login', {
