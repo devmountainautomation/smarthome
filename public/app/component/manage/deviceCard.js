@@ -22,7 +22,7 @@ angular.module('smarthome')
             }
           case "Smoke Detector":
             {
-              scope.icon_url = './assets/img/thermometer-icon.png';
+              scope.icon_url = './assets/img/smoke_icon.png';
               break;
             }
           case "Motion Sensor":
@@ -39,13 +39,14 @@ angular.module('smarthome')
           let settings = response;
           element.find('span').on('click', () => {
             let id = scope.id;
-            let startTime = settings.start_time;
-            let endTime = settings.end_time;
-            // let active = setting.active;
-            // let email;
-            // let sms = setting.sms;
+            if (settings.start_time === 'Invalid date') {
+              var startTime = 'ALWAYS ON';
+              var endTime = 'ALWAYS ON';
+            } else {
+              var startTime = settings.start_time;
+              var endTime = settings.end_time;
+            }
             let content;
-            /// Door + Window Sensor ///
             if (scope.type == "Door/Window Sensor") {
               content = $compile(`
                   <div id="appended">
@@ -90,118 +91,116 @@ angular.module('smarthome')
                       <button type="button" ng-click="saveSettings()"> Save Settings </button>
                       </div>`)(scope);
             } else if (scope.type == "Smoke Detector") {
-              let startTime = setting.start_time;
-              let endTime = setting.end_time;
               content = $compile(`
                   <div id="appended">
                     <i id="appended-close" class="fa fa-close"></i>
                     <div>
+                    <h2>${scope.nickname}</h2>
+                    <hr>
                       <h2>Notification Window</h2>
                       <h3>Start Time</h3>
                         <input type="text" id="start${id}" value="${startTime}"></input>
                       <h3>End Time</h3>
                         <input type="text" id="end${id}" value="${endTime}"></input>
-                    </div>
-
-                    <div class="checkbox-section">
-                      <h2>Notifications</h2>
-                        <div class="check-box">
-                          <div class="squaredOne">
-                            <input type="checkbox" value="None" id="settings-email-radio" name="check" checked />
-                            <label for="settings-email-radio"></label>
-                          </div>
-                          <h4> Send me an email </h4>
                         </div>
+                        <div class="checkbox-section">
+                          <h2>Notifications</h2>
+                            <div class="check-box">
+                              <div class="squaredOne">
+                                <input type="checkbox" id="settings-email-radio" ng-model="settings.email"/>
+                                <label for="settings-email-radio"></label>
+                              </div>
+                              <h4> Send me an email </h4>
+                            </div>
+                            <div class="check-box">
+                              <div class="squaredOne">
+                                <input type="checkbox" id="settings-text-radio" ng-model="settings.sms" />
+                                <label for="settings-text-radio"></label>
+                              </div>
+                              <h4> Send me a text </h4>
+                            </div>
 
-                        <div class="check-box">
-                          <div class="squaredOne">
-                            <input type="checkbox" value="None" id="settings-text-radio" name="check" checked />
-                            <label for="settings-text-radio"></label>
                           </div>
-                          <h4> Send me a text </h4>
-                        </div>
-
-                      </div>
-                      <hr>
-                      <div class="enable-section">
-                          <div class="slide-checkbox">
-    		                      <input type="checkbox" value="1" id="checkboxThreeInput" checked />
-	  	                        <label for="checkboxThreeInput"></label>
-	                         </div>
-                         <h4>Enable/Disable Device</h4>
-                      </div>
-                      <button type="button" ng-click="saveSettings()"></button>
-                    `)(scope);
+                          <hr>
+                          <div class="enable-section">
+                              <div class="slide-checkbox">
+        		                      <input type="checkbox" ng-model="settings.active" id="checkboxThreeInput"/>
+    	  	                        <label for="checkboxThreeInput"></label>
+    	                         </div>
+                             <h4>Enable/Disable Device</h4>
+                          </div>
+                          <div>
+                          <hr>
+                          <button type="button" ng-click="saveSettings()"> Save Settings </button>
+                          </div>`)(scope);
             } else if (scope.type == "Sound Sensor") {
-              let startTime = setting.start_time;
-              let endTime = setting.end_time;
               content = $compile(`
                   <div id="appended">
                     <i id="appended-close" class="fa fa-close"></i>
                     <div>
+                    <h2>${scope.nickname}</h2>
+                    <hr>
                       <h2>Notification Window</h2>
                       <h3>Start Time</h3>
                         <input type="text" id="start${id}" value="${startTime}"></input>
                       <h3>End Time</h3>
                         <input type="text" id="end${id}" value="${endTime}"></input>
-                    </div>
-
-                    <div class="checkbox-section">
-                      <h2>Notifications</h2>
-                        <div class="check-box">
-                          <div class="squaredOne">
-                            <input type="checkbox" value="None" id="settings-email-radio" name="check" checked />
-                            <label for="settings-email-radio"></label>
-                          </div>
-                          <h4> Send me an email </h4>
                         </div>
+                        <div class="checkbox-section">
+                          <h2>Notifications</h2>
+                            <div class="check-box">
+                              <div class="squaredOne">
+                                <input type="checkbox" id="settings-email-radio" ng-model="settings.email"/>
+                                <label for="settings-email-radio"></label>
+                              </div>
+                              <h4> Send me an email </h4>
+                            </div>
+                            <div class="check-box">
+                              <div class="squaredOne">
+                                <input type="checkbox" id="settings-text-radio" ng-model="settings.sms" />
+                                <label for="settings-text-radio"></label>
+                              </div>
+                              <h4> Send me a text </h4>
+                            </div>
 
-                        <div class="check-box">
-                          <div class="squaredOne">
-                            <input type="checkbox" value="None" id="settings-text-radio" name="check" checked />
-                            <label for="settings-text-radio"></label>
                           </div>
-                          <h4> Send me a text </h4>
-                        </div>
-
-                      </div>
-                      <hr>
-                      <div class="enable-section">
-                          <div class="slide-checkbox">
-    		                      <input type="checkbox" value="1" id="checkboxThreeInput" checked />
-	  	                        <label for="checkboxThreeInput"></label>
-	                         </div>
-                         <h4>Enable/Disable Device</h4>
-                      </div>
-                      <button type="button" ng-click="saveSettings()"></button>
-                    `)(scope);
+                          <hr>
+                          <div class="enable-section">
+                              <div class="slide-checkbox">
+        		                      <input type="checkbox" ng-model="settings.active" id="checkboxThreeInput"/>
+    	  	                        <label for="checkboxThreeInput"></label>
+    	                         </div>
+                             <h4>Enable/Disable Device</h4>
+                          </div>
+                          <div>
+                          <hr>
+                          <button type="button" ng-click="saveSettings()"> Save Settings </button>
+                          </div>`)(scope);
             } else if (scope.type == "Motion Sensor") {
-              let startTime = setting.start_time;
-              let endTime = setting.end_time;
               content = $compile(`
                   <div id="appended">
                     <i id="appended-close" class="fa fa-close"></i>
                     <div>
+                    <h2>${scope.nickname}</h2>
+                    <hr>
                       <h2>Notification Window</h2>
                       <h3>Start Time</h3>
-                    <input type="text" id="start${id}" ng-value="settings.startTime" ng-model="settings.start_time"></input>
+                    <input type="text" id="start${id}" value="${startTime}"></input>
                       <h3>End Time</h3>
-                    <input type="text" id="end${id}" ng-value="settings.endTime"></input>
+                    <input type="text" id="end${id}" value="${endTime}"></input>
                     </div>
-
                     <div class="checkbox-section">
                       <h2>Notifications</h2>
                         <div class="check-box">
                           <div class="squaredOne">
-                            <input type="checkbox" value="true" ng-value="settings.email" id="settings-email-radio"/>
+                            <input type="checkbox" id="settings-email-radio" ng-model="settings.email"/>
                             <label for="settings-email-radio"></label>
                           </div>
                           <h4> Send me an email </h4>
                         </div>
-
                         <div class="check-box">
                           <div class="squaredOne">
-                            <input type="checkbox" value="true" ng-value="settings.text" id="settings-text-radio"/>
+                            <input type="checkbox" id="settings-text-radio" ng-model="settings.sms" />
                             <label for="settings-text-radio"></label>
                           </div>
                           <h4> Send me a text </h4>
@@ -211,19 +210,24 @@ angular.module('smarthome')
                       <hr>
                       <div class="enable-section">
                           <div class="slide-checkbox">
-    		                      <input ng-value="settings.active" type="checkbox" value="1" id="checkboxThreeInput" checked />
+    		                      <input type="checkbox" ng-model="settings.active" id="checkboxThreeInput"/>
 	  	                        <label for="checkboxThreeInput"></label>
 	                         </div>
                          <h4>Enable/Disable Device</h4>
                       </div>
+                      <div>
                       <hr>
-                      <button type="button" ng-click="saveSettings()"></button>
-                    `)(scope);
+                      <button type="button" ng-click="saveSettings()"> Save Settings </button>
+                      </div>`)(scope);
             }
             $(element.find('section')).html(content);
             $('body').addClass('menu-open');
-            $("#start" + scope.id).timeDropper();
-            $("#end" + scope.id).timeDropper();
+            if (scope.type === 'Smoke Detector') {
+
+            } else {
+              $("#start" + scope.id).timeDropper();
+              $("#end" + scope.id).timeDropper();
+            }
             $(element.find('section')).slideDown();
           });
         });
@@ -235,12 +239,10 @@ angular.module('smarthome')
         });
       },
       controller: ($scope, manageService) => {
-
         manageService.getSettings($scope.id).then(function(response) {
           $scope.settings = response;
         });
         $scope.deleteSensor = (id) => {
-          console.log(id);
           swal({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -253,12 +255,12 @@ angular.module('smarthome')
             confirmButtonClass: 'btn btn-success',
             cancelButtonClass: 'btn btn-danger',
             buttonsStyling: false
-          }).then((id) => {
+          }).then(() => {
             manageService.deleteSensor(id).then(results => {
               if (results.status === 200) {
                 swal(
                   'Deleted!',
-                  'Your file has been deleted.',
+                  'Your device has been deleted.',
                   'success'
                 );
               } else {
@@ -276,9 +278,7 @@ angular.module('smarthome')
           });
         };
         $scope.saveSettings = function() {
-          console.log('saved settings', $scope.settings);
           var crazy = $('#start' + $scope.id).val();
-          console.log('start', crazy);
           $scope.settings.start_time = $('#start' + $scope.id).val();
           $scope.settings.end_time = $('#end' + $scope.id).val();
           manageService.saveSettings($scope.settings).then(

@@ -1,7 +1,16 @@
 const app = require('../index.js');
+const config = require('../config/config.js');
 const db = app.get('db');
+const Pubnub = require('pubnub');
+const moment = require('moment');
+const jstz = require('jstz');
+const timeZone = require('moment-timezone');
 const bcrypt = require('bcrypt');
+const nodemailer = require('nodemailer');
+const client = require('twilio')(config.twilioSID, config.twilioAuthToken);
+const pubnubOps = require('./pubnub.js');
 const saltRounds = 10;
+var pubnub = {};
 
 module.exports = {
   checkAuth: (req, res, next) => {
@@ -27,14 +36,87 @@ module.exports = {
   },
   updateUser: (req, res, next) => {
     var data = req.body;
-    data.pubsub = encrypt(req.user.id, data.pubsub);
-    data.pubpub = encrypt(req.user.id, data.pubpub);
-    db.update_user([req.user.id, data.name, data.email, data.phone, data.password, data.pubsub, data.pubpub, data.pubchan], (err, response) => {
-      if (err) {
-        res.status(204).send("Update Failed");
-      } else {
-        res.sendStatus(200);
+
+    db.read_user([req.user.name], (err, response) => {
+      var userData = response[0];
+      if (!data.pubsub || data.pubsub[0] === 's') {
+        data.pubsub = encrypt(req.user.id, data.pubsub);
+        data.pubpub = encrypt(req.user.id, data.pubpub);
       }
+      db.update_user([req.user.id, data.name, data.email, data.phone, data.password, data.pubsub, data.pubpub, data.pubchan], (err, response) => {
+        if (userData.pubsub === null || userData.pubpub === null) {
+          data.pubsub = decrypt(req.user.id, data.pubsub);
+          data.pubpub = decrypt(req.user.id, data.pubpub);
+          pubnub[req.user.id] = new Pubnub({
+            subscribeKey: data.pubsub,
+            publishKey: data.pubpub,
+            ssl: true
+          });
+          pubnub[req.user.id].addListener({
+            message: message => {
+              console.log("This is the message for id " + req.user.id + ":", message);
+              db.read_device_id([message.message.nickname, req.user.id], (err, id) => {
+                db.read_device_settings([id[0].sensor_id], (err, settings) => {
+                  var alert = false;
+                  var start = moment(settings[0].start_time);
+                  var end = moment(settings[0].end_time);
+                  var now = moment((message.timetoken / 10000));
+                  if (settings[0].active) {
+                    if (now.format('HH:mm') >= start.format('HH:mm') && now.format('HH:mm') <= end.format('HH:mm')) {
+                      alert = true;
+                      db.read_user([e.name], (err, response) => {
+                        var email = response[0].email;
+                        var phone = response[0].phone;
+                        client.sendMessage({
+                          to: phone,
+                          from: '+18016236835',
+                          body: `Your ${message.message.nickname} is ${message.message.status}!`
+                        }); //end text alert
+                        smtpTransport.sendMail({
+                          from: `${YOUR_NAME} ${EMAIL_ACCOUNT_USER}`,
+                          to: email,
+                          subject: 'HomeOne Alert!',
+                          text: `Your ${message.message.nickname} is ${message.message.status}!`
+                        }, function(error, response) {
+                          if (error) {
+                            console.log(error);
+                          } else {
+                            console.log("Message sent");
+                          }
+                          smtpTransport.close();
+                        }); //End Email alert
+                      });
+                    }
+                  }
+                  db.create_history([req.user.id, id[0].sensor_id, alert, false, message.message.status, now.format('YYYY-MM-DD HH:mm:ss')], (err, response) => {});
+                });
+              });
+            },
+            presence: presence => {
+              console.log("This is the presence for id " + req.user.id + ":", presence);
+            },
+            status: status => {
+              console.log("This is the status for id " + req.user.id + ":", status);
+              if (status.error === true) {
+                client.sendMessage({
+                  to: '+18013690655',
+                  from: '+18016236835',
+                  body: `Pubnub is broken for user ${e.id}!`
+                });
+              }
+            }
+          });
+
+          pubnub[req.user.id].subscribe({
+            channels: [data.pubchan],
+            withPresence: true
+          });
+
+          res.send(200);
+        } else {
+          res.send(200);
+        }
+      });
     });
   },
   createLocalUser: (req, res, next) => {
@@ -77,12 +159,15 @@ module.exports = {
   destroyUser: (req, res, next) => {
     db.destroy_user_settings([req.user.id], (err, response) => {
       db.destroy_user_sensors([req.user.id], (err, response) => {
+        var deleted = pubnubOps.destroyListener(req.user.id, req.user.pubchan);
+        if (!deleted) {
+          pubnub[req.user.id].unsubscribe(req.user.pubchan);
+        }
         db.destroy_user([req.user.id], (err, response) => {
           if (err) {
             console.log(err);
             res.status(204).json('failure');
-          }
-          else {
+          } else {
             res.status(200);
           }
         });
@@ -107,6 +192,7 @@ var encrypt = (id, pub) => {
       result.push(text[i]);
     }
   }
+
   function cipher(char, key, wrap, alpha) {
     var cryptConvert = char.charCodeAt();
     cryptConvert += key;
@@ -134,6 +220,7 @@ var decrypt = (id, pub) => {
       result.push(text[i]);
     }
   }
+
   function cipher(char, key, wrap, alpha) {
     var cryptConvert = char.charCodeAt();
     cryptConvert -= key;

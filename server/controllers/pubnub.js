@@ -7,35 +7,27 @@ const config = require('../config/config.js');
 const db = app.get('db');
 const nodemailer = require('nodemailer');
 const client = require('twilio')(config.twilioSID, config.twilioAuthToken);
+const users = require('./userCtrl.js');
 
 const EMAIL_ACCOUNT_USER = config.emailAccountUser;
 const EMAIL_ACCOUNT_PASSWORD = config.emailPassword;
 const YOUR_NAME = config.emailName;
 
 var smtpTransport = nodemailer.createTransport({
-  service: "gmail", // sets automatically host, port and connection security settings
+  service: "gmail",
   auth: {
     user: EMAIL_ACCOUNT_USER,
     pass: EMAIL_ACCOUNT_PASSWORD
   }
 });
 
-smtpTransport.verify(function(error, success) {
-   if (error) {
-        console.log(error);
-   } else {
-        console.log('Server is ready to take our messages');
-   }
-});
-
-//************************* Don't Delete this!! ***********************//
 
 (() => {
   db.get_all_users([], (err, users) => {
     var pubnub = {};
     users.forEach((e) => {
-        e.pubsub = decrypt(e.id, e.pubsub);
-        e.pubpub = decrypt(e.id, e.pubpub);
+      e.pubsub = decrypt(e.id, e.pubsub);
+      e.pubpub = decrypt(e.id, e.pubpub);
       pubnub[e.id] = new Pubnub({
         subscribeKey: e.pubsub,
         publishKey: e.pubpub,
@@ -45,6 +37,7 @@ smtpTransport.verify(function(error, success) {
       pubnub[e.id].addListener({
         message: message => {
           console.log("This is the message for id " + e.id + ":", message);
+
           db.read_device_id([message.message.nickname, e.id], (err, id) => {
             db.read_device_settings([id[0].sensor_id], (err, settings) => {
               var alert = false;
@@ -87,18 +80,36 @@ smtpTransport.verify(function(error, success) {
         },
         status: status => {
           console.log("This is the status for id " + e.id + ":", status);
+          if (status.error === true && status.operation !== 'PNHeartbeatOperation') {
+            client.sendMessage({
+              to: '+18013690655',
+              from: '+18016236835',
+              body: `Pubnub is broken for user ${e.id}!`
+            });
+          }
         }
       });
 
       pubnub[e.id].subscribe({
         channels: [e.pubchan],
-        withPresence: true
+        // withPresence: true
       });
+      module.exports = pubnub;
     });
-    module.exports = pubnub;
   });
 })();
 
+// module.exports = {
+//         destroyListener: (id, chan) => {
+//             if (pubnub[id]) {
+//                 pubnub[id].unsubscribe(chan);
+//                 return true;
+//             }
+//             else {
+//                 return false;
+//             }
+//         }
+// };
 
 var decrypt = (id, pub) => {
   var result = [];
@@ -116,6 +127,7 @@ var decrypt = (id, pub) => {
       result.push(text[i]);
     }
   }
+
   function cipher(char, key, wrap, alpha) {
     var cryptConvert = char.charCodeAt();
     cryptConvert -= key;
@@ -126,59 +138,3 @@ var decrypt = (id, pub) => {
   }
   return result.join('');
 };
-
-// var messages = [];
-// for (var i = 0; i < req.body.to.length; i++) {
-//   client.sendMessage({
-//     to: req.body.to[i],
-//     from: req.body.from,
-//     body: req.body.message
-//   }, function(err, message) {
-//     if (err) {
-//       res.send(err);
-//     } else {
-//       messages.push(message);
-//     }
-//   });
-// }
-
-// smtpTransport.sendMail({ //email options
-//   from: YOUR_NAME + " " + EMAIL_ACCOUNT_USER, // sender address.  Must be the same as authenticated user if using GMail.
-//   to: req.body.toField, // receiver
-//   subject: req.body.subjectField, // subject
-//   text: req.body.textField // body
-// }, function(error, response) { //callback
-//   if (error) {
-//     console.log(error);
-//   } else {
-//     console.log("Message sent: " + response.message);
-//     res.send("email sent");
-//   }
-//   smtpTransport.close(); // shut down the connection pool, no more messages.  Comment this line out to continue sending emails.
-// });
-
-// var pubnub = new Pubnub({
-//   subscribeKey: config.SubscribeKey,
-//   publishKey: config.PublishKey,
-//   // secretKey: config.SecretKey,
-//   ssl: true
-// });
-//
-// pubnub.addListener({
-//   message: message => {
-//     console.log("This is the message:", message);
-//   },
-//   presence: presence => {
-//     console.log("This is the presence:", presence);
-//   },
-//   status: status => {
-//     console.log("This is the status:", status);
-//   }
-// });
-//
-// pubnub.subscribe({
-//   channels: ['my_channel'],
-//   withPresence: true
-// });
-//
-// module.exports = pubnub;

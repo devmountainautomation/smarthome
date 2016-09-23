@@ -8,9 +8,15 @@ angular.module('smarthome')
     })();
 
     (() => {
-      manageService.getUser().then((response => {
+      manageService.getUser().then(response => {
         $scope.user = response.data;
-      }));
+      });
     })();
+
+    $scope.$watch('devices', () => {
+      manageService.getDevices().then(response => {
+        $scope.devices = response;
+      });
+    });
 
   }); //End manageCtrl

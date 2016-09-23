@@ -46,7 +46,7 @@ angular.module('smarthome')
         templateUrl: './app/component/dashboard/dashboard.html',
         controller: 'dashboardCtrl',
         resolve: {
-          user: (dashboardSrvc) => {
+          user: dashboardSrvc => {
             return dashboardSrvc.getUser();
           },
           checkAuth: ($state, dashboardSrvc) => {

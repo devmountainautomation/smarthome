@@ -3,7 +3,7 @@ angular.module('smarthome')
 
     $scope.localLogin = (email, password) => {
       loginService.login(email, password).then(response => {
-        $state.go('dashboard');
+          $state.go(response);
       });
     };
 

@@ -49,12 +49,12 @@ module.exports = {
     var data = req.body;
     data.start_time = '2016-09-12 ' + data.start_time;
     data.end_time = '2016-09-12 ' + data.end_time;
-      db.update_settings([data.sensor_id, req.user.id, data.active, data.email, data.sms, data.start_time, data.end_time], (err, response) => {
-        if (err) {
-          res.status(500).send('Update Failed');
-        }
-        res.send(200);
-      });
+    db.update_settings([data.sensor_id, req.user.id, data.active, data.email, data.sms, data.start_time, data.end_time], (err, response) => {
+      if (err) {
+        res.status(500).send('Update Failed');
+      }
+      res.sendStatus(200);
+    });
   },
   createSettings: (req, res, next) => {
     var data = req.body;
@@ -87,7 +87,7 @@ module.exports = {
           if (err) {
             res.status(500).send("Failed to add settings");
           } else {
-            res.send(200);
+            res.sendStatus(200);
           }
         });
       });
@@ -118,60 +118,32 @@ module.exports = {
         if (err) {
           res.status(500).send('Failed to add Sensor');
         } else {
-          res.send(200);
+          res.sendStatus(200);
         }
       });
     });
   },
   destroySensor: (req, res, next) => {
+    db.destroy_sensor_settings([req.params.id], (err, response) => {
       db.destroy_sensor([req.params.id], (err, response) => {
         if (err) {
-          console.log(err);
           res.status(204).json("Failure");
         } else {
-          res.send(200);
+          res.sendStatus(200);
         }
       });
-    },
-    readHistory: (req, res, next) => {
-      db.read_all_history([req.params.id], (err, resp) => {
-        if (err) {
-          console.log(err);
-          res.status(500).send(err);
-        } else {
-          res.json(resp);
-        }
-
-      });
-    },
-    // sendText: function(req, res, next) {
-    //   var messages = [];
-    //   for (var i = 0; i < req.body.to.length; i++) {
-    //     client.sendMessage({
-    //       to: req.body.to[i],
-    //       from: req.body.from,
-    //       body: req.body.message
-    //     }, function(err, message) {
-    //       if (err) {
-    //         res.send(err);
-    //       } else {
-    //         messages.push(message);
-    //       }
-    //     });
-    //   }
-    //   res.send("messages sent");
-    // },
-    // sendEmail: function(req, res, next) {
-    //   smtpTransport.sendMail({
-    //     from: '"Home One" <homeoneautomation@gmail.com>',
-    //     to: 'andersen.craigm@gmail.com',
-    //     subject: 'HomeOne Alert!',
-    //     text: 'Your Front Door is Open'
-    // }, () => {
-    //       res.send("email sent");
-    //     smtpTransport.close();
-    //   });
-    // }
+    });
+  },
+  readHistory: (req, res, next) => {
+    db.read_all_history([req.params.id], (err, resp) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send(err)
+      } else {
+        res.json(resp);
+      }
+    })
+  }
 }; //End Export
 
 var decrypt = (id, pub) => {
@@ -190,6 +162,7 @@ var decrypt = (id, pub) => {
       result.push(text[i]);
     }
   }
+
   function cipher(char, key, wrap, alpha) {
     var cryptConvert = char.charCodeAt();
     cryptConvert -= key;

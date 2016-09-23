@@ -27,7 +27,7 @@ angular.module('smarthome')
       });
     };
 
-    this.deleteSensor = (id) => {
+    this.deleteSensor = id => {
       return $http({
         method: 'DELETE',
         url: '/sensors/' + id
