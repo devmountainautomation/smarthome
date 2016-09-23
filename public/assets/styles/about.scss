@@ -11,6 +11,12 @@
     }
 }
 
+.is-showing {
+    opacity: 1 !important;
+    transform: translateX(0px) !important;
+    transition: all .5s ease-in-out !important;
+}
+
 svg {
     overflow: hidden;
 }
@@ -171,6 +177,8 @@ html {
 
             img {
                 width: 40vh;
+                transform: translateX(-30px);
+                opacity: 0;
             }
 
             p {
@@ -181,6 +189,8 @@ html {
                 width: 70vw;
                 max-width: 70vh;
                 text-align: justify;
+                transform: translateX(30px);
+                opacity: 0;
             }
         }
     }
