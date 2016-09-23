@@ -33,11 +33,13 @@ angular.module('smarthome')
                 }, 150);
               }
 
-              if (winScroll > $('#semo').offset().top - ($(window).height() / 1.5)) {
-                setTimeout(() => {
-                  $('#semo').addClass('is-showing');
-                }, 150);
-              }
+              // if (winScroll > $('#semo').offset().top - ($(window).height() / 1.5)) {
+              //   setTimeout(() => {
+              //     $('#semo').addClass('is-showing');
+              //   }, 150);
+              // }
+
+              // $('.media-svg').css('transform', 'translateX(' + (winScroll/2) + 'px)');
             }
           });
         });

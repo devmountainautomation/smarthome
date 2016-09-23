@@ -1,3 +1,16 @@
+@media (min-width: 769px) {
+    #svg-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 10vh 25vh;
+
+        #media-svg {
+            width: 50vh;
+        }
+    }
+}
+
 svg {
     overflow: hidden;
 }
@@ -16,7 +29,7 @@ html {
     .about-image-container {
         height: 50vh;
         width: 100%;
-        background: url('https://hd.unsplash.com/photo-1471623817296-aa07ae5c9f47')no-repeat center center fixed;
+        background: url('../../../assets/img/sw.jpg')no-repeat center center fixed;
         background-size: cover;
         background-position: left;
     }
@@ -174,6 +187,7 @@ html {
 
     .about-footer {
         height: 50vh;
+        width: 100%;
         background: #36454f;
         display: flex;
         flex-direction: column;
