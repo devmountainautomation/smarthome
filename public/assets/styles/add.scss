@@ -1,4 +1,24 @@
+@media (max-width: 769px) {
+    #add-head {
+        display: block;
+    }
+
+    #add-side {
+        display: none;
+    }
+
+    #add-device {
+        width: 100vw;
+    }
+}
+
+.add-head {
+  display: none;
+}
+
 .add-device {
+  width: 85vw;
+  float: right;
   background: #343f46;
   padding: 7vh 5vw 5vw;
   min-height: 100vh;
@@ -67,6 +87,7 @@
     height: 20vh;
     width: 20vh;
     background: #36454f;
+    cursor: pointer;
     &:hover {
       background: #395161;
     }

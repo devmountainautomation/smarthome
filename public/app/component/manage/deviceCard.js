@@ -235,7 +235,7 @@ angular.module('smarthome')
         });
       },
       controller: ($scope, manageService) => {
-        
+
         manageService.getSettings($scope.id).then(function(response) {
           $scope.settings = response;
         });
@@ -248,7 +248,7 @@ angular.module('smarthome')
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!',
+            confirmButtonText: 'Delete',
             cancelButtonText: 'Cancel!',
             confirmButtonClass: 'btn btn-success',
             cancelButtonClass: 'btn btn-danger',

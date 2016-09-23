@@ -2,7 +2,7 @@ angular.module('smarthome')
   .config(($stateProvider, $urlRouterProvider) => {
 
     $urlRouterProvider.otherwise('/');
-    
+
     $stateProvider
       .state('landing page', {
         url: '/',
@@ -21,7 +21,7 @@ angular.module('smarthome')
         resolve: {
           classStrip: () => {
             $('body').removeClass('menu-open');
-          }
+          },
         }
       })
       .state('login', {

@@ -1,5 +1,5 @@
 angular.module('smarthome')
-  .controller('headerCtrl', (headerSrvc, $scope, $state, $location, $anchorScroll) => {
+  .controller('headerCtrl', (headerSrvc, $scope, $state, $location, $anchorScroll, $window) => {
 
     $scope.scrollTo = (id) => {
       $location.hash(id);
@@ -20,6 +20,7 @@ angular.module('smarthome')
       headerSrvc.logout().then(response => {
         swal("Success!", "Logout Successful!", "success");
             $state.go('landing page');
+            $window.location.reload();
       });
     };
 

@@ -31,7 +31,7 @@ module.exports = {
     data.pubpub = encrypt(req.user.id, data.pubpub);
     db.update_user([req.user.id, data.name, data.email, data.phone, data.password, data.pubsub, data.pubpub, data.pubchan], (err, response) => {
       if (err) {
-        res.status(500).send("Update Failed");
+        res.status(204).send("Update Failed");
       } else {
         res.sendStatus(200);
       }

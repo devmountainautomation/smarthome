@@ -1,3 +1,22 @@
+@media (min-width: 769px) {
+    #svg-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 10vh 25vh;
+
+        #media-svg {
+            width: 50vh;
+        }
+    }
+}
+
+.is-showing {
+    opacity: 1 !important;
+    transform: translateX(0px) !important;
+    transition: all .5s ease-in-out !important;
+}
+
 svg {
     overflow: hidden;
 }
@@ -16,8 +35,9 @@ html {
     .about-image-container {
         height: 50vh;
         width: 100%;
-        background: url('https://hd.unsplash.com/photo-1471623817296-aa07ae5c9f47')no-repeat center center fixed;
+        background: url('../../../assets/img/sw.jpg')no-repeat center center fixed;
         background-size: cover;
+        background-position: left;
     }
 
     svg {
@@ -157,6 +177,8 @@ html {
 
             img {
                 width: 40vh;
+                transform: translateX(-30px);
+                opacity: 0;
             }
 
             p {
@@ -167,12 +189,15 @@ html {
                 width: 70vw;
                 max-width: 70vh;
                 text-align: justify;
+                transform: translateX(30px);
+                opacity: 0;
             }
         }
     }
 
     .about-footer {
         height: 50vh;
+        width: 100%;
         background: #36454f;
         display: flex;
         flex-direction: column;
