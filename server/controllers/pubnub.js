@@ -1,10 +1,10 @@
-const app = require('../index.js');
+const app = require('./../index.js');
 const Pubnub = require('pubnub');
 const moment = require('moment');
 const jstz = require('jstz');
 const timeZone = require('moment-timezone');
 const config = require('../config/config.js');
-const db = app.get('db');
+const data = app.get('db');
 const nodemailer = require('nodemailer');
 const client = require('twilio')(config.twilioSID, config.twilioAuthToken);
 const users = require('./userCtrl.js');
@@ -23,7 +23,7 @@ var smtpTransport = nodemailer.createTransport({
 
 
 (() => {
-  db.get_all_users([], (err, users) => {
+  data.get_all_users([], (err, users) => {
     var pubnub = {};
     users.forEach((e) => {
       e.pubsub = decrypt(e.id, e.pubsub);
@@ -38,8 +38,8 @@ var smtpTransport = nodemailer.createTransport({
         message: message => {
           console.log("This is the message for id " + e.id + ":", message);
 
-          db.read_device_id([message.message.nickname, e.id], (err, id) => {
-            db.read_device_settings([id[0].sensor_id], (err, settings) => {
+          data.read_device_id([message.message.nickname, e.id], (err, id) => {
+            data.read_device_settings([id[0].sensor_id], (err, settings) => {
               var alert = false;
               var start = moment(settings[0].start_time);
               var end = moment(settings[0].end_time);
@@ -47,7 +47,7 @@ var smtpTransport = nodemailer.createTransport({
               if (settings[0].active) {
                 if (now.format('HH:mm') >= start.format('HH:mm') && now.format('HH:mm') <= end.format('HH:mm')) {
                   alert = true;
-                  db.read_user([e.name], (err, response) => {
+                  data.read_user([e.name], (err, response) => {
                     var email = response[0].email;
                     var phone = response[0].phone;
                     client.sendMessage({
@@ -71,7 +71,7 @@ var smtpTransport = nodemailer.createTransport({
                   });
                 }
               }
-              db.create_history([e.id, id[0].sensor_id, alert, false, message.message.status, now.format('YYYY-MM-DD HH:mm:ss')], (err, response) => {});
+              data.create_history([e.id, id[0].sensor_id, alert, false, message.message.status, now.format('YYYY-MM-DD HH:mm:ss')], (err, response) => {});
             });
           });
         },

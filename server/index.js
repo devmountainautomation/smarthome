@@ -30,7 +30,7 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 var corsOptions = {
-  origin: 'http://localhost:3000'
+  origin: 'https://homeone.tech'
 };
 app.use(cors());
 app.use(express.static(__dirname + './../public'));
@@ -52,12 +52,12 @@ app.use(passport.session());
 
 app.set('view engine', 'html');
 
-// Pubnub
-const pubnub = require('./controllers/pubnub.js');
-
 // Controllers
 const userCtrl = require('./controllers/userCtrl.js');
 const deviceCtrl = require('./controllers/deviceCtrl.js');
+
+// Pubnub
+const pubnub = require('./controllers/pubnub.js');
 
 ////////////// Endpoints /////////////////////////
 
